@@ -44,7 +44,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 font-medium px-4">
+          <nav className="hidden te md:flex items-center gap-8 font-medium px-4">
             {links.map((l) => (
               <Link
                 key={l.href}
@@ -61,7 +61,7 @@ export default function Header() {
             {/* Copy email pill (desktop) */}
               <Link 
              href="/contact-us"
-            className=" w-full rounded-full bg-[#FF4017] text-white font-medium px-5 py-3   transition"
+            className=" w-full hidden md:block rounded-full bg-[#FF4017] text-white font-medium px-3 py-[7px]   transition"
            >
             Contact Us
           </Link >
@@ -94,7 +94,7 @@ export default function Header() {
 
           <Link 
              href="/contact-us"
-            className="mt-2 w-full rounded-full bg-[#FF4017] text-white font-medium px-5 py-3 h  transition"
+            className="mt- w-full rounded-full bg-[#FF4017] text-xs text-white font-medium px-5 py-1 h  transition"
            >
             Contact Us
           </Link >
