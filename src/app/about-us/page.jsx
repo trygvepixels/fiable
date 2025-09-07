@@ -23,8 +23,45 @@ import Link from "next/link";
  *             Client Logos, CTA
  * - Replace links (#) as needed. All images use Unsplash for easy drop-in.
  */
-
+  const metadata = {
+  title: "About Us | StrucAxis – General Contracting & Fit-Out Experts",
+  description:
+    "Learn about StrucAxis, the execution arm of Trygve Studio Pvt. Ltd. With 12+ years of expertise, in-house machinery, and a multidisciplinary team, we deliver construction, interiors, and turnkey contracting with speed, quality, and reliability across India.",
+  keywords: [
+    "About StrucAxis",
+    "StrucAxis Contractors",
+    "Interior Fit-Out Experts",
+    "Civil Construction Company India",
+    "Turnkey Contracting Firm Lucknow",
+  ],
+  openGraph: {
+    title: "About StrucAxis | Construction & Interior Contracting Experts",
+    description:
+      "StrucAxis, a brand of Trygve Studio Pvt. Ltd., specializes in general contracting, interiors, and turnkey fit-outs with 12+ years of proven expertise.",
+    url: "https://strucaxis.com/about",
+    siteName: "StrucAxis",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "StrucAxis Logo",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | StrucAxis",
+    description:
+      "Discover StrucAxis – your trusted partner in construction, interiors, and turnkey contracting. A Trygve Studio Pvt. Ltd. brand with 12+ years of expertise.",
+    images: ["/logo.png"],
+  },
+};
 export default function AboutPage() {
+ 
+  
   return (
     <main className="bg-white text-gray-900  ">
       <AboutHero />
