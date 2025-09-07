@@ -98,8 +98,8 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-16 sm:pt-36 min-h-[80vh] sm:pb-24">
         {/* Badges */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-white/10 border border-white/30 px-3 py-1 text-xs text-white backdrop-blur-sm">
-            Execution arm of Trygve Studio Pvt. Ltd.
+          <span className="rounded-full bg-white/100 border border-white/30 px-3 py-1 text-xs text-black backdrop-blur-sm">
+            Execution arm of <span className="text-[#FF4017]">Trygve Studio Pvt. Ltd.</span>
           </span>
           <span className="rounded-full bg-emerald-600/90 px-3 py-1 text-xs text-white">
             12+ Years • ISO • MSME • HSE
