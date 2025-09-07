@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import contactImg from '@/assets/contact.webp'
 import { WobbleCardDemo } from "@/components/WobbleCardDemo";
 import ContactForm from "@/components/ContactForm";
+import Link from "next/link";
 export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState({ state: "idle", message: "" });
@@ -89,7 +90,13 @@ export default function ContactPage() {
 }
   return (
     <main className="   bg-[#F4F1EC]  pt-20 pb-6 md:pt-40 text-[#101010]">
-       
+        <div className="fixed bottom-5 z-10 right-5">
+        <Link href="/contact-us#project-form">
+          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+            Start <span className="text-[#ff4017]">Project</span>
+          </button>
+        </Link>
+      </div>
       {/* ===== Hero ===== */}
          <section className="relative overflow-hidden py-20 md:py-28">
       <div className="max-w-5xl mx-auto px-5 text-center">
@@ -138,19 +145,19 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_1.1fr]">
             {/* Info panel */}
             <aside className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-              <h2 className="text-2xl font-semibold">Contact Trygve Studio Pvt. Ltd</h2>
+              <h2 className="text-2xl font-semibold">Contact StrucAxis (By Trygve Studio Pvt. Ltd)</h2>
               <p className="mt-2 text-neutral-700">
                 Share a few details. Our team will respond within 24 hours with
                 next steps, timelines and an initial consultation.
               </p>
 
               <div className="mt-6 grid gap-4 text-[15px]">
-                <a href="mailto:faisal.saif@trygvestudio.com" className="group flex items-start gap-3">
+                <a href="mailto:info@struc-axis.com" className="group flex items-start gap-3">
                   <FiMail className="mt-0.5" />
                   <div>
                     <div className="font-medium">Email</div>
                     <div className="text-neutral-700 group-hover:underline">
-                      faisal.saif@trygvestudio.com
+                      info@struc-axis.com
                     </div>
                   </div>
                 </a>

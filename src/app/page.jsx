@@ -12,13 +12,13 @@ import TeamSection from "@/components/TeamSection"
 import {LogoCarouselDemo} from "@/components/LogoCarouselDemo"
 import {AppleCardsCarouselDemo} from "@/components/AppleCardsCarouselDemo"
 import Link from 'next/link'
-const page = () => {
+ const page = () => {
   return (
     <div>
       <div className="fixed bottom-5 z-10 right-5">
         <Link href="/contact-us#project-form">
-          <button className="px-4 py-2 bg-black  text-white rounded-full shadow-md hover:bg-black  transition">
-            Start Project
+          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+            Start <span className="text-[#ff4017]">Project</span>
           </button>
         </Link>
       </div>

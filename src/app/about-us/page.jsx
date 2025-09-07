@@ -14,6 +14,7 @@ import {
 import TeamSection from "@/components/TeamSection";
 import ContactCta from "@/components/ContactCta";
 import hero from "@/assets/about/image.png"
+import Link from "next/link";
 
 /**
  * Full-fledged "About Us" page for StrucAxis
@@ -47,6 +48,13 @@ export default function AboutPage() {
 function AboutHero() {
   return (
     <section className="relative mx-auto w-full min-h-[100svh] overflow-hidden">
+       <div className="fixed bottom-5 z-10 right-5">
+        <Link href="/contact-us#project-form">
+          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+            Start <span className="text-[#ff4017]">Project</span>
+          </button>
+        </Link>
+      </div>
       <div className="absolute inset-0">
         <Image
           src={hero}

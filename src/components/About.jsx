@@ -72,11 +72,11 @@ export default function TrygveAnnouncement() {
               </a>
 
               <a
-                href="mailto:faisal.saif@trygvestudio.com"
+                href="mailto:info@struc-axis.com"
                 className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-zinc-50"
               >
                 <FiMail className="h-4 w-4" />
-                faisal.saif@trygvestudio.com
+                info@struc-axis.com
               </a>
             </div>
 

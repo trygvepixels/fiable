@@ -81,11 +81,11 @@ export default function FooterPremium({ variant = "bronze" }) {
                 <FaWhatsapp /> Chat on WhatsApp
               </a>
               <a
-                href="mailto:faisal.saif@trygvestudio.com"
+                href="mailto:info@struc-axis.com"
                 className="inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm transition hover:opacity-90"
                 style={{ borderColor: c.line }}
               >
-                <FiMail /> faisal.saif@trygvestudio.com
+                <FiMail /> info@struc-axis.com
               </a>
             </div>
           </div>

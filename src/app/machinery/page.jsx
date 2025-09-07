@@ -168,6 +168,13 @@ useEffect(() => {
 
   return (
     <main className="bg-[#F4F1EC] text-gray-900">
+       <div className="fixed bottom-5 z-10 right-5">
+        <Link href="/contact-us#project-form">
+          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+            Start <span className="text-[#ff4017]">Project</span>
+          </button>
+        </Link>
+      </div>
       {/* -------------------------------------------------- */}
       {/* HERO */}
       {/* -------------------------------------------------- */}
@@ -196,11 +203,12 @@ useEffect(() => {
         {/* Content */}
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-20 sm:pt-36 sm:pb-28">
           <div className="inline-flex items-center gap-2 rounded-full  -white/30 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
-            In-House Fit-Out · Joinery · Carpentry · Glass · UPVC · Metal
+            In-House 
+Machinery · Joinery · Carpentry · Glass · UPVC · Metal
           </div>
 
           <h1 className="mt-6 text-4xl sm:text-6xl font-semibold leading-tight text-white">
-            In-House Fit-Out for <span className="text-white/90">Speed, Precision & Control</span>
+            In-House Machinery for <span className="text-white/90">Speed, Precision & Control</span>
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg sm:text-xl text-white/85">

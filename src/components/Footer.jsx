@@ -2,7 +2,8 @@
 
 import React from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
-
+import logo from "@/assets/logo.png"
+import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="relative bg-black text-white">
@@ -13,6 +14,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           {/* Newsletter / social */}
           <div className="md:col-span-1">
+          <Image src={logo} alt="strucaxis"  className="w-60 mb-3" />
             <h3 className="text-2xl sm:text-3xl font-semibold">
               Stay in the loop — project updates & industry tips
             </h3>

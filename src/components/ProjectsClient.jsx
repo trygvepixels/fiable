@@ -358,6 +358,14 @@ export default function ProjectsClient() {
 
   return (
     <main className="min-h-screen mt-10 bg-[#F7F7F5] text-[#101010]">
+      
+       <div className="fixed bottom-5 z-10 right-5">
+              <Link href="/contact-us#project-form">
+                <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+                  Start <span className="text-[#ff4017]">Project</span>
+                </button>
+              </Link>
+            </div>
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7F7F5] to-[#EFEDE8]" />

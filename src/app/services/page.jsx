@@ -1,6 +1,7 @@
 "use client";
 
 import ContactCta from "@/components/ContactCta";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import {
   FaCheckCircle, FaArrowRight, FaWhatsapp, FaPhoneAlt,
@@ -60,6 +61,13 @@ export default function ServicesPage() {
 
   return (
     <main className="bg-[#F4F1EC] text-gray-900">
+       <div className="fixed bottom-5 z-10 right-5">
+              <Link href="/contact-us#project-form">
+                <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+                  Start <span className="text-[#ff4017]">Project</span>
+                </button>
+              </Link>
+            </div>
       {/* ---------------- HERO ---------------- */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">

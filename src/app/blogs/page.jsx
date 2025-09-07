@@ -7,6 +7,7 @@ import { FaChevronDown, FaSearch, FaSortAmountDown } from "react-icons/fa";
 import BlogCard from "@/components/BlogCard.jsx";
 import BlogCardSkeleton from "@/components/BlogCardSkeleton";
 import bloghero from "@/assets/logo.png";
+import Link from "next/link";
 
 const BRAND = {
   primary: "#ff4017",
@@ -95,6 +96,13 @@ export default function Page() {
 
   return (
     <div className="relative bg-[#F3F1EB]  min-h-screen ">
+       <div className="fixed bottom-5 z-10 right-5">
+        <Link href="/contact-us#project-form">
+          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
+            Start <span className="text-[#ff4017]">Project</span>
+          </button>
+        </Link>
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-40 h-80 blur-3xl"
