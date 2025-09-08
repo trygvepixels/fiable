@@ -50,14 +50,12 @@ export default function Footer() {
                 <a href="tel:+919554440400" className="hover:text-white transition-colors">+91 95544 40400</a>
               </li>
               <li>
-                <a href="mailto:faisal.saif@trygvestudio.com" className="hover:text-white transition-colors">faisal.saif@trygvestudio.com</a>
+                <a href="mailto:info@struc-axis.com" className="hover:text-white transition-colors">info@struc-axis.com</a>
               </li>
               <li>
                 <span>Mon–Sat, 9:30am–6:00pm IST</span>
               </li>
-              <li className="text-white/70">
-                Bengaluru, Karnataka, India
-              </li>
+              
             </ul>
             <a
               href="/contact-us#project-form"

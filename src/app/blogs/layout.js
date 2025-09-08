@@ -79,7 +79,7 @@ export default function RootLayout({ children }) {
             name: 'TRYGVE STUDIO PRIVATE LIMITED',
             url: 'https://www.trygvestudio.com/',
             telephone: '+91-9554440400',
-            email: 'faisal.saif@trygvestudio.com',
+            email: 'info@struc-axis.com',
             address: {
               '@type': 'PostalAddress',
               streetAddress:

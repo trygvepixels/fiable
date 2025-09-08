@@ -95,7 +95,7 @@ export default function ServicesPage() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="https://wa.me/0000000000?text=Hi%20StrucAxis%2C%20I'm%20interested%20in%20your%20services."
+              href="https://wa.me/919554440400?text=Hi%20StrucAxis%2C%20I'm%20interested%20in%20your%20services."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-5 py-3 text-white hover:bg-green-700"
@@ -104,7 +104,7 @@ export default function ServicesPage() {
               WhatsApp Now
             </a>
             <a
-              href="tel:+910000000000"
+              href="tel:+919554440400"
               className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-gray-900 hover:bg-gray-100"
             >
               <FaPhoneAlt className="h-5 w-5" />

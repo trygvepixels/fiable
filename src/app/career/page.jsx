@@ -152,7 +152,7 @@ export default function CareerPage() {
 
   // ----------------- HELPERS -----------------
   const mail = "hr@strucaxis.com"; // change to your HR email
-  const whatsapp = "0000000000"; // change to your WA number (country code without +)
+  const whatsapp = "919554440400"; // change to your WA number (country code without +)
   const applyMailTo = (job) =>
     `mailto:${mail}?subject=Application%20for%20${encodeURIComponent(
       job.title

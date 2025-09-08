@@ -180,10 +180,10 @@ export default function FooterPremium({ variant = "bronze" }) {
               <li className="flex items-start gap-2">
                 <FiMail className="mt-1" />{" "}
                 <a
-                  href="mailto:faisal.saif@trygvestudio.com"
+                  href="mailto:info@struc-axis.com"
                   className="hover:underline"
                 >
-                  faisal.saif@trygvestudio.com
+                  info@struc-axis.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
