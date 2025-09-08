@@ -311,29 +311,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="shrink-0 flex items-center gap-2">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                      "Levana Cyber Heights, 10th Floor – Regus, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh – 226010, India"
-                    )}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-3 py-1.5 rounded-full border border-black/10 hover:bg-black hover:text-white text-sm transition"
-                  >
-                    Open in Maps
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        "Levana Cyber Heights, 10th Floor – Regus, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh – 226010, India"
-                      )
-                    }
-                    className="px-3 py-1.5 rounded-full border border-black/10 hover:bg-black hover:text-white text-sm transition"
-                  >
-                    Copy
-                  </button>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -359,29 +337,7 @@ export default function ContactPage() {
                           <div>5/72, Sector 5, Vikas Nagar</div>
                           <div>Lucknow, Uttar Pradesh – 226022</div>
                         </div>
-                        <div className="mt-2 flex gap-2">
-                          <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                              "Honey Lite, 1st Floor, 5/72, Sector 5, Vikas Nagar, Lucknow, Uttar Pradesh – 226022"
-                            )}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="px-2.5 py-1 rounded-full border border-black/10 hover:bg-black hover:text-white text-xs transition"
-                          >
-                            Maps
-                          </a>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              navigator.clipboard.writeText(
-                                "Honey Lite, 1st Floor, 5/72, Sector 5, Vikas Nagar, Lucknow, Uttar Pradesh – 226022"
-                              )
-                            }
-                            className="px-2.5 py-1 rounded-full border border-black/10 hover:bg-black hover:text-white text-xs transition"
-                          >
-                            Copy
-                          </button>
-                        </div>
+                        
                       </li>
 
                       {/* Branch 2 */}
@@ -394,29 +350,7 @@ export default function ContactPage() {
                           <div>Near Integral University Hospital Gate</div>
                           <div>Lucknow, Uttar Pradesh – 226021</div>
                         </div>
-                        <div className="mt-2 flex gap-2">
-                          <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                              "UGF, Rukshan Complex, Gata No. 112, Dasauli, Kursi Road, Near Integral University Hospital Gate, Lucknow, Uttar Pradesh – 226021"
-                            )}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="px-2.5 py-1 rounded-full border border-black/10 hover:bg-black hover:text-white text-xs transition"
-                          >
-                            Maps
-                          </a>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              navigator.clipboard.writeText(
-                                "UGF, Rukshan Complex, Gata No. 112, Dasauli, Kursi Road, Near Integral University Hospital Gate, Lucknow, Uttar Pradesh – 226021"
-                              )
-                            }
-                            className="px-2.5 py-1 rounded-full border border-black/10 hover:bg-black hover:text-white text-xs transition"
-                          >
-                            Copy
-                          </button>
-                        </div>
+                        
                       </li>
                     </ol>
                   </div>
@@ -444,30 +378,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="shrink-0 flex items-center gap-2">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                      "Plot No. 728, Khasra No. 21, Eden Enclave, Phase 2, Kursi Road, Gudamba, BKT, Lucknow, Uttar Pradesh – 226026, India"
-                    )}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-3 py-1.5 rounded-full border border-black/10 hover:bg-black hover:text-white text-sm transition"
-                  >
-                    Open in Maps
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        "Plot No. 728, Khasra No. 21, Eden Enclave, Phase 2, Kursi Road, Gudamba, BKT, Lucknow, Uttar Pradesh – 226026, India"
-                      )
-                    }
-                    className="px-3 py-1.5 rounded-full border border-black/10 hover:bg-black hover:text-white text-sm transition"
-                  >
-                    Copy
-                  </button>
-                </div>
+              
               </div>
             </div>
           </div>
