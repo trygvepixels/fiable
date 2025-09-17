@@ -86,11 +86,28 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="relative border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 py-5 text-sm text-white/70">
-          <p>© {new Date().getFullYear()} StrucAxis. A Trygve Studio Pvt. Ltd Company. All Rights Reserved.</p>
-         <div>
-          Designed & Developed by <a href="https://genforgestudio.com/" className="text-[#ff4017]">GenForge Studio</a> — Global Web & App Development Agency
-         </div>
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-sm text-white/70 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+          <p className="text-gray-300">
+            © {new Date().getFullYear()} StrucAxis. A{" "}
+            <a
+              href="https://trygvestudio.com/"
+              className="text-[#ff4017] hover:underline transition-colors"
+            >
+              Trygve Studio Pvt. Ltd Company
+            </a>
+            . All Rights Reserved.
+          </p>
+          <span className="hidden md:inline-block mx-4 text-white/30">|</span>
+          <div className="flex flex-col md:flex-row items-center text-gray-300 gap-2 md:gap-4">
+            <span>Designed & Developed by</span>
+            <a
+              href="https://genforgestudio.com/"
+              className="text-[#ff4017] hover:underline transition-colors"
+            >
+              GenForge Studio
+            </a>
+            <span className="hidden md:inline-block">— Global Web & App Development Agency</span>
+          </div>
         </div>
       </div>
       
