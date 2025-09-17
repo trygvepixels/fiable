@@ -35,6 +35,7 @@ export default function TeamForm({ mode = "create", initial = {}, onSubmit }) {
     if (!f.name.trim()) return "Name is required.";
     if (!f.slug.trim()) return "Slug is required.";
     if (!f.position.trim()) return "Position is required.";
+    if (f.description.length > 600) return "Description must be less than 600 characters.";
     return null;
   };
 
@@ -49,9 +50,10 @@ export default function TeamForm({ mode = "create", initial = {}, onSubmit }) {
       const payload = { ...f, slug: f.slug.trim().toLowerCase() };
       await onSubmit(payload);
       setOk(mode === "create" ? "Team member created!" : "Team member updated!");
-      setTimeout(() => router.push("/admin/dashboard/teams"), 600);
+      setTimeout(() => router.push("/admin/dashboard/team"), 600);
     } catch (e2) {
-      setErr(e2?.message || "Error saving team member.");
+      const backendError = e2.response?.data?.error || e2.response?.data?.message || e2.message;
+      setErr(backendError || "Error saving team member.");
     } finally {
       setSubmitting(false);
     }
@@ -59,16 +61,7 @@ export default function TeamForm({ mode = "create", initial = {}, onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {err && (
-        <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-          <FiAlertCircle /> {err}
-        </div>
-      )}
-      {ok && (
-        <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
-          <FiCheckCircle /> {ok}
-        </div>
-      )}
+
 
       <section className="rounded-2xl border border-zinc-200 bg-white p-4 md:p-6 space-y-3">
         <label className="block">
@@ -114,6 +107,17 @@ export default function TeamForm({ mode = "create", initial = {}, onSubmit }) {
       <button disabled={submitting} className="btn-primary">
         {submitting ? (mode === "create" ? "Creating…" : "Saving…") : (mode === "create" ? "Create Member" : "Save Changes")}
       </button>
+
+            {err && (
+        <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          <FiAlertCircle /> {err}
+        </div>
+      )}
+      {ok && (
+        <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+          <FiCheckCircle /> {ok}
+        </div>
+      )}
     </form>
   );
 }
