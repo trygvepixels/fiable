@@ -71,15 +71,20 @@ export default function TeamSection() {
             {team.map((member, idx) => (
               <div
                 key={member._id || member.slug}
-                className="bg-neutral-800 rounded-lg overflow-hidden"
+                className="bg-neutral-800 rounded-lg overflow-hidden relative group"
               >
                 <div className="relative w-full aspect-[4/5]">
                   {member.image?.src ? (
-                    <img
-                      src={member.image.src}
-                      alt={member.image.alt || member.name}
-                      className="h-full w-full object-cover"
-                    />
+                    <>
+                      <img
+                        src={member.image.src}
+                        alt={member.image.alt || member.name}
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-4 text-center text-sm text-neutral-200">
+                        {member.description}
+                      </div>
+                    </>
                   ) : (
                     <div className="h-full w-full bg-neutral-700 flex items-center justify-center text-neutral-500 text-xs">
                       No image
@@ -95,9 +100,7 @@ export default function TeamSection() {
                       </p>
                     )}
                   </div>
-                  <span className="text-neutral-500">
-                    _{String(idx + 1).padStart(2, "0")}
-                  </span>
+                   
                 </div>
               </div>
             ))}
