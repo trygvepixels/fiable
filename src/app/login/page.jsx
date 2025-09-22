@@ -81,15 +81,15 @@ function LoginPageInner() {
           <aside className="relative hidden md:flex flex-col justify-between rounded-l-3xl bg-gradient-to-b from-[#000000] to-[#232323] p-8 text-white">
             <div className="flex items-center gap-3 bg-w">
               <span className='bg-white'>
-                              <Image src={logo} alt="StrucAxis logo" width={40} height={40} priority />
+                              <Image src={logo} alt="fiable logo" width={40} height={40} priority />
 
               </span>
-              <span className="text-lg font-semibold tracking-wide">StrucAxis</span>
+              <span className="text-lg font-semibold tracking-wide">fiable</span>
             </div>
 
             <div className="mt-8">
               <h2 className="text-3xl font-semibold leading-tight">
-                Welcome back to StrucAxis,
+                Welcome back to fiable,
                 <br />
                 Contractor Portal
               </h2>
@@ -113,7 +113,7 @@ function LoginPageInner() {
             </div>
 
             <p className="mt-6 text-xs text-white/70">
-              © {new Date().getFullYear()} StrucAxis — A Trygve Studio Pvt. Ltd. Company
+              © {new Date().getFullYear()} fiable — A Trygve Studio Pvt. Ltd. Company
             </p>
           </aside>
 
@@ -121,8 +121,8 @@ function LoginPageInner() {
           <main className="relative flex flex-col justify-center rounded-3xl md:rounded-l-none p-7 md:p-10">
             {/* Logo (mobile) */}
             <div className="mb-3 flex items-center gap-3 md:hidden">
-              <Image src={logo} alt="StrucAxis logo" width={36} height={36} />
-              <span className="text-base font-semibold text-[#FF6A00]">StrucAxis</span>
+              <Image src={logo} alt="fiable logo" width={36} height={36} />
+              <span className="text-base font-semibold text-[#FF6A00]">fiable</span>
             </div>
 
             <header>

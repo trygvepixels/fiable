@@ -37,7 +37,7 @@ export function CursorTrailDemo() {
               className="mb-3 rounded-[14px] border border-black/10 bg-white text-base"
             >
               <SparklesIcon className="fill-emerald-400 stroke-1 text-neutral-800" />
-              StrucAxis Services
+              fiable Services
             </Badge>
             <h1 className="max-w-4xl text-4xl md:text-5xl font-semibold tracking-tight">
               From Civil Works to Interior Fit-Outs,<br /> We Deliver End-to-End Excellence

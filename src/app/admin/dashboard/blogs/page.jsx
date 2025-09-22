@@ -195,7 +195,7 @@ export default function BlogListPage() {
           </div>
           <Link
             href="/admin/dashboard/blogs/new"
-            className="inline-flex bg-[#FF4017] items-center gap-2 rounded-full   border-  px-4 h-10 text-white transition"
+            className="inline-flex bg-[#4376BB] items-center gap-2 rounded-full   border-  px-4 h-10 text-white transition"
           >
             <FiPlus /> New Post
           </Link>

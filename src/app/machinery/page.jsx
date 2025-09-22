@@ -7,9 +7,9 @@ import { MdOutlinePrecisionManufacturing } from "react-icons/md";
 import Link from "next/link";
 import MilestonesExact from "@/components/Milestones";
 import CapabilitiesBlock from "@/components/CapabilitiesBlock.jsx";
-import { LogoCarouselDemo } from "@/components/LogoCarouselDemo";
+// import { LogoCarouselDemo } from "@/components/LogoCarouselDemo";
 /**
- * In-House Fit-Out — StrucAxis
+ * In-House Fit-Out — fiable
  * A full, production-ready page (JSX only; no TS) inspired by modern award sites.
  * - Hero with split marquee + value props
  * - Clients strip
@@ -143,7 +143,7 @@ useEffect(() => {
   const testimonials = [
     {
       quote:
-        "StrucAxis’ in-house joinery and glass unit gave us unmatched speed and consistency. Handover was exactly on the date promised.",
+        "fiable’ in-house joinery and glass unit gave us unmatched speed and consistency. Handover was exactly on the date promised.",
       name: "Ar. Meenakshi Rao",
       role: "Principal Architect, Bengaluru",
     },
@@ -171,7 +171,7 @@ useEffect(() => {
        <div className="fixed bottom-5 z-10 right-5">
         <Link href="/contact-us#project-form">
           <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
-            Start <span className="text-[#ff4017]">Project</span>
+            Start <span className="text-[#4376BB]">Project</span>
           </button>
         </Link>
       </div>
@@ -218,7 +218,7 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="https://wa.me/919554440400?text=Hi%20StrucAxis%2C%20I'd%20like%20to%20discuss%20an%20in-house%20fit-out."
+              href="https://wa.me/919554440400?text=Hi%20fiable%2C%20I'd%20like%20to%20discuss%20an%20in-house%20fit-out."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-5 py-3 text-white hover:bg-green-700"
@@ -254,7 +254,7 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
       {/* -------------------------------------------------- */}
       {/* CLIENTS */}
       {/* -------------------------------------------------- */}
-           <LogoCarouselDemo/>
+           {/* <LogoCarouselDemo/> */}
      
 
       {/* -------------------------------------------------- */}

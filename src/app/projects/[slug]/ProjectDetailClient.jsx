@@ -1,195 +1,195 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiExternalLink, FiDownload, FiShare2, FiEye } from "react-icons/fi";
+import Link from "next/link";
 
 const cloudinaryLoader = ({ src }) => src;
 
 export default function ProjectDetailClient({ project }) {
   const [lightboxIndex, setLightboxIndex] = useState(null);
-
-  const accent = project.accentColor?.split(" ")[0] || "#111";
+  const accent = project.accentColor?.split(" ")[0] || "#FF6B35";
   const images = Array.isArray(project.galleryImages) ? project.galleryImages : [];
 
-  const openLightbox = (i) => setLightboxIndex(i);
-  const closeLightbox = () => setLightboxIndex(null);
-  const prevImage = () =>
-    setLightboxIndex((i) => (i > 0 ? i - 1 : images.length - 1));
-  const nextImage = () =>
-    setLightboxIndex((i) => (i < images.length - 1 ? i + 1 : 0));
-
   return (
-    <div className="min-h-screen bg-neutral-50">
-      {/* Hero Section */}
-      <div className="relative w-full h-[60vh] lg:h-[75vh] overflow-hidden">
-        {project.coverImage ? (
-          <Image
-            loader={cloudinaryLoader}
-            src={project.coverImage}
-            alt={project.title}
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-neutral-200" />
-        )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center text-white max-wxl px-4">
-          <h1 className="text-xl lg:text-6xl font-semibold mb-4">
-            {project.title}
-          </h1>
-          {(project.client || project.year) && (
-            <p className="text-lg opacity-90">
-              {project.client}
-              {project.client && project.year ? " • " : ""}
-              {project.year}
-            </p>
-          )}
-        </div>
-      </div>
+    <div className="min-h-screen py-20 bg-[#FBF9F7]">
+      {/* Magazine Header */}
+       
 
-      {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-3 gap-12">
-        {/* Main description & Gallery */}
-        <div className="lg:col-span-2">
-          {project.description && (
-            <p className="text-lg leading-relaxed text-neutral-700 whitespace-pre-line mb-12">
-              {project.description}
-            </p>
-          )}
-
-          {/* Gallery */}
-          {images.length > 0 && (
-            <div className="columns-1 sm:columns-2 gap-6 space-y-6">
-              {images.map((img, i) => (
-                <div
-                  key={i}
-                  className="overflow-hidden rounded-xl shadow-md cursor-pointer group"
-                  onClick={() => openLightbox(i)}
-                >
-                  {/* regular img works better inside CSS columns */}
-                  <img
-                    src={img}
-                    alt={`${project.title} image ${i + 1}`}
-                    width={1000}
-                    height={800}
-                    className="hover:scale-105 transition-transform duration-500 object-cover w-full h-auto"
-                    loading="lazy"
-                  />
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-16"
+        >
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
+            <div className="lg:col-span-2 space-y-6">
+              <h1 className="text-4xl lg:text-4xl font-semibold leading-tight text-gray-900">
+                {project.title}
+              </h1>
+              {project.description && (
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  {project.description}
+                </p>
+              )}
+            </div>
+            <div className="space-y-4">
+              <div className="bg-white shadow-xl rounded-2xl p-6">
+                <h3 className="font-semibold mb-4">Project Details</h3>
+                <div className="space-y-3">
+                  {project.client && (
+                    <div>
+                      <span className="text-sm text-gray-500">Client</span>
+                      <p className="font-medium">{project.client}</p>
+                    </div>
+                  )}
+                  {project.year && (
+                    <div>
+                      <span className="text-sm text-gray-500">Year</span>
+                      <p className="font-medium">{project.year}</p>
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Sidebar */}
-        <aside className="space-y-10">
-          {/* Tags */}
-          {project.tags?.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide mb-3">
-                Categories
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-sm px-3 py-1 rounded-full bg-neutral-200 text-neutral-700"
-                  >
-                    {tag}
-                  </span>
-                ))}
               </div>
             </div>
-          )}
+          </div>
+        </motion.div>
 
-          {/* Stats */}
-          {project.stats?.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide mb-3">
-                Key Highlights
-              </h3>
-              <div className="grid gap-4">
-                {project.stats.map((stat, i) => (
-                  <div
-                    key={i}
-                    className="p-4 rounded-xl border bg-white shadow-sm"
-                    style={{ borderColor: accent }}
-                  >
-                    <p className="text-lg font-bold" style={{ color: accent }}>
-                      {stat.value}
-                    </p>
-                    {stat.label && (
-                      <p className="text-sm text-neutral-600">{stat.label}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
+        {/* Featured Image */}
+        {images[0] && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="mb-16"
+          >
+            <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                loader={cloudinaryLoader}
+                src={images[0]}
+                alt={project.title}
+                width={1200}
+                height={675}
+                className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
+              />
             </div>
-          )}
+          </motion.div>
+        )}
 
-          {/* External Links */}
-          {(project.liveUrl || project.caseStudyUrl) && (
+        {/* Content Grid */}
+        <div className="grid lg:grid-cols-4 gap-12">
+          {/* Main Content */}
+          <div className="lg:col-span-3 space-y-16">
+            {/* Stats Section */}
+            {project.stats?.length > 0 && (
+              <section>
+                <h2 className="text-2xl font-semibold mb-8">Project Highlights</h2>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {project.stats.map((stat, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="text-center p-8 rounded-2xl"
+                      style={{ backgroundColor: `${accent}10` }}
+                    >
+                      <div
+                        className="text-3xl font-semibold mb-2"
+                        style={{ color: accent }}
+                      >
+                        {stat.value}
+                      </div>
+                      <p className="text-gray-600 font-medium">{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Gallery Grid */}
+            {images.length > 1 && (
+              <section>
+                <h2 className="text-2xl font-semibold mb-8">Project Gallery</h2>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {images.slice(1).map((img, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+                      onClick={() => setLightboxIndex(i + 1)}
+                    >
+                      <Image
+                        loader={cloudinaryLoader}
+                        src={img}
+                        alt={`${project.title} detail ${i + 2}`}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                        <FiEye className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <aside className="space-y-8">
+            {/* Services */}
+            {project.tags?.length > 0 && (
+              <div className="bg-white shadow-xl rounded-2xl p-6">
+                <h3 className="font-semibold mb-4">Services Provided</h3>
+                <div className="space-y-2">
+                  {project.tags.map((tag, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#FEC210" }}></div>
+                      <span className="text-sm text-gray-700">{tag}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* CTA */}
             <div className="space-y-3">
               {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block w-full text-center py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition"
-                  style={{ backgroundColor: accent, color: "#fff" }}
+                <button
+                  className="w-full py-3 rounded-xl font-semibold text-white transition-all hover:shadow-lg"
+                  style={{ backgroundColor: accent }}
                 >
-                  Visit Website
-                </a>
+                  <FiExternalLink className="inline mr-2" />
+                  View Project
+                </button>
               )}
-              {project.caseStudyUrl && (
-                <a
-                  href={project.caseStudyUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block w-full text-center py-3 rounded-lg font-medium border border-neutral-300 hover:border-neutral-500 transition"
-                >
-                  View Case Study
-                </a>
-              )}
+              <Link href="/contact-us#project-form" className="w-full py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-gray-300 transition-colors">
+                Request Quote
+              </Link>
             </div>
-          )}
-        </aside>
+          </aside>
+        </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox remains similar */}
       {lightboxIndex !== null && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[100000000]">
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
           <button
             className="absolute top-6 right-6 text-white text-3xl"
-            onClick={closeLightbox}
+            onClick={() => setLightboxIndex(null)}
           >
-            ✕
+            ×
           </button>
-          <button
-            className="absolute left-6 text-white text-4xl"
-            onClick={prevImage}
-            aria-label="Previous image"
-          >
-            ‹
-          </button>
-          <button
-            className="absolute right-6 text-white text-4xl"
-            onClick={nextImage}
-            aria-label="Next image"
-          >
-            ›
-          </button>
-          <div className="max-w-5xl max-h-[85vh] px-6">
-            <img
-              src={images[lightboxIndex]}
-              alt={`Project image ${lightboxIndex + 1}`}
-              width={1600}
-              height={1200}
-              className="object-contain rounded-lg shadow-2xl max-h-[85vh] w-auto"
-            />
-          </div>
+          <img
+            src={images[lightboxIndex]}
+            alt={`Project image ${lightboxIndex + 1}`}
+            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+          />
         </div>
       )}
     </div>

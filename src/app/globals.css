@@ -1,10 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+ 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,12 +8,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+ 
 
 
 /* Thin - 100 */
@@ -149,7 +140,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  
+  background-color: #f4f1ec68;
 } 
 
 
@@ -188,3 +179,16 @@ body {
   }
 }
  
+
+.ce-block__content h1 {
+  @apply text-3xl font-bold mt-4 mb-2;
+}
+
+.ce-block__content h2 {
+  @apply text-2xl font-semibold mt-3 mb-2;
+}
+
+.ce-block__content h3 {
+  @apply text-xl font-medium mt-2 mb-1;
+}
+

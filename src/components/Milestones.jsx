@@ -1,53 +1,66 @@
-"use client";
+import React from 'react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 
-import React from "react";
-
-export default function MilestonesExact() {
+const FiableHeroSection = () => {
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-8 pt-16 pb-24">
-        {/* Heading */}
-        <h2 className="text-[34px] leading-tight sm:text-[44px] md:text-[56px] font-semibold text-neutral-900">
-          Milestones That Reflect Our{" "}
-          <span className="text-neutral-400 font-semibold">
-            Passion for Architecture and Design Excellence
-          </span>
-        </h2>
+    <div className='bg-[#f4f1ec68]'>
+       <div className=" max-w-7xl px-6 mx-auto ">
+      <section className="container mx-auto ">
+        <div className="grid lg:grid-cols- gap-16 items-start">
+          {/* Left Content */}
+          <div className="space-y-6">
+            {/* Stats Row */}
+            
 
-        {/* Intro copy */}
-        <div className="mt-8 max-w-3xl text-[15px] sm:text-base leading-6">
-          <p className="text-neutral-800 font-semibold">
-            Over the years, we’ve turned visions into reality, shaping spaces
-            that inspire and endure.
-          </p>
-          <p className="mt-2 text-neutral-500">
-            Our journey is marked by award-winning projects, trusted
-            partnerships, and timeless designs. Every milestone reflects our
-            passion for innovation, precision, and architectural excellence.
-          </p>
+            
+            {/* Main Heading */}
+            <div className="space-y-4">
+              <h1 className="text-4xl lg:text-5xl font-  mt-20 text-black leading-tight mb-6">
+                At <span className='text-[#4376BB]'>Fiable</span>, we engineer the <span className='text-zinc-400'>future of construction</span>
+              </h1>
+
+              <p className="text-lg text-gray-700 leading-relaxed">
+                delivering reliable <span className="text-[#2E5DA5] text-2xl font-medium">waterproofing, flooring, structural rehabilitation</span>, and
+                industrial solutions. With a skilled team of architects and engineers, backed by
+                advanced technology and trusted chemical partners, we guarantee precision,
+                durability, and long-term value.
+              </p>
+            </div>
+
+
+
+            <div className="grid grid-cols-4 gap-8 md:mt-16 mt-10 md:mb-0 mb-16">
+              <div>
+                <div className="text-3xl md:text-6xl text-center font-semibold text-black mb-1">200+</div>
+                <div className="text-sm md:text-xl text-center text-gray-600"> Projects Complete</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-6xl text-center font-semibold text-black mb-1">95%</div>
+                <div className="text-sm md:text-xl text-center text-gray-600">Client Satisfaction</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-6xl text-center font-semibold text-black mb-1">4+</div>
+                <div className="text-sm md:text-xl text-center text-gray-600">Years Experience</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-6xl text-center font-semibold text-black mb-1">50+</div>
+                <div className="text-sm md:text-xl text-center text-gray-600">Expert Engineers</div>
+              </div>
+            </div>
+
+            
+          </div>
+
+          {/* Right Content */}
+          <div className="hidden lg:block">
+            {/* Reserved for visuals or future imagery */}
+          </div>
         </div>
-
-        {/* Stats grid */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-14 gap-y-14">
-          <Stat kpi="150+" label="Projects Completed" />
-          <Stat kpi="12+" label="Years of Experience" />
-          <Stat kpi="25+" label="Locations" />
-          <Stat kpi="5M+" label="Sq. Ft. Designed" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Stat({ kpi, label }) {
-  return (
-    <div className="flex flex-col">
-      {/* thin divider on top like the mock */}
-      <div className="h-px w-full bg-neutral-300 mb-6" />
-      <div className="text-neutral-900 text-[64px] leading-none font-semibold">
-        {kpi}
-      </div>
-      <div className="mt-3 text-neutral-600 text-[15px]">{label}</div>
+      </section>
     </div>
+    </div>
+   
   );
-}
+};
+
+export default FiableHeroSection;

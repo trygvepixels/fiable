@@ -20,11 +20,23 @@ import {
   MdOutlineArticle,
   MdOutlineCollectionsBookmark,
 } from "react-icons/md";
+import {
+    FiUsers,
+  FiMapPin,
+} from "react-icons/fi";
+import {
+   MdWorkOutline,
+ } from "react-icons/md";
+import { HiOutlineClipboardList } from "react-icons/hi";
+import { RiServiceLine, RiTeamLine } from "react-icons/ri";
+import { BiSolidQuoteAltLeft } from "react-icons/bi";
+import { TbBuildingSkyscraper } from "react-icons/tb";
 
+ 
 const BRAND = {
-  primary: "#FF6A00", // StrucAxis orange
-  primaryDark: "#B34700",
-  primarySoft: "rgba(255,106,0,0.10)",
+  primary: "#4376BB", // blue brand color
+  primaryDark: "#2F5685",
+  primarySoft: "rgba(67,118,187,0.10)",
   ink: "#0F1222",
 };
 
@@ -52,14 +64,14 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen  bg-[#F3F1EB] text-[#0F1222]">
+    <div className="min-h-screen pt- bg-[#F3F1EB] text-[#0F1222]">
       {/* background halo */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-40 h-80 blur-3xl"
         style={{
           background:
-            "radial-gradient(60% 60% at 50% 30%, rgba(255,106,0,.20), rgba(255,106,0,0) 70%)",
+            "radial-gradient(60% 60% at 50% 30%, rgba(67,118,187,.20), rgba(67,118,187,0) 70%)",
         }}
       />
 
@@ -79,9 +91,8 @@ export default function AdminDashboard() {
                 Manage
               </div>
               <ul className="px-2 pb-2">
-                
                 <SideItem
-                  href="/admin/dashboard/services"
+                  href="/admin/dashboard/overview"
                   icon={<MdOutlineSpaceDashboard />}
                   label="Overview"
                   active
@@ -93,14 +104,14 @@ export default function AdminDashboard() {
                 />
                 <SideItem
                   href="/admin/dashboard/projects"
-                  icon={<MdOutlineCollectionsBookmark />}
+                  icon={<HiOutlineClipboardList />}
                   label="Projects"
                 />
-                {/* <SideItem
-                  href="/admin/dashboard/upload-project"
-                  icon={<FiUpload />}
-                  label="Upload Project"
-                /> */}
+                <SideItem
+                  href="/admin/dashboard/locations"
+                  icon={<FiMapPin />}
+                  label="Locations"
+                />
                 <SideItem
                   href="/admin/dashboard/feature-projects"
                   icon={<FiStar />}
@@ -108,12 +119,12 @@ export default function AdminDashboard() {
                 />
                 <SideItem
                   href="/admin/dashboard/jobs"
-                  icon={<FiBriefcase />}
+                  icon={<MdWorkOutline />}
                   label="Jobs"
                 />
                 <SideItem
                   href="/admin/dashboard/services"
-                  icon={<FiBriefcase />}
+                  icon={<RiServiceLine />}
                   label="Services"
                 />
               </ul>
@@ -128,106 +139,110 @@ export default function AdminDashboard() {
           </aside>
 
           {/* Main content */}
-          <main className="mt-6 md:mt-20">
-            {/* Welcome panel */}
-            <section className="relative overflow-hidden rounded-3xl border border-zinc-100 bg-gradient-to-br from-white via-[rgba(255,106,0,0.06)] to-white p-6 md:p-8">
-              <div
-                aria-hidden
-                className="absolute -right-10 -top-10 h-40 w-40 rounded-full blur-2xl"
-                style={{
-                  background:
-                    "radial-gradient(45% 45% at 50% 50%, rgba(255,106,0,.20), rgba(255,106,0,0))",
-                }}
-              />
-              <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">
-                Welcome back, StrucAxis Admin 👋
-              </h1>
-              <p className="mt-2 text-zinc-600 max-w-2xl">
-                Contractor-first control center — manage blogs, projects, services and careers with clarity and speed.
-              </p>
-            </section>
+         <main className="mt-6 md:mt-20 space-y-10">
+  {/* Welcome Panel */}
+  <section className="relative overflow-hidden rounded-3xl border border-zinc-100 bg-white/70 backdrop-blur-md shadow-sm p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight text-zinc-800">
+        Welcome back, fiable Admin 👋
+      </h1>
+      <p className="mt-3 text-zinc-600 max-w-xl">
+        Your contractor-first control center — manage blogs, projects, services
+        and careers with clarity and speed.
+      </p>
+    </div>
+    <div className="hidden md:block w-40 h-40 rounded-full bg-gradient-to-tr from-blue-100 to-blue-100 flex items-center justify-center">
+      <span className="text-5xl">⚡</span>
+    </div>
+  </section>
 
-            {/* Quick actions */}
-            <section className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <ActionCard
-                href="/admin/dashboard/blogs"
-                icon={<FiFileText />}
-                title="Manage Blogs"
-                desc="Publish updates, case studies & insights."
-              />
+  {/* Quick Actions Command Palette Style */}
+  <section className="rounded-3xl border border-zinc-100 bg-gradient-to-br from-white via-blue-50/40 to-white p-6 md:p-8 shadow-sm">
+    <h2 className="text-lg font-semibold text-zinc-800 mb-4">Quick actions</h2>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {[
+        {
+          href: "/admin/dashboard/blogs",
+          icon: <MdOutlineArticle />,
+          title: "Manage Blogs",
+          desc: "Publish updates, case studies & insights.",
+        },
+        {
+          href: "/admin/dashboard/jobs",
+          icon: <MdWorkOutline />,
+          title: "Manage Jobs",
+          desc: "Post openings for engineers, site staff & more.",
+        },
+        {
+          href: "/admin/dashboard/feature-projects",
+          icon: <FiStar />,
+          title: "Feature Projects",
+          desc: "Showcase priority builds on the website.",
+        },
+        {
+          href: "/admin/dashboard/projects",
+          icon: <HiOutlineClipboardList />,
+          title: "Projects",
+          desc: "Add new projects, images & progress.",
+        },
+        {
+          href: "/admin/dashboard/services",
+          icon: <RiServiceLine />,
+          title: "Services",
+          desc: "Manage service pages & ordering.",
+        },
+        {
+          href: "/admin/dashboard/team",
+          icon: <RiTeamLine />,
+          title: "Team",
+          desc: "Update team structure & bios.",
+        },
+        // {
+        //   href: "/admin/dashboard/capabilities",
+        //   icon: <TbBuildingSkyscraper />,
+        //   title: "Capabilities",
+        //   desc: "Highlight fast-track, mall coordination & more.",
+        // },
+        {
+          href: "/admin/dashboard/testimonials",
+          icon: <BiSolidQuoteAltLeft />,
+          title: "Testimonials",
+          desc: "Add client quotes & approvals.",
+        },
+        {
+          href: "/admin/dashboard/client-logos",
+          icon: <FiBriefcase />,
+          title: "Client Logos",
+          desc: "Manage brand logos for case studies.",
+        },
+        {
+          href: "/admin/dashboard/locations",
+          icon: <FiMapPin />,
+          title: "Locations",
+          desc: "Manage company office & service center locations.",
+        },
+      ].map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          className="group flex items-center gap-4 rounded-xl p-4 border border-zinc-200 bg-white/70 backdrop-blur-sm shadow-sm hover:bg-blue-50 hover:shadow-md transition"
+        >
+          <div className="w-12 h-12 rounded-lg grid place-items-center text-xl text-blue-600 bg-blue-100 group-hover:bg-blue-600 group-hover:text-white transition">
+            {item.icon}
+          </div>
+          <div className="flex-1">
+            <div className="font-semibold text-zinc-800">{item.title}</div>
+            <div className="text-sm text-zinc-500">{item.desc}</div>
+          </div>
+          <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition">
+            <FiChevronRight />
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</main>
 
-              <ActionCard
-                href="/admin/dashboard/jobs"
-                icon={<FiBriefcase />}
-                title="Manage Jobs"
-                desc="Post openings for engineers, site staff & more."
-                primary
-              />
-              <ActionCard
-                href="/admin/dashboard/feature-projects"
-                icon={<FiStar />}
-                title="Feature Projects"
-                desc="Showcase priority builds on the website."
-              />
-              <ActionCard
-                href="/admin/dashboard/projects"
-                icon={<FiStar />}
-                title="Projects"
-                desc="Add new projects, images & progress."
-              />
-              <ActionCard
-                href="/admin/dashboard/services"
-                icon={<FiStar />}
-                title="Services"
-                desc="Manage service pages & ordering."
-              />
-              <ActionCard
-                href="/admin/dashboard/team"
-                icon={<FiStar />}
-               title="Team"
-                desc="Update team structure & bios."
-              />
-              <ActionCard
-                href="/admin/dashboard/capabilities"
-                icon={<FiStar />}
-               title="Capabilities"
-                desc="Highlight fast-track, mall coordination & more."
-              />
-              <ActionCard
-                href="/admin/dashboard/testimonials"
-                icon={<FiStar />}
-               title="Testimonials"
-                desc="Add client quotes & approvals."
-              />
-              <ActionCard
-                href="/admin/dashboard/client-logos"
-                icon={<FiStar />}
-               title="Client Logs"
-                desc="Manage brand logos for case studies."
-              />
-               
-
-            </section>
-
-            {/* Tables */}
-            {/* <section className="mt-8 grid lg:grid-cols-2 gap-6">
-              <GlassPanel title="Recent Blogs">
-                <Table
-                  cols={["Title", "Status", "Date"]}
-                  rows={recentBlogs.map((b) => [b.title, b.status, b.date])}
-                />
-                <FooterLink href="/admin/dashboard/blogs" label="View all blogs" />
-              </GlassPanel>
-
-              <GlassPanel title="Recent Projects">
-                <Table
-                  cols={["Title", "Status", "Date"]}
-                  rows={recentProjects.map((p) => [p.title, p.status, p.date])}
-                />
-                <FooterLink href="/admin/dashboard/projects" label="View all projects" />
-              </GlassPanel>
-            </section> */}
-          </main>
         </div>
       </div>
     </div>
@@ -243,7 +258,7 @@ function SideItem({ href, icon, label, active }) {
         href={href}
         className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${
           active
-            ? "bg-[rgba(255,106,0,0.08)] text-[color:#FF6A00]"
+            ? " text-[color:#4376BB]"
             : "text-zinc-700 hover:bg-zinc-50"
         }`}
       >
@@ -270,82 +285,34 @@ function ActionCard({ href, icon, title, desc, primary }) {
   return (
     <Link
       href={href}
-      className={`group block rounded-2xl border border-zinc-100 bg-white p-5 shadow-[0_10px_30px_rgba(17,17,26,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(255,106,0,0.12)] ${
-        primary ? "ring-1 ring-[rgba(255,106,0,0.20)]" : ""
+      className={`group relative flex flex-col justify-between rounded-3xl border bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
+        primary
+          ? "border-transparent bg-gradient-to-br from-blue-50 to-white ring-2 ring-blue-300/60"
+          : "border-zinc-200/70"
       }`}
     >
-      <div className="flex items-center gap-3">
-        <div
-          className="grid h-10 w-10 place-items-center rounded-xl"
-          style={{ background: BRAND.primarySoft, color: BRAND.primary }}
-        >
+      {/* Floating Icon */}
+      <div className="mb-4 flex items-center justify-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl shadow-md transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
           {icon}
         </div>
-        <div>
-          <h3 className="text-[15px] font-semibold">{title}</h3>
-          <p className="text-sm text-zinc-600">{desc}</p>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 text-center">
+        <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-[#4376BB] transition-colors">
+          {title}
+        </h3>
+        <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+      </div>
+
+      {/* CTA button-like footer */}
+      <div className="mt-6 flex justify-center">
+        <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-[#4376BB] transition-all duration-300 group-hover:bg-[#4376BB] group-hover:text-white">
+          Explore
+          <FiChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </div>
       </div>
-      <div className="mt-4 flex items-center text-sm font-medium text-[color:#FF6A00]">
-        Go
-        <FiChevronRight className="ml-1 transition-transform group-hover:translate-x-0.5" />
-      </div>
     </Link>
-  );
-}
-
-function GlassPanel({ title, children }) {
-  return (
-    <div className="rounded-2xl border border-zinc-100 bg-white/90 backdrop-blur p-5 shadow-[0_10px_30px_rgba(17,17,26,0.04)]">
-      <div className="mb-3 flex items-center justify-between">
-        <h4 className="text-[15px] font-semibold">{title}</h4>
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function Table({ cols, rows }) {
-  return (
-    <div className="overflow-hidden rounded-xl border border-zinc-100">
-      <table className="w-full text-sm">
-        <thead className="bg-zinc-50/60">
-          <tr>
-            {cols.map((c) => (
-              <th
-                key={c}
-                className="px-3 py-2 text-left font-medium text-zinc-600"
-              >
-                {c}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-zinc-100">
-          {rows.map((r, i) => (
-            <tr key={i} className="hover:bg-zinc-50/50">
-              {r.map((cell, j) => (
-                <td key={j} className="px-3 py-2">
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function FooterLink({ href, label }) {
-  return (
-    <div className="mt-3 flex justify-end">
-      <Link
-        href={href}
-        className="text-sm font-medium text-[color:#FF6A00] hover:underline"
-      >
-        {label}
-      </Link>
-    </div>
   );
 }

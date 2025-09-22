@@ -7,16 +7,19 @@ import {
   FiClock,
   FiMapPin,
   FiArrowRight,
+  FiMessageCircle,
+  FiCheckCircle,
+  FiUsers,
+  FiAward,
+  FiTool
 } from "react-icons/fi";
-import { FaInstagram, FaLinkedin, FaBehance, FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
+import { FaWhatsapp, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-
-import contactImg from "@/assets/contact.webp";
-import { WobbleCardDemo } from "@/components/WobbleCardDemo";
 import ContactForm from "@/components/ContactForm";
+import LocationsList from "@/components/LocationsList";
 import Link from "next/link";
-export default function ContactPage() {
+
+export default function FiableContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const router = useRouter();
@@ -31,7 +34,6 @@ export default function ContactPage() {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
 
-      // Build payload (normalize fields + extras)
       const payload = {
         fullName: data.fullName,
         email: data.email,
@@ -42,19 +44,13 @@ export default function ContactPage() {
         budget: data.budget || "",
         timeline: data.timeline || "",
         message: data.message || data.brief || "",
-
-        // meta info
         page: window.location.pathname,
         utm: {
-          source:
-            new URLSearchParams(window.location.search).get("utm_source") || "",
-          medium:
-            new URLSearchParams(window.location.search).get("utm_medium") || "",
-          campaign:
-            new URLSearchParams(window.location.search).get("utm_campaign") ||
-            "",
+          source: new URLSearchParams(window.location.search).get("utm_source") || "",
+          medium: new URLSearchParams(window.location.search).get("utm_medium") || "",
+          campaign: new URLSearchParams(window.location.search).get("utm_campaign") || "",
         },
-        website: "", // honeypot field (should stay empty)
+        website: "",
       };
 
       const res = await fetch("/api/contact", {
@@ -72,10 +68,9 @@ export default function ContactPage() {
       form?.reset();
       setStatus({
         state: "success",
-        message: "✅ Thanks! Your enquiry has been saved.",
+        message: "✅ Thank you! Your project inquiry has been received.",
       });
 
-      // Redirect to thank-you
       try {
         router.replace("/thankyou");
         setTimeout(() => {
@@ -95,304 +90,373 @@ export default function ContactPage() {
       });
     }
   }
+
   return (
-    <main className="   bg-[#F4F1EC]  pt-20 pb-6 md:pt-40 text-[#101010]">
-      <div className="fixed bottom-5 z-10 right-5">
-        <Link href="/contact-us#project-form">
-          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
-            Start <span className="text-[#ff4017]">Project</span>
-          </button>
-        </Link>
-      </div>
+    <main className="bg-[#F4F1EC] pt-20 pb-6 md:pt-40 text-[#101010]">
+       
+
       {/* ===== Hero ===== */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden ">
         <div className="max-w-5xl mx-auto px-5 text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur rounded-full px-4 py-2 mb-8">
+            <FiCheckCircle className="w-4 h-4 text-[#4376BB]" />
+            <span className="text-[#4376BB] font-semibold text-sm uppercase tracking-wide">
+              Trusted Construction Partner
+            </span>
+          </div>
+
           {/* Heading */}
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.1]">
-            <span className="bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent">
-              Say Hi!
+          <h1 className="text-4xl md:text-5xl font-  tracking-tight leading-[1.1]">
+            <span className="bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">
+              Let's Build Your
             </span>{" "}
-            <span className="text-black">and tell about your </span>
-            <span className="bg-blue-600 via -green-500 to-yellow-500 bg-clip-text text-transparent">
-              idea
+            <br />
+            <span className="text-black">Construction </span>
+            <span className="bg-gradient-to-r from-[#4376BB] to-blue-700 bg-clip-text text-transparent">
+              Vision Together
             </span>
           </h1>
 
           {/* Subtext */}
-          <p className="mt-5 text-base md:text-lg text-gray-600">
-            Have a nice works? Reach out and let&apos;s chat.
+          <p className="mt-5 text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+            Structural retrofitting, waterproofing, and industrial construction solutions. 
+            Share your project requirements and get expert consultation from India's trusted construction specialists.
           </p>
 
           {/* CTA buttons */}
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#project-form"
-              className="inline-flex items-center gap-2 rounded-full bg-black text-white px-6 py-3 text-sm md:text-base font-medium hover:opacity-90 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4376BB] text-white px-6 py-3 text-sm md:text-base font-medium hover:bg-blue-700 transition"
             >
-              Start Your Project
+              <FiTool className="w-4 h-4" />
+              Get Project Quote
             </a>
             <a
-              href="https://wa.me/919554440400" // replace with your number
+              href="https://wa.me/917233809199?text=Hi%20Fiable%2C%20I%27d%20like%20to%20discuss%20a%20construction%20project."
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-black px-6 py-3 text-sm md:text-base font-medium hover:bg-black hover:text-white transition"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-green-600 text-green-600 px-6 py-3 text-sm md:text-base font-medium hover:bg-green-600 hover:text-white transition"
             >
-              Quick Chat on WhatsApp
+              <FaWhatsapp className="w-4 h-4" />
+              WhatsApp: +91 7233809199
             </a>
           </div>
+
+  
         </div>
       </section>
 
-      {/* <WobbleCardDemo /> */}
-
       {/* ===== Contact + Form ===== */}
-      <section className="relative mt-20 ">
+      <section className="relative mt-20">
         <div className="max-w-7xl mx-auto px-5 pb-20">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_1.1fr]">
             {/* Info panel */}
-            <aside className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-              <h2 className="text-2xl font-semibold">
-                Contact StrucAxis (By Trygve Studio Pvt. Ltd)
-              </h2>
-              <p className="mt-2 text-neutral-700">
-                Share a few details. Our team will respond within 24 hours with
-                next steps, timelines and an initial consultation.
+            <aside className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-lg">
+              <div className="flex items-start gap-3 mb-4">
+                <FiUsers className="w-6 h-6 text-[#4376BB] mt-1" />
+                <div>
+                  <h2 className="text-2xl font-semibold">
+                    Fiable Building Solutions
+                  </h2>
+                  <p className="text-sm text-gray-500 mt-1">Execution Arm of Trygve Engineering Pvt. Ltd.</p>
+                </div>
+              </div>
+              
+              <p className="mt-4 text-neutral-700 leading-relaxed">
+                "Trust and Honesty is our mantra" - Get expert consultation for waterproofing, 
+                structural retrofitting, and industrial construction projects. Our team responds within 24 hours.
               </p>
 
+              {/* Contact Methods */}
               <div className="mt-6 grid gap-4 text-[15px]">
                 <a
-                  href="mailto:info@struc-axis.com"
-                  className="group flex items-start gap-3"
+                  href="mailto:sales@fiablebuildingsolutions.com"
+                  className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
                 >
-                  <FiMail className="mt-0.5" />
+                  <FiMail className="mt-0.5 text-[#4376BB]" />
                   <div>
-                    <div className="font-medium">Email</div>
-                    <div className="text-neutral-700 group-hover:underline">
-                      info@struc-axis.com
+                    <div className="font-medium">Primary Email</div>
+                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                      sales@fiablebuildingsolutions.com
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="tel:+919554440400"
-                  className="group flex items-start gap-3"
+                  href="mailto:sales@trygve-engineering.com"
+                  className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
                 >
-                  <FiPhone className="mt-0.5" />
+                  <FiMail className="mt-0.5 text-[#4376BB]" />
                   <div>
-                    <div className="font-medium">Phone</div>
-                    <div className="text-neutral-700 group-hover:underline">
-                      +91 95544 40400
+                    <div className="font-medium">Alternative Email</div>
+                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                      sales@trygve-engineering.com
                     </div>
                   </div>
                 </a>
 
-                <div className="flex items-start gap-3">
-                  <FiMapPin className="mt-0.5" />
+                <a
+                  href="tel:+917233809199"
+                  className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
+                >
+                  <FiPhone className="mt-0.5 text-[#4376BB]" />
                   <div>
-                    <div className="font-medium">Studios</div>
+                    <div className="font-medium">Primary Phone</div>
+                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                      +91 7233809199
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="tel:+919044072226"
+                  className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
+                >
+                  <FiPhone className="mt-0.5 text-[#4376BB]" />
+                  <div>
+                    <div className="font-medium">Secondary Phone</div>
+                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                      +91 9044072226
+                    </div>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-3 p-3">
+                  <FiMapPin className="mt-0.5 text-[#4376BB]" />
+                  <div>
+                    <div className="font-medium">Service Areas</div>
                     <div className="text-neutral-700">
-                      Operating globally — project teams across APAC, EMEA & NA.
+                      Uttar Pradesh, Delhi NCR, Maharashtra & across India
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <FiClock className="mt-0.5" />
+                <div className="flex items-start gap-3 p-3">
+                  <FiClock className="mt-0.5 text-[#4376BB]" />
                   <div>
                     <div className="font-medium">Response Time</div>
                     <div className="text-neutral-700">
-                      Within 24 hours (Mon–Sat)
+                      Within 24 hours (Monday–Saturday)
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Socials */}
-              <div className="mt-7">
-                <div className="text-sm font-medium uppercase tracking-wide">
-                  Follow
+              {/* Quick Links */}
+              <div className="mt-6 p-4 bg-[#4376BB]/5 rounded-xl">
+                <div className="text-sm font-medium text-[#4376BB] mb-3 uppercase tracking-wide">
+                  Our Specializations
                 </div>
-                <div className="mt-3 flex items-center gap-3">
-                  <a
-                    href="https://instagram.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 hover:bg-black hover:text-white transition"
-                    aria-label="Instagram"
-                  >
-                    <FaInstagram />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 hover:bg-black hover:text-white transition"
-                    aria-label="LinkedIn"
-                  >
-                    <FaLinkedin />
-                  </a>
-                  <a
-                    href="https://www.behance.net/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 hover:bg-black hover:text-white transition"
-                    aria-label="Behance"
-                  >
-                    <FaBehance />
-                  </a>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="w-3 h-3 text-green-500" />
+                    <span>Waterproofing Systems</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="w-3 h-3 text-green-500" />
+                    <span>Structural Retrofitting</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="w-3 h-3 text-green-500" />
+                    <span>Industrial Flooring</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="w-3 h-3 text-green-500" />
+                    <span>Grouting Services</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="w-3 h-3 text-green-500" />
+                    <span>Civil Construction</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="w-3 h-3 text-green-500" />
+                    <span>Anchor Systems</span>
+                  </div>
                 </div>
               </div>
 
-              {/* mini testimonials */}
+              {/* Testimonials */}
               <div className="mt-8 space-y-4">
+                <div className="text-sm font-medium uppercase tracking-wide text-gray-600">
+                  Client Testimonials
+                </div>
                 <blockquote className="rounded-xl bg-[#F4F1EC] p-4 text-sm">
-                  “Their attention to detail gave our villa a soul.”
-                  <span className="block mt-1 text-neutral-600">
-                    — Client, Dubai
+                  "Excellent waterproofing work for our industrial facility. Professional team with quality execution."
+                  <span className="block mt-2 text-neutral-600 font-medium">
+                    — Shalimar Industries
                   </span>
                 </blockquote>
                 <blockquote className="rounded-xl bg-[#F4F1EC] p-4 text-sm">
-                  “Seamless end-to-end execution across two continents.”
-                  <span className="block mt-1 text-neutral-600">
-                    — Hospitality Group, London
+                  "Reliable structural retrofitting services. Completed project on time with quality materials."
+                  <span className="block mt-2 text-neutral-600 font-medium">
+                    — Tanisha Infra Projects
                   </span>
                 </blockquote>
               </div>
             </aside>
 
             {/* Form */}
-            <div id="project-form">
-              <ContactForm />
-            </div>
-          </div>
-
-            <div className="mt-10">
-        <div className="space-y-5">
-          {/* Address (Brand/Entity) */}
-          {/* <div className="rounded-2xl p-[1px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200">
-            <div className="rounded-2xl bg-white p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3">
-                  <FiMapPin className="mt-0.5 text-black/70" />
-                  <div>
-                    <div className="text-sm font-semibold tracking-wide text-black/70 uppercase">
-                      Address
-                    </div>
-                    <div className="mt-1 text-neutral-800">
-                      <div className="font-medium">
-                        strucAxis (by Trygve Studio Pvt Ltd)
-                      </div>
-                      <div className="text-neutral-600">
-                        TRYGVE STUDIO PRIVATE LIMITED
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div id="project-form" className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-lg">
+              <div className="mb-6">
+                <h3 className="text-2xl font-semibold mb-2">Get Your Project Quote</h3>
+                <p className="text-gray-600">
+                  Share your construction requirements and receive a detailed proposal within 24 hours.
+                </p>
               </div>
-            </div>
-          </div> */}
-
-          {/* Corporate Meeting Space */}
-          <div className="rounded-2xl p-[1px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200">
-            <div className="rounded-2xl bg-white p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3">
-                  <FiMapPin className="mt-0.5 text-black/70" />
-                  <div>
-                    <div className="text-sm font-semibold tracking-wide text-black/70 uppercase">
-                      Corporate Meeting Space
-                    </div>
-                    <div className="mt-1 text-neutral-800">
-                      <div>Levana Cyber Heights, 10th Floor – Regus</div>
-                      <div>Vibhuti Khand, Gomti Nagar</div>
-                      <div>Lucknow, Uttar Pradesh – 226010, India</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Actions */}
-               
-              </div>
-            </div>
-          </div>
-
-          {/* Branch Offices */}
-          <div className="rounded-2xl p-[1px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200">
-            <div className="rounded-2xl bg-white p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3">
-                  <FiMapPin className="mt-0.5 text-black/70" />
-                  <div>
-                    <div className="text-sm font-semibold tracking-wide text-black/70 uppercase">
-                      Branch Offices
-                    </div>
-
-                    <ol className="mt-3 grid gap-3 sm:grid-cols-2">
-                      {/* Branch 1 */}
-                      <li className="rounded-xl border border-black/10 p-3">
-                        <div className="text-neutral-800">
-                          <div className="font-medium">
-                            Honey Lite, 1st Floor
-                          </div>
-                          <div>5/72, Sector 5, Vikas Nagar</div>
-                          <div>Lucknow, Uttar Pradesh – 226022</div>
-                        </div>
-                        
-                      </li>
-
-                      {/* Branch 2 */}
-                      <li className="rounded-xl border border-black/10 p-3">
-                        <div className="text-neutral-800">
-                          <div className="font-medium">
-                            UGF, Rukshan Complex, Gata No. 112, Dasauli, Kursi
-                            Road
-                          </div>
-                          <div>Near Integral University Hospital Gate</div>
-                          <div>Lucknow, Uttar Pradesh – 226021</div>
-                        </div>
-                        
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Head Office */}
-          <div className="rounded-2xl p-[1px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200">
-            <div className="rounded-2xl bg-white p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3">
-                  <FiMapPin className="mt-0.5 text-black/70" />
-                  <div>
-                    <div className="text-sm font-semibold tracking-wide text-black/70 uppercase">
-                      Head Office
-                    </div>
-                    <div className="mt-1 text-neutral-800">
-                      <div>Plot No. 728, Khasra No. 21</div>
-                      <div>Eden Enclave, Phase 2, Kursi Road</div>
-                      <div>Gudamba, BKT, Lucknow</div>
-                      <div>Uttar Pradesh – 226026, India</div>
-                    </div>
-                  </div>
-                </div>
-
               
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Personal Details */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Field
+                    label="Full Name"
+                    name="fullName"
+                    placeholder="Your full name"
+                    required
+                  />
+                  <Field
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Field
+                    label="Phone Number"
+                    name="phone"
+                    type="tel"
+                    placeholder="+91 XXXXX XXXXX"
+                    required
+                  />
+                  <Field
+                    label="Company/Organization"
+                    name="company"
+                    placeholder="Your company name"
+                  />
+                </div>
+
+                {/* Project Details */}
+                <Field
+                  label="Project Location"
+                  name="location"
+                  placeholder="City, State"
+                  required
+                />
+
+                <Select
+                  label="Service Required"
+                  name="projectType"
+                  required
+                  options={[
+                    "Waterproofing Systems",
+                    "Structural Retrofitting", 
+                    "Industrial Flooring",
+                    "Grouting Services",
+                    "Civil Construction",
+                    "Anchor/Rebar Services",
+                    "Multiple Services",
+                    "Consultation Only"
+                  ]}
+                />
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Select
+                    label="Project Budget (INR)"
+                    name="budget"
+                    options={[
+                      "Under 5 Lakhs",
+                      "5-10 Lakhs",
+                      "10-25 Lakhs", 
+                      "25-50 Lakhs",
+                      "50 Lakhs - 1 Crore",
+                      "Above 1 Crore",
+                      "Need Assessment"
+                    ]}
+                  />
+                  <Select
+                    label="Project Timeline"
+                    name="timeline"
+                    options={[
+                      "Immediate (Within 1 month)",
+                      "1-3 months",
+                      "3-6 months",
+                      "6-12 months",
+                      "More than 1 year",
+                      "Just exploring options"
+                    ]}
+                  />
+                </div>
+
+                <Textarea
+                  label="Project Details"
+                  name="message"
+                  placeholder="Please describe your construction requirements, project scope, specific challenges, or any technical specifications..."
+                  required
+                />
+
+                {/* Hidden honeypot field */}
+                <input type="text" name="website" style={{ display: 'none' }} />
+
+                {/* Status Message */}
+                {status && (
+                  <div className={`rounded-xl p-4 text-sm ${
+                    status.state === "success" 
+                      ? "bg-green-50 text-green-700 border border-green-200" 
+                      : "bg-red-50 text-red-700 border border-red-200"
+                  }`}>
+                    {status.message}
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full rounded-xl bg-[#4376BB] text-white px-6 py-4 font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
+                >
+                  {submitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                      Sending Request...
+                    </>
+                  ) : (
+                    <>
+                      <FiArrowRight className="w-4 h-4" />
+                      Send Project Inquiry
+                    </>
+                  )}
+                </button>
+
+                <p className="text-xs text-gray-500 text-center">
+                  By submitting this form, you agree to our terms and privacy policy. 
+                  We'll contact you within 24 hours to discuss your project.
+                </p>
+              </form>
             </div>
           </div>
+
+          {/* Office Locations */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-  mb-4">Our <span className="text-[#4376BB]">Office Locations</span></h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Visit us at our offices or schedule an on-site consultation for your construction project.
+              </p>
+            </div>
+
+             <LocationsList />
+          </div>
         </div>
-      </div>
-        </div>
-        
       </section>
-    
     </main>
   );
 }
 
-/* ---------- small reusable inputs ---------- */
+/* ---------- Form Components ---------- */
 function Field({
   label,
   name,
@@ -416,7 +480,7 @@ function Field({
         name={name}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 outline-none ring-0 focus:border-black/30"
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-[#4376BB] focus:ring-2 focus:ring-[#4376BB]/20 transition"
       />
     </label>
   );
@@ -437,11 +501,11 @@ function Select({ label, name, options = [], required = false }) {
       <select
         name={name}
         required={required}
-        className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 outline-none ring-0 focus:border-black/30"
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-[#4376BB] focus:ring-2 focus:ring-[#4376BB]/20 transition"
         defaultValue=""
       >
         <option value="" disabled>
-          Choose…
+          Choose an option...
         </option>
         {options.map((opt) => (
           <option key={opt} value={opt}>
@@ -470,7 +534,7 @@ function Textarea({ label, name, placeholder = "", required = false }) {
         required={required}
         placeholder={placeholder}
         rows={6}
-        className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 outline-none ring-0 focus:border-black/30"
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-[#4376BB] focus:ring-2 focus:ring-[#4376BB]/20 transition resize-vertical"
       />
     </label>
   );

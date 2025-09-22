@@ -10,7 +10,7 @@ const JobSchema = new Schema(
     blurb: { type: String, required: true, maxlength: 400 },
     description: { type: String, default: "" },                       // Full JD (Markdown/HTML/plain)
     active: { type: Boolean, default: true },                         // close roles without deleting
-    applyEmail: { type: String, default: "careers@trygvestudio.com" },
+    applyEmail: { type: String, default: "sales@fiablebuildingsolutions.com" },
     applyLink: { type: String, default: "" },                         // alt external ATS link
   },
   { timestamps: true }

@@ -38,7 +38,7 @@ export default function TeamSection() {
             Our dream <br /> team
           </h2>
           <p className="text-neutral-400 max-w-md">
-            At StrucAxis, our multidisciplinary team of architects, engineers,
+            At fiable, our multidisciplinary team of architects, engineers,
             designers, and managers collaborates to deliver projects on time,
             within budget, and with uncompromising quality.
           </p>

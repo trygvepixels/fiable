@@ -198,7 +198,7 @@ export default function ContactForm() {
 
         <label className="flex items-start gap-3 text-xs text-neutral-700">
           <input type="checkbox" name="consent" value="yes" className="mt-1" required />
-          I consent to StrucAxis Pvt. Ltd contacting me about this enquiry and agree to the
+          I consent to fiable Pvt. Ltd contacting me about this enquiry and agree to the
           privacy policy.
         </label>
 

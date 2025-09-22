@@ -1,165 +1,212 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
-  HiOutlineChatBubbleLeftRight,
-  HiOutlineClipboardDocumentList,
-  HiOutlineBolt,
-  HiOutlineCheckBadge,
-  HiArrowRight,
-} from "react-icons/hi2";
+  FiMessageCircle,
+  FiFileText,
+  FiTool,
+  FiCheckCircle,
+  FiArrowRight,
+  FiPhone,
+  FiUsers,
+  FiShield,
+  FiClock
+} from "react-icons/fi";
 
-/**
- * Fancy Steps / Process Section
- * - TailwindCSS + react-icons only
- * - Dribbble/Awwwards-inspired: gradient glow, glass cards, dotted connectors
- * - Drop anywhere in your page
- */
-export default function FancyProcess() {
-  const steps = [
+export default function FiableProcessTimeline() {
+  const [activeStep, setActiveStep] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 4);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const processSteps = [
     {
       id: "01",
-      title: "Discovery & Brief",
-      desc:
-        "Share your requirements via call, WhatsApp, or our intake form. We align on scope, goals, budget and timeline.",
-      icon: <HiOutlineChatBubbleLeftRight className="h-6 w-6" />,
-      accent: "from-emerald-400 to-cyan-400",
+      title: "Site Assessment & Requirements",
+      subtitle: "Technical Evaluation",
+      description: "Our team conducts thorough site inspection, structural analysis, and requirement gathering. We assess waterproofing needs, structural integrity, and prepare detailed technical specifications.",
+      icon: <FiMessageCircle className="w-7 h-7" />,
+      details: ["Site survey & condition assessment", "Technical requirement analysis", "Material testing & evaluation", "Initial cost estimation"],
+      duration: "2-3 Days",
+      deliverable: "Technical Assessment Report",
+      color: "from-blue-300 to-blue-400",
+      bgColor: "bg-blue-50"
     },
     {
-      id: "02",
-      title: "Proposal & VE",
-      desc:
-        "We study drawings, run BOQ/estimations and present a value-engineered proposal with clear deliverables.",
-      icon: <HiOutlineClipboardDocumentList className="h-6 w-6" />,
-      accent: "from-cyan-400 to-sky-400",
+      id: "02", 
+      title: "Proposal & Value Engineering",
+      subtitle: "Optimized Solutions",
+      description: "We develop comprehensive BOQ, material specifications, and value-engineered solutions. Our proposals include detailed methodology, timeline, and cost breakdown for transparency.",
+      icon: <FiFileText className="w-7 h-7" />,
+      details: ["Detailed BOQ preparation", "Material specification", "Value engineering analysis", "Project timeline development"],
+      duration: "3-5 Days",
+      deliverable: "Comprehensive Proposal",
+      color: "from-yellow-300 to-yellow-500",
+      bgColor: "bg-yellow-50"
     },
     {
       id: "03",
-      title: "Execution Sprint",
-      desc:
-        "Site mobilization, disciplined workforce control, procurement, and MEP coordination—tracked to milestones.",
-      icon: <HiOutlineBolt className="h-6 w-6" />,
-      accent: "from-sky-400 to-indigo-400",
+      title: "Execution & Quality Control",
+      subtitle: "Precision Implementation",
+      description: "Systematic execution with trained workforce, latest machinery, and rigorous quality checks. We ensure adherence to specifications, safety protocols, and milestone tracking.",
+      icon: <FiTool className="w-7 h-7" />,
+      details: ["Site mobilization & setup", "Systematic execution process", "Daily quality inspections", "Progress monitoring & reporting"],
+      duration: "Project Dependent",
+      deliverable: "Quality Execution",
+      color: "from-blue-300 to-blue-400",
+      bgColor: "bg-blue-50"
     },
     {
       id: "04",
-      title: "Snag-Free Handover",
-      desc:
-        "QA/QC, documentation and training. We hand over a clean site—and stay available for post-project support.",
-      icon: <HiOutlineCheckBadge className="h-6 w-6" />,
-      accent: "from-indigo-400 to-violet-400",
-    },
+      title: "Completion & Handover",
+      subtitle: "Guaranteed Results",
+      description: "Final quality checks, documentation, and clean handover with warranty. We provide technical training, maintenance guidelines, and post-project support for sustained performance.",
+      icon: <FiCheckCircle className="w-7 h-7" />,
+      details: ["Final quality verification", "Complete documentation", "Client training & handover", "Warranty & support setup"],
+      duration: "1-2 Days",
+      deliverable: "Project Handover",
+      color: "from-yellow-300 to-yellow-500",
+      bgColor: "bg-yellow-50"
+    }
   ];
 
   return (
-    <section className="relative overflow-hidden py-24">
-      {/* Background: soft gradient, grid + blobs */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_80%_-10%,rgba(56,189,248,0.18),transparent),radial-gradient(900px_500px_at_10%_110%,rgba(16,185,129,0.15),transparent)]"
-      />
-      <div aria-hidden className="absolute inset-0 -z-10 [mask-image:radial-gradient(60%_60%_at_50%_50%,black,transparent)]">
-        <svg
-          className="h-full w-full opacity-20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern
-              id="grid"
-              width="32"
-              height="32"
-              patternUnits="userSpaceOnUse"
-            >
-              <path d="M32 0H0V32" fill="none" stroke="currentColor" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
+    <section className="relative py-24 bg-gradient-to-br from-gray-50 to-[#F4F1EC] overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full border border-black/10 bg-white/60 px-3 py-1 text-xs font-medium backdrop-blur">
-            Process
-          </span>
-          <h2 className="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900">
-            A Seamless Path from Brief to Handover
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          
+          
+          <h2 className="text-4xl lg:text-5xl font-b old text-gray-900 mb-6 leading-tight">
+            From <span className="text-[#4376BB]">Assessment</span> to{" "}
+            <span className="text-[#4376BB]">Delivery</span>
           </h2>
-          <p className="mt-4 text-gray-600">
-            Built for speed, clarity and control—so you always know what’s
-            happening, what’s next, and who’s accountable.
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Our systematic approach ensures precision, quality, and timely delivery for every structural retrofitting and waterproofing project across India.
           </p>
+
+          {/* Stats */}
+           
         </div>
 
-        {/* Steps */}
-        <div className="relative mt-14">
-          {/* vertical dotted connector (desktop) */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 hidden h-full -translate-x-1/2 border-l-2 border-dashed border-gray-300 lg:block"
-          />
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden lg:block"></div>
+          
+          <div className="space-y-16">
+            {processSteps.map((step, index) => (
+              <div
+                key={step.id}
+                className={`relative transition-all duration-1000 delay-${index * 200} ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+              >
+                <div className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex-col gap-8 lg:gap-16`}>
+                  
+                  {/* Content Card */}
+                  <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right lg:pr-8' : 'lg:text-left lg:pl-8'}`}>
+                    <div className={`relative p-8 rounded-3xl border border-gray-200 bg-white shadow-xl hover:shadow-2xl transition-all duration-500 group ${
+                      activeStep === index ? 'ring-2 ring-blue-500 ring-opacity-50' : ''
+                    }`}>
+                      {/* Background Gradient */}
+                      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                      
+                      <div className="relative space-y-6">
+                        {/* Header */}
+                        <div className={`flex items-center gap-4 ${index % 2 === 0 ? 'lg:flex-row-reverse lg:justify-end' : 'lg:flex-row lg:justify-start'} flex-row justify-start`}>
+                          <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            {step.icon}
+                          </div>
+                          <div>
+                            <div className="text-sm font- text-gray-500 uppercase tracking-wide mb-1">
+                              {step.subtitle}
+                            </div>
+                            <h3 className="text-2xl font- text-gray-900">
+                              {step.title}
+                            </h3>
+                          </div>
+                        </div>
 
-          <div className="grid gap-8 lg:grid-cols-2">
-            {steps.map((s, i) => (
-              <StepCard key={s.id} step={s} index={i} />
+                        {/* Description */}
+                        <p className="text-gray-600 leading-relaxed text-lg">
+                          {step.description}
+                        </p>
+
+                        {/* Details */}
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          {step.details.map((detail, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${step.color}`}></div>
+                              <span className="text-sm text-gray-600">{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Meta Info */}
+                        <div className="flex items-center gap-6 pt-4 border-t border-gray-100">
+                          <div className="flex items-center gap-2">
+                            <FiClock className="w-4 h-4 text-gray-400" />
+                            <span className="text-sm font-medium text-gray-600">{step.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <FiFileText className="w-4 h-4 text-gray-400" />
+                            <span className="text-sm font-medium text-gray-600">{step.deliverable}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Timeline Node */}
+                  <div className="relative flex-shrink-0 hidden lg:block">
+                    <div className={`w-16 h-16 rounded-full border-4 border-white shadow-lg bg-gradient-to-br ${step.color} flex items-center justify-center text-white font- text-lg transition-all duration-500 ${
+                      activeStep === index ? 'scale-125 shadow-2xl' : ''
+                    }`}>
+                      {step.id}
+                    </div>
+                    {index < processSteps.length - 1 && (
+                      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-1 h-16 bg-gray-200"></div>
+                    )}
+                  </div>
+
+                  {/* Visual Element */}
+                  <div className={`flex-1 ${index % 2 === 0 ? 'lg:pl-8' : 'lg:pr-8'}`}>
+                    <div className={`relative ${step.bgColor} rounded-3xl p-8 border border-gray-200`}>
+                      <div className="text-center space-y-4">
+                        <div className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br ${step.color} text-white flex items-center justify-center text-2xl shadow-lg`}>
+                          {step.icon}
+                        </div>
+                        <div className="text-6xl font- text-gray-900">
+                          {step.id}
+                        </div>
+                        <div className="text-lg font- text-gray-700">
+                          {step.subtitle}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
-         
+       
       </div>
     </section>
-  );
-}
-
-function StepCard({ step, index }) {
-  // alternate alignment for desktop: L/R along the center line
-  const isLeft = index % 2 === 0;
-
-  return (
-    <div
-      className={`relative lg:col-span-1 ${isLeft ? "lg:pr-12" : "lg:pl-12"}`}
-    >
-      {/* node on the center line (desktop) */}
-      <div
-        aria-hidden
-        className={`absolute top-10 hidden h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white lg:block ${
-          isLeft ? "right-[-7px]" : "left-[-7px]"
-        }`}
-        style={{ background: "linear-gradient(to bottom right,#10B981,#60A5FA)" }}
-      />
-
-      {/* Card */}
-      <div className="group relative overflow-hidden rounded-2xl border border-black/5 bg-white/70 p-5 shadow-[0_10px_40px_rgba(0,0,0,.06)] backdrop-blur transition hover:shadow-[0_18px_60px_rgba(0,0,0,.10)]">
-        {/* glow accent */}
-        <div
-          aria-hidden
-          className={`absolute -inset-1 opacity-0 blur-2xl transition group-hover:opacity-40 bg-gradient-to-r ${step.accent}`}
-        />
-        <div className="relative z-10 flex items-start gap-4">
-          {/* icon stack */}
-          <div className="relative">
-            <div className="grid h-12 w-12 place-items-center rounded-xl bg-gray-900 text-white shadow">
-              {step.icon}
-            </div>
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/80 px-2 py-0.5 text-[10px] font-semibold text-white">
-              {step.id}
-            </span>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900">
-              {step.title}
-            </h3>
-            <p className="mt-1.5 text-gray-600">{step.desc}</p>
-          </div>
-        </div>
-
-        {/* pill badge accent line */}
-        <div className="relative z-10 mt-5 h-px w-full bg-gradient-to-r from-black/10 via-black/5 to-transparent" />
-      </div>
-    </div>
   );
 }

@@ -16,7 +16,7 @@ export function WobbleCardDemo() {
             Building Trust. Delivering Quality.
           </h2>
           <p className="mt-4 text-left text-base/6 text-neutral-200">
-            With 12+ years of expertise, StrucAxis ensures seamless workflows, 
+            With 12+ years of expertise, fiable ensures seamless workflows, 
             reliable manpower management, and end-to-end execution across construction, 
             interiors, and turnkey fit-outs.
           </p>

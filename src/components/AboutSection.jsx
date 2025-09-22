@@ -17,7 +17,7 @@ export default function AboutSection() {
           </h2>
 
           <p className="mt-6 text-gray-700 text-lg">
-            At <span className="font- ">StrucAxis</span>, we believe
+            At <span className="font- ">fiable</span>, we believe
             contracting is about more than just execution—it's about delivering
             trust. Our mission is to create spaces that are delivered on time,
             within budget, and with uncompromising quality.

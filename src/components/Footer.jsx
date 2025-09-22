@@ -1,133 +1,228 @@
 "use client";
 
 import React from "react";
-import { HiArrowUpRight } from "react-icons/hi2";
-import logo from "@/assets/logo.png"
+import { 
+  ArrowUpRight, 
+  Phone, 
+  Mail, 
+  Clock, 
+  MapPin,
+  Send,
+  ExternalLink,
+  Building,
+  Wrench,
+  ShieldCheck
+} from "lucide-react";
+import { 
+  FaLinkedin, 
+  FaInstagram, 
+  FaFacebook, 
+  FaXTwitter 
+} from "react-icons/fa6";
+import logo from "@/assets/logo.png";
 import Image from "next/image";
+
 export default function Footer() {
   return (
-    <footer className="relative bg-black text-white">
-      {/* Big brand word behind */}
-      
+    <footer className="relative z-30 overflow-hidden bg-gradient-to-br from-gray-500 via-black to-[#4376BB]">
+      {/* Subtle Pattern Overlay */}
+      <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-16 pb-28">
-        <div className="grid gap-10 md:grid-cols-3">
-          {/* Newsletter / social */}
-          <div className="md:col-span-1">
-          <Image src={logo} alt="strucaxis"  className="w-60 mb-3" />
-            <h3 className="text-2xl sm:text-3xl font-semibold">
-              Stay in the loop — project updates & industry tips
-            </h3>
-
-            {/* Email pill */}
+      {/* Main Content */}
+      <div className="relative">
+        {/* CTA Section */}
+       
+        {/* Main Footer Content */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-20">
+          <div className="grid gap-12 lg:gap-16 lg:grid-cols-12">
             
+            {/* Brand Section */}
+            <div className="lg:col-span-5">
+              <div className="mb-8">
+                <div className="flex bg-white p-3 rounded-2xl  items-center gap-3 mb-6">
+                  <Image src={logo} alt="Fiable Logo" className="h-20 w-auto" />
+                  <div>
+                    <h3 className="text-2xl font-semibold text-black">Fiable Building Solutions</h3>
+                    <p className="text-gray-700 text-xl">Pvt. Ltd.</p>
+                  </div>
+                </div>
+                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight">
+                  One Stop Solution for Construction & Industrial Repair
+                  <span className="block text-gray-300 text-lg font-normal mt-2">Where Quality Meets Trust</span>
+                </h3>
+                <p className="text-gray-400 text-lg leading-relaxed max-w-md">
+                  Professional team offering advanced construction solutions with focus on durability, performance, and precision for residential, commercial, and industrial projects.
+                </p>
+              </div>
 
-            {/* Socials */}
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/80">
-              <a href="#" className="group inline-flex items-center gap-1 hover:text-white">
-                LinkedIn <HiArrowUpRight className="h-4 w-4 opacity-70 group-hover:opacity-100" />
-              </a>
-              <a href="#" className="group inline-flex items-center gap-1 hover:text-white">
-                Instagram <HiArrowUpRight className="h-4 w-4 opacity-70 group-hover:opacity-100" />
-              </a>
-              <a href="#" className="group inline-flex items-center gap-1 hover:text-white">
-                Facebook <HiArrowUpRight className="h-4 w-4 opacity-70 group-hover:opacity-100" />
-              </a>
-              <a href="#" className="group inline-flex items-center gap-1 hover:text-white">
-                Twitter <HiArrowUpRight className="h-4 w-4 opacity-70 group-hover:opacity-100" />
-              </a>
+              
+              {/* Social Links */}
+              <div className="flex gap-4">
+                {[
+                  { icon: FaLinkedin, href: "#", label: "LinkedIn" },
+                  { icon: FaInstagram, href: "#", label: "Instagram" },
+                  { icon: FaFacebook, href: "#", label: "Facebook" },
+                  { icon: FaXTwitter, href: "#", label: "Twitter" }
+                ].map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="group p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
+                    aria-label={label}
+                  >
+                    <Icon className="h-5 w-5 text-gray-400 group-hover:text-white transition-colors" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Services & Contact */}
+            <div className="lg:col-span-7 grid gap-12 sm:gap-8 lg:grid-cols-2">
+              
+              {/* Our Specialized Services */}
+              <div>
+                <h4 className="text-white font-semibold mb-6 text-lg flex items-center gap-2">
+                  <Wrench className="h-5 w-5 text-blue-400" />
+                  Our Specialized Services
+                </h4>
+                <nav className="space-y-4">
+                  {[
+                    ["Waterproofing Services", "#waterproofing"],
+                    ["Structural Refurbishment", "#structural"],
+                    ["Industrial Flooring Systems", "#flooring"],
+                    ["Industrial Grouting Services", "#grouting"],
+                    ["Concrete Cutting & Demolition", "#cutting"],
+                    ["Anchor/Rebar Services", "#anchor"],
+                    ["Civil Construction", "#civil"]
+                  ].map(([label, href]) => (
+                    <p
+                      key={label}
+                      // href={href}
+                      className="group flex items-center text-gray-400 hover:text-white transition-colors duration-200"
+                    >
+                      <span className="w-0 group-hover:w-2 h-px bg-blue-400 transition-all duration-200 mr-0 group-hover:mr-3"></span>
+                      {label}
+                    </p>
+                  ))}
+                </nav>
+ 
+              </div>
+
+              {/* Contact Information */}
+              <div>
+                <h4 className="text-white font-semibold mb-6 text-lg flex items-center gap-2">
+                  <Building className="h-5 w-5 text-purple-400" />
+                  Get in Touch
+                </h4>
+                <div className="space-y-6">
+                  
+                  <div className="flex items-start gap-4 group">
+                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-all">
+                      <Phone className="h-5 w-5 text-blue-400" />
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm mb-1">Technical Expert Hotline</p>
+                      <div className="space-y-1">
+                        <a href="tel:+917233809199" className="text-white font-medium hover:text-blue-400 transition-colors block">
+                          +91 7233 809199
+                        </a>
+                        <a href="tel:+919044072226" className="text-white font-medium hover:text-blue-400 transition-colors block">
+                          +91 9044 072226
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 group">
+                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-all">
+                      <Mail className="h-5 w-5 text-green-400" />
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm mb-1">Business Inquiries</p>
+                      <div className="space-y-1">
+                        <a href="mailto:sales@fiablebuildingsolutions.com" className="text-white font-medium hover:text-green-400 transition-colors block text-sm">
+                          sales@fiablebuildingsolutions.com
+                        </a>
+                        <a href="mailto:sales@trygve-engineering.com" className="text-white font-medium hover:text-green-400 transition-colors block text-sm">
+                          sales@trygve-engineering.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="flex items-start gap-4 group">
+                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-all">
+                      <MapPin className="h-5 w-5 text-orange-400" />
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm mb-1">Registered Office</p>
+                      <p className="text-white font-medium leading-relaxed">
+                        728, Phase 2, Khasra No. 21, Eden Enclave, Kursi Road, Gudumba BKT, Lucknow-226026, Uttar Pradesh (INDIA)
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 group">
+                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-all">
+                      <Clock className="h-5 w-5 text-purple-400" />
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm mb-1">Business Hours</p>
+                      <p className="text-white font-medium">Mon–Sat, 9:00am–7:00pm IST</p>
+                    </div>
+                  </div> */}
+
+                </div>
+
+                
+              </div>
+
             </div>
           </div>
+        </div>
 
-          {/* Company blurb */}
-          
-
-          {/* Contact */}
-          <div className="md:col-span-1">
-            <h4 className="text-xl sm:text-2xl font-semibold">Contact</h4>
-            <ul className="mt-4 space-y-3 text-white/80">
-              <li>
-                <a href="tel:+919554440400" className="hover:text-white transition-colors">+91 95544 40400</a>
-              </li>
-              <li>
-                <a href="mailto:info@struc-axis.com" className="hover:text-white transition-colors">info@struc-axis.com</a>
-              </li>
-              <li>
-                <span>Mon–Sat, 9:30am–6:00pm IST</span>
-              </li>
+        {/* Bottom Section */}
+        <div className="border-t border-white/5">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
               
-            </ul>
-            <a
-              href="/contact-us#project-form"
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-white text-black px-5 py-2 font-medium hover:opacity-90"
-            >
-              Start a Project
-              <HiArrowUpRight className="ml-2 h-4 w-4" />
-            </a>
-          </div>
+              {/* Copyright */}
+              <div className="text-center lg:text-left">
+                <p className="text-gray-400 text-sm">
+                  © {new Date().getFullYear()} Fiable Building Solutions Pvt. Ltd.  
+                </p>
+                <p className="text-gray-500 text-xs mt-1">
+                  GST No: 09AADCF7399H1Z2  
+                 </p>
+              </div>
 
-          {/* Link columns with vertical separators */}
-           <FooterCol
-            titleList={[
-              ["Home", "#"],
-              ["About Us", "#about"],
-              ["Projects", "#projects"],
-              ["Services", "#services"],
-              ["Machinery", "#machinery"],
-              ["Blogs", "#blogs"],
-              ["Career", "#career"],
-            ]}
-          />
-        </div>
-      </div>
-      <p className="text-[16vw] -mt-40 -mb-20 text-center text-white/5">
-        StrucAxis
-      </p>
+              {/* Credits */}
+              <div className="flex flex-col sm:flex-row items-center gap-1  text-sm">
+                <span className="text-gray-400">Designed & Developed By</span>
+                 <a
+                  href="https://genforgestudio.com/"
+                  className="text-blue-400 hover:text-blue-300 transition-colors font-medium flex items-center gap-1"
+                >
+                GenForge Studio
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
 
-      {/* Bottom bar */}
-      <div className="relative border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-sm text-white/70 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
-          <p className="text-gray-300">
-            © {new Date().getFullYear()} StrucAxis. A{" "}
-            <a
-              href="https://trygvestudio.com/"
-              className="text-[#ff4017] hover:underline transition-colors"
-            >
-              Trygve Studio Pvt. Ltd Company
-            </a>
-            . All Rights Reserved.
-          </p>
-          <span className="hidden md:inline-block mx-4 text-white/30">|</span>
-          <div className="flex flex-col md:flex-row items-center text-gray-300 gap-2 md:gap-4">
-            <span>Designed & Developed by</span>
-            <a
-              href="https://genforgestudio.com/"
-              className="text-[#ff4017] hover:underline transition-colors"
-            >
-              GenForge Studio
-            </a>
-            <span className="hidden md:inline-block">— Global Web & App Development Agency</span>
+            </div>
+
+            
           </div>
         </div>
+
       </div>
-      
-      <p className="text-black">s</p>
+
+      {/* Background Brand Text */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none">
+        <p className="text-[7vw] font-bold text-white/[0.015] whitespace-nowrap">
+          Fiable Building Solutions
+        </p>
+      </div>
+
     </footer>
-  );
-}
-
-function FooterCol({ titleList }) {
-  return (
-    <nav className="md:pl-8 md:border-l md:border-white/20">
-      <ul className="space-y-4 text-white/80 text-base">
-        {titleList.map(([label, href]) => (
-          <li key={label}>
-            <a href={href} className="hover:text-white transition-colors duration-200">
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
   );
 }

@@ -8,7 +8,7 @@ export default function CardCaroursalDemo() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const res = await fetch("http://localhost:3000/api/feature-projects", {
+        const res = await fetch("/api/feature-projects", {
           cache: "no-store",
         });
         if (!res.ok) throw new Error("Failed to fetch projects");

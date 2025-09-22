@@ -14,11 +14,11 @@ export default function NewJobPage() {
     team: "",
     type: "Full-time",
     location: "Remote",
-    blurb: "",
+    blurb: "Blurb",
     description: "",
     tags: "",
     active: true,
-    applyEmail: "careers@trygvestudio.com",
+    applyEmail: "sales@fiablebuildingsolutions.com",
     applyLink: "",
   });
 
@@ -100,10 +100,10 @@ export default function NewJobPage() {
           <input  className="input border-2 rounded w-full p-2" value={f.tags} onChange={e => onChange("tags", e.target.value)} placeholder="React, Next.js, Tailwind" />
         </Field>
 
-        <Field label="Blurb *">
+        {/* <Field label="Blurb *">
           <textarea className="input min-h-[80px] border-2 rounded w-full p-2" value={f.blurb} onChange={e => onChange("blurb", e.target.value)} />
           <p className="mt-1  text-xs text-zinc-500">{f.blurb.length}/400</p>
-        </Field>
+        </Field> */}
 
         <Field label="Description (Markdown/HTML/plain)">
           <textarea className="border-2 rounded w-full p-2 input min-h-[180px]" value={f.description} onChange={e => onChange("description", e.target.value)} />

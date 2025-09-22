@@ -59,7 +59,7 @@ export default function ServiceForm({ mode = "create", initial = {}, onSubmit })
       };
       await onSubmit(payload);
       setOk(mode === "create" ? "Service created!" : "Service updated!");
-      setTimeout(() => router.push("/admin/services"), 600);
+      setTimeout(() => router.push("/admin/dashboard/services"), 600);
     } catch (e2) {
       setErr(e2?.message || "Error saving service.");
     } finally {

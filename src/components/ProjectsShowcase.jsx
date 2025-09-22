@@ -5,7 +5,7 @@ import Link from "next/link";
 
 /**
  * ProjectsShowcase — premium strip (4 items)
- * - Fetches /api/projects?limit=4&sort=-createdAt
+ * - Fetches /api/projects
  * - Elegant header + right-aligned "All projects →"
  * - Vertical separators, hover zoom, soft gradient, title reveal
  */
@@ -17,7 +17,7 @@ export default function ProjectsShowcase({ className = "" }) {
     let alive = true;
     (async () => {
       try {
-        const res = await fetch(`/api/projects?limit=4&sort=-createdAt`, { cache: "no-store" });
+        const res = await fetch(`api/feature-projects`, { cache: "no-store" });
         const json = await res.json();
         if (!res.ok) throw new Error(json?.error || "Failed to load projects");
         if (alive) setProjects((json.items || []).slice(0, 4));
@@ -31,39 +31,36 @@ export default function ProjectsShowcase({ className = "" }) {
   }, []);
 
   return (
-    <section className={`relative ${className}`}>
+    <section className={`relative ${className} bg-[#f4f1ec68] py-10`}>
       <div className="mx-auto max-w-7xl px-5 my-16 sm:px-8">
         {/* Header */}
-        <div className="mb-4 flex items-end justify-between">
-          <h2 className="text-2xl sm:text-4xl font-semibold  ">
-            Latest projects
-             <p className="text-base mt-2 text-medium text-zinc-500">
-            Projects delivered by us
-
-
-          </p>
-          </h2>
-         
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-zinc-800 hover:text-black"
-          >
-            All projects
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
-          </Link>
-        </div>
+              <div className="mb-12 max-w-3xl">
+        <h2 className="text-3xl md:text-5xl  tracking-tight text-gray-900">
+          The <span className="text-[#4376BB]">Impact</span> We Have Created
+        </h2>
+        <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+          Fiable pioneers the future of{" "}
+          <span className="font-medium text-[#2E5DA5]">
+            waterproofing, rehabilitation, flooring, grouting, demolition
+          </span>{" "}
+          and{" "}
+          <span className="font-medium text-[#FEC20F]">civil works</span> —
+          transforming blueprints into architectural landmarks with innovation
+          and durability.
+        </p>
+      </div>
 
         {/* Strip */}
         {loading ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="relative overflow-hidden rounded-xl bg-zinc-200">
-                <div className="animate-pulse aspect-[3/4]" />
+                <div className="animate-pulse h-80" />
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-4">
             {projects.map((p, idx) => (
               <Card key={p._id || p.slug} project={p} showDivider={idx < 3} />
             ))}
@@ -87,10 +84,10 @@ function Card({ project, showDivider }) {
         <img
           src={coverImage}
           alt={coverAlt || title}
-          className="aspect-[3/4] w-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.04]"
+          className="h-80 w-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.04]"
         />
       ) : (
-        <div className="aspect-[3/4] grid place-items-center bg-zinc-100 text-zinc-500 text-xs">No image</div>
+        <div className="h-80 grid place-items-center bg-zinc-100 text-zinc-500 text-xs">No image</div>
       )}
 
       {/* soft gradient + caption reveal */}

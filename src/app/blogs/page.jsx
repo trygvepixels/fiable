@@ -3,30 +3,24 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { FaChevronDown, FaSearch, FaSortAmountDown } from "react-icons/fa";
+import { FiSearch, FiFilter, FiGrid, FiList, FiArrowRight, FiCalendar, FiUser, FiClock } from "react-icons/fi";
 import BlogCard from "@/components/BlogCard.jsx";
 import BlogCardSkeleton from "@/components/BlogCardSkeleton";
-import bloghero from "@/assets/logo.png";
 import Link from "next/link";
 
-const BRAND = {
-  primary: "#ff4017",
-  primaryDark: "#ff4017",
-  primarySoft: "rgba(131, 61, 250, 0.10)",
-};
-
-export default function Page() {
+export default function FiableBlogPage() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [sortBy, setSortBy] = useState("Newest");
-  const [filterType, setFilterType] = useState("Most Recent");
+  const [viewMode, setViewMode] = useState("grid");
   const [searchTerm, setSearchTerm] = useState("");
   const [submittedSearch, setSubmittedSearch] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
+    setIsLoaded(true);
     const fetchBlogs = async () => {
       try {
         const res = await fetch(`/api/blogs`);
@@ -35,17 +29,17 @@ export default function Page() {
           const formatted = data.blogs.map((blog) => ({
             id: blog._id,
             image: blog.image,
-            category: blog.category || "General",
+            category: blog.category || "Construction",
             date: new Date(blog.createdAt).toLocaleDateString("en-GB", {
               day: "2-digit",
               month: "short",
               year: "numeric",
             }),
-            readTime: blog.readTime || "5 mins read",
+            readTime: blog.readTime || "5 min read",
             title: blog.title,
             summary: blog.metaDescription,
-            authorName: blog.author || "Unknown",
-            authorImage: "/authors/default.jpg",
+            authorName: blog.author || "Fiable Team",
+            authorImage: "/authors/fiable-team.jpg",
             timestamp: new Date(blog.createdAt).getTime(),
             views: blog.views || 0,
             slug: blog.urlSlug,
@@ -53,7 +47,7 @@ export default function Page() {
           setBlogs(formatted);
         }
       } catch (e) {
-        console.error("❌ Failed to fetch blogs", e);
+        console.error("Failed to fetch blogs", e);
       } finally {
         setLoading(false);
       }
@@ -62,16 +56,24 @@ export default function Page() {
   }, []);
 
   const categories = useMemo(() => {
-    const set = new Set();
-    blogs.forEach((b) => b.category && set.add(b.category));
-    return ["All", ...Array.from(set).sort()];
+    const fiableCategories = [
+      "All",
+      "Waterproofing", 
+      "Structural Retrofitting",
+      "Industrial Flooring",
+      "Construction Tips",
+      "Project Updates",
+      "Technology"
+    ];
+    const blogCategories = new Set();
+    blogs.forEach((b) => b.category && blogCategories.add(b.category));
+    return [...fiableCategories, ...Array.from(blogCategories).filter(cat => !fiableCategories.includes(cat))].slice(0, 8);
   }, [blogs]);
 
   const filteredPosts = useMemo(() => {
-    let filtered =
-      selectedCategory === "All"
-        ? [...blogs]
-        : blogs.filter((p) => p.category === selectedCategory);
+    let filtered = selectedCategory === "All" 
+      ? [...blogs] 
+      : blogs.filter((p) => p.category === selectedCategory);
 
     if (submittedSearch.trim()) {
       const t = submittedSearch.toLowerCase();
@@ -83,53 +85,62 @@ export default function Page() {
       );
     }
 
-    if (filterType === "Most Viewed") {
-      filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
-    } else if (sortBy === "Newest") {
-      filtered.sort((a, b) => b.timestamp - a.timestamp);
-    } else {
-      filtered.sort((a, b) => a.timestamp - b.timestamp);
-    }
-
-    return filtered;
-  }, [blogs, selectedCategory, sortBy, submittedSearch, filterType]);
+    return filtered.sort((a, b) => b.timestamp - a.timestamp);
+  }, [blogs, selectedCategory, submittedSearch]);
 
   return (
-    <div className="relative bg-[#F3F1EB]  min-h-screen ">
-       <div className="fixed bottom-5 z-10 right-5">
+    <main className="min-h-screen bg-[#F8F6F3]">
+      {/* Fixed CTA */}
+      <div className="fixed bottom-5 z-20 right-5">
         <Link href="/contact-us#project-form">
-          <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
-            Start <span className="text-[#ff4017]">Project</span>
-          </button>
-        </Link>
+  <button className="group relative overflow-hidden bg-gradient-to-r from-[#4376BB] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
+    {/* Background animation */}
+    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+    
+    {/* Icon */}
+    
+    
+    {/* Text */}
+    <span className="relative z-10">
+      Start <span className="text-[#F4C500] font-bold">Project</span>
+    </span>
+    
+    {/* Arrow */}
+    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round"  strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </button>
+</Link>
+
       </div>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-40 h-80 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(60% 60% at 50% 40%, rgba(35,77,126,.25), rgba(35,77,126,0) 70%)",
-        }}
-      />
+
+      {/* Minimal Hero */}
       <Hero
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        onSearch={() => setSubmittedSearch(searchTerm)}
+        isLoaded={isLoaded}
+      />
+
+      {/* Clean Navigation */}
+      <Navigation
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        viewMode={viewMode}
+        setViewMode={setViewMode}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         onSearch={() => setSubmittedSearch(searchTerm)}
       />
 
-      <Toolbar
-        categories={categories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        filterType={filterType}
-        setFilterType={setFilterType}
-        onSearch={() => setSubmittedSearch(searchTerm)}
-      />
-
-      <section className="max-w-7xl bg-[] mt-4 mx-auto px-4 sm:px-0 pb-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Content Grid */}
+      <section className="max-w-7xl  mx-auto px-6 pb-20">
+        <div className={`${
+          viewMode === 'grid' 
+            ? 'grid sm:grid-cols-2 lg:grid-cols-3 gap-8' 
+            : 'space-y-6'
+        }`}>
           {loading
             ? Array.from({ length: 6 }).map((_, i) => (
                 <BlogCardSkeleton key={i} />
@@ -141,9 +152,11 @@ export default function Page() {
                   onClick={() => router.push(`/blogs/${post.slug}`)}
                   className="cursor-pointer group"
                 >
-                  <div className="rounded-2xl border border-zinc-100/80 shadow-[0_4px_30px_rgba(17,17,26,0.04)] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_14px_40px_rgba(35,77,126,0.15)] bg-white/90 backdrop-blur">
-                    <BlogCard {...post} />
-                  </div>
+                  {viewMode === 'grid' ? (
+                    <GridBlogCard {...post} />
+                  ) : (
+                    <ListBlogCard {...post} />
+                  )}
                 </div>
               ))
             : (
@@ -152,186 +165,321 @@ export default function Page() {
                   setSearchTerm("");
                   setSubmittedSearch("");
                   setSelectedCategory("All");
-                  setSortBy("Newest");
-                  setFilterType("Most Recent");
                 }}
               />
             )}
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 
 /* --------------------------------- HERO --------------------------------- */
 
-function Hero({ searchTerm, setSearchTerm, onSearch }) {
+function Hero({ searchTerm, setSearchTerm, onSearch, isLoaded }) {
   return (
-    <header className="relative bg-[#F3F1EB] pt">
-      <div className="max-w-7xl mx-auto px-4 sm:px-0 pt-16 md:pt-10 pb-10 md:pb-16">
-        <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br   ring-1 ring-zinc-100">
-          <div
-            aria-hidden
-            className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-transparent via-[rgba(59,59,59,0.4)] to-transparent"
-          />
-          <div className="relative z-10  flex justify-center mx-auto text-center items-center gap-8 p-6 md:p-12">
-            <div>
-              <p className="inline-flex items-center text-xs font-semibold tracking-wide uppercase text-zinc-600/70">
-                Insights • Playbooks • Stories
-              </p>
-              <h1 className="mt-2 font-medium max-w-3xl leading-tight tracking-tight text-3xl sm:text-5xl md:text-6xl text-[#0F1222]">
-                Strategies, Stories &{" "}
-                <span
-                  className="px-3  rounded-xl ml-1 bg-[#ff4017] text-white"
-                 >
-                  Solutions
-                </span>{" "}
-                of the Industry
-              </h1>
-              <p className="mt-4 mx-auto text-center max-w-2xl text-zinc-600">
-                Practical growth, marketing, and product lessons from the trenches. Curated by StrucAxis.
-              </p>
+    <section className="pt-32 pb-20 bg-[#F8F6F3]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className={`text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Badge */}
+          <div className="inline-flex items-center gap-3 mb-8">
+            <div className="w-8 h-px bg-gray-900"></div>
+            <span className="text-sm font-mono uppercase tracking-[0.2em] text-gray-600">
+              Fiable Insights
+            </span>
+            <div className="w-8 h-px bg-gray-900"></div>
+          </div>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  onSearch();
-                }}
-                className="mt-6 flex w-full  items-center gap-2 rounded-xl border border-zinc-200 bg-white px-3 py-2 focus-within:ring-2 focus-within:ring-[rgba(35,77,126,0.25)]"
-              >
-                <FaSearch className="shrink-0 text-zinc-500" />
+          {/* Main Heading */}
+          <h1 className="text-5xl lg:text-5xl font-li ght text-gray-900 mb-8 leading-tight">
+             <span className=" ">Knowledge</span> {" "}
+             <span className="font-  text-[#4376BB] italic">Hub</span>
+          </h1>
+
+          {/* Description */}
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed fon t-light">
+            Expert insights on structural retrofitting, waterproofing solutions, 
+            and construction best practices from 6+ years of industry experience
+          </p>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                onSearch();
+              }}
+              className="relative"
+            >
+              <div className="relative">
+                <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search articles, tips & growth plays…"
-                  className="w-full bg-transparent py-2 outline-none text-zinc-900 placeholder:text-zinc-400"
+                  placeholder="Search construction insights, tips & guides..."
+                  className="w-full pl-12 pr-32 py-4 border border-gray-200 rounded-full focus:border-gray-400 focus:ring-2 focus:ring-gray-200 outline-none bg-white text-gray-900 placeholder:text-gray-500"
                 />
                 <button
                   type="submit"
-                  className="ml-2 rounded-lg bg-[#ff4017] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#ff4017]"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-6 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors"
                 >
                   Search
                 </button>
-              </form>
-
-              
-            </div>
-
-             
+              </div>
+            </form>
           </div>
+
+          
         </div>
       </div>
-    </header>
+    </section>
   );
 }
 
-/* ------------------------------- TOOLBAR -------------------------------- */
+/* ------------------------------- NAVIGATION -------------------------------- */
 
-function Toolbar({
-  categories,
-  selectedCategory,
-  setSelectedCategory,
-  sortBy,
-  setSortBy,
-  filterType,
-  setFilterType,
-  onSearch,
+function Navigation({ 
+  categories, 
+  selectedCategory, 
+  setSelectedCategory, 
+  viewMode, 
+  setViewMode,
+  searchTerm,
+  setSearchTerm,
+  onSearch 
 }) {
   return (
-    <div className="sticky py- top-0 z-30 border-b border-zinc-100 bg-[#F3F1EB] backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {categories.map((cat) => {
-            const active = selectedCategory === cat;
-            return (
+    <div className=" top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Categories */}
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`whitespace-nowrap rounded-full border px-3.5 py-1.5 text-sm transition ${
-                  active
-                    ? "border-transparent bg-[#ff4017] text-white shadow-sm"
-                    : "border-zinc-200 text-zinc-700 hover:bg-zinc-50"
+                className={`whitespace-nowrap px-4 py-2 text-sm font-medium transition-all border-b-2 ${
+                  selectedCategory === cat
+                    ? "text-gray-900 border-gray-900"
+                    : "text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300"
                 }`}
               >
                 {cat}
               </button>
-            );
-          })}
-        </div>
+            ))}
+          </div>
 
-        <div className="flex items-center gap-2">
-          <Select
-            label="Sort"
-            value={sortBy}
-            onChange={setSortBy}
-            options={["Newest", "Oldest"]}
-          />
-          <Select
-            label="Filter"
-            value={filterType}
-            onChange={setFilterType}
-            options={["Most Recent", "Most Viewed"]}
-          />
-          <button
-            onClick={onSearch}
-            className="hidden md:inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
-          >
-            <FaSortAmountDown />
-            Apply
-          </button>
+          {/* View Controls */}
+          <div className="flex items-center gap-4">
+            {/* Mobile Search */}
+            <div className="md:hidden">
+              <button
+                onClick={() => {
+                  const term = prompt("Search articles...");
+                  if (term) {
+                    setSearchTerm(term);
+                    onSearch();
+                  }
+                }}
+                className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <FiSearch className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* View Mode Toggle */}
+            <div className="flex items-center border border-gray-200 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded transition-colors ${
+                  viewMode === 'grid' 
+                    ? 'bg-gray-900 text-white' 
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                <FiGrid className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded transition-colors ${
+                  viewMode === 'list' 
+                    ? 'bg-gray-900 text-white' 
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                <FiList className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function Select({ label, value, onChange, options }) {
+/* ------------------------------- BLOG CARDS -------------------------------- */
+
+function GridBlogCard(post) {
   return (
-    <label className="inline-flex items-center gap-2 text-sm">
-      <span className="text-zinc-500">{label}</span>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="appearance-none rounded-lg border border-zinc-200 bg-white px-3 pr-8 py-2 text-sm font-medium text-zinc-800 shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-[rgba(35,77,126,0.25)]"
-        >
-          {options.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </select>
-        <FaChevronDown className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500" />
+    <article className="bg-[white] border border-gray-200 rounded-2xl overflow-hidden group hover:border-gray-300 hover:shadow-lg transition-all duration-300">
+      {/* Image */}
+      <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <FiGrid className="w-12 h-12 text-gray-400" />
+          </div>
+        )}
       </div>
-    </label>
+
+      {/* Content */}
+      <div className="p-6 space-y-4">
+        {/* Meta */}
+        <div className="flex items-center gap-4 text-xs text-gray-500">
+          {/* <span className="bg-gray-100 px-2 py-1 rounded-full font-medium">
+            {post.category}
+          </span> */}
+          <div className="flex items-center gap-1">
+            <FiCalendar className="w-3 h-3" />
+            <span>{post.date}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <FiClock className="w-3 h-3" />
+            <span>{post.readTime}</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-xl font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+          {post.title}
+        </h3>
+
+        {/* Summary */}
+        {/* <p className="text-gray-600 line-clamp-3 leading-relaxed">
+          {post.summary}
+        </p> */}
+
+        {/* Author */}
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+              <FiUser className="w-4 h-4 text-blue-600" />
+            </div>
+            <span className="text-sm text-gray-700 font-medium">{post.authorName}</span>
+          </div>
+          <div className="flex items-center gap-1 text-gray-400 group-hover:text-gray-600 transition-colors font-medium">
+            Read More {" "}
+                      <FiArrowRight className="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
+
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }
 
-/* ------------------------------ Empty State ------------------------------ */
+function ListBlogCard(post) {
+  return (
+    <article className="bg-white border border-gray-200 rounded-2xl p-6 group hover:border-gray-300 hover:shadow-md transition-all duration-300">
+      <div className="flex gap-6">
+        {/* Image */}
+        <div className="flex-shrink-0 w-48 h-32 rounded-xl overflow-hidden bg-gray-100">
+          {post.image ? (
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+              <FiGrid className="w-8 h-8 text-gray-400" />
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 space-y-3">
+          {/* Meta */}
+          <div className="flex items-center gap-4 text-xs text-gray-500">
+            <span className="bg-gray-100 px-2 py-1 rounded-full font-medium">
+              {post.category}
+            </span>
+            <span>{post.date}</span>
+            <span>{post.readTime}</span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-2xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+            {post.title}
+          </h3>
+
+          {/* Summary */}
+          <p className="text-gray-600 line-clamp-2 leading-relaxed">
+            {post.summary}
+          </p>
+
+          {/* Author & CTA */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                <FiUser className="w-3 h-3 text-blue-600" />
+              </div>
+              <span className="text-sm text-gray-700">{post.authorName}</span>
+            </div>
+            <FiArrowRight className="w-5 h-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ------------------------------ EMPTY STATE ------------------------------ */
 
 function EmptyState({ reset }) {
   return (
     <div className="col-span-full">
-      <div className="rounded-2xl border border-dashed border-zinc-200 bg-white p-10 text-center">
-        <div
-          className="mx-auto h-16 w-16 rounded-full"
-          style={{
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(35,77,126,.15), rgba(35,77,126,0))",
-          }}
-        />
-        <h3 className="mt-4 text-lg font-semibold text-zinc-900">No results found</h3>
-        <p className="mt-1 text-zinc-600">
-          Try clearing filters or searching with different keywords.
+      <div className="text-center py-20">
+        <div className="w-24 h-24 mx-auto bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+          <FiSearch className="w-12 h-12 text-gray-400" />
+        </div>
+        <h3 className="text-2xl font-semibold text-gray-900 mb-3">No articles found</h3>
+        <p className="text-gray-600 mb-8 max-w-md mx-auto">
+          We couldn't find any articles matching your criteria. Try adjusting your search or browse all categories.
         </p>
         <button
           onClick={reset}
-          className="mt-4 rounded-lg bg-[#ff4017] px-4 py-2 text-sm font-semibold text-white hover:bg-[#ff4017]"
+          className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
         >
-          Reset filters
+          <span>Reset Search</span>
+          <FiArrowRight className="w-4 h-4" />
         </button>
       </div>
     </div>
   );
+}
+
+/* Custom CSS for hiding scrollbar */
+const styles = `
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+`;
+
+// Add styles to head
+if (typeof document !== 'undefined') {
+  const styleSheet = document.createElement("style");
+  styleSheet.type = "text/css";
+  styleSheet.innerText = styles;
+  document.head.appendChild(styleSheet);
 }

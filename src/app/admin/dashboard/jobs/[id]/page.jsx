@@ -50,7 +50,7 @@ export default function EditJobPage() {
           description: job.description || "",
           tags: (job.tags || []).map(t => String(t).trim()).filter(Boolean),
           active: !!job.active,
-          applyEmail: job.applyEmail || "careers@trygvestudio.com",
+          applyEmail: job.applyEmail || "sales@fiablebuildingsolutions.com",
           applyLink: job.applyLink || "",
         }),
       });
@@ -97,9 +97,9 @@ export default function EditJobPage() {
           />
         </Field>
 
-        <Field label="Blurb *">
+        {/* <Field label="Blurb *">
           <textarea className="input border-2 rounded w-full p-2 min-h-[80px]" value={job.blurb} onChange={e => update("blurb", e.target.value)} />
-        </Field>
+        </Field> */}
 
         <Field label="Description">
           <textarea className="input border-2 rounded w-full p-2 min-h-[180px]" value={job.description} onChange={e => update("description", e.target.value)} />

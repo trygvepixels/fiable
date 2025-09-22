@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { verifyToken } from './lib/jwt-edge'; // ✅ use edge-compatible version
+import { verifyToken } from './src/lib/jwt-edge'; // ✅ use edge-compatible version
 
 export async function middleware(req) {
   const token = req.cookies.get('token')?.value;

@@ -4,271 +4,154 @@ import ContactCta from "@/components/ContactCta";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import {
-  FaCheckCircle, FaArrowRight, FaWhatsapp, FaPhoneAlt,
+  FaCheckCircle, FaArrowRight, FaWhatsapp, FaPhoneAlt
 } from "react-icons/fa";
+import StepsSection from "@/components/StepsSection";
+import { ArrowRight, Phone } from "lucide-react";
 
-/**
- * StrucAxis — Services Page (connected to /api/services)
- * Fetches services from the backend and renders cards.
- */
-
-export default function ServicesPage() {
-  // simple hero background rotator
-  const heroSlides = [
-    {
-      img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1920&auto=format&fit=crop",
-      headline: "General Contracting & Interior Fit-Out",
-      sub: "Turnkey execution with multidisciplinary engineers and in-house production.",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1920&auto=format&fit=crop",
-      headline: "Corporate, Retail & Hospitality",
-      sub: "Precise MEP coordination and brand-accurate finishes delivered on time.",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920&auto=format&fit=crop",
-      headline: "Fast-Track Projects",
-      sub: "Night shifts, sequencing and tight workforce control for clean handovers.",
-    },
-  ];
-  const [hi, setHi] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setHi((i) => (i + 1) % heroSlides.length), 3500);
-    return () => clearInterval(id);
-  }, []);
-
-  // -------- fetch services from backend --------
+export default function ServicesPageV2() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState("");
 
-  const loadServices = async () => {
-    setLoading(true);
-    setErr("");
-    try {
-      const res = await fetch("/api/services?sort=order%20-createdAt&limit=100", { cache: "no-store" });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json?.error || "Failed to load services");
-      setServices(Array.isArray(json.items) ? json.items.filter(s => s?.active !== false) : []);
-    } catch (e) {
-      setErr(e.message || "Failed to load services");
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    setIsLoaded(true);
 
-  useEffect(() => { loadServices(); }, []);
+    const fetchServices = async () => {
+      try {
+        const res = await fetch("/api/services?sort=order%20-createdAt&limit=100", { cache: "no-store" });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json?.error || "Failed to load services");
+        setServices(json.items || []);
+      } catch (err) {
+        console.error("Error fetching services:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   return (
-    <main className="bg-[#F4F1EC] text-gray-900">
-       <div className="fixed bottom-5 z-10 right-5">
-              <Link href="/contact-us#project-form">
-                <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
-                  Start <span className="text-[#ff4017]">Project</span>
-                </button>
-              </Link>
+    <main className="bg-white">
+      <div className="fixed bottom-5 z-20 right-5">
+        <Link href="/contact-us#project-form">
+  <button className="group relative overflow-hidden bg-gradient-to-r from-[#4376BB] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
+    {/* Background animation */}
+    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+    
+    {/* Icon */}
+    
+    
+    {/* Text */}
+    <span className="relative z-10">
+      Start <span className="text-[#F4C500] font-bold">Project</span>
+    </span>
+    
+    {/* Arrow */}
+    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round"  strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </button>
+</Link>
+
+      </div>
+
+      {/* Minimal Hero */}
+      <section className="pt-32 pb-20  bg-[#F4F1EC]">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-8 h-px bg-gray-900"></div>
+              <span className="text-sm font-mono uppercase tracking-wider text-gray-600">
+                Fiable Building Solutions
+              </span>
+              <div className="w-8 h-px bg-gray-900"></div>
             </div>
-      {/* ---------------- HERO ---------------- */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          {heroSlides.map((s, i) => (
-            <img
-              key={i}
-              src={s.img}
-              alt=""
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-                i === hi ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-20 sm:pt-36 sm:pb-28">
-          <span className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
-            Services · Turnkey · Fit-out · Design–Build · Retrofits
-          </span>
-          <h1 className="mt-6 text-4xl sm:text-6xl font-semibold leading-tight text-white">
-            {heroSlides[hi].headline}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg sm:text-xl text-white/90">{heroSlides[hi].sub}</p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href="https://wa.me/919554440400?text=Hi%20StrucAxis%2C%20I'm%20interested%20in%20your%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-5 py-3 text-white hover:bg-green-700"
-            >
-              <FaWhatsapp className="h-5 w-5" />
-              WhatsApp Now
-            </a>
-            <a
-              href="tel:+919554440400"
-              className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-gray-900 hover:bg-gray-100"
-            >
-              <FaPhoneAlt className="h-5 w-5" />
-              Call Now
-            </a>
-            <a
-              href="#all-services"
-              className="group inline-flex items-center gap-2 rounded-lg bg-white/10 px-5 py-3 text-white hover:bg-white/20"
-            >
-              Explore Services{" "}
-              <FaArrowRight className="h-4 w-4 transition -translate-x-0 group-hover:translate-x-1" />
-            </a>
-          </div>
-
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Badge>ISO • MSME • HSE</Badge>
-            <Badge>MEP Coordination</Badge>
-            <Badge>In-house Joinery & Glass</Badge>
-            <Badge>Fast-Track Delivery</Badge>
-          </div>
-        </div>
-      </section>
-
-      {/* --------------- SERVICE GRID --------------- */}
-      <section id="all-services" className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-20">
-        <div className="flex items-end justify-between">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-semibold">What we do</h2>
-            <p className="mt-3 max-w-3xl text-gray-600">
-              Execution-first partners for architects, developers and brand owners. Our multidisciplinary
-              team and in-house facilities deliver quality and speed across sectors.
+            
+            <h1 className="text-5xl lg:text-5xl font-li ght text-gray-900 mb-8 leading-tight">
+              Construction
+              <br />
+              <span className="text-[#4376BB]">Services</span>
+            </h1>
+            
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+              Structural retrofitting, waterproofing, and industrial construction solutions 
+              delivered with precision across India since 2019.
             </p>
-          </div>
-          <a href="/contact-us" className="hidden sm:inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-900">
-            Get a BOQ estimate <FaArrowRight />
-          </a>
-        </div>
 
-        {/* state: loading / error / empty / data */}
-        {loading ? (
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-72 animate-pulse rounded-2xl bg-white/70 ring-1 ring-zinc-200" />
-            ))}
-          </div>
-        ) : err ? (
-          <div className="mt-8 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-            {err} — <button className="underline" onClick={loadServices}>retry</button>
-          </div>
-        ) : services.length === 0 ? (
-          <div className="mt-8 rounded-xl border border-dashed border-zinc-300 p-10 text-center text-sm text-zinc-500">
-            No services yet.
-          </div>
-        ) : (
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <ServiceCard
-                key={s._id || s.slug}
-                title={s.title}
-                img={s.image?.src}
-                alt={s.image?.alt || s.title}
-                points={Array.isArray(s.points) ? s.points.slice(0, 3) : []}
-              />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* --------------- INDUSTRIES --------------- */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-20">
-          <h2 className="text-3xl sm:text-4xl font-semibold">Sectors we serve</h2>
-          <p className="mt-3 text-gray-600 max-w-3xl">
-            From franchise rollouts to corporate HQs and villas — we tailor our approach to the program,
-            brand and timelines.
-          </p>
-
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Sector img="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1400&auto=format&fit=crop" title="Hospitality & F&B" />
-            <Sector img="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop" title="Corporate Offices" />
-            <Sector img="https://images.unsplash.com/photo-1562280963-8a5475740a10?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" title="Retail & Franchise" />
-            <Sector img="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1400&auto=format&fit=crop" title="Healthcare & Clinics" />
-            <Sector img="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1400&auto=format&fit=crop" title="Villas & Residences" />
-            <Sector img="https://images.unsplash.com/photo-1694307771413-ab92ba77539b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" title="Institutions & Schools" />
+            <div className="flex flex-col mx-auto w-full justify-center sm:flex-row gap-4">
+              <a
+                href="tel:+917233809199"
+                className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-bold text-black hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/30 hover:-translate-y-1 transform"
+              >
+                <Phone className="mr-3 h-5 w-5 group-hover:animate-pulse" />
+                Call Now: +91 7233809199
+                <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* --------------- PROCESS --------------- */}
-      <section className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-20">
-        <div className="flex items-end justify-between">
-          <h2 className="text-3xl sm:text-4xl font-semibold">Our process</h2>
-          <span className="text-sm text-gray-500">Crisp, contractor-driven</span>
-        </div>
-        <div className="mt-8 grid md:grid-cols-4 gap-6">
-          <Step n="01" title="Discovery & BOQ" text="Drawings review, site visit, BOQ and alternates for VE." />
-          <Step n="02" title="Planning & Coordination" text="Shop drawings, long-lead procurement, MEP sequencing." />
-          <Step n="03" title="In-House Production" text="Joinery, glass, UPVC and metal manufactured to spec." />
-          <Step n="04" title="Execution & Handover" text="Installation, QA/QC, testing & commissioning, snag closure." />
+      {/* Minimal Services Grid */}
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          {loading ? (
+            <p className="text-center text-gray-500">Loading services...</p>
+          ) : (
+            <div className="grid lg:grid-cols-2 gap-16">
+              {services.map((service, index) => (
+                <div
+                  key={service._id}
+                  className={`group transition-all duration-700 ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex gap-8">
+                    <div className="flex-shrink-0">
+                      <div className="text-6xl font-light text-gray-200 group-hover:text-gray-300 transition-colors">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1 space-y-6">
+                      <div>
+                        <h3 className="text-2xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                        <p className="text-gray-600 leading-relaxed">{service.summary}</p>
+                      </div>
+                      
+                      <div className="aspect-video rounded-lg overflow-hidden">
+                        <img
+                          src={service.image?.src}
+                          alt={service.image?.alt || service.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                      </div>
+
+                      <ul className="space-y-2">
+                        {service.points?.map((point, i) => (
+                          <li key={i} className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
+                            <span className="text-gray-700">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+ 
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* --------------- BIG CTA --------------- */}
+      <StepsSection/>
       <ContactCta/>
     </main>
-  );
-}
-
-/* ---------------- Helpers ---------------- */
-
-function Badge({ children }) {
-  return (
-    <div className="rounded-lg bg-white/10 px-3 py-2 text-sm text-white backdrop-blur">
-      {children}
-    </div>
-  );
-}
-
-function ServiceCard({ title, img, alt, points }) {
-  return (
-    <article className="group overflow-hidden rounded-2xl bg-white">
-      <div className="relative h-48 w-full overflow-hidden">
-        {img ? (
-          <img src={img} alt={alt || title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-        ) : (
-          <div className="h-full w-full bg-zinc-100" aria-hidden />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
-      </div>
-      <div className="p-6">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <ul className="mt-3 space-y-2 text-gray-600">
-          {points.map((p) => (
-            <li key={p} className="flex items-center gap-2">
-              <FaCheckCircle className="text-emerald-500" />
-              <span>{p}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
-  );
-}
-
-function Sector({ img, title }) {
-  return (
-    <div className="overflow-hidden rounded-2xl bg-white">
-      <div className="relative h-44">
-        <img src={img} alt={title} className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-4 left-4 text-white">
-          <h3 className="text-lg font-semibold">{title}</h3>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Step({ n, title, text }) {
-  return (
-    <div className="rounded-xl bg-white p-6">
-      <div className="text-sm font-semibold text-emerald-700">Step {n}</div>
-      <h3 className="mt-2 text-lg font-semibold">{title}</h3>
-      <p className="mt-2 text-gray-600">{text}</p>
-    </div>
   );
 }
