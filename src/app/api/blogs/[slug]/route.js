@@ -1,5 +1,5 @@
 
-import { connectDB } from "@/lib/mongodb";
+ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 // GET blog by urlSlug
 export async function GET(req, context) {
