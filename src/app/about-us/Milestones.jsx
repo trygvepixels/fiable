@@ -35,10 +35,10 @@ const FiableHeroSection = () => {
                 <div className="text-6xl text-center font-semibold text-black mb-1">4+</div>
                 <div className="text-xl text-center text-gray-600">Years Experience</div>
               </div>
-              <div>
+              {/* <div>
                 <div className="text-6xl text-center font-semibold text-black mb-1">50+</div>
                 <div className="text-xl text-center text-gray-600">Expert Engineers</div>
-              </div>
+              </div> */}
             </div>
 
             

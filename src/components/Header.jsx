@@ -58,7 +58,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative font-medium text-sm transition-colors duration-300 group ${
+                  className={`relative font-medium text-xl transition-colors duration-300 group ${
                     scrolled
                       ? "text-gray-700 hover:text-[#4376BB]"
                       : "text-white hover:text-white"

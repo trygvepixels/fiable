@@ -278,23 +278,7 @@ export default function FiableContactPage() {
               </div>
 
               {/* Testimonials */}
-              <div className="mt-8 space-y-4">
-                <div className="text-sm font-medium uppercase tracking-wide text-gray-600">
-                  Client Testimonials
-                </div>
-                <blockquote className="rounded-xl bg-[#F4F1EC] p-4 text-sm">
-                  "Excellent waterproofing work for our industrial facility. Professional team with quality execution."
-                  <span className="block mt-2 text-neutral-600 font-medium">
-                    — Shalimar Industries
-                  </span>
-                </blockquote>
-                <blockquote className="rounded-xl bg-[#F4F1EC] p-4 text-sm">
-                  "Reliable structural retrofitting services. Completed project on time with quality materials."
-                  <span className="block mt-2 text-neutral-600 font-medium">
-                    — Tanisha Infra Projects
-                  </span>
-                </blockquote>
-              </div>
+              
             </aside>
 
             {/* Form */}
@@ -412,6 +396,10 @@ export default function FiableContactPage() {
                   </div>
                 )}
 
+                {/* BOQ Note */}
+                <p className="text-sm text-gray-600 text-center">
+                  If you have any BOQ, please share it at sales@fiable.com
+                </p>
                 {/* Submit Button */}
                 <button
                   type="submit"

@@ -10,7 +10,7 @@ const cloudinaryLoader = ({ src }) => src;
 export default function ProjectDetailClient({ project }) {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const accent = project.accentColor?.split(" ")[0] || "#FF6B35";
-  const images = Array.isArray(project.galleryImages) ? project.galleryImages : [];
+  const gallery = Array.isArray(project.gallery) ? project.gallery : [];
 
   return (
     <div className="min-h-screen py-20 bg-[#FBF9F7]">
@@ -24,6 +24,7 @@ export default function ProjectDetailClient({ project }) {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
+          {console.log(project)}
           <div className="grid lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2 space-y-6">
               <h1 className="text-4xl lg:text-4xl font-semibold leading-tight text-gray-900">
@@ -58,7 +59,7 @@ export default function ProjectDetailClient({ project }) {
         </motion.div>
 
         {/* Featured Image */}
-        {images[0] && (
+        {project.coverImage && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -66,10 +67,10 @@ export default function ProjectDetailClient({ project }) {
             className="mb-16"
           >
             <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl">
-              <Image
+              <img
                 loader={cloudinaryLoader}
-                src={images[0]}
-                alt={project.title}
+                src={project.coverImage}
+                alt={project.coverAlt || project.title}
                 width={1200}
                 height={675}
                 className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
@@ -110,23 +111,23 @@ export default function ProjectDetailClient({ project }) {
             )}
 
             {/* Gallery Grid */}
-            {images.length > 1 && (
+            {gallery.length > 0 && (
               <section>
                 <h2 className="text-2xl font-semibold mb-8">Project Gallery</h2>
                 <div className="grid sm:grid-cols-2 gap-6">
-                  {images.slice(1).map((img, i) => (
+                  {gallery.map((img, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
                       className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer"
-                      onClick={() => setLightboxIndex(i + 1)}
+                      onClick={() => setLightboxIndex(i)}
                     >
-                      <Image
+                      <img
                         loader={cloudinaryLoader}
-                        src={img}
-                        alt={`${project.title} detail ${i + 2}`}
+                        src={img.src}
+                        alt={img.alt || `${project.title} detail ${i + 1}`}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
@@ -186,8 +187,8 @@ export default function ProjectDetailClient({ project }) {
             ×
           </button>
           <img
-            src={images[lightboxIndex]}
-            alt={`Project image ${lightboxIndex + 1}`}
+            src={gallery[lightboxIndex]?.src}
+            alt={gallery[lightboxIndex]?.alt || `Project image ${lightboxIndex + 1}`}
             className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
           />
         </div>

@@ -221,6 +221,24 @@ export default function AdminDashboard() {
           title: "Locations",
           desc: "Manage company office & service center locations.",
         },
+        {
+          href: "/admin/dashboard/hero",
+          icon: <RiServiceLine />,
+          title: "Manage Banner",
+          desc: "Manage banner section",
+        },
+        // {
+        //   href: "/admin/dashboard/phone",
+        //   icon: <RiServiceLine />,
+        //   title: "Manage Phone No",
+        //   desc: "Manage phone no",
+        // },
+        {
+          href: "/admin/dashboard/stats",
+          icon: <RiServiceLine />,
+          title: "Manage Stats",
+          desc: "Manage stats section",
+        },
       ].map((item) => (
         <a
           key={item.href}
