@@ -76,57 +76,19 @@ function LoginPageInner() {
 
       {/* Shell */}
       <div className="relative mx-auto flex min-h-screen max-w-[1100px] items-center px-5 py-">
-        <div className="grid w-full gap-6 rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl shadow-sm md:grid-cols-2 md:gap-0">
-          {/* Brand / Illustration panel */}
-          <aside className="relative hidden md:flex flex-col justify-between rounded-l-3xl bg-gradient-to-b from-[#000000] to-[#232323] p-8 text-white">
-            <div className="flex items-center gap-3 bg-w">
-              <span className='bg-white'>
-                              <Image src={logo} alt="fiable logo" width={40} height={40} priority />
-
-              </span>
-              <span className="text-lg font-semibold tracking-wide">fiable</span>
-            </div>
-
-            <div className="mt-8">
-              <h2 className="text-3xl font-semibold leading-tight">
-                Welcome back to fiable,
-                <br />
-                Contractor Portal
-              </h2>
-              <p className="mt-3 max-w-sm text-white/80">
-                Sign in to manage construction, interiors &amp; fit-out projects with seamless workforce control,
-                procurement, and in‑house production.
-              </p>
-            </div>
-
-            {/* Decorative grid / illustration */}
-            <div className="relative mt-8 rounded-2xl border border-white/10 bg-white/5 p-4">
-              <div className="grid grid-cols-3 gap-2 opacity-90">
-                <div className="aspect-[4/3] rounded-lg bg-white/10" />
-                <div className="aspect-[4/3] rounded-lg bg-white/10" />
-                <div className="aspect-[4/3] rounded-lg bg-white/10" />
-                <div className="aspect-[4/3] rounded-lg bg-white/10" />
-                <div className="aspect-[4/3] rounded-lg bg-white/10" />
-                <div className="aspect-[4/3] rounded-lg bg-white/10" />
-              </div>
-              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
-            </div>
-
-            <p className="mt-6 text-xs text-white/70">
-              © {new Date().getFullYear()} fiable — A Trygve Studio Pvt. Ltd. Company
-            </p>
-          </aside>
+        <div className="  w-full gap-6 rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl shadow-sm md:g md:gap-0">
+          
 
           {/* Form panel */}
-          <main className="relative flex flex-col justify-center rounded-3xl md:rounded-l-none p-7 md:p-10">
+          <main className="relative  flex flex-col justify-center rounded-3xl md:rounded-l-none p-7 md:p-10">
             {/* Logo (mobile) */}
             <div className="mb-3 flex items-center gap-3 md:hidden">
               <Image src={logo} alt="fiable logo" width={36} height={36} />
-              <span className="text-base font-semibold text-[#FF6A00]">fiable</span>
+              <span className="text-base font-semibold text-[#345992]">fiable</span>
             </div>
 
             <header>
-              <h1 className="text-2xl font-semibold text-[#FF6A00]">Sign in</h1>
+              <h1 className="text-2xl font-semibold text-[#345992]">Sign in</h1>
               <p className="mt-1 text-sm text-neutral-600">
                 Use your admin credentials to continue.
               </p>
@@ -154,7 +116,7 @@ function LoginPageInner() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     autoComplete="username"
-                    className="w-full rounded-lg border border-black/10 bg-white px-10 py-3 outline-none ring-0 transition focus:border-[#FF6A00] focus:ring-2 focus:ring-[#FF6A00]/20"
+                    className="w-full rounded-lg border border-black/10 bg-white px-10 py-3 outline-none ring-0 transition focus:border-[#345992] focus:ring-2 focus:ring-[#345992]/20"
                   />
                 </div>
               </label>
@@ -173,7 +135,7 @@ function LoginPageInner() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     autoComplete="current-password"
-                    className="w-full rounded-lg border border-black/10 bg-white px-10 py-3 pr-12 outline-none ring-0 transition focus:border-[#FF6A00] focus:ring-2 focus:ring-[#FF6A00]/20"
+                    className="w-full rounded-lg border border-black/10 bg-white px-10 py-3 pr-12 outline-none ring-0 transition focus:border-[#345992] focus:ring-2 focus:ring-[#345992]/20"
                   />
                   <button
                     type="button"
@@ -191,11 +153,11 @@ function LoginPageInner() {
                 <label className="flex items-center gap-2 text-sm text-neutral-700">
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded border-black/20 text-[#FF6A00] focus:ring-[#FF6A00]"
+                    className="h-4 w-4 rounded border-black/20 text-[#345992] focus:ring-[#345992]"
                   />
                   Remember me
                 </label>
-                <a href="#" className="text-sm text-[#FF6A00] underline-offset-2 hover:underline">
+                <a href="#" className="text-sm text-[#345992] underline-offset-2 hover:underline">
                   Forgot password?
                 </a>
               </div>
@@ -203,7 +165,7 @@ function LoginPageInner() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-4 w-full rounded-lg bg-[#FF6A00] py-3 font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+                className="mt-4 w-full rounded-lg bg-[#345992] py-3 font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
               >
                 {submitting ? 'Signing in…' : 'Sign in'}
               </button>
