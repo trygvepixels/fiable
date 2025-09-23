@@ -76,7 +76,9 @@ export default function WhyChooseUsFiable() {
               Engineering Excellence
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Backed by Trygve Engineering with dedicated architectural and mechanical expertise.
+              In house analysis software,
+RIB Candy Estimation software,
+Thermal imaging, and various other tools for analysis.
             </p>
           </div>
 

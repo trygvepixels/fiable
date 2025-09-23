@@ -152,7 +152,7 @@ export default function FiableCareerPageV3() {
     return okDept && okLoc && okQ;
   });
 
-  const mail = "sales@fiablebuildingsolutions.com";
+  const mail = "hr@fiabeprojects.com";
   const whatsapp = "917233809199";
   const applyMailTo = (job) =>
     `mailto:${mail}?subject=Application%20for%20${encodeURIComponent(
