@@ -71,15 +71,16 @@ export default function ContactForm() {
       const data = Object.fromEntries(formData);
 
       const payload = {
-        fullName: data.fullName,
+        name: data.fullName,          // changed from fullName to name
         email: data.email,
         phone: data.phone,
         company: data.company || "",
-        location: data.location,
         projectType: data.projectType,
+        location: data.location,
         budget: data.budget || "",
         timeline: data.timeline || "",
         message: data.message,
+        consent: data.consent || "",
 
         // extras
         page: window.location.pathname,
@@ -176,7 +177,6 @@ export default function ContactForm() {
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          
           {/* <Select
             label="Timeline"
             name="timeline"
