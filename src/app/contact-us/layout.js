@@ -1,0 +1,60 @@
+import { Geist, Geist_Mono } from "next/font/google";
+import "../globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Script from "next/script";
+import Link from "next/link";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+ 
+export const metadata = {
+  title: "Contact Fiable Building Solutions — Get in Touch Today",
+  description: "Reach out to Fiable Building Solutions for waterproofing, structural rehabilitation, flooring and industrial construction services. Connect via phone, email or our office to discuss your project requirements.",
+  keywords: [
+    "contact fiable",
+    "fiable building solutions contact",
+    "construction contact India",
+    "waterproofing company contact",
+    "structural repair contractor contact"
+  ],
+  alternates: { canonical: "https://fiablebuilding.com/contact" },
+  openGraph: {
+    title: "Contact Fiable Building Solutions",
+    description: "Connect with Fiable for waterproofing, rehabilitation, flooring and industrial construction solutions. Phone, email and office support available.",
+    url: "https://fiablebuilding.com/contact",
+    type: "website",
+    locale: "en-US"
+    // images: ["https://fiablebuilding.com/path-to-og-contact.jpg"]
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact Fiable Building Solutions",
+    description: "Discuss your project with Fiable’s experts. Call, email or visit our office to get started."
+  },
+  robots: { index: true, follow: true }
+};
+
+
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body
+       >
+       
+           
+
+        {children}
+ 
+      </body>
+    </html>
+  );
+}
