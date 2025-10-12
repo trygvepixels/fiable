@@ -16,9 +16,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199", "+91-9044072226"],
-      email: ["sales@fiablebuildingsolutions.com", "sales@trygve-engineering.com"],
-      whatsapp: "+91-7233809199"
+      phone: ["+91-8069648411", "+91-9044072226"],
+      email: ["sales@fiablebuildingsolutions.com", "admin@fiableprojects.com"],
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 26.8467,
@@ -52,7 +52,7 @@ const fiableSeedData = [
     ],
     manager: {
       name: "Harshit Rao",
-      phone: "+91-7233809199",
+      phone: "+91-8069648411",
       email: "harshit@fiablebuildingsolutions.com"
     },
     status: "active",
@@ -78,9 +78,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199"],
-      email: ["info@trygve-engineering.com", "sales@trygve-engineering.com"],
-      whatsapp: "+91-7233809199"
+      phone: ["+91-8069648411"],
+      email: ["info@trygve-engineering.com", "admin@fiableprojects.com"],
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 26.8512,
@@ -109,7 +109,7 @@ const fiableSeedData = [
     ],
     manager: {
       name: "Engineering Director",
-      phone: "+91-7233809199",
+      phone: "+91-8069648411",
       email: "director@trygve-engineering.com"
     },
     status: "active",
@@ -135,9 +135,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199"],
+      phone: ["+91-8069648411"],
       email: ["shalimar@fiablebuildingsolutions.com"],
-      whatsapp: "+91-7233809199"
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 26.8205,
@@ -191,9 +191,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199"],
+      phone: ["+91-8069648411"],
       email: ["biswan@fiablebuildingsolutions.com"],
-      whatsapp: "+91-7233809199"
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 27.4924,
@@ -248,9 +248,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199"],
+      phone: ["+91-8069648411"],
       email: ["tanisha@fiablebuildingsolutions.com"],
-      whatsapp: "+91-7233809199"
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 26.8467,
@@ -303,9 +303,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199"],
+      phone: ["+91-8069648411"],
       email: ["delhi@fiablebuildingsolutions.com"],
-      whatsapp: "+91-7233809199"
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 28.4595,
@@ -334,7 +334,7 @@ const fiableSeedData = [
     ],
     manager: {
       name: "Regional Manager - NCR",
-      phone: "+91-7233809199",
+      phone: "+91-8069648411",
       email: "delhi@fiablebuildingsolutions.com"
     },
     status: "under-construction",
@@ -416,9 +416,9 @@ const fiableSeedData = [
       country: "India"
     },
     contact: {
-      phone: ["+91-7233809199"],
+      phone: ["+91-8069648411"],
       email: ["pune@fiablebuildingsolutions.com"],
-      whatsapp: "+91-7233809199"
+      whatsapp: "+91-8069648411"
     },
     coordinates: {
       latitude: 18.5679,
@@ -445,7 +445,7 @@ const fiableSeedData = [
     ],
     manager: {
       name: "Regional Manager - West",
-      phone: "+91-7233809199",
+      phone: "+91-8069648411",
       email: "pune@fiablebuildingsolutions.com"
     },
     status: "active",

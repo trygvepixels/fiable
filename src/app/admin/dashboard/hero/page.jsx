@@ -17,7 +17,7 @@ export default function HeroAdmin() {
   const [title, setTitle] = useState("");
   const [rotatingWords, setRotatingWords] = useState(["demolition"]);
   const [backgroundImages, setBackgroundImages] = useState([]);
-  const [ctaPhone, setCtaPhone] = useState("+91 7233809199");
+  const [ctaPhone, setCtaPhone] = useState("+91 8069648411");
   const [ctaWhatsapp, setCtaWhatsapp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 

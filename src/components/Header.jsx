@@ -71,9 +71,9 @@ export default function Header() {
             </nav>
 
             {/* CTA Section */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center text-xl gap-4">
               <a
-                href="tel:+917233809199"
+                href="tel:+918069648411"
                 className={`hidden md:flex items-center gap-2 font-medium text-sm transition-colors ${
                   scrolled
                     ? "text-[#4376BB] hover:text-[#2c4a7d]"
@@ -81,7 +81,7 @@ export default function Header() {
                 }`}
               >
                 <FiPhone className="w-4 h-4" />
-                <span className="hidden lg:inline">+91-7233809199</span>
+                <span className="hidden lg:inline text-2xl">+91-8069648411</span>
               </a>
 
               <Link
@@ -138,12 +138,12 @@ export default function Header() {
               {/* Mobile CTA */}
               <div className="mt-8 pt-6 border-t border-gray-200 space-y-4">
                 <a
-                  href="tel:+917233809199"
+                  href="tel:+918069648411"
                   className="flex items-center gap-3 px-4 py-3 text-[#4376BB] hover:bg-blue-50 rounded-lg font-medium transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   <FiPhone className="w-5 h-5" />
-                  Call +91-7233809199
+                  Call +91-8069648411
                 </a>
                 
                 <Link

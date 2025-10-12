@@ -18,7 +18,7 @@ export default function NewJobPage() {
     description: "",
     tags: "",
     active: true,
-    applyEmail: "sales@fiablebuildingsolutions.com",
+    applyEmail: "sales@fiableprojects.com",
     applyLink: "",
   });
 

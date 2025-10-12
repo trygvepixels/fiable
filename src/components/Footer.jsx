@@ -123,12 +123,10 @@ export default function Footer() {
                     <div>
                       <p className="text-gray-400 text-sm mb-1">Technical Expert Hotline</p>
                       <div className="space-y-1">
-                        <a href="tel:+917233809199" className="text-white font-medium hover:text-blue-400 transition-colors block">
-                          +91 7233 809199
+                        <a href="tel:+918069648411" className="text-white font-medium hover:text-blue-400 transition-colors block">
+                          +91 8069648411
                         </a>
-                        <a href="tel:+919044072226" className="text-white font-medium hover:text-blue-400 transition-colors block">
-                          +91 9044 072226
-                        </a>
+                         
                       </div>
                     </div>
                   </div>
@@ -140,11 +138,11 @@ export default function Footer() {
                     <div>
                       <p className="text-gray-400 text-sm mb-1">Business Inquiries</p>
                       <div className="space-y-1">
-                        <a href="mailto:sales@fiablebuildingsolutions.com" className="text-white font-medium hover:text-green-400 transition-colors block text-sm">
-                          sales@fiablebuildingsolutions.com
+                        <a href="mailto:sales@fiableprojects.com" className="text-white font-medium hover:text-green-400 transition-colors block text-sm">
+                          sales@fiableprojects.com
                         </a>
-                        <a href="mailto:sales@trygve-engineering.com" className="text-white font-medium hover:text-green-400 transition-colors block text-sm">
-                          sales@trygve-engineering.com
+                        <a href="mailto:admin@fiableprojects.com" className="text-white font-medium hover:text-green-400 transition-colors block text-sm">
+                          admin@fiableprojects.com
                         </a>
                       </div>
                     </div>

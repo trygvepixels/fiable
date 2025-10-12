@@ -83,11 +83,11 @@ export default function ServicesPageV2() {
 
             <div className="flex flex-col mx-auto w-full justify-center sm:flex-row gap-4">
               <a
-                href="tel:+917233809199"
+                href="tel:+918069648411"
                 className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-bold text-black hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/30 hover:-translate-y-1 transform"
               >
                 <Phone className="mr-3 h-5 w-5 group-hover:animate-pulse" />
-                Call Now: +91 7233809199
+                Call Now: +91 8069648411
                 <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>

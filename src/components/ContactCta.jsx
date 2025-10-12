@@ -47,11 +47,11 @@ export default function ContactCta() {
               </Link>
               
               <a
-                href="tel:+917233809199"
+                href="tel:+918069648411"
                 className="inline-flex items-center justify-center gap-3 border-2 border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:border-white/40 hover:bg-white/10 transition-all duration-300"
               >
                 <Phone className="w-5 h-5" />
-                <span>+91 7233809199</span>
+                <span>+91 8069648411</span>
               </a>
             </div>
 
@@ -59,7 +59,7 @@ export default function ContactCta() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-white/60">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>sales@fiablebuildingsolutions.com</span>
+                <span>sales@fiableprojects.com </span>
               </div>
                
             </div>

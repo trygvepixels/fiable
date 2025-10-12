@@ -224,7 +224,7 @@ export default function JobsList() {
             {/* Apply Section */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="mailto:sales@fiablebuildingsolutions.com?subject=Application for {selectedJob.title}&body=Dear Fiable Building Solutions Team,%0D%0A%0D%0AI am interested in applying for the {selectedJob.title} position. Please find my resume attached.%0D%0A%0D%0ABest regards"
+                href="mailto:sales@fiableprojects.com?subject=Application for {selectedJob.title}&body=Dear Fiable Building Solutions Team,%0D%0A%0D%0AI am interested in applying for the {selectedJob.title} position. Please find my resume attached.%0D%0A%0D%0ABest regards"
                 className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4376BB] to-[#4376BB] text-white rounded-xl font-semibold hover:from-[#4376BB] hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
               >
                 <FiMail className="w-5 h-5" />
@@ -239,17 +239,17 @@ export default function JobsList() {
                 <p className="mb-1">Questions? Contact us directly:</p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <a 
-                    href="mailto:sales@fiablebuildingsolutions.com" 
+                    href="mailto:sales@fiableprojects.com" 
                     className="text-[#4376BB] hover:text-[#4376BB]"
                   >
-                    sales@fiablebuildingsolutions.com
+                    sales@fiableprojects.com
                   </a>
                   <span className="hidden sm:inline text-gray-300">|</span>
                   <a 
-                    href="tel:+917233809199" 
+                    href="tel:+918069648411" 
                     className="text-[#4376BB] hover:text-[#4376BB]"
                   >
-                    +91-7233809199
+                    +91-8069648411
                   </a>
                 </div>
               </div>

@@ -17,7 +17,7 @@ const fiableSeedData = [
     },
     contact: {
       phone: ["+91-7233809199", "+91-9044072226"],
-      email: ["sales@fiablebuildingsolutions.com", "sales@trygve-engineering.com"],
+      email: ["sales@fiablebuildingsolutions.com", "admin@fiableprojects.com"],
       whatsapp: "+91-7233809199"
     },
     coordinates: {
@@ -79,7 +79,7 @@ const fiableSeedData = [
     },
     contact: {
       phone: ["+91-7233809199"],
-      email: ["info@trygve-engineering.com", "sales@trygve-engineering.com"],
+      email: ["info@trygve-engineering.com", "admin@fiableprojects.com"],
       whatsapp: "+91-7233809199"
     },
     coordinates: {

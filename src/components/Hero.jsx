@@ -110,7 +110,9 @@ export default function AboutFiable() {
                   className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-bold text-black hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/30 hover:-translate-y-1 transform"
                 >
                   <Phone className="mr-3 h-5 w-5 group-hover:animate-pulse" />
-                  Call Now: {hero.ctaPhone}
+                  <p className="text-2xl">
+                    Call Now: {hero.ctaPhone}
+                  </p>
                   <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               )}

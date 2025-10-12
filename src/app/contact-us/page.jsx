@@ -134,13 +134,13 @@ export default function FiableContactPage() {
               Get Project Quote
             </a>
             <a
-              href="https://wa.me/917233809199?text=Hi%20Fiable%2C%20I%27d%20like%20to%20discuss%20a%20construction%20project."
+              href="https://wa.me/918069648411?text=Hi%20Fiable%2C%20I%27d%20like%20to%20discuss%20a%20construction%20project."
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border-2 border-green-600 text-green-600 px-6 py-3 text-sm md:text-base font-medium hover:bg-green-600 hover:text-white transition"
             >
               <FaWhatsapp className="w-4 h-4" />
-              WhatsApp: +91 7233809199
+              WhatsApp: +91 8069648411
             </a>
           </div>
 
@@ -172,56 +172,45 @@ export default function FiableContactPage() {
               {/* Contact Methods */}
               <div className="mt-6 grid gap-4 text-[15px]">
                 <a
-                  href="mailto:sales@fiablebuildingsolutions.com"
+                  href="mailto:sales@fiableprojects.com"
                   className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
                 >
                   <FiMail className="mt-0.5 text-[#4376BB]" />
                   <div>
                     <div className="font-medium">Primary Email</div>
                     <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
-                      sales@fiablebuildingsolutions.com
+                      sales@fiableprojects.com
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="mailto:sales@trygve-engineering.com"
+                  href="mailto:admin@fiableprojects.com"
                   className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
                 >
                   <FiMail className="mt-0.5 text-[#4376BB]" />
                   <div>
                     <div className="font-medium">Alternative Email</div>
                     <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
-                      sales@trygve-engineering.com
+                      admin@fiableprojects.com
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="tel:+917233809199"
+                  href="tel:+918069648411"
                   className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
                 >
                   <FiPhone className="mt-0.5 text-[#4376BB]" />
                   <div>
                     <div className="font-medium">Primary Phone</div>
                     <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
-                      +91 7233809199
+                      +91 8069648411
                     </div>
                   </div>
                 </a>
 
-                <a
-                  href="tel:+919044072226"
-                  className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
-                >
-                  <FiPhone className="mt-0.5 text-[#4376BB]" />
-                  <div>
-                    <div className="font-medium">Secondary Phone</div>
-                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
-                      +91 9044072226
-                    </div>
-                  </div>
-                </a>
+                 
 
                 <div className="flex items-start gap-3 p-3">
                   <FiMapPin className="mt-0.5 text-[#4376BB]" />
@@ -398,7 +387,7 @@ export default function FiableContactPage() {
 
                 {/* BOQ Note */}
                 <p className="text-sm text-gray-600 text-center">
-                  If you have any BOQ, please share it at sales@fiable.com
+                  If you have any BOQ, please share it at sales@fiableprojects.com
                 </p>
                 {/* Submit Button */}
                 <button

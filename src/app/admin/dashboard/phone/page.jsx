@@ -52,21 +52,12 @@ export default function PhoneEditor() {
             type="text"
             value={primary}
             onChange={(e) => setPrimary(e.target.value)}
-            placeholder="+91 7233809199"
+            placeholder="+91 8069648411"
             className="border p-2 w-full rounded"
           />
         </div>
 
-        <div>
-          <label className="block font-medium mb-1">Secondary Number</label>
-          <input
-            type="text"
-            value={secondary}
-            onChange={(e) => setSecondary(e.target.value)}
-            placeholder="+91 9044 072226"
-            className="border p-2 w-full rounded"
-          />
-        </div>
+        
       </div>
 
       <button
