@@ -172,14 +172,14 @@ export default function FiableContactPage() {
               {/* Contact Methods */}
               <div className="mt-6 grid gap-4 text-[15px]">
                 <a
-                  href="mailto:sales@fiableprojects.com"
+                  href="mailto:enquiry@fiableprojects.com"
                   className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition"
                 >
                   <FiMail className="mt-0.5 text-[#4376BB]" />
                   <div>
                     <div className="font-medium">Primary Email</div>
                     <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
-                      sales@fiableprojects.com
+                      enquiry@fiableprojects.com
                     </div>
                   </div>
                 </a>
@@ -387,7 +387,7 @@ export default function FiableContactPage() {
 
                 {/* BOQ Note */}
                 <p className="text-sm text-gray-600 text-center">
-                  If you have any BOQ, please share it at sales@fiableprojects.com
+                  If you have any BOQ, please share it at enquiry@fiableprojects.com
                 </p>
                 {/* Submit Button */}
                 <button

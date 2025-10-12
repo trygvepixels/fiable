@@ -50,7 +50,7 @@ export default function EditJobPage() {
           description: job.description || "",
           tags: (job.tags || []).map(t => String(t).trim()).filter(Boolean),
           active: !!job.active,
-          applyEmail: job.applyEmail || "sales@fiableprojects.com",
+          applyEmail: job.applyEmail || "enquiry@fiableprojects.com",
           applyLink: job.applyLink || "",
         }),
       });

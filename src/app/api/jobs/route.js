@@ -93,7 +93,7 @@ export async function POST(request) {
       tags: Array.isArray(body.tags) ? body.tags : [],
       description: body.description || "",
       active: typeof body.active === "boolean" ? body.active : true,
-      applyEmail: body.applyEmail || "sales@fiableprojects.com",
+      applyEmail: body.applyEmail || "enquiry@fiableprojects.com",
       applyLink: body.applyLink || "",
     });
 

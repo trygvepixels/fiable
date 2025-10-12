@@ -59,7 +59,7 @@ export default function ContactCta() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-white/60">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>sales@fiableprojects.com </span>
+                <span>enquiry@fiableprojects.com </span>
               </div>
                
             </div>
