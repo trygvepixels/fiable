@@ -102,16 +102,19 @@ export default function Sidebar() {
         })}
       </ul>
 
-      <div className="p-4 mt-auto border-t border-zinc-100 md:border-transparent">
-        <div className="px-4 py-2 text-xs uppercase font-semibold tracking-wider text-zinc-400 select-none mb-1">
-          Account
+      <div className="p-4 mt-auto border-t border-zinc-100 bg-zinc-50/50">
+        <div className="px-3 py-2 text-[10px] uppercase font-bold tracking-[0.1em] text-zinc-400 select-none mb-1">
+          Account Control
         </div>
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 rounded-xl px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-200"
+          className="w-full flex items-center justify-between group rounded-2xl px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-300"
         >
-          <FiLogOut className="text-lg" />
-          <span>Logout</span>
+          <div className="flex items-center gap-3">
+            <FiLogOut className="text-xl transform group-hover:-translate-x-1 transition-transform" />
+            <span>Sign Out</span>
+          </div>
+          <FiChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
       </div>
     </nav>

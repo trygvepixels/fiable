@@ -22,6 +22,7 @@ import Link from "next/link";
 export default function FiableContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState({ state: "idle", message: "" });
+  const [startTime] = useState(Date.now());
   const router = useRouter();
 
   async function handleSubmit(e) {
@@ -50,7 +51,8 @@ export default function FiableContactPage() {
           medium: new URLSearchParams(window.location.search).get("utm_medium") || "",
           campaign: new URLSearchParams(window.location.search).get("utm_campaign") || "",
         },
-        website: "",
+        website: data.website || "",
+        _st: startTime,
       };
 
       const res = await fetch("/api/contact", {

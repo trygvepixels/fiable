@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   FiChevronRight,
   FiStar,
   FiMapPin,
   FiBriefcase,
+  FiLogOut,
 } from "react-icons/fi";
 import {
   MdOutlineArticle,
@@ -16,6 +18,20 @@ import { RiServiceLine, RiTeamLine } from "react-icons/ri";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
 
 export default function AdminDashboard() {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/logout", { method: "POST" });
+      if (res.ok) {
+        router.push("/admin");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   const quickActions = [
     {
       href: "/admin/dashboard/blogs",
@@ -94,14 +110,27 @@ export default function AdminDashboard() {
       {/* Welcome Panel */}
       <section className="relative overflow-hidden rounded-[2.5rem] bg-white border border-zinc-200/60 p-8 md:p-12 shadow-sm transition-all hover:shadow-md group">
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Control Center</span>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Control Center</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-black tracking-tight text-zinc-900">
+                Welcome back, <br className="md:hidden" /> 
+                <span className="text-blue-600">fiable Admin 👋</span>
+              </h1>
+            </div>
+            
+            <button 
+              onClick={handleLogout}
+              className="group flex items-center gap-3 bg-red-50 text-red-600 px-6 py-3 rounded-2xl font-bold hover:bg-red-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-red-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <FiLogOut className="text-xl group-hover:-rotate-12 transition-transform" />
+              <span>Logout</span>
+            </button>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight text-zinc-900 mb-4">
-            Welcome back, <br className="md:hidden" /> 
-            <span className="text-blue-600">fiable Admin 👋</span>
-          </h1>
+          
           <p className="text-lg text-zinc-500 max-w-xl leading-relaxed">
             Your contractor-first control center. Manage your digital presence with precision, speed, and engineering clarity.
           </p>

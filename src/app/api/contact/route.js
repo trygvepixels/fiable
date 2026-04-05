@@ -29,7 +29,7 @@ export async function POST(req) {
     console.log("contact form", body);
 
     const payload = {
-name: clean(body.name || body.fullName),
+      name: clean(body.name || body.fullName),
       email:       clean(body.email),
       phone:       clean(body.phone || body.whatsapp),
       company:     clean(body.company || body.brand),
@@ -47,12 +47,36 @@ name: clean(body.name || body.fullName),
       ip:          req.headers.get("x-forwarded-for") || "",
     };
 
+    // 1. Honeypot check (website field should be empty)
     if (clean(body.website)) {
-      return NextResponse.json({ ok: true }, { status: 202 });
+      console.warn("Spam detected: Honeypot filled", { ip: payload.ip, website: body.website });
+      return NextResponse.json({ ok: true }, { status: 202 }); // Silent discard
     }
 
+    // 2. Speed check (humans shouldn't fill this in < 3 seconds)
+    const startTime = Number(body._st);
+    const now = Date.now();
+    if (startTime && (now - startTime < 3000)) {
+      console.warn("Spam detected: Submission too fast", { duration: now - startTime });
+      return NextResponse.json({ ok: true }, { status: 202 }); // Silent discard
+    }
+
+    // 3. Gibberish / Random String Detection
+    const isGibberish = (s) => /^[a-zA-Z]{10,}$/.test(s) && !/[aeiou]/i.test(s); // 10+ chars with no vowels
+    if (isGibberish(payload.name) || isGibberish(payload.message.split(' ')[0])) {
+      console.warn("Spam detected: Gibberish content", { name: payload.name });
+      return NextResponse.json({ ok: true }, { status: 202 }); // Silent discard
+    }
+
+    // 4. Basic Validation
     if (!payload.name || !isEmail(payload.email) || !payload.phone || !payload.location || !payload.projectType || !payload.message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    // 5. Phone Length Validation (bots often send short or random numbers)
+    const digitsOnly = payload.phone.replace(/\D/g, "");
+    if (digitsOnly.length < 10) {
+      return NextResponse.json({ error: "Please provide a valid phone number" }, { status: 400 });
     }
 
     const GAS_URL   = process.env.GOOGLE_APPS_SCRIPT_URL;
@@ -75,6 +99,15 @@ name: clean(body.name || body.fullName),
       const text = await res.text().catch(() => "");
       console.error("Upstream error", text);
       return NextResponse.json({ error: "Upstream error", detail: text }, { status: 502 });
+    }
+
+    // 6. Send Email Notification (Non-blocking or catch errors)
+    try {
+      const { sendInquiryEmail } = await import("@/lib/mail");
+      // Use await to ensure it's logged, but don't fail the request if mail fails
+      await sendInquiryEmail(payload);
+    } catch (mailErr) {
+      console.error("Mail notification failed:", mailErr);
     }
 
     return NextResponse.json({ ok: true }, {
