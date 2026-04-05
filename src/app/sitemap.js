@@ -1,15 +1,22 @@
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
-import Project from "@/models/Project";
 import FeatureProject from "@/models/FeatureProject";
+import Project from "@/models/Project";
+import Service from "@/models/Service";
+import { SITE_URL } from "@/lib/site";
 
-const baseUrl = "https://fiablebuilding.com";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+function toDate(value) {
+  const date = value ? new Date(value) : new Date();
+  return Number.isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
+}
 
 export default async function sitemap() {
   try {
     await connectDB();
 
-    // 1. Static Routes
     const staticRoutes = [
       "",
       "/about-us",
@@ -20,43 +27,47 @@ export default async function sitemap() {
       "/machinery",
       "/blogs",
     ].map((route) => ({
-      url: `${baseUrl}${route}`,
+      url: `${SITE_URL}${route}`,
       lastModified: new Date().toISOString(),
-      changeFrequency: route === "" ? "daily" : "weekly",
-      priority: route === "" ? 1 : 0.8,
     }));
 
-    // 2. Dynamic Blog Routes
-    const blogs = await Blog.find({ status: "visible" }).select("urlSlug updatedAt lastUpdated").lean();
-    const blogRoutes = blogs.map((blog) => ({
-      url: `${baseUrl}/blogs/${blog.urlSlug}`,
-      lastModified: (blog.lastUpdated || blog.updatedAt || new Date()).toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    }));
-
-    // 3. Dynamic Project Routes (Combined from both models)
-    const [standardProjects, featuredProjects] = await Promise.all([
+    const [blogs, services, standardProjects, featuredProjects] = await Promise.all([
+      Blog.find({ status: "visible" }).select("urlSlug updatedAt lastUpdated").lean(),
+      Service.find({ active: true }).select("slug updatedAt createdAt").lean(),
       Project.find().select("slug updatedAt createdAt").lean(),
       FeatureProject.find().select("slug updatedAt createdAt").lean(),
     ]);
 
-    const allProjects = [...standardProjects, ...featuredProjects];
-    const projectRoutes = allProjects
-      .filter((p) => p.slug)
-      .map((project) => ({
-        url: `${baseUrl}/projects/${project.slug}`,
-        lastModified: (project.updatedAt || project.createdAt || new Date()).toISOString(),
-        changeFrequency: "monthly",
-        priority: 0.75,
+    const blogRoutes = blogs
+      .filter((blog) => blog?.urlSlug)
+      .map((blog) => ({
+        url: `${SITE_URL}/blogs/${blog.urlSlug}`,
+        lastModified: toDate(blog.lastUpdated || blog.updatedAt),
       }));
 
-    return [...staticRoutes, ...blogRoutes, ...projectRoutes];
+    const serviceRoutes = services
+      .filter((service) => service?.slug)
+      .map((service) => ({
+        url: `${SITE_URL}/services/${service.slug}`,
+        lastModified: toDate(service.updatedAt || service.createdAt),
+      }));
+
+    const projectRoutes = [...standardProjects, ...featuredProjects]
+      .filter((project) => project?.slug)
+      .map((project) => ({
+        url: `${SITE_URL}/projects/${project.slug}`,
+        lastModified: toDate(project.updatedAt || project.createdAt),
+      }));
+
+    return [...staticRoutes, ...serviceRoutes, ...blogRoutes, ...projectRoutes];
   } catch (error) {
     console.error("Sitemap generation error:", error);
-    // Fallback to static routes if DB fails
+
     return [
-      { url: baseUrl, lastModified: new Date().toISOString() },
+      { url: SITE_URL, lastModified: new Date().toISOString() },
+      { url: `${SITE_URL}/services`, lastModified: new Date().toISOString() },
+      { url: `${SITE_URL}/blogs`, lastModified: new Date().toISOString() },
+      { url: `${SITE_URL}/projects`, lastModified: new Date().toISOString() },
     ];
   }
 }

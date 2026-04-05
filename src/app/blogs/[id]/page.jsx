@@ -85,23 +85,6 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export async function generateStaticParams() {
-  try {
-    const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to fetch blogs list");
-
-    const data = await res.json();
-    const blogs = Array.isArray(data?.blogs) ? data.blogs : [];
-
-    return blogs
-      .filter((blog) => blog?.urlSlug)
-      .map((blog) => ({ id: blog.urlSlug }));
-  } catch (err) {
-    console.error("generateStaticParams error:", err.message);
-    return [];
-  }
-}
-
 export default async function BlogDetails({ params }) {
   const { id } = await params;
   const blog = await getBlog(id);

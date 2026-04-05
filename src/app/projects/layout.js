@@ -1,20 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Script from "next/script";
-import Link from "next/link";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
- 
 export const metadata = {
   title: "Projects — Case Studies & Completed Works | Fiable Building Solutions",
   description: "Browse Fiable's portfolio of waterproofing, structural retrofitting, flooring and industrial repair projects. Real-world case studies demonstrating durability, technical rigor and timely delivery.",
@@ -45,16 +28,5 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body
-       >
-       
-           
-
-        {children}
- 
-      </body>
-    </html>
-  );
+  return children;
 }

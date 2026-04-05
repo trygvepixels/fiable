@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   IconDroplet,
   IconTools,
@@ -90,17 +91,21 @@ export default function FeaturesSectionDemo() {
                     
                     <div className="flex-1 space-y-6">
                       <div>
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                        <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                          <Link href={`/services/${service.slug}`} className="hover:text-[#4376BB] transition-colors">
+                            {service.title}
+                          </Link>
+                        </h3>
                         <p className="text-gray-600 leading-relaxed">{service.summary}</p>
                       </div>
                       
-                      <div className="aspect-video rounded-lg overflow-hidden">
+                      <Link href={`/services/${service.slug}`} className="block aspect-video rounded-lg overflow-hidden">
                         <img
                           src={service.image?.src}
                           alt={service.image?.alt || service.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                      </div>
+                      </Link>
 
                       <ul className="space-y-2">
                         {service.points?.map((point, i) => (
@@ -110,6 +115,10 @@ export default function FeaturesSectionDemo() {
                           </li>
                         ))}
                       </ul>
+
+                      <Link href={`/services/${service.slug}`} className="inline-flex items-center text-sm font-semibold text-[#4376BB] hover:text-[#2c4a7d]">
+                        Learn more
+                      </Link>
 
  
                     </div>
