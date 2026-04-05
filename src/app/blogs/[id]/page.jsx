@@ -1,75 +1,125 @@
-export const dynamic = 'force-dynamic';
-// optionally:
-export const revalidate = 0; import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import BlogsClientUI from "@/components/BlogsClientUI";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const API_BASE = "https://fiablebuilding.com";
 
-// --- data ---
+function getCanonicalUrl(blog, id) {
+  if (blog?.canonicalUrl) return blog.canonicalUrl;
+  const slug = blog?.urlSlug || id;
+  return `${API_BASE}/blogs/${slug}`;
+}
+
+function buildBlogSchema(blog, canonicalUrl) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog?.metaTitle || blog?.title,
+    description: blog?.metaDescription || "",
+    image: blog?.image ? [blog.image] : [],
+    author: {
+      "@type": "Organization",
+      name: blog?.author || "Fiable Building Solutions",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Fiable Building Solutions",
+      logo: {
+        "@type": "ImageObject",
+        url: `${API_BASE}/logo.png`,
+      },
+    },
+    datePublished: blog?.createdAt,
+    dateModified: blog?.lastUpdated || blog?.updatedAt || blog?.createdAt,
+    mainEntityOfPage: canonicalUrl,
+  };
+}
+
 async function getBlog(id) {
   try {
     const res = await fetch(`${API_BASE}/api/blogs/${id}`, { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to fetch blog");
     return await res.json();
   } catch (err) {
-    console.error("❌ getBlog error:", err.message);
+    console.error("getBlog error:", err.message);
     return null;
   }
 }
 
-// --- metadata ---
 export async function generateMetadata({ params }) {
-  const { id } = params;                 // ✅ use id
+  const { id } = await params;
+
   try {
-    const res = await fetch(`${API_BASE}/api/blogs/${id}`, { cache: "no-store" });
-    if (!res.ok) return {};
-    const blog = await res.json();
+    const blog = await getBlog(id);
+    if (!blog) return {};
+
+    const canonicalUrl = getCanonicalUrl(blog, id);
+    const title = blog.metaTitle || blog.title;
+    const description = blog.metaDescription || blog.excerpt || "";
+    const image = blog.image || "/logo2.png";
 
     return {
-      title: blog.metaTitle || blog.title,
-      description: blog.metaDescription || "",
-      alternates: { canonical: blog.canonicalUrl || "" },
+      title,
+      description,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: blog.metaTitle || blog.title,
-        description: blog.metaDescription || "",
-        url: blog.canonicalUrl || "",
-        images: blog.image ? [{ url: blog.image }] : [],
+        title,
+        description,
+        url: canonicalUrl,
+        type: "article",
+        locale: "en_IN",
+        images: [{ url: image, alt: blog.title }],
       },
       twitter: {
         card: "summary_large_image",
-        title: blog.metaTitle || blog.title,
-        description: blog.metaDescription || "",
-        images: blog.image ? [blog.image] : [],
+        title,
+        description,
+        images: [image],
       },
     };
   } catch (err) {
-    console.error("❌ generateMetadata error:", err.message);
+    console.error("generateMetadata error:", err.message);
     return {};
   }
 }
 
-// optional: static params stays the same
 export async function generateStaticParams() {
   try {
     const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to fetch blogs list");
-    const blogs = await res.json();
-    return Array.isArray(blogs) ? blogs.map((b) => ({ id: b.urlSlug })) : [];
+
+    const data = await res.json();
+    const blogs = Array.isArray(data?.blogs) ? data.blogs : [];
+
+    return blogs
+      .filter((blog) => blog?.urlSlug)
+      .map((blog) => ({ id: blog.urlSlug }));
   } catch (err) {
-    console.error("❌ generateStaticParams error:", err.message);
+    console.error("generateStaticParams error:", err.message);
     return [];
   }
 }
 
-// --- page ---
 export default async function BlogDetails({ params }) {
-  const { id } = params;                 // ✅ use id
+  const { id } = await params;
   const blog = await getBlog(id);
+
   if (!blog) return notFound();
 
+  const canonicalUrl = getCanonicalUrl(blog, id);
+  const blogSchema = buildBlogSchema(blog, canonicalUrl);
+
   return (
-    <div>
-      <BlogsClientUI key={blog._id} blog={blog} />
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <div>
+        <BlogsClientUI key={blog._id} blog={blog} />
+      </div>
+    </>
   );
 }

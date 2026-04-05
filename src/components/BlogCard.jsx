@@ -20,7 +20,13 @@ const BlogCard = ({
   return (
     <div className="rounded-xl overflow-hidden bg-white shadow-sm">
       <div className="relative h-52 w-full">
-        <img src={image} alt={title} fill className="w-full object-cover h-52" />
+        <Image
+          src={image || "/logo2.png"}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
         {/* <span className="absolute top-3 left-3 bg-gray-900 text-white text-xs font-medium px-3 py-1 rounded-full">
           {category}
         </span> */}

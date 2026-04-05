@@ -1,16 +1,17 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiExternalLink, FiDownload, FiShare2, FiEye } from "react-icons/fi";
+import { FiExternalLink, FiEye } from "react-icons/fi";
 import Link from "next/link";
-
-const cloudinaryLoader = ({ src }) => src;
 
 export default function ProjectDetailClient({ project }) {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const accent = project.accentColor?.split(" ")[0] || "#FF6B35";
-  const gallery = Array.isArray(project.gallery) ? project.gallery : [];
+  const gallery = Array.isArray(project.gallery)
+    ? project.gallery
+    : Array.isArray(project.galleryImages)
+      ? project.galleryImages.map((src) => ({ src, alt: project.title }))
+      : [];
 
   return (
     <div className="min-h-screen py-20 bg-[#FBF9F7]">
@@ -24,7 +25,6 @@ export default function ProjectDetailClient({ project }) {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
-          {console.log(project)}
           <div className="grid lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2 space-y-6">
               <h1 className="text-4xl lg:text-4xl font-semibold leading-tight text-gray-900">
@@ -68,11 +68,8 @@ export default function ProjectDetailClient({ project }) {
           >
             <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl">
               <img
-                loader={cloudinaryLoader}
                 src={project.coverImage}
                 alt={project.coverAlt || project.title}
-                width={1200}
-                height={675}
                 className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
               />
             </div>
@@ -125,10 +122,8 @@ export default function ProjectDetailClient({ project }) {
                       onClick={() => setLightboxIndex(i)}
                     >
                       <img
-                        loader={cloudinaryLoader}
                         src={img.src}
                         alt={img.alt || `${project.title} detail ${i + 1}`}
-                        fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">

@@ -31,7 +31,7 @@ export const metadata = {
     description: "Explore completed projects showcasing Fiable's technical approach to waterproofing, flooring and structural rehabilitation with warranty-backed outcomes.",
     url: "https://fiablebuilding.com/projects",
     type: "website",
-    locale: "en-US"
+    locale: "en-IN"
   },
   twitter: {
     card: "summary",

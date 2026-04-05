@@ -25,13 +25,13 @@ export const metadata = {
     "waterproofing company contact",
     "structural repair contractor contact"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/contact" },
+  alternates: { canonical: "https://fiablebuilding.com/contact-us" },
   openGraph: {
     title: "Contact Fiable Building Solutions",
     description: "Connect with Fiable for waterproofing, rehabilitation, flooring and industrial construction solutions. Phone, email and office support available.",
-    url: "https://fiablebuilding.com/contact",
+    url: "https://fiablebuilding.com/contact-us",
     type: "website",
-    locale: "en-US"
+    locale: "en-IN"
     // images: ["https://fiablebuilding.com/path-to-og-contact.jpg"]
   },
   twitter: {

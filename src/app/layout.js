@@ -12,7 +12,7 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
   display: 'swap',
 });
@@ -44,7 +44,7 @@ export const metadata = {
     "waterproofing consultants"
   ],
   alternates: { 
-    canonical: "./" 
+    canonical: "/" 
   },
   openGraph: {
     title: "Fiable Building Solutions — Specialized Engineering Services",
@@ -53,12 +53,20 @@ export const metadata = {
     siteName: "Fiable Building Solutions",
     locale: "en_IN",
     type: "website",
-    author: "Fiable Building Solutions"
+    images: [
+      {
+        url: "/logo2.png",
+        width: 1200,
+        height: 630,
+        alt: "Fiable Building Solutions",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Fiable Building Solutions — Engineering & Construction Experts",
     description: "Specialized in professional waterproofing, flooring and structural rehabilitation across India.",
+    images: ["/logo2.png"],
   },
   robots: {
     index: true,
@@ -80,17 +88,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
-      {/* Google Tag Manager (noscript) */}
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-M8CFKWZT"
-          height="0"
-          width="0"
-          style={{ display: "none", visibility: "hidden" }}
-        ></iframe>
-      </noscript>
-      {/* End Google Tag Manager (noscript) */}
       <body className="font-sans antialiased bg-white text-zinc-900 min-h-screen">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-M8CFKWZT"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <JsonLd />
         <Script id="gtm-init" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

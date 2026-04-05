@@ -25,13 +25,13 @@ export const metadata = {
     "industrial flooring articles",
     "construction best practices"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/insights" },
+  alternates: { canonical: "https://fiablebuilding.com/blogs" },
   openGraph: {
     title: "Fiable Insights — Articles on Construction & Structural Health",
     description: "Technical guides, case notes and industry news focused on extending asset life and improving construction outcomes.",
-    url: "https://fiablebuilding.com/insights",
+    url: "https://fiablebuilding.com/blogs",
     type: "website",
-    locale: "en-US"
+    locale: "en-IN"
   },
   twitter: {
     card: "summary",

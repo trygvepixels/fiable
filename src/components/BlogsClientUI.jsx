@@ -51,8 +51,6 @@ function FaqItem({ faq }) {
 export default function BlogsClientUI({ blog }) {
   const [mounted, setMounted] = useState(false);
 
-  console.log(blog);
-
   // Safely parse Editor.js content
   const contentData = (() => {
     const raw = blog?.content;
@@ -76,7 +74,7 @@ export default function BlogsClientUI({ blog }) {
       <section className="relative w-full h-[60vh]  overflow-hidden">
         <img
           src={blog?.image || "/placeholder-hero.jpg"}
-          alt={blog?.title || "Blog cover"}
+          alt={blog?.title || "Fiable blog cover"}
           className="w-full h-full object-cover brightness-50 absolute"
         />
         <div className="absolute md:px-0 px-4 inset-0 flex flex-col justify-end px-4 md:px-0 pb-10 text-white max-w-7xl mx-auto">

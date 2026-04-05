@@ -26,13 +26,13 @@ export const metadata = {
     "waterproofing company",
     "construction partners"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/about" },
+  alternates: { canonical: "https://fiablebuilding.com/about-us" },
   openGraph: {
     title: "About Fiable Building Solutions",
     description: "Fiable combines engineering, trained personnel and modern equipment to deliver dependable waterproofing, rehabilitation and industrial construction solutions.",
-    url: "https://fiablebuilding.com/about",
+    url: "https://fiablebuilding.com/about-us",
     type: "website",
-    locale: "en-US"
+    locale: "en-IN"
   },
   twitter: {
     card: "summary",

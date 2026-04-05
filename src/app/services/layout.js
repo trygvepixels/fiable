@@ -33,7 +33,7 @@ export const metadata = {
     description: "A full-suite of engineering-driven construction services including waterproofing, grouting and industrial flooring to extend asset life and performance.",
     url: "https://fiablebuilding.com/services",
     type: "website",
-    locale: "en-US"
+    locale: "en-IN"
   },
   twitter: {
     card: "summary_large_image",
