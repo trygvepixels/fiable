@@ -3,12 +3,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiPhone } from "react-icons/fi";
 import logo from "@/assets/logo.png";
 
 export default function Header() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // Hide header on admin routes
+  if (pathname?.startsWith("/admin")) return null;
 
   const links = [
     { href: "/", label: "Home" },

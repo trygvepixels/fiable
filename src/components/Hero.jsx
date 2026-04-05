@@ -64,13 +64,14 @@ export default function AboutFiable() {
                 : "opacity-0 scale-105"
             }`}
           >
-            <img
+            <Image
               src={img}
-              alt={`hero-background-${idx}`}
+              alt={`Fiable Building Solutions - ${hero.rotatingWords?.[idx % hero.rotatingWords.length] || 'Expert Construction Engineering'} - Project ${idx + 1}`}
               fill
               className="object-cover w-full h-full"
               priority={idx === 0}
-              loading="lazy"
+              loading={idx === 0 ? "eager" : "lazy"}
+              quality={90}
             />
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />

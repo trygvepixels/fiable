@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { 
   ArrowUpRight, 
   Phone, 
@@ -23,6 +24,10 @@ import logo from "@/assets/logo.png";
 import Image from "next/image";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Hide footer on admin routes
+  if (pathname?.startsWith("/admin")) return null;
   return (
     <footer className="relative z-30 overflow-hidden bg-gradient-to-br from-gray-500 via-black to-[#4376BB]">
       {/* Subtle Pattern Overlay */}

@@ -3,57 +3,83 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
-import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
 });
- 
+
+// Viewport configuration for mobile responsiveness and theme
+export const viewport = {
+  themeColor: "#4376BB", // Main Brand Blue
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata = {
-  title: "Fiable Building Solutions — Engineering the Future of Construction",
-  description: "Fiable Building Solutions delivers reliable waterproofing, structural rehabilitation, industrial flooring and grouting across India. Engineering-led teams, modern equipment and premium materials for durable, high-performance projects.",
+  metadataBase: new URL("https://fiablebuilding.com"),
+  title: {
+    default: "Fiable Building Solutions — Engineering the Future of Construction",
+    template: "%s | Fiable Building Solutions",
+  },
+  description: "Fiable Building Solutions delivers professional waterproofing, structural rehabilitation, industrial flooring and grouting across India. 10+ years of engineering excellence and warranty-backed delivery.",
   keywords: [
     "Fiable Building Solutions",
-    "waterproofing",
+    "waterproofing services India",
     "structural rehabilitation",
-    "industrial flooring",
-    "grouting",
-    "construction services India",
-    "civil works",
-    "construction contracting"
+    "industrial flooring company",
+    "civil engineering contractors",
+    "grouting and anchoring",
+    "construction refurbishing",
+    "epoxy flooring Pune",
+    "waterproofing consultants"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/" },
+  alternates: { 
+    canonical: "./" 
+  },
   openGraph: {
-    title: "Fiable Building Solutions — Engineering the Future of Construction",
-    description: "Engineering-led waterproofing, structural refurbishment, industrial flooring and grouting solutions across India. Precision, durability and warranty-backed delivery.",
+    title: "Fiable Building Solutions — Specialized Engineering Services",
+    description: "Reliable waterproofing, structural refurbishment and industrial flooring. Precision and durability with 10+ years track record in India.",
     url: "https://fiablebuilding.com/",
     siteName: "Fiable Building Solutions",
-    locale: "en-US",
+    locale: "en_IN",
     type: "website",
-    // images: ["https://fiablebuilding.com/path-to-og-home.jpg"] // <-- replace with real OG image if available
+    author: "Fiable Building Solutions"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fiable Building Solutions — Engineering the Future of Construction",
-    description: "Reliable waterproofing, flooring and structural rehabilitation with engineering excellence across India.",
-    // image: "https://fiablebuilding.com/path-to-og-home.jpg"
+    title: "Fiable Building Solutions — Engineering & Construction Experts",
+    description: "Specialized in professional waterproofing, flooring and structural rehabilitation across India.",
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false
-  }
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  manifest: "/manifest.json"
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
       {/* Google Tag Manager (noscript) */}
       <noscript>
         <iframe
@@ -64,16 +90,17 @@ export default function RootLayout({ children }) {
         ></iframe>
       </noscript>
       {/* End Google Tag Manager (noscript) */}
-      <body>
+      <body className="font-sans antialiased bg-white text-zinc-900 min-h-screen">
+        <JsonLd />
         <Script id="gtm-init" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-M8CFKWZT');`}
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-M8CFKWZT');`}
         </Script>
         <Header/>
-        {children}
+        <main>{children}</main>
         <Footer/>
       </body>
     </html>

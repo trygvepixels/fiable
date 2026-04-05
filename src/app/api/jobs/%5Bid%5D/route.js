@@ -2,19 +2,6 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Job from "@/models/Job";
 import mongoose from "mongoose";
-import { verifyToken } from "@/lib/jwt-edge";
-import { cookies } from "next/headers";
-
-/**
- * Helper to check if the user is an authenticated admin.
- */
-async function isAdmin() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
-  if (!token) return false;
-  const decoded = await verifyToken(token);
-  return decoded && decoded.role === "admin";
-}
 
 function isValidId(id) {
   return mongoose.Types.ObjectId.isValid(id);
@@ -38,10 +25,7 @@ export async function GET(_req, { params }) {
 
 export async function PATCH(request, { params }) {
   try {
-    if (!(await isAdmin())) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
+    // Auth is handled by middleware
     await connectDB();
     const { id } = params;
     if (!isValidId(id)) return NextResponse.json({ error: "Invalid id" }, { status: 400 });
@@ -64,10 +48,7 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(_req, { params }) {
   try {
-    if (!(await isAdmin())) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
+    // Auth is handled by middleware
     await connectDB();
     const { id } = params;
     if (!isValidId(id)) return NextResponse.json({ error: "Invalid id" }, { status: 400 });

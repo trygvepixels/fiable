@@ -240,7 +240,6 @@ export default function FiableCareerPageV3() {
        <CurrentOpening />
       </section>
 
-      <ContactCta />
     </main>
   );
 }
