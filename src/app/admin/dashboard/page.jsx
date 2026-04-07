@@ -8,6 +8,7 @@ import {
   FiMapPin,
   FiBriefcase,
   FiLogOut,
+  FiHome,
 } from "react-icons/fi";
 import {
   MdOutlineArticle,
@@ -103,6 +104,13 @@ export default function AdminDashboard() {
       desc: "Customize home hero section.",
       color: "sky",
     },
+    {
+      href: "/admin/dashboard/homepage-settings",
+      icon: <FiHome />,
+      title: "Homepage Content",
+      desc: "Manage trust, location & section text.",
+      color: "amber",
+    },
   ];
 
   return (
@@ -122,13 +130,7 @@ export default function AdminDashboard() {
               </h1>
             </div>
             
-            <button 
-              onClick={handleLogout}
-              className="group flex items-center gap-3 bg-red-50 text-red-600 px-6 py-3 rounded-2xl font-bold hover:bg-red-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-red-200 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <FiLogOut className="text-xl group-hover:-rotate-12 transition-transform" />
-              <span>Logout</span>
-            </button>
+           
           </div>
           
           <p className="text-lg text-zinc-500 max-w-xl leading-relaxed">

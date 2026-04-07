@@ -19,8 +19,13 @@ export default function HeroAdmin() {
   const [title, setTitle] = useState("");
   const [rotatingWords, setRotatingWords] = useState(["demolition"]);
   const [backgroundImages, setBackgroundImages] = useState([]);
+  const [description, setDescription] = useState("");
   const [ctaPhone, setCtaPhone] = useState("+91 8069648411");
   const [ctaWhatsapp, setCtaWhatsapp] = useState("");
+  const [cta1Text, setCta1Text] = useState("Get Free Site Inspection");
+  const [cta1Link, setCta1Link] = useState("/contact-us#project-form");
+  const [cta2Text, setCta2Text] = useState("Request a Quote");
+  const [cta2Link, setCta2Link] = useState("/contact-us");
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
   const [saveStatus, setSaveStatus] = useState(null); // 'success' | 'error' | null
@@ -36,8 +41,13 @@ export default function HeroAdmin() {
             setTitle(data.title || "");
             setRotatingWords(data.rotatingWords || ["demolition"]);
             setBackgroundImages(data.backgroundImages || []);
+            setDescription(data.description || "");
             setCtaPhone(data.ctaPhone || "");
             setCtaWhatsapp(data.ctaWhatsapp || "");
+            setCta1Text(data.cta1Text || "Get Free Site Inspection");
+            setCta1Link(data.cta1Link || "/contact-us#project-form");
+            setCta2Text(data.cta2Text || "Request a Quote");
+            setCta2Link(data.cta2Link || "/contact-us");
           }
         }
       } catch (error) {
@@ -56,7 +66,10 @@ export default function HeroAdmin() {
       const res = await fetch("/api/hero", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, rotatingWords, backgroundImages, ctaPhone, ctaWhatsapp }),
+        body: JSON.stringify({ 
+          title, rotatingWords, backgroundImages, description,
+          ctaPhone, ctaWhatsapp, cta1Text, cta1Link, cta2Text, cta2Link 
+        }),
       });
       
       if (res.ok) {
@@ -146,6 +159,16 @@ export default function HeroAdmin() {
               />
               <FiEdit3 className="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-300" />
             </div>
+            
+            <div className="mt-6">
+              <label className="block text-sm font-semibold mb-2">Description / Subtitle</label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Description text"
+                className="w-full px-5 py-4 bg-zinc-50 border-2 border-transparent rounded-2xl focus:border-blue-100 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all outline-none text-zinc-900 font-medium h-32"
+              ></textarea>
+            </div>
           </div>
 
           {/* Rotating Words Card */}
@@ -220,6 +243,57 @@ export default function HeroAdmin() {
                 placeholder="WhatsApp URL or Number"
                 className="w-full px-5 py-4 bg-zinc-50 border-2 border-transparent rounded-2xl focus:border-green-100 focus:bg-white focus:ring-4 focus:ring-green-500/5 transition-all outline-none text-zinc-900 font-medium"
               />
+            </div>
+          </div>
+
+          {/* Primary & Secondary CTAs Grid */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-3xl p-6 border border-zinc-200/60 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h3 className="font-bold text-zinc-900 mb-4">Primary Call to Action (Left)</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Button Text</label>
+                  <input
+                    type="text"
+                    value={cta1Text}
+                    onChange={(e) => setCta1Text(e.target.value)}
+                    className="w-full px-5 py-4 bg-zinc-50 border-2 border-transparent rounded-2xl focus:border-orange-100 focus:bg-white focus:ring-4 focus:ring-orange-500/5 transition-all outline-none text-zinc-900 font-medium"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Button Link</label>
+                  <input
+                    type="text"
+                    value={cta1Link}
+                    onChange={(e) => setCta1Link(e.target.value)}
+                    className="w-full px-5 py-4 bg-zinc-50 border-2 border-transparent rounded-2xl focus:border-orange-100 focus:bg-white focus:ring-4 focus:ring-orange-500/5 transition-all outline-none text-zinc-900 font-medium"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 border border-zinc-200/60 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h3 className="font-bold text-zinc-900 mb-4">Secondary Call to Action (Right)</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Button Text</label>
+                  <input
+                    type="text"
+                    value={cta2Text}
+                    onChange={(e) => setCta2Text(e.target.value)}
+                    className="w-full px-5 py-4 bg-zinc-50 border-2 border-transparent rounded-2xl focus:border-green-100 focus:bg-white focus:ring-4 focus:ring-green-500/5 transition-all outline-none text-zinc-900 font-medium"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Button Link</label>
+                  <input
+                    type="text"
+                    value={cta2Link}
+                    onChange={(e) => setCta2Link(e.target.value)}
+                    className="w-full px-5 py-4 bg-zinc-50 border-2 border-transparent rounded-2xl focus:border-green-100 focus:bg-white focus:ring-4 focus:ring-green-500/5 transition-all outline-none text-zinc-900 font-medium"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

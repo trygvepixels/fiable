@@ -11,7 +11,7 @@ import {
   IconArrowNarrowRight,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export const CarouselContext = createContext({
   onCardClose: () => {},

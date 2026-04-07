@@ -3,20 +3,51 @@ import React, { useEffect, useState } from "react";
 
 const FiableHeroSection = () => {
   const [stats, setStats] = useState([]);
+  const [content, setContent] = useState({
+    heading: "At Fiable, we engineer the",
+    highlight: "future of construction",
+    body: "delivering reliable waterproofing, flooring, structural rehabilitation, and industrial solutions. With a skilled team of architects and engineers, backed by advanced technology and trusted chemical partners, we guarantee precision, durability, and long-term value.",
+  });
 
-  useEffect(() => {
-    const loadStats = async () => {
-      try {
-        const res = await fetch("/api/stats", { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to fetch stats");
-        const data = await res.json();
-        if (data?.stats) setStats(data.stats);
-      } catch (err) {
-        console.error("Error loading stats:", err);
-      }
-    };
-    loadStats();
-  }, []);
+    useEffect(() => {
+      const loadStats = async () => {
+        try {
+          const res = await fetch("/api/stats", { cache: "no-store" });
+          if (!res.ok) throw new Error("Failed to fetch stats");
+          const data = await res.json();
+          const defaultStats = [
+            { value: "100+", label: "Projects Completed" },
+            { value: "50+", label: "Happy Clients" },
+            { value: "5+", label: "Years Experience" },
+          ];
+          setStats(data?.stats?.length > 0 ? data.stats : defaultStats);
+        } catch (err) {
+          console.error("Error loading stats:", err);
+          setStats([
+            { value: "100+", label: "Projects Completed" },
+            { value: "50+", label: "Happy Clients" },
+            { value: "5+", label: "Years Experience" },
+          ]);
+        }
+      };
+      
+      const loadSettings = async () => {
+        try {
+          const res = await fetch("/api/homepage-settings");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.milestonesSection) {
+              setContent(data.milestonesSection);
+            }
+          }
+        } catch (err) {
+          console.error("Error loading milestone settings:", err);
+        }
+      };
+
+      loadStats();
+      loadSettings();
+    }, []);
 
   // Split stats into rows of 4
   const chunkedStats = [];
@@ -34,18 +65,12 @@ const FiableHeroSection = () => {
               {/* Main Heading */}
               <div className="space-y-4">
                 <h1 className="text-4xl lg:text-5xl font-semibold mt-20 text-black leading-tight mb-6">
-                  At <span className="text-[#4376BB]">Fiable</span>, we engineer the{" "}
-                  <span className="text-zinc-400">future of construction</span>
+                  {content.heading}{" "}
+                  <span className="text-zinc-400">{content.highlight}</span>
                 </h1>
 
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  delivering reliable{" "}
-                  <span className="text-[#2E5DA5] text-2xl font-medium">
-                    waterproofing, flooring, structural rehabilitation
-                  </span>
-                  , and industrial solutions. With a skilled team of architects and
-                  engineers, backed by advanced technology and trusted chemical
-                  partners, we guarantee precision, durability, and long-term value.
+                  {content.body}
                 </p>
               </div>
 

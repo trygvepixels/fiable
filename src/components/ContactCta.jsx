@@ -1,10 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, Phone, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactCta() {
+  const [content, setContent] = useState({
+    heading: "Facing Leakage or Structural Issues?",
+    subheading: "Get expert help today from trusted waterproofing contractors.",
+    buttonText: "Book Free Inspection",
+    phone: "+91 8069648411",
+    email: "enquiry@fiableprojects.com",
+  });
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const res = await fetch("/api/homepage-settings");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.ctaSection) {
+            setContent(data.ctaSection);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch CTA section settings", err);
+      }
+    };
+    fetchSettings();
+  }, []);
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -26,14 +51,12 @@ export default function ContactCta() {
 
             {/* Clean heading */}
             <h2 className="text-4xl lg:text-5xl font-light text-white mb-6 leading-tight">
-              Have an upcoming
-              <br />
-              <span className="font-semibold">construction project?</span>
+              {content.heading}
             </h2>
 
             {/* Modern description */}
             <p className="text-xl text-white/80 leading-relaxed mb-12 max-w-2xl font-light">
-              From structural retrofitting to waterproofing solutions, Fiable Building Solutions delivers precision construction services across India. Let's discuss your requirements.
+              {content.subheading}
             </p>
 
             {/* Contact options */}
@@ -42,16 +65,16 @@ export default function ContactCta() {
                 href="/contact-us#project-form"
                 className="group inline-flex items-center justify-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <span>Start Your Project</span>
+                <span>{content.buttonText}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               
               <a
-                href="tel:+918069648411"
+                href={`tel:${content.phone?.replace(/\\s+/g, '') || "+918069648411"}`}
                 className="inline-flex items-center justify-center gap-3 border-2 border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:border-white/40 hover:bg-white/10 transition-all duration-300"
               >
                 <Phone className="w-5 h-5" />
-                <span>+91 8069648411</span>
+                <span>{content.phone || "+91 8069648411"}</span>
               </a>
             </div>
 
@@ -59,7 +82,7 @@ export default function ContactCta() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-white/60">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>enquiry@fiableprojects.com </span>
+                <span>{content.email || "enquiry@fiableprojects.com"}</span>
               </div>
                
             </div>
