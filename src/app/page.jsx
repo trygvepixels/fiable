@@ -18,23 +18,12 @@ import WhyChooseUsFiable from '@/components/WhyChooseUsFiable'
 import { SVGMaskEffectDemo } from '@/components/SVGMaskEffectDemo'
 import TrustSection from '@/components/TrustSection'
 import LocationSEO from '@/components/LocationSEO'
+import FloatingCTA from '@/components/FloatingCTA'
 
  const page = () => {
   return (
     <div>
-      <div className="fixed bottom-5 z-10 right-5">
-        <Link href="/contact-us#project-form">
-          <button className="group relative overflow-hidden bg-gradient-to-r from-[#4376BB] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
-            <span className="relative z-10">
-              Start <span className="text-[#F4C500] font-bold">Project</span>
-            </span>
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round"  strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
-        </Link>
-      </div>
+      <FloatingCTA />
 
       <Hero />
       <TrustSection />
