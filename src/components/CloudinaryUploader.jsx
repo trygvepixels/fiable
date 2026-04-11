@@ -5,7 +5,7 @@ import { FiImage, FiTrash2 } from "react-icons/fi";
 
 // Cloudinary unsigned upload config (set in .env.local)
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "trygve-studio";
+const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "fiable";
 
 function uploadToCloudinary(file, onProgress) {
   return new Promise((resolve, reject) => {

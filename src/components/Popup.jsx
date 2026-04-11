@@ -171,7 +171,7 @@ export default function ContactPage() {
 
                 <label className="flex items-start gap-3 text-sm text-neutral-700">
                   <input type="checkbox" name="consent" value="yes" className="mt-1" required disabled={submitting} />
-                  I consent to Trygve Studio contacting me about this enquiry and agree to the privacy policy.
+                  I consent to Fiable contacting me about this enquiry and agree to the privacy policy.
                 </label>
 
                 <div className="flex items-center gap-3 pt-2">

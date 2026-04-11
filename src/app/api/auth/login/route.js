@@ -7,7 +7,7 @@ export async function POST(req) {
   const { email, password } = await req.json();
 
   // TODO: Replace with DB/user lookup
-  const validEmail = process.env.ADMIN_EMAIL || 'admin@trygvestudio.com';
+  const validEmail = process.env.ADMIN_EMAIL || 'admin@fiableprojects.com';
   const validPassword = process.env.ADMIN_PASSWORD || 'changeme123';
 
   if (email !== validEmail || password !== validPassword) {

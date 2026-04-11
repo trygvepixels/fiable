@@ -148,7 +148,7 @@ export default function ContactUsClient() {
                   <h2 className="text-2xl font-semibold">
                     Fiable Building Solutions
                   </h2>
-                  <p className="text-sm text-gray-500 mt-1">Execution Arm of Trygve Engineering Pvt. Ltd.</p>
+
                 </div>
               </div>
 

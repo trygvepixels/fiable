@@ -100,7 +100,7 @@ export default function BlogsClientUI({ blog }) {
             {blog.title}
           </h1>
           <p className="text-sm text-gray-300">
-            {"Trygve Studio Team"} •{" "}
+            {"Fiable Editorial Team"} •{" "}
             {blog?.createdAt ? new Date(blog.createdAt).toLocaleDateString("en-GB", {
               day: "2-digit",
               month: "short",
@@ -132,12 +132,12 @@ export default function BlogsClientUI({ blog }) {
           {/* About Author Section (EEAT) */}
           <div className="mt-16 p-8 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col md:flex-row items-center gap-6">
             <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden shrink-0 border-2 border-gray-50">
-              <img src="/logo.webp" alt="Trygve Studio Team" className="w-full h-full object-contain p-2" />
+              <img src="/logo2.png" alt="Fiable Editorial Team" className="w-full h-full object-contain p-2" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">About the Author: {"Trygve Studio Team"}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">About the Author: {"Fiable Editorial Team"}</h3>
               <p className="text-gray-600 leading-relaxed text-[15px]">
-                The editorial team at <span className="font-medium text-black">Trygve Studio</span> consists of experienced architects and interior designers dedicated to sharing insights on modern architecture, luxury interiors, and sustainable design practices. With a portfolio spanning global projects, we aim to inspire and educate through expert-backed content.
+                The editorial team at <span className="font-medium text-black">Fiable Building Solutions</span> consists of experienced engineers and construction specialists dedicated to sharing insights on modern waterproofing, structural retrofitting, and sustainable construction practices. With a portfolio spanning 500+ projects, we aim to inspire and educate through expert-backed content.
               </p>
               <div className="mt-4 flex gap-4">
                 <Link href="/about-us" className="text-sm font-medium text-blue-600 hover:underline">Learn more about our team →</Link>
@@ -249,20 +249,20 @@ export default function BlogsClientUI({ blog }) {
           <div className="flex items-center gap-3">
             <span className="text-gray-700 font-medium">Email:</span>
             <a
-              href="mailto:faisal.saif@trygvestudio.com"
+              href="mailto:enquiry@fiableprojects.com"
               className="text-blue-600 hover:underline"
             >
-              faisal.saif@trygvestudio.com
+              enquiry@fiableprojects.com
             </a>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-gray-700 font-medium">Phone:</span>
             <a
-              href="tel:+919554440400"
+              href="tel:+918069648411"
               className="text-blue-600 hover:underline"
             >
-              +91 95544 40400
+              +91 8069648411
             </a>
           </div>
 

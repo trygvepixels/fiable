@@ -59,68 +59,13 @@ const fiableSeedData = [
     established: new Date("2019-07-11"),
     area: 2500,
     capacity: 25,
-    description: "Fiable Building Solutions headquarters - execution arm of Trygve Engineering Private Limited. Specializing in structural retrofitting and waterproofing works since 2019. 'Trust and Honesty is our mantra'.",
+    description: "Fiable Building Solutions headquarters. Specializing in structural retrofitting and waterproofing works since 2019. 'Trust and Honesty is our mantra'.",
     displayOrder: 1,
     showOnWebsite: true,
     featured: true
   },
 
-  // 2. TRYGVE ENGINEERING (Parent Company Office)
-  {
-    name: "Trygve Engineering Private Limited",
-    type: "head-office",
-    address: {
-      street: "Levana Cyber Heights, 10th Floor - Regus",
-      area: "Vibhuti Khand, Gomti Nagar",
-      city: "Lucknow",
-      state: "Uttar Pradesh",
-      pincode: "226010",
-      country: "India"
-    },
-    contact: {
-      phone: ["+91-8069648411"],
-      email: ["info@trygve-engineering.com", "admin@fiableprojects.com"],
-      whatsapp: "+91-8069648411"
-    },
-    coordinates: {
-      latitude: 26.8512,
-      longitude: 81.0330
-    },
-    services: [
-      "consulting",
-      "project-management",
-      "structural-retrofitting"
-    ],
-    operatingHours: {
-      monday: { open: "09:00", close: "18:00", closed: false },
-      tuesday: { open: "09:00", close: "18:00", closed: false },
-      wednesday: { open: "09:00", close: "18:00", closed: false },
-      thursday: { open: "09:00", close: "18:00", closed: false },
-      friday: { open: "09:00", close: "18:00", closed: false },
-      saturday: { open: "09:00", close: "14:00", closed: false },
-      sunday: { open: "10:00", close: "16:00", closed: true }
-    },
-    facilities: [
-      "office-space",
-      "conference-room",
-      "meeting-room",
-      "reception",
-      "parking"
-    ],
-    manager: {
-      name: "Engineering Director",
-      phone: "+91-8069648411",
-      email: "director@trygve-engineering.com"
-    },
-    status: "active",
-    established: new Date("2018-01-01"),
-    area: 1200,
-    capacity: 15,
-    description: "Trygve Engineering Private Limited - parent company of Fiable Building Solutions. Engineering solution company with dedicated team of Architecture and Mechanical Engineers.",
-    displayOrder: 2,
-    showOnWebsite: true,
-    featured: true
-  },
+
 
   // 3. SHALIMAR PROJECT OFFICE
   {

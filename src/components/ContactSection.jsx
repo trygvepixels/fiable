@@ -37,7 +37,7 @@ export default function ContactSection() {
 
             <div>
               <p className="font-medium">Email</p>
-              <p className="opacity-80">info@struc-axis.com</p>
+              <p className="opacity-80">enquiry@fiableprojects.com</p>
             </div>
 
             <div>

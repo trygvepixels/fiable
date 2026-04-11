@@ -24,7 +24,7 @@ const RichTextEditor = dynamic(() => import("./RichTextEditor"), { ssr: false })
 
 /* Cloudinary env (preset-based, unsigned) */
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "trygve-studio";
+const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "fiable";
 
 /* --------------------------- Category Hierarchy --------------------------- */
 // Top-level -> Sub-category -> optional Sub-sub items (array)

@@ -145,7 +145,7 @@ export async function POST(request) {
       faqs: data.faqs,
       schemaMarkup: data.schemaMarkup,
       category: data.category,
-      author: data.author || "Team Trygve Studio", // Updated default author
+      author: data.author || "Fiable Editorial Team", // Updated default author
       // Image fields from external CMS
       image: data.featuredImage || data.imageUrl || data.image,
       featuredImage: data.featuredImage,
@@ -171,7 +171,7 @@ export async function POST(request) {
         success: true,
         id: saved._id,
         slug: saved.urlSlug,
-        url: `https://trygvestudio.com/blogs/${saved.urlSlug}`,
+        url: `https://fiablebuilding.com/blogs/${saved.urlSlug}`,
         message: "Blog created successfully",
       },
       { headers: corsHeaders() }
@@ -240,7 +240,7 @@ export async function PUT(request) {
         faqs: data.faqs,
         schemaMarkup: data.schemaMarkup,
         category: data.category,
-        author: data.author || "Team Trygve Studio ",
+        author: data.author || "Fiable Editorial Team ",
         image: data.featuredImage || data.imageUrl || data.image,
         featuredImage: data.featuredImage,
         imageUrl: data.imageUrl,
@@ -264,7 +264,7 @@ export async function PUT(request) {
           success: true,
           id: saved._id,
           slug: saved.urlSlug,
-          url: `https://trygvestudio.com/blogs/${saved.urlSlug}`,
+          url: `https://fiablebuilding.com/blogs/${saved.urlSlug}`,
           message: "Blog created successfully",
         },
         { headers: corsHeaders() }
@@ -326,7 +326,7 @@ export async function PUT(request) {
         success: true,
         id: blog._id,
         slug: blog.urlSlug,
-        url: `https://trygvestudio.com/blogs/${blog.urlSlug}`,
+        url: `https://fiablebuilding.com/blogs/${blog.urlSlug}`,
         message: "Blog updated successfully",
       },
       { headers: corsHeaders() }
