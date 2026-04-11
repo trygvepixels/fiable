@@ -26,10 +26,10 @@ export default function FeaturedServices() {
       href: "#services/civil",
     },
     {
-      title: "DESIGN–BUILD",
-      subtitle: "Integrated precision engineering for speed & clarity",
+      title: "ARCHITECTURE & CONSULTING (A/C)",
+      subtitle: "Planning, design, and structural consultation for precision",
       img: "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80",
-      href: "#services/design-build",
+      href: "/services/architects-in-lucknow",
     },
   ];
 

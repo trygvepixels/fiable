@@ -98,7 +98,8 @@ export default function Footer() {
                     ["Industrial Grouting Services", "#grouting"],
                     ["Concrete Cutting & Demolition", "#cutting"],
                     ["Anchor/Rebar Services", "#anchor"],
-                    ["Civil Construction", "#civil"]
+                    ["Civil Construction", "#civil"],
+                    ["Architecture & Consultation (A/C)", "/services/architects-in-lucknow"],
                   ].map(([label, href]) => (
                     <p
                       key={label}

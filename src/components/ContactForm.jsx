@@ -165,6 +165,7 @@ export default function ContactForm() {
               "Landscape",
               "Interior Renovation",
               "Concept / Feasibility",
+              "Architecture & Consultation",
               "Others",
             ]}
           />

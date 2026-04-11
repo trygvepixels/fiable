@@ -221,6 +221,7 @@ export default function ContactUsClient() {
                     "Grouting Services",
                     "Concrete Cutting",
                     "Civil Construction",
+                    "Architecture & Consultation (A/C)",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <FiCheckCircle className="w-3 h-3 text-green-500" />
