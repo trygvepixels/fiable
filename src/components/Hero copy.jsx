@@ -11,8 +11,7 @@ export default function Hero() {
          
         "> 
           we are <span className="bg-[#234D7E] text-white px-2 rounded-md"> 
-            architects
-            </span>  & <span className="bg-[#234D7E] text-white px-2 rounded-md">interior designers</span><br className="" />
+            <span className="bg-[#234D7E] text-white px-2 rounded-md">engineers</span><br className="" />
           we create timeless spaces,<br className="hidden sm:block" />
           integrating form, function, and detail,<br className="hidden sm:block" />
           to craft places people remember.

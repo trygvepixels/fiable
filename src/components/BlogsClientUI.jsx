@@ -150,60 +150,7 @@ export default function BlogsClientUI({ blog }) {
       </div>
 
       {/* Connected Services */}
-      <section className="max-w-7xl mx-auto py-10 md:px-0 px-4">
-        <h2 className="text-2xl font-medium mb-4">
-          {blog.connectedServices?.length > 0 ? "Connected Services" : "Our Core Services"}
-        </h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {blog.connectedServices?.length > 0 ? (
-            blog.connectedServices.map((service, index) => (
-              <li key={index} className="list-none">
-                <Link
-                  href={service.link}
-                  className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
-                >
-                  {service.name} →
-                </Link>
-              </li>
-            ))
-          ) : (
-            <>
-              <li className="list-none">
-                <Link
-                  href="/services/architects-in-lucknow"
-                  className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
-                >
-                  Architects in Lucknow →
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  href="/services/interior-design/lucknow"
-                  className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
-                >
-                  Interior Design Lucknow →
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  href="/services"
-                  className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
-                >
-                  3D Visualization Services →
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  href="/projects"
-                  className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-blue-600 font-medium"
-                >
-                  Our Project Gallery →
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </section>
+   
 
       {/* FAQs */}
       {blog.faqs?.length > 0 && (

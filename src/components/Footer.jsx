@@ -99,7 +99,6 @@ export default function Footer() {
                     ["Concrete Cutting & Demolition", "#cutting"],
                     ["Anchor/Rebar Services", "#anchor"],
                     ["Civil Construction", "#civil"],
-                    ["Architecture & Consultation (A/C)", "/services/architects-in-lucknow"],
                   ].map(([label, href]) => (
                     <p
                       key={label}

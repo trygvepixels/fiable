@@ -18,7 +18,7 @@ export function WobbleCardDemo() {
           <p className="mt-4 text-left text-base/6 text-neutral-200">
             With 12+ years of expertise, fiable ensures seamless workflows, 
             reliable manpower management, and end-to-end execution across construction, 
-            interiors, and turnkey fit-outs.
+            interiors, and turn-key structural rehab projects.
           </p>
         </div>
         <img
@@ -36,8 +36,8 @@ export function WobbleCardDemo() {
           Multidisciplinary Team Advantage
         </h2>
         <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-          From architects to engineers and procurement experts, our team 
-          integrates skills to handle complex projects efficiently — 
+          From civil engineers to site supervisors and procurement experts, our team 
+          integrates skills to handle complex construction projects efficiently — 
           ensuring quality, speed, and compliance.
         </p>
       </WobbleCard>
@@ -48,7 +48,7 @@ export function WobbleCardDemo() {
       >
         <div className="max-w-sm">
           <h2 className="max-w-sm md:max-w-lg text-left text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-            General Contracting, Interior Fit-Outs & Beyond
+            General Contracting, Structural Rehab & Beyond
           </h2>
           <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
             We deliver turnkey solutions across civil works, design-build, 
@@ -57,10 +57,10 @@ export function WobbleCardDemo() {
           </p>
         </div>
         <img
-          src="/images/interior.jpg"
+          src="/images/construction.jpg"
           width={500}
           height={500}
-          alt="Interior fit-out"
+          alt="Civil construction"
           className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10 object-contain rounded-2xl"
         />
       </WobbleCard>

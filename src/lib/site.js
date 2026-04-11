@@ -26,7 +26,6 @@ export const CORE_SERVICES = [
   "Injection grouting",
   "Concrete cutting",
   "Civil construction",
-  "Architecture & Consultation (A/C)",
 ];
 
 export const DEFAULT_OG_IMAGE = "/logo2.png";

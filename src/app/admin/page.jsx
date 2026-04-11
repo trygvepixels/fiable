@@ -93,7 +93,7 @@ function LoginPageInner() {
                 Contractor Portal
               </h2>
               <p className="mt-3 max-w-sm text-white/80">
-                Sign in to manage construction, interiors &amp; fit-out projects with seamless workforce control,
+                Sign in to manage construction, waterproofing &amp; rehabilitation projects with seamless workforce control,
                 procurement, and in‑house production.
               </p>
             </div>

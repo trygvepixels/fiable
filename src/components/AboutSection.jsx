@@ -26,7 +26,7 @@ export default function AboutSection() {
           <p className="mt-4 text-gray-500">
             With in-house facilities and a multidisciplinary team, we craft{" "}
             <span className="font-medium text-gray-700">projects that last</span>{" "}
-            — from civil works and interiors to turnkey fit-outs.
+            — from civil works and waterproofing to structural rehab.
           </p>
 
           <button className="mt-6 inline-flex items-center gap-2 rounded-md bg-gray-900 px-5 py-3 text-white hover:bg-gray-800">

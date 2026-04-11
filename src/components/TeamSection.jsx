@@ -38,8 +38,8 @@ export default function TeamSection() {
             Our dream <br /> team
           </h2>
           <p className="text-neutral-400 max-w-md">
-            At fiable, our multidisciplinary team of architects, engineers,
-            designers, and managers collaborates to deliver projects on time,
+            At fiable, our multidisciplinary team of civil engineers, project
+            managers, and construction specialists collaborates to deliver projects on time,
             within budget, and with uncompromising quality.
           </p>
         </div>

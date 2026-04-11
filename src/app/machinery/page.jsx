@@ -110,7 +110,7 @@ useEffect(() => {
     {
       title: "Retail Flagship – Mumbai",
       img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop",
-      tag: "Retail Interiors",
+      tag: "Commercial Space",
     },
     {
       title: "Boutique Hotel Lobby – Goa",
@@ -143,9 +143,9 @@ useEffect(() => {
   const testimonials = [
     {
       quote:
-        "fiable’ in-house joinery and glass unit gave us unmatched speed and consistency. Handover was exactly on the date promised.",
-      name: "Ar. Meenakshi Rao",
-      role: "Principal Architect, Bengaluru",
+        "Fiable's in-house advanced machinery unit gave us unmatched speed and consistency. Handover was exactly on the date promised.",
+      name: "Mr. Rajeev Sharma",
+      role: "Project Engineer, Bengaluru",
     },
     {
       quote:
@@ -204,7 +204,7 @@ useEffect(() => {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-20 sm:pt-36 sm:pb-28">
           <div className="inline-flex items-center gap-2 rounded-full  -white/30 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
             In-House 
-Machinery · Joinery · Carpentry · Glass · UPVC · Metal
+Advanced Machinery · Application Equipment · Diagnostic Tools
           </div>
 
           <h1 className="mt-6 text-4xl sm:text-6xl font-semibold leading-tight text-white">
@@ -213,7 +213,7 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
 
           <p className="mt-5 max-w-2xl text-lg sm:text-xl text-white/85">
             We combine multidisciplinary engineers with in-house production facilities to deliver
-            retail, hospitality, office and healthcare interiors — faster, cleaner, and to spec.
+            retail, hospitality, office and healthcare structural solutions — faster, cleaner, and to spec.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -243,10 +243,10 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
 
           {/* Quick value props */}
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Badge title="In-house joinery" />
-            <Badge title="Glass & UPVC" />
-            <Badge title="Metal & powder-coat" />
-            <Badge title="MEP-coordinated delivery" />
+            <Badge title="Advanced Application Equipment" />
+            <Badge title="Diagnostic Tools" />
+            <Badge title="Quality Control Lab" />
+            <Badge title="Safety Protocols" />
           </div>
         </div>
       </section>
@@ -269,7 +269,7 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
           <div>
             <h2 className="text-3xl sm:text-4xl font-semibold">Capabilities</h2>
             <p className="mt-3 text-gray-600 max-w-2xl">
-              From BOQ to handover — our in-house stack covers structural, architectural and MEP-coordinated interiors
+              From BOQ to handover — our in-house stack covers waterproofing, structural rehabilitation and industrial construction
               for retail, hospitality, office, healthcare and institutional projects.
             </p>
           </div>
@@ -280,8 +280,8 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Cap icon={<FaHardHat />} title="General Contracting (Turnkey)" points={["Shell & core", "Structural works", "Compliance & safety"]} />
-          <Cap icon={<FaCouch />} title="Interior Fit-Out" points={["Retail • F&B • Office • Hospitality", "Luxury finishes", "Mock-ups & sampling"]} />
-          <Cap icon={<FaTools />} title="Joinery & Furniture" points={["Custom millwork", "Modular systems", "Installation & QA/QC"]} />
+          <Cap icon={<FaHammer />} title="Structural Rehabilitation" points={["Concrete Repairs", "Carbon Fiber Wrapping", "Retrofitting"]} />
+          <Cap icon={<FaTools />} title="Waterproofing Systems" points={["Chemical waterproofing", "Membrane applications", "Injection grouting"]} />
           <Cap icon={<FaWarehouse />} title="Glass & UPVC" points={["Partitions & storefronts", "Windows/doors", "Glazing accessories"]} />
           <Cap icon={<MdOutlinePrecisionManufacturing />} title="Metal Works" points={["MS/SS fabrication", "Powder-coat", "Feature elements"]} />
           <Cap icon={<FaClock />} title="Fast-Track Delivery" points={["Sequencing & manpower control", "Night shifts where required", "Zero-surprise handovers"]} />
@@ -297,7 +297,7 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
           <div className="mt-10 grid md:grid-cols-4 gap-6">
             <Step n="01" title="Discovery & BOQ" text="Site visit, drawings review, BOQ & value engineering options." />
             <Step n="02" title="Technical Planning" text="Shop drawings, MEP coordination, long-lead procurement plan." />
-            <Step n="03" title="In-House Production" text="Joinery, glass, metal and furniture manufactured to spec." />
+            <Step n="03" title="In-House Production" text="Specialized chemicals, protective coatings, and advanced materials." />
             <Step n="04" title="Site Execution & QA" text="Sequenced installation, snag control, final QA/QC and handover." />
           </div>
         </div>
@@ -372,11 +372,11 @@ Machinery · Joinery · Carpentry · Glass · UPVC · Metal
             <ul className="mt-6 grid grid-cols-2 gap-2 text-sm">
               <li className="flex items-center gap-2 text-gray-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
-                In-house joinery
+                Advanced Application
               </li>
               <li className="flex items-center gap-2 text-gray-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
-                Glass & UPVC
+                Quality Diagnosis
               </li>
               <li className="flex items-center gap-2 text-gray-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />

@@ -48,7 +48,7 @@ export default function AboutFiable() {
     <main className="relative min-h-screen overflow-hidden bg-gray-900">
       {!hero ? (
         <div className="flex items-center justify-center h-screen text-gray-400">
-          Loading hero...
+          Loading...
         </div>
       ) : (
         <>

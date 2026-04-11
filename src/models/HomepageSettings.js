@@ -22,7 +22,7 @@ const HomepageSettingsSchema = new Schema(
     milestonesSection: {
       heading: { type: String, default: "At Fiable, we engineer the" },
       highlight: { type: String, default: "future of construction" },
-      body: { type: String, default: "delivering reliable waterproofing, flooring, structural rehabilitation, and industrial solutions. With a skilled team of architects and engineers, backed by advanced technology and trusted chemical partners, we guarantee precision, durability, and long-term value." },
+      body: { type: String, default: "delivering reliable waterproofing, flooring, structural rehabilitation, and industrial solutions. With a skilled team of civil engineers and applicators, backed by advanced technology and trusted chemical partners, we guarantee precision, durability, and long-term value." },
     },
     testimonialsSection: {
       heading: { type: String, default: "What Our Clients Say" },

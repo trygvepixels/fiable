@@ -311,7 +311,7 @@ export default function ProjectForm({ mode = "create", initial = undefined, onSu
               className="input w-full"
               value={f.coverAlt}
               onChange={(e) => onChange("coverAlt", e.target.value)}
-              placeholder="e.g., Contemporary café interior with warm lighting"
+              placeholder="e.g., Industrial flooring with smooth grey finish"
             />
           </Field>
 

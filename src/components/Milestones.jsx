@@ -6,7 +6,7 @@ const FiableHeroSection = () => {
   const [content, setContent] = useState({
     heading: "At Fiable, we engineer the",
     highlight: "future of construction",
-    body: "delivering reliable waterproofing, flooring, structural rehabilitation, and industrial solutions. With a skilled team of architects and engineers, backed by advanced technology and trusted chemical partners, we guarantee precision, durability, and long-term value.",
+    body: "delivering reliable waterproofing, flooring, structural rehabilitation, and industrial solutions. With a skilled team of civil engineers and applicators, backed by advanced technology and trusted chemical partners, we guarantee precision, durability, and long-term value.",
   });
 
     useEffect(() => {

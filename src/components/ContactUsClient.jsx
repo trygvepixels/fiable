@@ -218,10 +218,9 @@ export default function ContactUsClient() {
                     "Waterproofing Systems",
                     "Structural Retrofitting",
                     "Industrial Flooring",
-                    "Grouting Services",
+                    "Injection Grouting",
                     "Concrete Cutting",
                     "Civil Construction",
-                    "Architecture & Consultation (A/C)",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <FiCheckCircle className="w-3 h-3 text-green-500" />

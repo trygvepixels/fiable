@@ -17,8 +17,8 @@ export default function PrecisionSection() {
     {
       icon: <FiUsers className="w-12 h-12" />,
       title: "Multidisciplinary Team",
-      description: "Architects, Civil/MEP engineers, QS/Procurement, Safety & QA/QC specialists working in perfect harmony.",
-      details: "Our integrated team approach ensures seamless collaboration across all construction phases.",
+      description: "Civil/MEP engineers, QS/Procurement, Safety & QA/QC specialists working in perfect harmony.",
+      details: "Our integrated team approach ensures seamless collaboration across all delivery phases.",
       metric: "15+ Specialists",
       bgColor: "bg-gradient-to-br from-blue-50 to-indigo-100",
       iconColor: "text-[#4376BB]",

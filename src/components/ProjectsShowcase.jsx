@@ -45,7 +45,7 @@ export default function ProjectsShowcase({ className = "" }) {
           </span>{" "}
           and{" "}
           <span className="font-medium text-[#FEC20F]">civil works</span> —
-          transforming blueprints into architectural landmarks with innovation
+          transforming blueprints into solid structural solutions with innovation
           and durability.
         </p>
       </div>

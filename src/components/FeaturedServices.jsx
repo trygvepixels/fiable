@@ -8,28 +8,28 @@ import f1 from "@/assets/fservices/f1.png"
 export default function FeaturedServices() {
   const services = [
     {
-      title: "GENERAL CONTRACTING (TURNKEY)",
-      subtitle: "Single-point delivery — quality, time & cost control",
+      title: "WATERPROOFING SYSTEMS",
+      subtitle: "Advanced waterproofing and protective coatings for all structures",
       img: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
-      href: "#services/turnkey",
+      href: "/services",
     },
     {
-      title: "INTERIOR FIT-OUT",
-      subtitle: "Retail, F&B, Office, Hospitality — ready for handover",
+      title: "STRUCTURAL REHABILITATION",
+      subtitle: "Restoration, structural strengthening, and modern retrofitting",
       img: 'https://images.unsplash.com/photo-1675756688096-f3fcf590de9b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      href: "#services/fitout",
+      href: "/services",
+    },
+    {
+      title: "INDUSTRIAL FLOORING",
+      subtitle: "Epoxy, PU, and heavy-duty flooring for industrial environments",
+      img: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1397&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      href: "/services",
     },
     {
       title: "CIVIL CONSTRUCTION",
-      subtitle: "Shell & core with rigorous QA/QC and safety",
-      img: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1397&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      href: "#services/civil",
-    },
-    {
-      title: "ARCHITECTURE & CONSULTING (A/C)",
-      subtitle: "Planning, design, and structural consultation for precision",
+      subtitle: "End-to-end execution of civil and structural projects",
       img: "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80",
-      href: "/services/architects-in-lucknow",
+      href: "/services",
     },
   ];
 
@@ -44,8 +44,8 @@ export default function FeaturedServices() {
               Services
             </h2>
             <p className="mt-4 max-w-md text-sm text-gray-600">
-              Our core execution capabilities: turnkey contracting, interior fit-out,
-              civil works and integrated design–build — delivered with disciplined
+              Our core execution capabilities: waterproofing systems, structural rehabilitation,
+              industrial flooring, and civil works — delivered with disciplined
               workforce control and in-house production.
             </p>
           </div>

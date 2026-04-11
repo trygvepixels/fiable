@@ -158,14 +158,12 @@ export default function ContactForm() {
             name="projectType"
             required
             options={[
-              "Residential",
-              "Commercial / Office",
-              "Retail / F&B",
-              "Hospitality",
-              "Landscape",
-              "Interior Renovation",
-              "Concept / Feasibility",
-              "Architecture & Consultation",
+              "Waterproofing",
+              "Structural Rehabilitation",
+              "Industrial Flooring",
+              "Injection Grouting",
+              "Concrete Cutting",
+              "Civil Construction",
               "Others",
             ]}
           />

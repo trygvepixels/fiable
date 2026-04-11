@@ -689,7 +689,7 @@ export default function BlogForm({ initialData = {}, onSubmit }) {
                 name="focusKeyword"
                 value={form.focusKeyword}
                 onChange={handleChange}
-                placeholder="modern interior, warm wood, daylight"
+                placeholder="modern construction site, bright daylight"
               />
               {keywords.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-2">

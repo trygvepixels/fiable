@@ -4,10 +4,10 @@
  */
 
 const KEYWORD_LINK_MAP = [
-  { keywords: ["architects in lucknow", "best architects in lucknow", "architecture firms in lucknow"], link: "/services/architects-in-lucknow" },
-  { keywords: ["interior design lucknow", "best interior designer in lucknow", "interior designers in lucknow"], link: "/services/interior-design/lucknow" },
+  { keywords: ["waterproofing in lucknow", "best waterproofing company", "waterproofing contractors"], link: "/services" },
+  { keywords: ["structural rehabilitation", "retrofitting services", "building strengthening"], link: "/services" },
   { keywords: ["lda approval", "lda sanction", "building bylaws lucknow"], link: "/blogs/lucknow-real-estate-2026-why-lda-approval-costs-are-changing-and-how-to-prepare" },
-  { keywords: ["luxury home designers", "villa architects"], link: "/services/luxury-architecture-design-lucknow" },
+  { keywords: ["industrial flooring", "epoxy flooring", "pu flooring"], link: "/services" },
   { keywords: ["project gallery", "our projects", "fiable projects"], link: "/projects" },
   { keywords: ["price calculator", "estimate cost", "construction cost"], link: "/price-calculator" }
 ];

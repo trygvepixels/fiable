@@ -59,7 +59,7 @@ export const CardCarousel = ({
                   Featured Projects
                 </h3>
                 <p className="text-neutral-600">
-                  A selection of our turnkey builds, interiors & civil works.
+                  A selection of our structural rehab, waterproofing & civil works.
                 </p>
               </div>
             </div>

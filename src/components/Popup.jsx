@@ -120,13 +120,12 @@ export default function ContactPage() {
                     label="Project type"
                     name="projectType"
                     options={[
-                      "Residential",
-                      "Commercial / Office",
-                      "Retail / F&B",
-                      "Hospitality",
-                      "Landscape",
-                      "Interior Renovation",
-                      "Concept / Feasibility",
+                      "Waterproofing",
+                      "Structural Rehabilitation",
+                      "Industrial Flooring",
+                      "Injection Grouting",
+                      "Concrete Cutting",
+                      "Civil Construction",
                       "Others",
                     ]}
                     required

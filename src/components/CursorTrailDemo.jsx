@@ -40,7 +40,7 @@ export function CursorTrailDemo() {
               fiable Services
             </Badge>
             <h1 className="max-w-4xl text-4xl md:text-5xl font-semibold tracking-tight">
-              From Civil Works to Interior Fit-Outs,<br /> We Deliver End-to-End Excellence
+              From Civil Works to Structural Rehabilitation,<br /> We Deliver End-to-End Excellence
             </h1>
             <p className="mt-4 max-w-xl text-neutral-600 text-base md:text-lg">
               Explore our portfolio of projects across schools, hospitality,
