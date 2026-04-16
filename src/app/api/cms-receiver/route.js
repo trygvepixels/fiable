@@ -88,7 +88,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     const authHeader = request.headers.get("X-CMS-AUTH-KEY");
-    const expectedKey = "harsh_seo_agent_2026";
+    const expectedKey = process.env.CMS_AUTH_KEY || "auto-publish-key-2026";
 
     if (authHeader !== expectedKey) {
       return NextResponse.json(
@@ -189,7 +189,7 @@ export async function POST(request) {
 export async function PUT(request) {
   try {
     const authHeader = request.headers.get("X-CMS-AUTH-KEY");
-    const expectedKey = "auto-publish-key-2026";
+    const expectedKey = process.env.CMS_AUTH_KEY || "auto-publish-key-2026";
 
     if (authHeader !== expectedKey) {
       return NextResponse.json(
@@ -344,7 +344,7 @@ export async function PUT(request) {
 export async function DELETE(request) {
   try {
     const authHeader = request.headers.get("X-CMS-AUTH-KEY");
-    const expectedKey = "auto-publish-key-2026";
+    const expectedKey = process.env.CMS_AUTH_KEY || "auto-publish-key-2026";
 
     if (authHeader !== expectedKey) {
       return NextResponse.json(
