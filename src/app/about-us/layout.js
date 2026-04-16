@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export const metadata = {
   title: "About Fiable Building Solutions — One-Stop Construction & Repair",
   description: "Learn about Fiable Building Solutions Pvt. Ltd.: our mission, engineering-first approach, partnerships, trained workforce and quality-first processes for long-lasting construction outcomes.",
@@ -9,11 +11,11 @@ export const metadata = {
     "waterproofing company",
     "construction partners"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/about-us" },
+  alternates: { canonical: `${SITE_URL}/about-us` },
   openGraph: {
     title: "About Fiable Building Solutions",
     description: "Fiable combines engineering, trained personnel and modern equipment to deliver dependable waterproofing, rehabilitation and industrial construction solutions.",
-    url: "https://fiablebuilding.com/about-us",
+    url: `${SITE_URL}/about-us`,
     type: "website",
     locale: "en-IN"
   },

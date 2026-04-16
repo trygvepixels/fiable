@@ -3,8 +3,16 @@ import { verifyToken } from './src/lib/jwt-edge';
 
 export async function middleware(req) {
   const { pathname } = req.nextUrl;
+  const host = req.headers.get("host") || "";
   const isApiRoute = pathname.startsWith('/api');
   const isAdminRoute = pathname.startsWith('/admin');
+
+  if (host.includes("fiablebuilding.com")) {
+    const url = req.nextUrl.clone();
+    url.protocol = "https:";
+    url.host = "fiableprojects.com";
+    return NextResponse.redirect(url, 301);
+  }
 
   // Skip protection for public API methods or login/signup
   if (isApiRoute) {

@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export const metadata = {
   title: "Insights — Technical Articles & Industry Updates | Fiable",
   description: "Insights from Fiable: technical articles, best practices, product updates and industry guidance on waterproofing, structural health, flooring systems and maintenance.",
@@ -8,11 +10,11 @@ export const metadata = {
     "industrial flooring articles",
     "construction best practices"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/blogs" },
+  alternates: { canonical: `${SITE_URL}/blogs` },
   openGraph: {
     title: "Fiable Insights — Articles on Construction & Structural Health",
     description: "Technical guides, case notes and industry news focused on extending asset life and improving construction outcomes.",
-    url: "https://fiablebuilding.com/blogs",
+    url: `${SITE_URL}/blogs`,
     type: "website",
     locale: "en-IN"
   },

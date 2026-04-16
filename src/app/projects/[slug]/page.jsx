@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import ProjectDetailClient from "./ProjectDetailClient";
+import { SITE_URL } from "@/lib/site";
 
 function getBaseUrl() {
   const h = headers();
@@ -110,7 +111,7 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const canonicalUrl = `https://fiablebuilding.com/projects/${project.slug}`;
+  const canonicalUrl = `${SITE_URL}/projects/${project.slug}`;
   const title = `${project.title} | Fiable Projects`;
   const description =
     project.description ||
@@ -146,7 +147,7 @@ export default async function ProjectPage({ params }) {
     return <div className="p-12">Project not found</div>;
   }
 
-  const canonicalUrl = `https://fiablebuilding.com/projects/${project.slug}`;
+  const canonicalUrl = `${SITE_URL}/projects/${project.slug}`;
   const projectSchema = buildProjectSchema(project, canonicalUrl);
 
   return (

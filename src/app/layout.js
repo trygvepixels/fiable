@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 const geistSans = localFont({
   src: [
@@ -48,7 +49,7 @@ export const viewport = {
 };
 
 export const metadata = {
-  metadataBase: new URL("https://fiablebuilding.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Fiable Building Solutions — Engineering the Future of Construction",
     template: "%s | Fiable Building Solutions",
@@ -71,7 +72,7 @@ export const metadata = {
   openGraph: {
     title: "Fiable Building Solutions — Specialized Engineering Services",
     description: "Reliable waterproofing, structural refurbishment and industrial flooring. Precision and durability with 10+ years track record in India.",
-    url: "https://fiablebuilding.com/",
+    url: `${SITE_URL}/`,
     siteName: "Fiable Building Solutions",
     locale: "en_IN",
     type: "website",

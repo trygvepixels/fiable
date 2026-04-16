@@ -171,7 +171,7 @@ export async function POST(request) {
         success: true,
         id: saved._id,
         slug: saved.urlSlug,
-        url: `https://fiablebuilding.com/blogs/${saved.urlSlug}`,
+        url: `https://fiableprojects.com/blogs/${saved.urlSlug}`,
         message: "Blog created successfully",
       },
       { headers: corsHeaders() }
@@ -264,7 +264,7 @@ export async function PUT(request) {
           success: true,
           id: saved._id,
           slug: saved.urlSlug,
-          url: `https://fiablebuilding.com/blogs/${saved.urlSlug}`,
+          url: `https://fiableprojects.com/blogs/${saved.urlSlug}`,
           message: "Blog created successfully",
         },
         { headers: corsHeaders() }
@@ -326,7 +326,7 @@ export async function PUT(request) {
         success: true,
         id: blog._id,
         slug: blog.urlSlug,
-        url: `https://fiablebuilding.com/blogs/${blog.urlSlug}`,
+        url: `https://fiableprojects.com/blogs/${blog.urlSlug}`,
         message: "Blog updated successfully",
       },
       { headers: corsHeaders() }

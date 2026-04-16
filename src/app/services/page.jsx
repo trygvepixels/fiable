@@ -5,7 +5,7 @@ import ContactCta from "@/components/ContactCta";
 import StepsSection from "@/components/StepsSection";
 import { connectDB } from "@/lib/mongodb";
 import Service from "@/models/Service";
-import { CONTACT_PHONE } from "@/lib/site";
+import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -23,7 +23,7 @@ function createServiceSchema(services) {
     itemListElement: services.map((service, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://fiablebuilding.com/services/${service.slug}`,
+      url: `${SITE_URL}/services/${service.slug}`,
       name: service.title,
     })),
   };

@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export const metadata = {
   title: "Thank You — Fiable Building Solutions",
   description: "We’ve received your message. The Fiable Building Solutions team will get back to you shortly regarding your enquiry or service request.",
@@ -7,11 +9,11 @@ export const metadata = {
     "contact confirmation",
     "fiable message submitted"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/thankyou" },
+  alternates: { canonical: `${SITE_URL}/thankyou` },
   openGraph: {
     title: "Thank You — Fiable Building Solutions",
     description: "Your enquiry has been received. Our team will respond soon.",
-    url: "https://fiablebuilding.com/thankyou",
+    url: `${SITE_URL}/thankyou`,
     type: "website",
     locale: "en-US"
     // images: ["https://fiablebuilding.com/path-to-og-thankyou.jpg"]

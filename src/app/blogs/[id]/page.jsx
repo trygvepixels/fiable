@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import BlogsClientUI from "@/components/BlogsClientUI";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const API_BASE = "https://fiablebuilding.com";
+const API_BASE = SITE_URL;
 
 function getCanonicalUrl(blog, id) {
   if (blog?.canonicalUrl) return blog.canonicalUrl;

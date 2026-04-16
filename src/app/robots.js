@@ -28,7 +28,7 @@ export default function robots() {
         allow: "/",
       },
     ],
-    host: "https://fiablebuilding.com",
-    sitemap: "https://fiablebuilding.com/sitemap.xml",
+    host: "https://fiableprojects.com",
+    sitemap: "https://fiableprojects.com/sitemap.xml",
   };
 }

@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export const metadata = {
   title: "Services — Waterproofing, Structural Rehab, Flooring & More | Fiable",
   description: "Fiable offers specialized services: waterproofing, structural refurbishment, industrial flooring, grouting, concrete cutting & demolition, anchor/rebar and civil construction — engineered for durability and performance.",
@@ -10,11 +12,11 @@ export const metadata = {
     "anchor rebar",
     "civil construction"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/services" },
+  alternates: { canonical: `${SITE_URL}/services` },
   openGraph: {
     title: "Fiable Services — Waterproofing, Flooring, Structural Rehabilitation",
     description: "A full-suite of engineering-driven construction services including waterproofing, grouting and industrial flooring to extend asset life and performance.",
-    url: "https://fiablebuilding.com/services",
+    url: `${SITE_URL}/services`,
     type: "website",
     locale: "en-IN"
   },

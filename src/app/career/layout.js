@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export const metadata = {
   title: "Careers at Fiable — Join Our Engineering & Site Teams",
   description: "Careers at Fiable Building Solutions: roles for engineers, site supervisors, technical staff and project managers. Grow with a company focused on training, modern equipment and engineering excellence.",
@@ -8,11 +10,11 @@ export const metadata = {
     "engineer jobs",
     "construction careers"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/career" },
+  alternates: { canonical: `${SITE_URL}/career` },
   openGraph: {
     title: "Careers at Fiable Building Solutions",
     description: "Join Fiable — we offer training, field exposure and roles across engineering, supervision and project delivery.",
-    url: "https://fiablebuilding.com/career",
+    url: `${SITE_URL}/career`,
     type: "website",
     locale: "en-IN"
   },

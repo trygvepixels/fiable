@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export const metadata = {
   title: "Projects — Case Studies & Completed Works | Fiable Building Solutions",
   description: "Browse Fiable's portfolio of waterproofing, structural retrofitting, flooring and industrial repair projects. Real-world case studies demonstrating durability, technical rigor and timely delivery.",
@@ -8,11 +10,11 @@ export const metadata = {
     "structural retrofitting projects",
     "industrial flooring portfolio"
   ],
-  alternates: { canonical: "https://fiablebuilding.com/projects" },
+  alternates: { canonical: `${SITE_URL}/projects` },
   openGraph: {
     title: "Fiable Projects — Case Studies & Portfolio",
     description: "Explore completed projects showcasing Fiable's technical approach to waterproofing, flooring and structural rehabilitation with warranty-backed outcomes.",
-    url: "https://fiablebuilding.com/projects",
+    url: `${SITE_URL}/projects`,
     type: "website",
     locale: "en-IN"
   },

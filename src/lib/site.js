@@ -1,4 +1,4 @@
-export const SITE_URL = "https://fiablebuilding.com";
+export const SITE_URL = "https://fiableprojects.com";
 export const SITE_NAME = "Fiable Building Solutions";
 export const COMPANY_NAME = "Fiable Building Solutions Pvt. Ltd.";
 export const CONTACT_PHONE = "+91 8069648411";
