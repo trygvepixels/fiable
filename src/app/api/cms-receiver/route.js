@@ -88,7 +88,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     const authHeader = request.headers.get("X-CMS-AUTH-KEY");
-    const expectedKey = "auto-publish-key-2026";
+    const expectedKey = "harsh_seo_agent_2026";
 
     if (authHeader !== expectedKey) {
       return NextResponse.json(
