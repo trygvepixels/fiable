@@ -1,8 +1,8 @@
 export const SITE_URL = "https://fiableprojects.com";
-export const SITE_NAME = "Fiable Building Solutions";
-export const COMPANY_NAME = "Fiable Building Solutions Pvt. Ltd.";
+export const SITE_NAME = "Fiable Projects";
+export const COMPANY_NAME = "Fiable Projects Pvt. Ltd.";
 export const CONTACT_PHONE = "+91 8069648411";
-export const CONTACT_EMAIL = "enquiry@fiableprojects.com";
+export const CONTACT_EMAIL = "[EMAIL_ADDRESS]";
 export const LINKEDIN_URL = "https://www.linkedin.com/company/fiable-building-solutions-llp";
 
 export const PRIMARY_LOCATION = {

@@ -112,7 +112,7 @@ function LoginPageInner() {
             </div>
 
             <p className="mt-6 text-xs text-white/70">
-              © {new Date().getFullYear()} fiable — Fiable Building Solutions Pvt. Ltd.
+              © {new Date().getFullYear()} fiable — Fiable Projects   Pvt. Ltd.
             </p>
           </aside>
 

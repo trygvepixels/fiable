@@ -1,11 +1,11 @@
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
-  title: "About Fiable Building Solutions — One-Stop Construction & Repair",
-  description: "Learn about Fiable Building Solutions Pvt. Ltd.: our mission, engineering-first approach, partnerships, trained workforce and quality-first processes for long-lasting construction outcomes.",
+  title: "About Fiable Projects — One-Stop Construction & Repair",
+  description: "Learn about Fiable Projects Pvt. Ltd.: our mission, engineering-first approach, partnerships, trained workforce and quality-first processes for long-lasting construction outcomes.",
   keywords: [
     "about fiable",
-    "Fiable Building Solutions about",
+    "Fiable Projects about",
     "construction company India",
     "engineering excellence",
     "waterproofing company",
@@ -13,15 +13,15 @@ export const metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/about-us` },
   openGraph: {
-    title: "About Fiable Building Solutions",
-    description: "Fiable combines engineering, trained personnel and modern equipment to deliver dependable waterproofing, rehabilitation and industrial construction solutions.",
+    title: "About Fiable Projects",
+    description: "Fiable combines engineering, trained personnel and modern equipment to deliver dependable waterproofing, rehabilitation and industrial construction.",
     url: `${SITE_URL}/about-us`,
     type: "website",
     locale: "en-IN"
   },
   twitter: {
     card: "summary",
-    title: "About Fiable Building Solutions",
+    title: "About Fiable Projects",
     description: "Engineering-first construction services with a focus on durability, safety and long-term performance."
   },
   robots: { index: true, follow: true }

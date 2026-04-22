@@ -99,14 +99,7 @@ export default function BlogsClientUI({ blog }) {
           <h1 className="text-4xl md:text-5xl font-semibold mb-3 special-font ">
             {blog.title}
           </h1>
-          <p className="text-sm text-gray-300">
-            {"Fiable Editorial Team"} •{" "}
-            {blog?.createdAt ? new Date(blog.createdAt).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            }) : ""} • {readTime} min read
-          </p>
+           
         </div>
       </section>
 

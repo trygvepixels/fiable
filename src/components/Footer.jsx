@@ -192,7 +192,7 @@ export default function Footer() {
               {/* Copyright */}
               <div className="text-center lg:text-left">
                 <p className="text-gray-400 text-sm">
-                  © {new Date().getFullYear()} Fiable Building Solutions Pvt. Ltd.  
+                  © {new Date().getFullYear()} Fiable Projects   Pvt. Ltd.  
                 </p>
                 <p className="text-gray-500 text-xs mt-1">
                   GST No: 09AADCF7399H1Z2  
