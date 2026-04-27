@@ -10,7 +10,6 @@ import FeaturedServices from "@/components/FeaturedServices"
 import ProjectsShowcase from "@/components/ProjectsShowcase"
 import StepsSection from "@/components/StepsSection"
 import TeamSection from "@/components/TeamSection"
-import LogoCarouselDemo from "@/components/LogoCarouselDemo"
 import {AppleCardsCarouselDemo} from "@/components/AppleCardsCarouselDemo"
 import Link from 'next/link'
 import AnimatedBeamDemo from '@/components/AnimatedBeamDemo'
@@ -19,6 +18,8 @@ import { SVGMaskEffectDemo } from '@/components/SVGMaskEffectDemo'
 import TrustSection from '@/components/TrustSection'
 import LocationSEO from '@/components/LocationSEO'
 import FloatingCTA from '@/components/FloatingCTA'
+import ClientsMarquee from '@/components/ClientsMarquee'
+import OfficeMapSection from '@/components/OfficeMapSection'
 
  const page = () => {
   return (
@@ -26,20 +27,25 @@ import FloatingCTA from '@/components/FloatingCTA'
       <FloatingCTA />
 
       <Hero />
-      <TrustSection />
-      
+      <ClientsMarquee />
+            <Milestones />
+
       <div className=''>
         <AllServices />
       </div>
+            <ProjectsShowcase />
+
+
+      {/* <TrustSection /> */}
+      
+      
       
       <WhyChooseUsFiable />
-      <LocationSEO />
+      <OfficeMapSection />
+      {/* <LocationSEO /> */}
       
-      <Milestones />
-      <LogoCarouselDemo />
       
-      <ProjectsShowcase />
-      <StepsSection />
+      {/* <StepsSection /> */}
       <Testimonials />
       <ContactCta />
     </div>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Phone } from "lucide-react";
+import { FiChevronRight, FiHome } from "react-icons/fi";
 import ContactCta from "@/components/ContactCta";
-import StepsSection from "@/components/StepsSection";
 import { connectDB } from "@/lib/mongodb";
 import Service from "@/models/Service";
 import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
@@ -10,9 +10,65 @@ import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+const fallbackServices = [
+  {
+    _id: "fallback-waterproofing",
+    slug: "waterproofing-services",
+    title: "Waterproofing Services",
+    summary:
+      "End-to-end waterproofing systems for terraces, roofs, basements, retaining walls, wet areas, and exposed structural surfaces.",
+    image: { src: "/image.png", alt: "Waterproofing services" },
+    points: [
+      "Terrace and roof protection",
+      "Basement and retaining wall waterproofing",
+      "Leakage diagnosis and corrective treatment",
+    ],
+  },
+  {
+    _id: "fallback-structural",
+    slug: "structural-rehabilitation",
+    title: "Structural Rehabilitation",
+    summary:
+      "Repair and strengthening solutions for deteriorated RCC members, damaged slabs, cracked beams, columns, and aging concrete structures.",
+    image: { src: "/image.png", alt: "Structural rehabilitation work" },
+    points: [
+      "Concrete repair and jacketing",
+      "Crack stitching and injection grouting",
+      "Corrosion mitigation and restoration",
+    ],
+  },
+  {
+    _id: "fallback-flooring",
+    slug: "industrial-flooring-systems",
+    title: "Industrial Flooring Systems",
+    summary:
+      "Performance-oriented epoxy and PU floor systems for factories, warehouses, process units, and industrial environments.",
+    image: { src: "/image.png", alt: "Industrial flooring system" },
+    points: [
+      "Epoxy and PU coatings",
+      "Abrasion and chemical resistant finishes",
+      "Floor resurfacing and refurbishment",
+    ],
+  },
+  {
+    _id: "fallback-grouting",
+    slug: "industrial-grouting-services",
+    title: "Industrial Grouting Services",
+    summary:
+      "Precision grouting for machine foundations, base plates, anchors, pedestals, and structural void treatment.",
+    image: { src: "/image.png", alt: "Industrial grouting service" },
+    points: [
+      "Non-shrink and epoxy grouting",
+      "Machine foundation support",
+      "Base plate and pedestal stabilization",
+    ],
+  },
+];
+
 async function getServices() {
   await connectDB();
-  return Service.find({ active: true }).sort("order -createdAt").lean();
+  const services = await Service.find({ active: true }).sort("order -createdAt").lean();
+  return services.length ? services : fallbackServices;
 }
 
 function createServiceSchema(services) {
@@ -34,145 +90,144 @@ export default async function ServicesPage() {
   const serviceSchema = createServiceSchema(services);
 
   return (
-    <main className="bg-white">
+    <main className="min-h-screen bg-[#F4F1EC] antialiased selection:bg-gray-900/90 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
-      <div className="fixed bottom-5 z-20 right-5">
+      <div className="fixed bottom-5 right-5 z-20">
         <Link href="/contact-us#project-form">
-          <button className="group relative overflow-hidden bg-gradient-to-r from-[#4376BB] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
-            <span className="relative z-10">
-              Start <span className="text-[#F4C500] font-bold">Project</span>
-            </span>
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button className="group relative flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#234D7E] to-[#2c4a7d] px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:from-[#365a99] hover:to-[#1e3d6f]">
+            <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-700 ease-in-out group-hover:translate-x-[100%]" />
+            <span className="relative z-10">Start Project</span>
+            <svg
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </button>
         </Link>
       </div>
 
-      <section className="pt-32 pb-20 bg-[#F4F1EC]">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-gray-900"></div>
-            <span className="text-sm font-mono uppercase tracking-wider text-gray-600">
-              Fiable Building Solutions
-            </span>
-            <div className="w-8 h-px bg-gray-900"></div>
-          </div>
+      <Breadcrumbs />
 
-          <h1 className="text-5xl lg:text-5xl text-gray-900 mb-8 leading-tight">
-            Waterproofing, Structural Repair
-            <br />
-            <span className="text-[#4376BB]">and Industrial Services</span>
-          </h1>
+      <section className="mx-auto max-w-7xl px-4 pb-10 pt-20 text-center">
+        <p className="text-xs uppercase tracking-[0.25em] text-gray-500 md:text-sm">
+          What we do
+        </p>
 
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Explore Fiable&apos;s core engineering services for waterproofing, structural rehabilitation,
-            grouting, flooring, and specialized civil works. Each service page is designed to help
-            residential, commercial, and industrial clients evaluate the right solution faster.
-          </p>
+        <h1 className="mt-3 inline-block text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+          Our Services
+          <span className="mx-auto mt-4 block h-[3px] w-24 rounded-full bg-gradient-to-r from-[#234D7E] to-gray-400 md:w-28" />
+        </h1>
 
-          <div className="flex flex-col mx-auto w-full justify-center sm:flex-row gap-4">
-            <a
-              href={`tel:${CONTACT_PHONE.replace(/\s+/g, "")}`}
-              className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-bold text-black hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/30 hover:-translate-y-1 transform"
-            >
-              <Phone className="mr-3 h-5 w-5 group-hover:animate-pulse" />
-              Call Now: {CONTACT_PHONE}
-              <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+        <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-xl">
+          Explore Fiable&apos;s waterproofing, structural rehabilitation, flooring,
+          grouting, and repair services built for residential, commercial, and
+          industrial projects where long-term performance matters.
+        </p>
+
+        <div className="mt-8 flex justify-center">
+          <a
+            href={`tel:${CONTACT_PHONE.replace(/\s+/g, "")}`}
+            className="inline-flex items-center gap-3 rounded-full border border-gray-900/90 px-5 py-2.5 text-gray-900 transition-all hover:bg-[#234D7E] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/30"
+          >
+            <Phone className="h-4 w-4" />
+            <span className="text-sm md:text-sm">Call {CONTACT_PHONE}</span>
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
 
-      <section className="py-10 border-b border-zinc-200">
-        <div className="mx-auto max-w-7xl px-6 grid gap-6 md:grid-cols-3">
-          <div>
-            <h2 className="text-xl font-semibold text-zinc-900">Why these pages matter</h2>
-            <p className="mt-2 text-zinc-600">
-              Fiable operates in a high-intent local service category, so each core service needs its
-              own crawlable landing page with problem-solution-fit content.
-            </p>
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold text-zinc-900">Industries served</h2>
-            <p className="mt-2 text-zinc-600">
-              Residential, commercial, industrial, factory, and infrastructure projects across Lucknow,
-              Uttar Pradesh, Delhi NCR, Maharashtra, and wider India.
-            </p>
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold text-zinc-900">What to do next</h2>
-            <p className="mt-2 text-zinc-600">
-              Open a service page, review the scope and benefits, then request a project quote with your
-              site conditions and expected timeline.
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-24">
+        <ul className="flex flex-col gap-12 md:gap-16">
+          {services.map((service, i) => {
+            const isEven = i % 2 === 1;
+            return (
+              <li key={service._id || service.slug}>
+                <article className="group relative overflow-hidden rounded-3xl bg-white/70 shadow-sm ring-1 ring-black/5 transition-shadow hover:shadow-md supports-[backdrop-filter]:bg-white/60">
+                  <div className="items-center p-4 md:grid md:grid-cols-2 md:gap-10 md:p-6 lg:p-10">
+                    <figure className={isEven ? "md:order-2" : ""}>
+                      <div className="relative overflow-hidden rounded-2xl">
+                        <Image
+                          src={service.image?.src || "/image.png"}
+                          alt={service.image?.alt || service.title}
+                          width={1200}
+                          height={750}
+                          className="aspect-[16/10] w-full rounded-2xl object-cover shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-[1.02]"
+                        />
+                        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                      </div>
+                    </figure>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {services.map((service, index) => (
-              <article key={service._id} className="group">
-                <div className="flex gap-8">
-                  <div className="flex-shrink-0">
-                    <div className="text-6xl font-light text-gray-200 group-hover:text-gray-300 transition-colors">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-                  </div>
-
-                  <div className="flex-1 space-y-6">
-                    <div>
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                        <Link href={`/services/${service.slug}`} className="hover:text-[#4376BB] transition-colors">
-                          {service.title}
-                        </Link>
-                      </h2>
-                      <p className="text-gray-600 leading-relaxed">{service.summary}</p>
-                    </div>
-
-                    <Link href={`/services/${service.slug}`} className="block aspect-video rounded-lg overflow-hidden relative">
-                      <Image
-                        src={service.image?.src}
-                        alt={service.image?.alt || service.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </Link>
-
-                    <ul className="space-y-2">
-                      {service.points?.map((point, i) => (
-                        <li key={i} className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-                          <span className="text-gray-700">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-2 text-[#4376BB] font-semibold hover:text-[#2c4a7d]"
+                    <div
+                      className={`mt-6 md:mt-0 ${isEven ? "text-right md:pl-8 md:pr-2" : "text-left md:pl-2 md:pr-8"}`}
                     >
-                      View service details
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
+                      <div className={`${isEven ? "md:ml-auto" : ""} max-w-xl`}>
+                        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl">
+                          {service.title}
+                        </h2>
+
+                        <div className="mb-5 mt-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-[#234D7E] to-[#234D7E]" />
+
+                        <p className="text-start leading-relaxed text-gray-600">
+                          {service.summary}
+                        </p>
+
+                        {Array.isArray(service.points) && service.points.length > 0 ? (
+                          <ul className="mt-5 space-y-2 text-start">
+                            {service.points.map((point, idx) => (
+                              <li key={idx} className="flex items-center gap-3">
+                                <div className="h-2 w-2 rounded-full bg-[#234D7E]" />
+                                <span className="text-[#4b5563]">{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+
+                        <div className="flex justify-start">
+                          <Link
+                            href={`/services/${service.slug}`}
+                            className="mt-7 inline-flex items-center gap-2 rounded-full border border-gray-900/90 px-5 py-2.5 text-gray-900 transition-all hover:bg-[#234D7E] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/30"
+                          >
+                            <span className="text-sm md:text-sm">Explore more</span>
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
-      <StepsSection />
       <ContactCta />
     </main>
+  );
+}
+
+function Breadcrumbs() {
+  return (
+    <nav aria-label="Breadcrumb" className="relative z-20 mx-auto -mb-4 max-w-7xl px-4 pt-8">
+      <ol className="flex items-center space-x-2 text-[14px] text-neutral-500">
+        <li className="flex items-center">
+          <Link href="/" className="flex items-center transition-colors hover:text-[#234D7E]">
+            <FiHome className="mr-1.5" />
+            <span>Home</span>
+          </Link>
+        </li>
+        <li className="flex items-center gap-2">
+          <FiChevronRight className="text-neutral-300" />
+          <span className="font-semibold text-[#234D7E]">Services</span>
+        </li>
+      </ol>
+    </nav>
   );
 }

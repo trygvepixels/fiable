@@ -112,7 +112,7 @@ export async function generateMetadata({ params }) {
   }
 
   const canonicalUrl = `${SITE_URL}/projects/${project.slug}`;
-  const title = `${project.title} | Fiable Projects`;
+  const title = `${project.title} | Fiable Building Solutions`;
   const description =
     project.description ||
     `Explore the ${project.title} case study by Fiable Building Solutions.`;

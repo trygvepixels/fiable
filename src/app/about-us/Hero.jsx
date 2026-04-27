@@ -75,7 +75,7 @@ export default function AboutFiableSection() {
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl   text-gray-900 leading-[0.9]">
                 About{" "}
-                <span className="font-semibold text-[#4376BB]">Fiable</span>
+                <span className="font-semibold text-[#234D7E]">Fiable</span>
                 <br />
                 with{" "}
                 <span className="font-semibold">Precision</span>
@@ -108,7 +108,7 @@ export default function AboutFiableSection() {
             </div>
 
              <div className="pt-8">
-              <button className="group inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-[#4376BB] transition-all duration-300">
+              <button className="group inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-[#234D7E] transition-all duration-300">
                 <FiPlay className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span>Watch Our Story</span>
                 <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

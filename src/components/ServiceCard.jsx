@@ -10,7 +10,7 @@ export default function ServiceCard({ service }) {
       </div>
       <div className="p-6">
         <h3 className="text-xl font-semibold tracking-tight">
-          <Link href={`/services/${service.slug}`} className="hover:text-[#4376BB]">
+          <Link href={`/services/${service.slug}`} className="hover:text-[#234D7E]">
             {service.title}
           </Link>
         </h3>
@@ -23,7 +23,7 @@ export default function ServiceCard({ service }) {
             </li>
           ))}
         </ul>
-        <Link href={`/services/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-[#4376BB] hover:text-[#2c4a7d]">
+        <Link href={`/services/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-[#234D7E] hover:text-[#2c4a7d]">
           View details
         </Link>
       </div>

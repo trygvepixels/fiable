@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import "tailwindcss";
  
 @theme inline {
@@ -8,7 +7,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
- 
+:root {
+  --fiable-bg: #f4f1ec;
+  --fiable-surface: #fbf8f3;
+  --fiable-card: #fffdf9;
+  --fiable-text: #111111;
+  --fiable-muted: #5f6570;
+  --fiable-accent: #234d7e;
+  --fiable-accent-dark: #1b3b62;
+  --fiable-border: rgba(17, 17, 17, 0.1);
+}
 
 
 /* Thin - 100 */
@@ -139,43 +147,90 @@
 
 
 body {
-  font-family: "Oswald", sans-serif;
-  background-color: #f4f1ec68;
-} 
+  font-family: "Poppins", sans-serif;
+  background-color: var(--fiable-bg);
+  color: var(--fiable-text);
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--fiable-accent);
+  color: #fff;
+}
+
+a,
+button {
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.bgWarm {
+  background-color: var(--fiable-bg);
+}
+
+.text-accent {
+  color: var(--fiable-accent);
+}
+
+.section-shell {
+  background-color: var(--fiable-bg);
+}
+
+.eyebrow {
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
 
 @layer components {
   .input {
-    @apply rounded-lg border-2 border-zinc-200 bg-white px-3 py-2 outline-none transition
-           focus:border-zinc-300 focus:ring-2 focus:ring-zinc-100;
+    @apply rounded-2xl border bg-white px-4 py-3 outline-none transition;
+    border-color: var(--fiable-border);
+    box-shadow: 0 0 0 0 transparent;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white
-           shadow-sm transition hover:bg-black disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white shadow-sm disabled:opacity-50;
+    background-color: var(--fiable-accent);
+  }
+  .btn-primary:hover {
+    background-color: var(--fiable-accent-dark);
   }
   .btn-plain {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm hover:bg-zinc-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border bg-white px-5 py-3 text-sm font-semibold;
+    border-color: var(--fiable-border);
+    color: var(--fiable-text);
   }
   .btn-subtle {
-    @apply inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm hover:bg-zinc-50;
+    @apply inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2.5 text-sm;
+    border-color: var(--fiable-border);
   }
   .btn-icon {
-    @apply inline-flex items-center justify-center rounded-lg border border-zinc-200 bg-white p-1.5 hover:bg-zinc-50;
+    @apply inline-flex items-center justify-center rounded-full border bg-white p-2;
+    border-color: var(--fiable-border);
   }
   .btn-danger {
-    @apply inline-flex items-center gap-2 rounded-lg border border-red-200 bg-white px-3 py-2 text-sm text-red-700 hover:bg-red-50;
+    @apply inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2.5 text-sm text-red-700;
   }
   .chip {
-    @apply inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-700 ring-1 ring-inset ring-zinc-200;
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs text-zinc-700 ring-1 ring-inset;
+    background-color: #f7f4ee;
+    --tw-ring-color: rgba(17, 17, 17, 0.08);
   }
   .chip-x {
     @apply rounded-full p-0.5 hover:bg-zinc-200;
   }
   .section-card {
-    @apply rounded-2xl border border-zinc-200 bg-white/90 p-4 md:p-6 shadow-sm backdrop-blur supports-[backdrop-filter]:backdrop-blur;
+    @apply rounded-[2rem] border p-4 shadow-sm md:p-6;
+    background-color: var(--fiable-card);
+    border-color: var(--fiable-border);
   }
   .card {
-    @apply rounded-xl border border-zinc-200 bg-white p-3 shadow-sm transition hover:shadow-md;
+    @apply rounded-[1.75rem] border bg-white p-4 shadow-sm transition hover:shadow-md;
+    border-color: var(--fiable-border);
   }
 }
  
@@ -191,4 +246,3 @@ body {
 .ce-block__content h3 {
   @apply text-xl font-medium mt-2 mb-1;
 }
-

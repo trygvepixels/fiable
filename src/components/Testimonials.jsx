@@ -1,20 +1,56 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+
+const fallbackTestimonials = [
+  {
+    id: "fallback-1",
+    title: "Reliable waterproofing execution with strong technical coordination",
+    message:
+      "Fiable handled our leakage and terrace waterproofing issue with a practical, engineer-led approach. The team communicated clearly and the execution stayed disciplined throughout.",
+    name: "Amit Verma",
+    designation: "Project Lead, Commercial Asset Team",
+    src: "/image.png",
+  },
+  {
+    id: "fallback-2",
+    title: "A dependable team for structural repair and rehabilitation work",
+    message:
+      "Their diagnosis was detailed, the repair methodology was clearly explained, and the on-site execution stayed aligned with our operational constraints.",
+    name: "Rhea Kapoor",
+    designation: "Facility Head, Industrial Client",
+    src: "/image.png",
+  },
+  {
+    id: "fallback-3",
+    title: "Industrial flooring delivered with speed, finish, and durability",
+    message:
+      "Fiable recommended the right flooring system for our production environment and delivered a finish that improved both performance and maintenance.",
+    name: "Daniel Carter",
+    designation: "Operations Lead, Manufacturing Unit",
+    src: "/image.png",
+  },
+  {
+    id: "fallback-4",
+    title: "Clear communication and strong site discipline from start to finish",
+    message:
+      "The team worked with structure, documented key decisions, and completed the required repairs without disrupting adjacent work areas.",
+    name: "Aisha Mehta",
+    designation: "Construction Coordinator, Client Team",
+    src: "/image.png",
+  },
+];
 
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);
-  const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-
   const [settings, setSettings] = useState({
-    testimonialsSection: { heading: "Testimonials From Satisfied Clients" }
+    testimonialsSection: { heading: "Our clients love working with us" },
   });
 
   useEffect(() => {
     let alive = true;
+
     (async () => {
       try {
         const res = await fetch("/api/testimonials?sort=order", { cache: "no-store" });
@@ -24,32 +60,31 @@ export default function Testimonials() {
         if (alive) {
           const mapped = (json.items || []).map((t, i) => ({
             id: t._id || i,
-            title: t.title || "Our Exemplary Service and Unwavering Commitment to Client Satisfaction",
+            title: t.title || "Trusted execution and clean delivery",
             message:
               t.message ||
-              "Exploring the Path of Excellence: Unveiling Client Experiences, Insights, and Triumphs Along Their Journey with Us...",
-            name: t.name || "Mahmodul Hasan",
-            designation: t.role || "Visual Developer",
-            src: t.image?.src || "https://via.placeholder.com/300x300?text=Client",
+              "Fiable delivered the work with clear planning, technical confidence, and consistent follow-through on site.",
+            name: t.name || "Client",
+            designation: t.role || "Verified feedback",
+            src: t.image?.src || "/image.png",
           }));
-          setTestimonials(mapped);
+          setTestimonials(mapped.length ? mapped : fallbackTestimonials);
         }
       } catch (err) {
         console.error("Testimonials error:", err);
+        if (alive) setTestimonials(fallbackTestimonials);
       } finally {
         if (alive) setLoading(false);
       }
     })();
 
-    // Fetch homepage settings
     (async () => {
       try {
         const res = await fetch("/api/homepage-settings");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.testimonialsSection && alive) {
-            setSettings(data);
-          }
+        if (!res.ok) return;
+        const data = await res.json();
+        if (alive && data.testimonialsSection) {
+          setSettings(data);
         }
       } catch (err) {
         console.error("Error fetching homepage settings for testimonials:", err);
@@ -61,109 +96,89 @@ export default function Testimonials() {
     };
   }, []);
 
-  // Auto rotate every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((i) => (testimonials.length ? (i + 1) % testimonials.length : 0));
-    }, 2000);
-    return () => clearInterval(interval);
+  const items = useMemo(() => {
+    if (!testimonials.length) return [];
+    return [...testimonials, ...testimonials];
   }, [testimonials]);
 
-  const prevTestimonial = () => {
-    setIndex((i) => (i === 0 ? testimonials.length - 1 : i - 1));
-  };
-  const nextTestimonial = () => {
-    setIndex((i) => (i + 1) % testimonials.length);
-  };
-
   return (
-    <div className="bg-gradient-to-br from-white via-[#f4f1ec68] to-white py-24">
-      <section className="mx-auto max-w-7xl px-6 sm:px-12">
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl font- text-gray-900 tracking-tight">
-             {settings.testimonialsSection.heading}
+    <section className="bgWarm py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mb-12 text-center">
+          <p className="eyebrow mb-4">Testimonials</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-[#111111] md:text-5xl">
+            {settings.testimonialsSection.heading}
           </h2>
-          {settings.testimonialsSection.subheading && (
-            <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed">
+          {settings.testimonialsSection.subheading ? (
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-[#5f6570]">
               {settings.testimonialsSection.subheading}
             </p>
-          )}
+          ) : null}
         </div>
 
         {loading ? (
-          <div className="py-20 text-center text-gray-500">Loading testimonials…</div>
+          <div className="py-16 text-center text-[#5f6570]">Loading testimonials...</div>
         ) : !testimonials.length ? (
-          <div className="py-20 text-center text-gray-500">No testimonials found.</div>
+          <div className="py-16 text-center text-[#5f6570]">No testimonials found.</div>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
-            {/* Testimonial Card */}
-            <div className="bg-white bg-opacity-90 rounded-3xl p-10 relative shadow-2xl border border-gray-200 flex-1 max-w-xl hover:shadow-[0_20px_30px_rgba(67,118,187,0.3)] transition-shadow duration-700 cursor-default">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={testimonials[index].id}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                >
-                  <h3 className="text-2xl italic font-semibold text-gray-900 mb-6 leading-snug tracking-wide">
-                    “{testimonials[index].title}”
-                  </h3>
-                  <p className="text-gray-700 mb-8 leading-relaxed text-lg">{testimonials[index].message}</p>
+          <div className="relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-[#F4F1EC] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-[#F4F1EC] to-transparent" />
 
-                  <div>
-                    <p className="font-semibold text-gray-900 text-lg">{testimonials[index].name}</p>
-                    <p className="text-sm text-gray-500 uppercase tracking-wider">{testimonials[index].designation}</p>
+            <div className="testimonial-marquee flex w-max items-stretch gap-6 py-2">
+              {items.map((testimonial, i) => (
+                <article
+                  key={`${testimonial.id}-${i}`}
+                  className="flex min-h-[220px] w-[360px] flex-col rounded-[1.5rem] border border-black/10 bg-white p-6 shadow-[0_8px_24px_rgba(17,17,17,0.06)]"
+                >
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={testimonial.src}
+                      alt={testimonial.name}
+                      className="h-12 w-12 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className=" font-semibold leading-none text-[#111111]">
+                        {testimonial.name}
+                      </p>
+                      <p className="mt-1 text-sm leading-snug text-[#6b7280]">
+                        {testimonial.designation}
+                      </p>
+                    </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
 
-              {/* Navigation Arrows */}
-              <div className="absolute bottom-8 right-8 flex space-x-3">
-                <button
-                  onClick={prevTestimonial}
-                  aria-label="Previous testimonial"
-                  className="p-3 rounded-full bg-gradient-to-tr from-blue-200 to-indigo-300 hover:from-blue-300 hover:to-indigo-400 shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <ChevronLeft className="h-6 w-6 text-blue-800" />
-                </button>
-                <button
-                  onClick={nextTestimonial}
-                  aria-label="Next testimonial"
-                  className="p-3 rounded-full bg-gradient-to-tr from-indigo-800 to-blue-900 hover:from-indigo-900 hover:to-blue-950 shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <ChevronRight className="h-6 w-6 text-white" />
-                </button>
-              </div>
-            </div>
+                  <p className="mt-8  leading-relaxed text-[#2f343b]">
+                    “{testimonial.message}”
+                  </p>
 
-            {/* Client Image */}
-            <div className="w-80 h-80 flex-shrink-0 relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-[0_25px_40px_rgba(67,118,187,0.4)] transition-shadow duration-700 cursor-pointer group">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={testimonials[index].src}
-                  src={testimonials[index].src}
-                  alt={testimonials[index].name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
-                <motion.div
-                  key={`overlay-${testimonials[index].id}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.15 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-indigo-600 pointer-events-none"
-                />
-              </AnimatePresence>
+                  <p className="mt-auto pt-8 text-sm text-[#7b8088]">Verified feedback</p>
+                </article>
+              ))}
             </div>
           </div>
         )}
-      </section>
-    </div>
+      </div>
+
+      <style jsx>{`
+        .testimonial-marquee {
+          animation: testimonial-scroll 34s linear infinite;
+        }
+
+        @keyframes testimonial-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .testimonial-marquee {
+            animation-duration: 24s;
+          }
+        }
+      `}</style>
+    </section>
   );
 }

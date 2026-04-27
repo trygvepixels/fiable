@@ -93,7 +93,7 @@ export default function FiableBlogPage() {
       {/* Fixed CTA */}
       <div className="fixed bottom-5 z-20 right-5">
         <Link href="/contact-us#project-form">
-  <button className="group relative overflow-hidden bg-gradient-to-r from-[#4376BB] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
+  <button className="group relative overflow-hidden bg-gradient-to-r from-[#234D7E] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
     {/* Background animation */}
     <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
     
@@ -102,7 +102,7 @@ export default function FiableBlogPage() {
     
     {/* Text */}
     <span className="relative z-10">
-      Start <span className="text-[#F4C500] font-bold">Project</span>
+      Start <span className="text-[# ] font-bold">Project</span>
     </span>
     
     {/* Arrow */}
@@ -193,7 +193,7 @@ function Hero({ searchTerm, setSearchTerm, onSearch, isLoaded }) {
           {/* Main Heading */}
           <h1 className="text-5xl lg:text-5xl font-li ght text-gray-900 mb-8 leading-tight">
              <span className=" ">Knowledge</span> {" "}
-             <span className="font-  text-[#4376BB] italic">Hub</span>
+             <span className="font-  text-[#234D7E] italic">Hub</span>
           </h1>
 
           {/* Description */}

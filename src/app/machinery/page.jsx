@@ -171,7 +171,7 @@ useEffect(() => {
        <div className="fixed bottom-5 z-10 right-5">
         <Link href="/contact-us#project-form">
           <button className="px-4 py-2 bg-black text-white rounded-full shadow-md hover:bg-black  transition">
-            Start <span className="text-[#4376BB]">Project</span>
+            Start <span className="text-[#234D7E]">Project</span>
           </button>
         </Link>
       </div>

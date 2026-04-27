@@ -42,7 +42,7 @@ const geistMono = localFont({
 
 // Viewport configuration for mobile responsiveness and theme
 export const viewport = {
-  themeColor: "#4376BB", // Main Brand Blue
+  themeColor: "#234D7E", // Main Brand Blue
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,

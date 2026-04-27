@@ -68,7 +68,7 @@ export default function LogoCarousel() {
       <div className="relative w-full bg-gradient-to-b from-gray-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
-            <div className="w-12 h-12 border-4 border-[#4376BB] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-12 h-12 border-4 border-[#234D7E] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-gray-600">Loading our valued partnerships...</p>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function LogoCarousel() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23${encodeURIComponent('#4376BB').slice(1)}' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          backgroundImage: `url("image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23${encodeURIComponent('#234D7E').slice(1)}' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }} />
       </div>
 
@@ -91,7 +91,7 @@ export default function LogoCarousel() {
            
           <h2 className="text-3xl md:text-5xl  -bold text-gray-900 mb-4 leading-tight">
             Proudly Partnering with
-            <span className="block text-[#4376BB]">Industry Leaders</span>
+            <span className="block text-[#234D7E]">Industry Leaders</span>
           </h2>
           
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">

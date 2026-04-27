@@ -31,31 +31,31 @@ export default function ContactCta() {
   }, []);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="bgWarm py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="bg-gradient-to-br from-[#4376bb] to-blue-200 rounded-3xl px-12 py-16 text-white relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#234D7E] px-8 py-14 text-white md:px-12 md:py-16">
           {/* Subtle background pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 opacity-100">
+            <div className="absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-[#234D7E]/20 blur-3xl"></div>
+            <div className="absolute -right-10 -top-16 h-48 w-48 rounded-full bg-white/6 blur-3xl"></div>
           </div>
 
           <div className="relative max-w-4xl">
             {/* Minimal badge */}
-            <div className="inline-flex items-center gap-3 mb-8">
-              <div className="w-8 h-px bg-white/30"></div>
-              <span className="text-sm font-mono uppercase tracking-wider text-white/60">
+            <div className="mb-8 inline-flex items-center gap-3">
+              <div className="h-px w-8 bg-white/30"></div>
+              <span className="text-xs font-medium uppercase tracking-[0.24em] text-white/60">
                 Ready to Start?
               </span>
             </div>
 
             {/* Clean heading */}
-            <h2 className="text-4xl lg:text-5xl font-light text-white mb-6 leading-tight">
+            <h2 className="mb-6 text-4xl font-semibold leading-tight text-white lg:text-5xl">
               {content.heading}
             </h2>
 
             {/* Modern description */}
-            <p className="text-xl text-white/80 leading-relaxed mb-12 max-w-2xl font-light">
+            <p className="mb-12 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">
               {content.subheading}
             </p>
 
@@ -63,7 +63,7 @@ export default function ContactCta() {
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link
                 href="/contact-us#project-form"
-                className="group inline-flex items-center justify-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#F4F1EC] px-8 py-4 font-semibold text-gray-900 transition-all duration-300 hover:bg-white hover:-translate-y-1 hover:shadow-xl"
               >
                 <span>{content.buttonText}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -71,7 +71,7 @@ export default function ContactCta() {
               
               <a
                 href={`tel:${content.phone?.replace(/\\s+/g, '') || "+918069648411"}`}
-                className="inline-flex items-center justify-center gap-3 border-2 border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:border-white/40 hover:bg-white/10 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10"
               >
                 <Phone className="w-5 h-5" />
                 <span>{content.phone || "+91 8069648411"}</span>

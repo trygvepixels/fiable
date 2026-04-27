@@ -92,7 +92,7 @@ export default function JobsList() {
     return (
       <div className="flex justify-center items-center min-h-[200px]">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-[#4376BB] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-8 h-8 border-4 border-[#234D7E] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600">Loading opportunities...</p>
         </div>
       </div>
@@ -121,15 +121,15 @@ export default function JobsList() {
             className="group text-left rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300"
           >
             <div className="flex items-start justify-between mb-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-[#4376BB] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-[#234D7E] flex items-center justify-center">
                 <FiBriefcase className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xs font-semibold text-[#4376BB] bg-blue-100 px-2 py-1 rounded-full">
+              <span className="text-xs font-semibold text-[#234D7E] bg-blue-100 px-2 py-1 rounded-full">
                 OPEN
               </span>
             </div>
             
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-[#4376BB] transition-colors">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-[#234D7E] transition-colors">
               {job.title}
             </h3>
             <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -154,7 +154,7 @@ export default function JobsList() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-100">
-              <span className="text-sm font-medium text-[#4376BB] group-hover:text-[#4376BB]">
+              <span className="text-sm font-medium text-[#234D7E] group-hover:text-[#234D7E]">
                 View Details →
               </span>
             </div>
@@ -176,7 +176,7 @@ export default function JobsList() {
             {/* Header */}
             <div className="mb-6">
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-[#4376BB] flex items-center justify-center flex-shrink-0">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-[#234D7E] flex items-center justify-center flex-shrink-0">
                   <FiBriefcase className="w-8 h-8 text-white" />
                 </div>
                 <div className="flex-1">
@@ -216,7 +216,7 @@ export default function JobsList() {
                 Established in 2019, we specialize in waterproofing, structural retrofitting, and industrial flooring solutions. 
                 Join our team of skilled engineers and construction professionals.
               </p>
-              <p className="text-xs text-[#4376BB] italic">
+              <p className="text-xs text-[#234D7E] italic">
                 "Trust and Honesty is our mantra"
               </p>
             </div>
@@ -225,7 +225,7 @@ export default function JobsList() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="mailto:enquiry@fiableprojects.com?subject=Application for {selectedJob.title}&body=Dear Fiable Building Solutions Team,%0D%0A%0D%0AI am interested in applying for the {selectedJob.title} position. Please find my resume attached.%0D%0A%0D%0ABest regards"
-                className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4376BB] to-[#4376BB] text-white rounded-xl font-semibold hover:from-[#4376BB] hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
+                className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#234D7E] to-[#234D7E] text-white rounded-xl font-semibold hover:from-[#234D7E] hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
               >
                 <FiMail className="w-5 h-5" />
                 Apply Now
@@ -240,14 +240,14 @@ export default function JobsList() {
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <a 
                     href="mailto:enquiry@fiableprojects.com" 
-                    className="text-[#4376BB] hover:text-[#4376BB]"
+                    className="text-[#234D7E] hover:text-[#234D7E]"
                   >
                     enquiry@fiableprojects.com
                   </a>
                   <span className="hidden sm:inline text-gray-300">|</span>
                   <a 
                     href="tel:+918069648411" 
-                    className="text-[#4376BB] hover:text-[#4376BB]"
+                    className="text-[#234D7E] hover:text-[#234D7E]"
                   >
                     +91-8069648411
                   </a>

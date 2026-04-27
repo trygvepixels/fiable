@@ -119,16 +119,16 @@ export default async function ServiceDetailPage({ params }) {
 
       <section className="max-w-7xl mx-auto px-6">
         <nav className="text-sm text-zinc-500 mb-8">
-          <Link href="/" className="hover:text-[#4376BB]">Home</Link>
+          <Link href="/" className="hover:text-[#234D7E]">Home</Link>
           {" / "}
-          <Link href="/services" className="hover:text-[#4376BB]">Services</Link>
+          <Link href="/services" className="hover:text-[#234D7E]">Services</Link>
           {" / "}
           <span className="text-zinc-800">{service.title}</span>
         </nav>
 
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-start">
           <div>
-            <p className="text-sm uppercase tracking-[0.22em] text-[#4376BB] font-semibold">
+            <p className="text-sm uppercase tracking-[0.22em] text-[#234D7E] font-semibold">
               Specialized Engineering Service
             </p>
             <h1 className="mt-4 text-4xl lg:text-5xl font-semibold tracking-tight text-zinc-900">
@@ -141,14 +141,14 @@ export default async function ServiceDetailPage({ params }) {
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href={`tel:${CONTACT_PHONE.replace(/\s+/g, "")}`}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#4376BB] px-6 py-3 font-semibold text-white hover:bg-[#2c4a7d]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#234D7E] px-6 py-3 font-semibold text-white hover:bg-[#2c4a7d]"
               >
                 <Phone className="h-4 w-4" />
                 Call {CONTACT_PHONE}
               </a>
               <Link
                 href="/contact-us#project-form"
-                className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 px-6 py-3 font-semibold text-zinc-900 hover:border-[#4376BB] hover:text-[#4376BB]"
+                className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 px-6 py-3 font-semibold text-zinc-900 hover:border-[#234D7E] hover:text-[#234D7E]"
               >
                 Request Project Quote
                 <ArrowRight className="h-4 w-4" />
@@ -221,15 +221,15 @@ export default async function ServiceDetailPage({ params }) {
         <aside className="rounded-3xl bg-[#F4F1EC] border border-zinc-200 p-8 h-fit">
           <h2 className="text-xl font-semibold text-zinc-900">Related actions</h2>
           <div className="mt-5 space-y-4">
-            <Link href="/projects" className="block rounded-2xl bg-white border border-zinc-200 p-4 hover:border-[#4376BB]">
+            <Link href="/projects" className="block rounded-2xl bg-white border border-zinc-200 p-4 hover:border-[#234D7E]">
               <div className="font-semibold text-zinc-900">View completed projects</div>
               <p className="mt-1 text-sm text-zinc-600">Review case studies and project execution examples.</p>
             </Link>
-            <Link href="/blogs" className="block rounded-2xl bg-white border border-zinc-200 p-4 hover:border-[#4376BB]">
+            <Link href="/blogs" className="block rounded-2xl bg-white border border-zinc-200 p-4 hover:border-[#234D7E]">
               <div className="font-semibold text-zinc-900">Read insights</div>
               <p className="mt-1 text-sm text-zinc-600">Understand technical concepts and maintenance considerations.</p>
             </Link>
-            <Link href="/contact-us#project-form" className="block rounded-2xl bg-[#4376BB] p-4 text-white hover:bg-[#2c4a7d]">
+            <Link href="/contact-us#project-form" className="block rounded-2xl bg-[#234D7E] p-4 text-white hover:bg-[#2c4a7d]">
               <div className="font-semibold">Discuss your site requirement</div>
               <p className="mt-1 text-sm text-white/85">Share your scope, budget, and timeline with the Fiable team.</p>
             </Link>

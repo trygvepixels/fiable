@@ -95,8 +95,8 @@ export default function ContactUsClient() {
       <section className="relative overflow-hidden ">
         <div className="max-w-5xl mx-auto px-5 text-center">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur rounded-full px-4 py-2 mb-8">
-            <FiCheckCircle className="w-4 h-4 text-[#4376BB]" />
-            <span className="text-[#4376BB] font-semibold text-sm uppercase tracking-wide">
+            <FiCheckCircle className="w-4 h-4 text-[#234D7E]" />
+            <span className="text-[#234D7E] font-semibold text-sm uppercase tracking-wide">
               Trusted Construction Partner
             </span>
           </div>
@@ -107,7 +107,7 @@ export default function ContactUsClient() {
             </span>{" "}
             <br />
             <span className="text-black">Construction </span>
-            <span className="bg-gradient-to-r from-[#4376BB] to-blue-700 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#234D7E] to-blue-700 bg-clip-text text-transparent">
               Vision Together
             </span>
           </h1>
@@ -120,7 +120,7 @@ export default function ContactUsClient() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#project-form"
-              className="inline-flex items-center gap-2 rounded-full bg-[#4376BB] text-white px-6 py-3 text-sm md:text-base font-medium hover:bg-blue-700 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-[#234D7E] text-white px-6 py-3 text-sm md:text-base font-medium hover:bg-blue-700 transition"
             >
               <FiTool className="w-4 h-4" />
               Get Project Quote
@@ -143,7 +143,7 @@ export default function ContactUsClient() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_1.1fr]">
             <aside className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-lg">
               <div className="flex items-start gap-3 mb-4">
-                <FiUsers className="w-6 h-6 text-[#4376BB] mt-1" />
+                <FiUsers className="w-6 h-6 text-[#234D7E] mt-1" />
                 <div>
                   <h2 className="text-2xl font-semibold">
                     Fiable Building Solutions
@@ -159,37 +159,37 @@ export default function ContactUsClient() {
 
               <div className="mt-6 grid gap-4 text-[15px]">
                 <a href="mailto:enquiry@fiableprojects.com" className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition">
-                  <FiMail className="mt-0.5 text-[#4376BB]" />
+                  <FiMail className="mt-0.5 text-[#234D7E]" />
                   <div>
                     <div className="font-medium">Primary Email</div>
-                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                    <div className="text-neutral-700 group-hover:text-[#234D7E] transition">
                       enquiry@fiableprojects.com
                     </div>
                   </div>
                 </a>
 
                 <a href="mailto:admin@fiableprojects.com" className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition">
-                  <FiMail className="mt-0.5 text-[#4376BB]" />
+                  <FiMail className="mt-0.5 text-[#234D7E]" />
                   <div>
                     <div className="font-medium">Alternative Email</div>
-                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                    <div className="text-neutral-700 group-hover:text-[#234D7E] transition">
                       admin@fiableprojects.com
                     </div>
                   </div>
                 </a>
 
                 <a href="tel:+918069648411" className="group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition">
-                  <FiPhone className="mt-0.5 text-[#4376BB]" />
+                  <FiPhone className="mt-0.5 text-[#234D7E]" />
                   <div>
                     <div className="font-medium">Primary Phone</div>
-                    <div className="text-neutral-700 group-hover:text-[#4376BB] transition">
+                    <div className="text-neutral-700 group-hover:text-[#234D7E] transition">
                       +91 8069648411
                     </div>
                   </div>
                 </a>
 
                 <div className="flex items-start gap-3 p-3">
-                  <FiMapPin className="mt-0.5 text-[#4376BB]" />
+                  <FiMapPin className="mt-0.5 text-[#234D7E]" />
                   <div>
                     <div className="font-medium">Service Areas</div>
                     <div className="text-neutral-700">
@@ -199,7 +199,7 @@ export default function ContactUsClient() {
                 </div>
 
                 <div className="flex items-start gap-3 p-3">
-                  <FiClock className="mt-0.5 text-[#4376BB]" />
+                  <FiClock className="mt-0.5 text-[#234D7E]" />
                   <div>
                     <div className="font-medium">Response Time</div>
                     <div className="text-neutral-700">
@@ -209,8 +209,8 @@ export default function ContactUsClient() {
                 </div>
               </div>
 
-              <div className="mt-6 p-4 bg-[#4376BB]/5 rounded-xl">
-                <div className="text-sm font-medium text-[#4376BB] mb-3 uppercase tracking-wide">
+              <div className="mt-6 p-4 bg-[#234D7E]/5 rounded-xl">
+                <div className="text-sm font-medium text-[#234D7E] mb-3 uppercase tracking-wide">
                   Our Specializations
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-sm">
@@ -231,7 +231,7 @@ export default function ContactUsClient() {
               </div>
 
               <div className="mt-6">
-                <Link href="/services" className="text-sm font-medium text-[#4376BB] hover:text-[#2c4a7d]">
+                <Link href="/services" className="text-sm font-medium text-[#234D7E] hover:text-[#2c4a7d]">
                   Explore all services
                 </Link>
               </div>

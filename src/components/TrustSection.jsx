@@ -57,7 +57,7 @@ export default function TrustSection() {
               </div>
               
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center text-black shadow-lg shadow-yellow-100">
+                <div className="w-12 h-12 bg-[#234D7E] rounded-2xl flex items-center justify-center text-black shadow-lg shadow-yellow-100">
                   <HeartHandshake className="w-6 h-6" />
                 </div>
                 <div>
@@ -77,7 +77,7 @@ export default function TrustSection() {
                />
             </div>
             {/* Decorative elements */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-yellow-400 rounded-[2rem] -z-10 animate-pulse"></div>
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#234D7E] rounded-[2rem] -z-10 animate-pulse"></div>
             <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-600 rounded-full blur-3xl opacity-20 -z-10"></div>
           </div>
         </div>

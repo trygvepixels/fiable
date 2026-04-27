@@ -145,7 +145,7 @@ function ProjectCard({ item }) {
             </span>
           </div>
           {item.featured && (
-            <div className="bg-[#4376bb] text-white px-3 py-1.5 rounded-full">
+            <div className="bg-[#234D7E] text-white px-3 py-1.5 rounded-full">
               <span className="text-xs font-semibold uppercase">Featured</span>
             </div>
           )}
@@ -163,7 +163,7 @@ function ProjectCard({ item }) {
       {/* Content */}
       <div className="p-6 space-y-4">
         <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#4376bb] transition-colors">
+          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#234D7E] transition-colors">
             {item.title}
           </h3>
           {item.description && (
@@ -326,7 +326,7 @@ export default function ProjectsClient() {
       {/* Fixed CTA */}
       <div className="fixed bottom-5 z-20 right-5">
         <Link href="/contact-us#project-form">
-  <button className="group relative overflow-hidden bg-gradient-to-r from-[#4376BB] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
+  <button className="group relative overflow-hidden bg-gradient-to-r from-[#234D7E] to-[#2c4a7d] hover:from-[#365a99] hover:to-[#1e3d6f] text-white px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-out font-semibold text-sm flex items-center gap-3">
     {/* Background animation */}
     <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
     
@@ -335,7 +335,7 @@ export default function ProjectsClient() {
     
     {/* Text */}
     <span className="relative z-10">
-      Start <span className="text-[#F4C500] font-bold">Project</span>
+      Start <span className="text-[# ] font-bold">Project</span>
     </span>
     
     {/* Arrow */}
@@ -359,7 +359,7 @@ export default function ProjectsClient() {
     </div>
             {/* Title */}
             <h1 className="text-5xl lg:text-5xl fo nt-semibold text-gray-900 leading-tight">
-              Our <span className="text-[#4376bb]">Projects</span> 
+              Our <span className="text-[#234D7E]">Projects</span> 
             </h1>
 
             {/* Subtitle */}
@@ -432,7 +432,7 @@ export default function ProjectsClient() {
             <p className="text-gray-600 mb-4">{errorMsg}</p>
             <button
               onClick={() => load()}
-              className="inline-flex items-center gap-2 bg-[#4376bb] text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-[#234D7E] text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors"
             >
               <FiRefreshCw className="w-4 h-4" />
               Retry
@@ -456,7 +456,7 @@ export default function ProjectsClient() {
                 setType("All");
                 setPage(1);
               }}
-              className="bg-[#4376bb] text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors"
+              className="bg-[#234D7E] text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-colors"
             >
               Reset Filters
             </button>

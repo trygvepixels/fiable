@@ -35,7 +35,7 @@ export async function sendInquiryEmail(data) {
     html: `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9fafb; padding: 20px; border-radius: 12px; border: 1px solid #e5e7eb;">
         <div style="text-align: center; margin-bottom: 25px;">
-          <h1 style="color: #4376BB; font-size: 24px; font-weight: 800; margin-bottom: 5px;">Fiable Building Solutions</h1>
+          <h1 style="color: #234D7E; font-size: 24px; font-weight: 800; margin-bottom: 5px;">Fiable Building Solutions</h1>
           <p style="color: #6b7280; font-size: 14px; margin-top: 0;">New Lead Notification</p>
         </div>
 
@@ -49,7 +49,7 @@ export async function sendInquiryEmail(data) {
             </tr>
             <tr style="border-bottom: 1px solid #f3f4f6;">
               <td style="padding: 10px 0; color: #4b5563; font-weight: 600;">Email Address</td>
-              <td style="padding: 10px 0; color: #4376BB;"><a href="mailto:${email}" style="color: #4376BB; text-decoration: none;">${email}</a></td>
+              <td style="padding: 10px 0; color: #234D7E;"><a href="mailto:${email}" style="color: #234D7E; text-decoration: none;">${email}</a></td>
             </tr>
             <tr style="border-bottom: 1px solid #f3f4f6;">
               <td style="padding: 10px 0; color: #4b5563; font-weight: 600;">Phone Number</td>
@@ -79,7 +79,7 @@ export async function sendInquiryEmail(data) {
 
           <div style="margin-top: 20px;">
             <p style="color: #4b5563; font-weight: 600; margin-bottom: 8px;">Project Requirements:</p>
-            <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; color: #374151; font-size: 15px; line-height: 1.6; border-left: 4px solid #4376BB;">
+            <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; color: #374151; font-size: 15px; line-height: 1.6; border-left: 4px solid #234D7E;">
               ${message.replace(/\n/g, '<br>')}
             </div>
           </div>

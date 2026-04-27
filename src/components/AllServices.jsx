@@ -1,37 +1,78 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  IconDroplet,
-  IconTools,
-  IconLayersSubtract,
-  IconBuildingFactory,
-  IconHammer,
-  IconBarrierBlock,
-} from "@tabler/icons-react";
-import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { ArrowRight, Building, Droplets, ShieldCheck, Wrench } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function FeaturesSectionDemo() {
-  const [isLoaded, setIsLoaded] = useState(false);
+const fallbackServices = [
+  {
+    _id: "fallback-waterproofing",
+    slug: "waterproofing-services",
+    title: "Waterproofing Services",
+    summary:
+      "End-to-end waterproofing systems for terraces, basements, podiums, wet areas, retaining walls, and exposed concrete surfaces.",
+    tag: "Leakage Control",
+    icon: <Droplets className="h-7 w-7" />,
+  },
+  {
+    _id: "fallback-structural",
+    slug: "structural-rehabilitation",
+    title: "Structural Rehabilitation",
+    summary:
+      "Repair and strengthening solutions for deteriorated RCC members, cracked slabs, columns, beams, and aging civil structures.",
+    tag: "Repair & Strengthening",
+    icon: <Building className="h-7 w-7" />,
+  },
+  {
+    _id: "fallback-flooring",
+    slug: "industrial-flooring-systems",
+    title: "Industrial Flooring Systems",
+    summary:
+      "High-performance epoxy, PU, and heavy-duty floor systems built for factories, warehouses, food units, and process plants.",
+    tag: "Industrial Finish",
+    icon: <ShieldCheck className="h-7 w-7" />,
+  },
+  {
+    _id: "fallback-grouting",
+    slug: "industrial-grouting-services",
+    title: "Industrial Grouting Services",
+    summary:
+      "Precision grouting for machine foundations, base plates, structural gaps, anchors, and heavy equipment support zones.",
+    tag: "Machine Foundations",
+    icon: <Wrench className="h-7 w-7" />,
+  },
+];
+
+function enrichServices(items) {
+  return items.map((service, index) => ({
+    ...service,
+    tag:
+      service.tag ||
+      ["Waterproofing", "Structural Repair", "Flooring", "Grouting", "Civil Works"][index % 5],
+    icon:
+      [
+        <Droplets key="droplets" className="h-7 w-7" />,
+        <Building key="building" className="h-7 w-7" />,
+        <ShieldCheck key="shield" className="h-7 w-7" />,
+        <Wrench key="wrench" className="h-7 w-7" />,
+      ][index % 4],
+  }));
+}
+
+export default function AllServices() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [settings, setSettings] = useState({
-    servicesSection: { heading: "Our Specialized Services" }
+    servicesSection: { heading: "Our Core Services" },
   });
 
   useEffect(() => {
-    setIsLoaded(true);
-
     const fetchHomepageSettings = async () => {
       try {
         const res = await fetch("/api/homepage-settings");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.servicesSection) setSettings(data);
-        }
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.servicesSection) setSettings(data);
       } catch (err) {
         console.error("Error fetching homepage settings:", err);
       }
@@ -39,12 +80,16 @@ export default function FeaturesSectionDemo() {
 
     const fetchServices = async () => {
       try {
-        const res = await fetch("/api/services?sort=order%20-createdAt&limit=100", { cache: "no-store" });
+        const res = await fetch("/api/services?sort=order%20-createdAt&limit=5", {
+          cache: "no-store",
+        });
         const json = await res.json();
         if (!res.ok) throw new Error(json?.error || "Failed to load services");
-        setServices(json.items || []);
+        const items = json.items?.length ? json.items : fallbackServices;
+        setServices(enrichServices(items));
       } catch (err) {
         console.error("Error fetching services:", err);
+        setServices(enrichServices(fallbackServices));
       } finally {
         setLoading(false);
       }
@@ -55,135 +100,49 @@ export default function FeaturesSectionDemo() {
   }, []);
 
   return (
-    <div className="bg">
-      <section className="relative pt-20 pb-10 bg-gradient-to-b">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Heading */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl flex justify-center gap-3 lg:text-5xl font-bld tracking-tight text-gray-900">
-              {settings.servicesSection.heading.split(" ").map((word, i, arr) => (
-                i === arr.length - 1 ? (
-                  <PointerHighlight key={i}>
-                    <span className="bg-gradient-to-r from-blue-600 via-yellow-400 to-blue-700 text-transparent bg-clip-text">
-                      {" "}
-                      {word}
-                    </span>{" "}
-                  </PointerHighlight>
-                ) : <span key={i}>{word} </span>
-              ))}
-            </h2>
-            {settings.servicesSection?.subheading && (
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                {settings.servicesSection.subheading}
-              </p>
-            )}
-          </motion.div>
+    <section className="bgWarm px-5 py-20">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12">
+          <p className="eyebrow mb-4">Specialized Services</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+            {settings.servicesSection.heading}
+          </h2>
+          {settings.servicesSection?.subheading ? (
+            <p className="mt-4 max-w-2xl text-lg text-gray-600">
+              {settings.servicesSection.subheading}
+            </p>
+          ) : null}
+        </div>
 
-          {/* Grid */}
-          <section className="py-0">
-            <div className="mx-auto max-w-7xl px-6">
-              {loading ? (
-                <p className="text-center text-gray-500">Loading services...</p>
-              ) : (
-                <div className="grid lg:grid-cols-2 gap-16">
-                  {services.map((service, index) => (
-                    <div
-                      key={service._id}
-                      className={`group transition-all duration-700 ${
-                        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                      }`}
-                      style={{ transitionDelay: `${index * 100}ms` }}
-                    >
-                      <div className="flex gap-8">
-                        <div className="flex-shrink-0">
-                          <div className="text-6xl font-light text-gray-200 group-hover:text-gray-300 transition-colors">
-                            {String(index + 1).padStart(2, "0")}
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1 space-y-6">
-                          <div>
-                            <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                              <Link href={`/services/${service.slug}`} className="hover:text-[#4376BB] transition-colors">
-                                {service.title}
-                              </Link>
-                            </h3>
-                            <p className="text-gray-600 leading-relaxed">{service.summary}</p>
-                          </div>
-                          
-                          <Link href={`/services/${service.slug}`} className="block aspect-video rounded-lg overflow-hidden">
-                            <img
-                              src={service.image?.src}
-                              alt={service.image?.alt || service.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            />
-                          </Link>
-
-                          <ul className="space-y-2">
-                            {service.points?.map((point, i) => (
-                              <li key={i} className="flex items-center gap-3">
-                                <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-                                <span className="text-gray-700">{point}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          <Link href={`/services/${service.slug}`} className="inline-flex items-center text-sm font-semibold text-[#4376BB] hover:text-[#2c4a7d]">
-                            Learn more
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+        {loading ? (
+          <div className="py-10 text-center text-gray-500">Loading services...</div>
+        ) : (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((service) => (
+              <Link
+                key={service._id || service.slug}
+                href={`/services/${service.slug}`}
+                className="group block rounded-3xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="mb-3 text-[#234D7E]">{service.icon}</div>
+                <div className="mb-3 inline-block rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#234D7E]">
+                  {service.tag}
                 </div>
-              )}
-            </div>
-          </section>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-function FeatureCard({ title, description, image, icon }) {
-  return (
-    <div>
-      <motion.div
-        className="group relative rounded-2xl overflow-hidden bg-black shadow-md hover:shadow-2xl transition-all duration-500"
-        whileHover={{ scale: 1.04 }}
-        variants={{
-          hidden: { opacity: 0, y: 40 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        {/* Image */}
-        <div className="h-80 overflow-hidden relative">
-          <img
-            src={image}
-            alt={title}
-            className=" w-full object-cover group-hover:scale-110  transition-transform duration-700"
-          />
-
-          {/* Gradient overlay at bottom */}
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-
-          {/* Text over image */}
-        </div>
-      </motion.div>
-      <div className="mt-2 text-black">
-        <h3 className="text-xl uppercase font-semibold flex items-center">
-          {icon} {title}
-        </h3>
-        <p className="mt-1 text-sm text-gray-500 leading-relaxed">
-          {description}
-        </p>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-[#234D7E]">
+                  {service.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-gray-600">
+                  {service.summary}
+                </p>
+                <div className="mt-5 flex items-center gap-2 text-sm font-medium text-gray-900 opacity-60 transition-opacity group-hover:opacity-100">
+                  <span>View Details</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 }

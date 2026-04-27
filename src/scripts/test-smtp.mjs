@@ -21,7 +21,7 @@ async function testSMTP() {
     subject: "SMTP Setup Test Success ✅",
     html: `
       <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-        <h2 style="color: #4376BB;">SMTP Connection Verified!</h2>
+        <h2 style="color: #234D7E;">SMTP Connection Verified!</h2>
         <p>If you are reading this, your Gmail App Password and SMTP configuration are working perfectly.</p>
         <p><b>Time:</b> ${new Date().toLocaleString()}</p>
         <hr>

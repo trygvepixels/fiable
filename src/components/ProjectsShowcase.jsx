@@ -3,6 +3,41 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
+const fallbackProjects = [
+  {
+    _id: "fallback-p1",
+    slug: "industrial-roof-waterproofing-upgrade",
+    title: "Industrial Roof Waterproofing Upgrade",
+    client: "Large Manufacturing Facility",
+    coverImage: "/image.png",
+    coverAlt: "Industrial roof waterproofing project",
+  },
+  {
+    _id: "fallback-p2",
+    slug: "structural-repair-and-concrete-rehabilitation",
+    title: "Structural Repair and Concrete Rehabilitation",
+    client: "Commercial Building Asset Team",
+    coverImage: "/image.png",
+    coverAlt: "Structural rehabilitation and repair project",
+  },
+  {
+    _id: "fallback-p3",
+    slug: "epoxy-flooring-for-production-unit",
+    title: "Epoxy Flooring for Production Unit",
+    client: "Industrial Production Unit",
+    coverImage: "/image.png",
+    coverAlt: "Epoxy flooring installation project",
+  },
+  {
+    _id: "fallback-p4",
+    slug: "precision-grouting-for-machine-foundation",
+    title: "Precision Grouting for Machine Foundation",
+    client: "Heavy Equipment Installation Site",
+    coverImage: "/image.png",
+    coverAlt: "Machine foundation grouting project",
+  },
+];
+
 /**
  * ProjectsShowcase — premium strip (4 items)
  * - Fetches /api/projects
@@ -20,9 +55,13 @@ export default function ProjectsShowcase({ className = "" }) {
         const res = await fetch(`api/feature-projects`, { cache: "no-store" });
         const json = await res.json();
         if (!res.ok) throw new Error(json?.error || "Failed to load projects");
-        if (alive) setProjects((json.items || []).slice(0, 4));
+        if (alive) {
+          const items = (json.items || []).slice(0, 4);
+          setProjects(items.length ? items : fallbackProjects);
+        }
       } catch (e) {
         console.error("ProjectsShowcase fetch error:", e);
+        if (alive) setProjects(fallbackProjects);
       } finally {
         if (alive) setLoading(false);
       }
@@ -32,11 +71,11 @@ export default function ProjectsShowcase({ className = "" }) {
 
   return (
     <section className={`relative ${className} bg-[#f4f1ec68] py-10`}>
-      <div className="mx-auto max-w-7xl px-5 my-16 sm:px-8">
+      <div className="mx-auto max-w-7xl px-5   sm:px-8">
         {/* Header */}
               <div className="mb-12 max-w-3xl">
-        <h2 className="text-3xl md:text-5xl  tracking-tight text-gray-900">
-          The <span className="text-[#4376BB]">Impact</span> We Have Created
+        <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900">
+          The <span className="text-[#234D7E]">Impact</span> We Have Created
         </h2>
         <p className="mt-4 text-lg text-gray-600 leading-relaxed">
           Fiable pioneers the future of{" "}
@@ -44,7 +83,7 @@ export default function ProjectsShowcase({ className = "" }) {
             waterproofing, rehabilitation, flooring, grouting, demolition
           </span>{" "}
           and{" "}
-          <span className="font-medium text-[#FEC20F]">civil works</span> —
+          <span className="font-medium text-[#234D7E]">civil works</span> —
           transforming blueprints into solid structural solutions with innovation
           and durability.
         </p>

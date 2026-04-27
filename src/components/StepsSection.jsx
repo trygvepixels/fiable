@@ -90,8 +90,8 @@ export default function FiableProcessTimeline() {
           
           
           <h2 className="text-4xl lg:text-5xl font-b old text-gray-900 mb-6 leading-tight">
-            From <span className="text-[#4376BB]">Assessment</span> to{" "}
-            <span className="text-[#4376BB]">Delivery</span>
+            From <span className="text-[#234D7E]">Assessment</span> to{" "}
+            <span className="text-[#234D7E]">Delivery</span>
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

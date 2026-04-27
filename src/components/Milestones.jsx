@@ -19,6 +19,7 @@ const FiableHeroSection = () => {
             { value: "100+", label: "Projects Completed" },
             { value: "50+", label: "Happy Clients" },
             { value: "5+", label: "Years Experience" },
+            { value: "8+", label: "Cities We've Worked In" },
           ];
           setStats(data?.stats?.length > 0 ? data.stats : defaultStats);
         } catch (err) {
@@ -57,7 +58,7 @@ const FiableHeroSection = () => {
 
   return (
     <div className="bg-[#f4f1ec68]">
-      <div className="max-w-7xl px-6 mx-auto">
+      <div className="max-w-7xl tracking-tight px-6 mx-auto">
         <section className="container mx-auto">
           <div className="grid lg:grid-cols- gap-16 items-start">
             {/* Left Content */}
@@ -66,10 +67,10 @@ const FiableHeroSection = () => {
               <div className="space-y-4">
                 <h1 className="text-4xl lg:text-5xl font-semibold mt-20 text-black leading-tight mb-6">
                   {content.heading}{" "}
-                  <span className="text-zinc-400">{content.highlight}</span>
+                  <span className="text-[#234D7E]">{content.highlight}</span>
                 </h1>
 
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-[#5f6570] leading-relaxed">
                   {content.body}
                 </p>
               </div>
@@ -83,10 +84,10 @@ const FiableHeroSection = () => {
                   >
                     {row.map((stat, i) => (
                       <div key={i}>
-                        <div className="text-3xl md:text-6xl text-center font-semibold text-black mb-1">
+                        <div className="text-2xl md:text-4xl text-center font-semibold text-black mb-1">
                           {stat.value}
                         </div>
-                        <div className="text-sm md:text-xl text-center text-gray-600">
+                        <div className="text-sm md:text-lg text-center text-gray-600">
                           {stat.label}
                         </div>
                       </div>

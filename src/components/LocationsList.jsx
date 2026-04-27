@@ -56,7 +56,7 @@ export default function LocationsList() {
             className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition"
           >
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-[#4376BB] text-white flex items-center justify-center text-xl">
+              <div className="w-12 h-12 rounded-xl bg-[#234D7E] text-white flex items-center justify-center text-xl">
                 {typeIcons[loc.type] || <FiMapPin />}
               </div>
               <div>

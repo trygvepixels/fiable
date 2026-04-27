@@ -46,7 +46,7 @@ const FiableHeroSection = () => {
 
             {/* CTA Button */}
             <div className="pt-6 mx-auto text-center">
-              <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-8 py-3 rounded-full inline-flex items-center group transition-all duration-300">
+              <button className="bg-[#234D7E] hover:bg-[#234D7E] text-black font-medium px-8 py-3 rounded-full inline-flex items-center group transition-all duration-300">
                 <span>Discuss Your Project</span>
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </button>

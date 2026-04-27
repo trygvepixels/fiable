@@ -21,7 +21,7 @@ export default function PrecisionSection() {
       details: "Our integrated team approach ensures seamless collaboration across all delivery phases.",
       metric: "15+ Specialists",
       bgColor: "bg-gradient-to-br from-blue-50 to-indigo-100",
-      iconColor: "text-[#4376BB]",
+      iconColor: "text-[#234D7E]",
       borderColor: "border-blue-200"
     },
     {
@@ -66,8 +66,8 @@ export default function PrecisionSection() {
             12+ Years of Excellence
           </div>
           <h2 className="text-4xl sm:text-5xl font- semibold text-gray-900 mb-6">
-            Built on <span className="text-[#4376BB]">precision</span>,<br />
-            powered by <span className="text-[#4376BB]">people</span>.
+            Built on <span className="text-[#234D7E]">precision</span>,<br />
+            powered by <span className="text-[#234D7E]">people</span>.
           </h2>
           <p className="text-md text-gray-600 max-w-3xl mx-auto">
             We solve the hard parts — manpower management, procurement, QA/QC, coordination — so you can focus on what matters most.

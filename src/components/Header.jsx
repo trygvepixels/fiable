@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiPhone } from "react-icons/fi";
 import logo from "@/assets/logo.png";
@@ -36,8 +36,8 @@ export default function Header() {
     <>
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#F8F6F3] backdrop-blur-lg shadow-sm bord er-b border-gray-100' 
-          : 'bg-gradient-to-b from-[#000000c7] via-[#0000007e] to-[#2c4a7d00]'
+          ? 'bg-[#F4F1EC]/95 backdrop-blur-lg border-b border-black/10 shadow-sm'
+          : 'bg-[#F4F1EC]/88 backdrop-blur-md border-b border-black/5'
       }`}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
@@ -47,14 +47,21 @@ export default function Header() {
               className="flex items-center gap-3 group"
               aria-label="Fiable Home"
             >
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#4376BB] to-[#2c4a7d] flex items-center justify-center group-hover:scale-105 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-white border border-black/10 flex items-center justify-center group-hover:scale-[1.02] transition-transform">
                 <Image 
                   src={logo} 
                   alt="Fiable" 
-                  className="p-2 w-auto filter brightness-0 invert" 
+                  className="p-2 w-auto" 
                 />
               </div>
-              
+              <div className="  sm:block leading-tight">
+                <div className="text-[17px] font-semibold tracking-[0.01em] text-[#111111]">
+                  Fiable Building Solutions
+                </div>
+                <div className="text-[12px] uppercase tracking-[0.18em] text-[#5f6570]">
+                  Pvt. Ltd.
+                </div>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -63,39 +70,26 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative font-medium text-xl transition-colors duration-300 group ${
-                    scrolled
-                      ? "text-gray-700 hover:text-[#4376BB]"
-                      : "text-white hover:text-white"
-                  }`}
+                  className="relative text-[15px] md:text-[16px] font-medium text-[#111111] underline-offset-4 transition-colors duration-300 hover:text-[#234D7E] hover:underline"
                 >
                   {link.label}
-                  <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#4376BB] transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
             </nav>
 
             {/* CTA Section */}
-            <div className="flex items-center text-xl gap-4">
+            <div className="flex items-center gap-4">
               <a
                 href="tel:+918069648411"
-                className={`hidden md:flex items-center gap-2 font-medium text-sm transition-colors ${
-                  scrolled
-                    ? "text-[#4376BB] hover:text-[#2c4a7d]"
-                    : "text-white hover:text-white"
-                }`}
+                className="hidden md:flex items-center gap-2 text-sm font-medium text-[#234D7E] transition-colors hover:text-[#1b3b62]"
               >
                 <FiPhone className="w-4 h-4" />
-                <span className="hidden lg:inline text-2xl">+91-8069648411</span>
+                <span className="hidden lg:inline">+91-8069648411</span>
               </a>
 
               <Link
                 href="/contact-us"
-                className={`px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-lg hover:scale-105 ${
-                  scrolled
-                    ? "bg-[#FDC800] hover:bg-[#2c4a7d] text-black"
-                    : "bg-[#FDC800] hover:bg-[#4376BB] text-black"
-                }`}
+                className="hidden sm:inline-flex items-center rounded-full bg-[#234D7E] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1b3b62]"
               >
                 Get Quote
               </Link>
@@ -103,14 +97,10 @@ export default function Header() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`lg:hidden p-2 rounded-lg transition-colors ${
-                  scrolled
-                    ? "text-gray-700 hover:bg-gray-100"
-                    : "text-white hover:bg-black/20"
-                }`}
+                className="lg:hidden rounded-full border border-black/10 bg-white p-2 text-[#111111] transition-colors hover:bg-[#fbf8f3]"
                 aria-label="Toggle menu"
               >
-                {isOpen ? <FiX className="w-5 h-5 text-red-500" /> : <FiMenu className="w-5 h-5 text-black" />}
+                {isOpen ? <FiX className="w-5 h-5 text-[#234D7E]" /> : <FiMenu className="w-5 h-5" />}
               </button>
             </div>
           </div>
@@ -121,10 +111,10 @@ export default function Header() {
       {isOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div 
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/25 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-0 right-0 w-full max-w-sm h-full bg-[#F8F6F3] shadow-xl">
+          <div className="absolute top-0 right-0 h-full w-full max-w-sm bg-[#F4F1EC] shadow-xl">
             <div className="p-6 pt-24">
               {/* Mobile Navigation */}
               <nav className="space-y-1">
@@ -132,7 +122,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="block px-4 py-3 text-gray-700 hover:text-[#4376BB] hover:bg-blue-50 rounded-lg font-medium transition-colors"
+                    className="block rounded-2xl px-4 py-3 text-[16px] font-medium text-[#111111] transition-colors hover:bg-white hover:text-[#234D7E]"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
@@ -144,7 +134,7 @@ export default function Header() {
               <div className="mt-8 pt-6 border-t border-gray-200 space-y-4">
                 <a
                   href="tel:+918069648411"
-                  className="flex items-center gap-3 px-4 py-3 text-[#4376BB] hover:bg-blue-50 rounded-lg font-medium transition-colors"
+                  className="flex items-center gap-3 rounded-2xl px-4 py-3 font-medium text-[#234D7E] transition-colors hover:bg-white"
                   onClick={() => setIsOpen(false)}
                 >
                   <FiPhone className="w-5 h-5" />
@@ -153,7 +143,7 @@ export default function Header() {
                 
                 <Link
                   href="/contact-us"
-                  className="block w-full bg-[#4376BB] text-white text-center px-6 py-3 rounded-lg font-medium hover:bg-[#2c4a7d] transition-colors"
+                  className="block w-full rounded-full bg-[#234D7E] px-6 py-3 text-center font-semibold text-white transition-colors hover:bg-[#1b3b62]"
                   onClick={() => setIsOpen(false)}
                 >
                   Get Quote
@@ -164,8 +154,8 @@ export default function Header() {
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="text-center text-sm text-gray-600">
                   <p className="font-semibold text-gray-800">Fiable Building Solutions</p>
-                  <p className="mt-1">Waterproofing & Construction Experts</p>
-                  <p className="mt-2 text-xs">"Trust and Honesty is our mantra"</p>
+                  <p className="mt-1">Waterproofing and construction repair</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em]">Trust and honesty is our mantra</p>
                 </div>
               </div>
             </div>

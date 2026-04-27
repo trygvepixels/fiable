@@ -12,7 +12,7 @@ export const metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/projects` },
   openGraph: {
-    title: "Fiable Projects — Case Studies & Portfolio",
+    title: "Fiable Building Solutions — Case Studies & Portfolio",
     description: "Explore completed projects showcasing Fiable's technical approach to waterproofing, flooring and structural rehabilitation with warranty-backed outcomes.",
     url: `${SITE_URL}/projects`,
     type: "website",
@@ -20,7 +20,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Fiable Projects",
+    title: "Fiable Building Solutions",
     description: "Portfolio and case studies of waterproofing, rehabilitation, flooring and industrial repair works."
   },
   robots: { index: true, follow: true }

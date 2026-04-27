@@ -181,7 +181,7 @@ export default function FiableCareerPageV3() {
             <span className="w-10 h-px bg-gray-400" />
           </div>
           <h1 className="text-4xl md:text-5xl font-s emibold text-gray-900 mb-6">
-            Build Your <span className="text-[#4376BB] italic">Future</span> with Us
+            Build Your <span className="text-[#234D7E] italic">Future</span> with Us
           </h1>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
             Join Fiable Building Solutions — where structural retrofitting, waterproofing, 
@@ -199,22 +199,22 @@ export default function FiableCareerPageV3() {
           </p>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Perk 
-              icon={<GraduationCap className="w-6 h-6 text-[#4376BB]" />}
+              icon={<GraduationCap className="w-6 h-6 text-[#234D7E]" />}
               title="Advanced Training" 
               text="Quarterly training programs at chemical factories and latest construction technology workshops." 
             />
             <Perk 
-              icon={<Construction className="w-6 h-6 text-[#4376BB]" />}
+              icon={<Construction className="w-6 h-6 text-[#234D7E]" />}
               title="Latest Machinery" 
               text="Work with cutting-edge equipment and modern construction technologies for quality solutions." 
             />
             <Perk 
-              icon={<Award className="w-6 h-6 text-[#4376BB]" />}
+              icon={<Award className="w-6 h-6 text-[#234D7E]" />}
               title="Trusted Chemicals" 
               text="Access to premium materials from reliable suppliers ensuring consistent project quality." 
             />
             <Perk 
-              icon={<Zap className="w-6 h-6 text-[#4376BB]" />}
+              icon={<Zap className="w-6 h-6 text-[#234D7E]" />}
               title="Growth Opportunities" 
               text="Career advancement in a growing company with 500+ successful projects and expanding operations." 
             />
@@ -298,7 +298,7 @@ function JobCard({ job, applyMailTo, applyWhatsApp }) {
   return (
     <article className="group relative overflow-hidden rounded-2xl bg-white border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <div className="flex items-start gap-3">
-        <span className="text-[#4376BB] flex-shrink-0">{job.icon}</span>
+        <span className="text-[#234D7E] flex-shrink-0">{job.icon}</span>
         <div className="flex-1">
           <h3 className="text-xl font-semibold">{job.title}</h3>
           <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-gray-600">
@@ -329,7 +329,7 @@ function JobCard({ job, applyMailTo, applyWhatsApp }) {
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <a
           href={applyMailTo}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#4376BB] px-4 py-2 text-white hover:bg-blue-700 font-medium transition-colors"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#234D7E] px-4 py-2 text-white hover:bg-blue-700 font-medium transition-colors"
         >
           Apply via Email <ArrowRight className="w-4 h-4" />
         </a>
