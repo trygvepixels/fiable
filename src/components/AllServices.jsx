@@ -100,11 +100,11 @@ export default function AllServices() {
   }, []);
 
   return (
-    <section className="bgWarm px-5 py-20">
+    <section className="bgWarm px-5 md:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12">
           <p className="eyebrow mb-4">Specialized Services</p>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
             {settings.servicesSection.heading}
           </h2>
           {settings.servicesSection?.subheading ? (

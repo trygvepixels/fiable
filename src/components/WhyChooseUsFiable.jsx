@@ -71,10 +71,10 @@ export default function WhyChooseUsFiable() {
   }, []);
 
   return (
-    <section className="bgWarm px-5 py-20">
+    <section className="bgWarm px-5 py-10 md:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
             {content.heading}
             <span className="mt-2 block font-semibold text-[#234D7E]">
               {content.highlight}

@@ -102,11 +102,11 @@ export default function Testimonials() {
   }, [testimonials]);
 
   return (
-    <section className="bgWarm py-20">
+    <section className="bgWarm py-10 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-12 text-center">
           <p className="eyebrow mb-4">Testimonials</p>
-          <h2 className="text-4xl font-semibold tracking-tight text-[#111111] md:text-5xl">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[#111111] md:text-5xl">
             {settings.testimonialsSection.heading}
           </h2>
           {settings.testimonialsSection.subheading ? (

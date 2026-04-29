@@ -37,7 +37,7 @@ export default function TrustSection() {
               <span>Trust & Performance</span>
             </div>
             
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight">
               {content.heading}
             </h2>
             

@@ -65,7 +65,7 @@ const FiableHeroSection = () => {
             <div className="space-y-6">
               {/* Main Heading */}
               <div className="space-y-4">
-                <h1 className="text-4xl lg:text-5xl font-semibold mt-20 text-black leading-tight mb-6">
+                <h1 className="text-3xl lg:text-5xl font-semibold mt-20 text-black leading-tight mb-6">
                   {content.heading}{" "}
                   <span className="text-[#234D7E]">{content.highlight}</span>
                 </h1>

@@ -14,7 +14,7 @@ export default function OfficeMapSection({
   className = "",
 }) {
   return (
-    <section className={`bgWarm py-20 ${className}`}>
+    <section className={`bgWarm md:py-20 ${className}`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
         <div className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_12px_36px_rgba(17,17,17,0.06)]">
           <p className="eyebrow mb-4">Office Location</p>

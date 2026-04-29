@@ -89,7 +89,7 @@ export default function FiableProcessTimeline() {
         <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           
           
-          <h2 className="text-4xl lg:text-5xl font-b old text-gray-900 mb-6 leading-tight">
+          <h2 className="text-3xl lg:text-5xl font-b old text-gray-900 mb-6 leading-tight">
             From <span className="text-[#234D7E]">Assessment</span> to{" "}
             <span className="text-[#234D7E]">Delivery</span>
           </h2>
