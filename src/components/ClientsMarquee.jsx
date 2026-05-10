@@ -1,185 +1,148 @@
 "use client";
-import choi from '@/assets/logo/choi.png'
-import hil from '@/assets/logo/hil.png'
-import holi from '@/assets/logo/holi.png'
-import hyatt from '@/assets/logo/hyatt.png'
-import ob from '@/assets/logo/ob.png'
-import radi from '@/assets/logo/radi.png'
-import ram from '@/assets/logo/ram.png'
-import Image from 'next/image'
+
+import Image from "next/image";
+
+const clientLogoRows = [
+  {
+    title: "Construction Companies / Contractors",
+    folder: "logos",
+    files: [
+      "image.png",
+      "image copy.png",
+      "image copy 2.png",
+      "image copy 3.png",
+      "image copy 4.png",
+      "image copy 5.png",
+      "image copy 6.png",
+      "image copy 7.png",
+      "image copy 8.png",
+      "image copy 9.png",
+      "image copy 10.png",
+      "image copy 11.png",
+      "image copy 12.png",
+    ],
+  },
+  {
+    title: "Government Departments / Projects",
+    folder: "logos2",
+    files: [
+      "image.png",
+      "image copy.png",
+      "image copy 2.png",
+      "image copy 3.png",
+      "image copy 4.png",
+      "image copy 5.png",
+      "image copy 6.png",
+      "image copy 7.png",
+      "image copy 8.png",
+      "image copy 9.png",
+    ],
+  },
+  {
+    title: "Commercial / Other Projects",
+    folder: "logo3",
+    files: [
+      "image.png",
+      "image copy.png",
+      "image copy 2.png",
+      "image copy 3.png",
+      "image copy 4.png",
+      "image copy 5.png",
+      "image copy 6.png",
+      "image copy 7.png",
+      "image copy 8.png",
+    ],
+  },
+  {
+    title: "Industries",
+    folder: "logo4",
+    files: [
+      "image.png",
+      "image copy.png",
+      "image copy 2.png",
+      "image copy 3.png",
+      "image copy 4.png",
+      "image copy 5.png",
+      "image copy 6.png",
+      "image copy 7.png",
+    ],
+  },
+].map((row) => ({
+  ...row,
+  logos: row.files.map((file) => `/clients/${row.folder}/${file}`),
+}));
 
 export default function ClientsMarquee() {
-  const logos = [
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-    choi,
-    hil,
-    
-    holi,
-    hyatt,
-      radi,
-    ob,
-  
-    ram,
-
-    
-     
-  ];
-
-  const track = [...logos, ...logos]; // duplicate for seamless loop
-
   return (
-    <section className="bg-[#F4F1EC] py-12">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#101010]">
-          Trusted by Clients Worldwide
-        </h2>
-        <p className="mt-2 text-neutral-600">
-          We have served brands, startups, and enterprises across industries.
-        </p>
+    <section className="bg-[#F4F1EC] py-10 md:py-14">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mb-7 text-center md:mb-9">
+          <h2 className="text-2xl font-semibold tracking-tight text-[#111111] md:text-3xl">
+            Our Prestigious Clients
+          </h2>
+        </div>
 
-        {/* Marquee */}
-        <div className="relative mt-10 overflow-hidden">
-          {/* optional edge fade */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#F4F1EC] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#F4F1EC] to-transparent" />
+        <div className="relative space-y-6 overflow-hidden">
+          <div className="pointer-events-none h-full absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#F4F1EC] to-transparent md:w-24" />
+          <div className="pointer-events-none h-full absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#F4F1EC] to-transparent md:w-24" />
 
-          <div className="marquee w-[200%]">
-            {track.map((src, i) => (
+          {clientLogoRows.map((row, rowIndex) => (
+            <div key={row.folder}>
+              <h3 className="mb-3 text-center text-sm font-bold uppercase tracking-[0.16em] text-[#234D7E] md:text-base">
+                {row.title}
+              </h3>
+
               <div
-                key={i}
-                className="shrink-0 mx-4 md:mx-8 inline-flex h-12 w-28 md:h-16 md:w-40 items-center justify-center grayscale opacity-70 transition hover:opacity-100 hover:grayscale-0"
+                className="client-marquee-track"
+                style={{
+                  "--duration": `${34 + rowIndex * 5}s`,
+                }}
               >
-                <Image
-                  src={src}
-                  alt={`Client logo ${i + 1}`}
-                  width={160}
-                  height={64}
-                  className="h-full w-full object-contain"
-                  loading="lazy"
-                />
+                {[...row.logos, ...row.logos].map((src, logoIndex) => (
+                  <div
+                    key={`${row.folder}-${logoIndex}`}
+                    className="mx-3 inline-flex h-16 w-32 shrink-0 items-center justify-center rounded-lg border border-black/5 bg-white px-4 py-3 shadow-sm md:mx-4 md:h-20 md:w-44"
+                  >
+                    <Image
+                      src={src}
+                      alt={`${row.title} client logo ${logoIndex + 1}`}
+                      width={176}
+                      height={80}
+                      className="h-full w-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Component-scoped CSS */}
       <style jsx>{`
-        @keyframes marquee {
-          0% {
+        @keyframes client-marquee {
+          from {
             transform: translateX(0);
           }
-          100% {
+          to {
             transform: translateX(-50%);
           }
         }
-        .marquee {
+
+        .client-marquee-track {
           display: flex;
-          align-items: center;
-          width: 200%; /* because we duplicated the list */
-          animation: marquee 40s linear infinite;
+          width: max-content;
+          animation: client-marquee var(--duration) linear infinite;
+          will-change: transform;
         }
+
+        .client-marquee-track:hover {
+          animation-play-state: paused;
+        }
+
         @media (max-width: 640px) {
-          .marquee {
-            animation-duration: 10s; /* faster on mobile */
+          .client-marquee-track {
+            animation-duration: 24s;
           }
         }
       `}</style>
