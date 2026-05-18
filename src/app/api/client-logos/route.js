@@ -1,23 +1,31 @@
 import { NextResponse } from "next/server";
 import ClientLogo from "@/models/ClientLogo";
 import { connectDB } from "@/lib/mongodb";
+import { publicJson, withPublicDataTimeout } from "@/lib/publicApiResponse";
 
-export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const revalidate = 300;
 
 export async function GET(req) {
   try {
-    await connectDB();
     const { searchParams } = new URL(req.url);
     const limit = parseInt(searchParams.get("limit") || "50", 10);
     const sort = searchParams.get("sort") || "order";
-    const items = await ClientLogo.find({ active: true })
-      .sort(sort)
-      .limit(limit)
-      .lean();
-    return NextResponse.json({ items });
+    const items = await withPublicDataTimeout(
+      connectDB().then(() =>
+        ClientLogo.find({ active: true })
+          .sort(sort)
+          .limit(limit)
+          .lean()
+      ),
+      "client logos"
+    );
+    return publicJson({ items }, {}, req);
   } catch (e) {
     console.error("GET /client-logos error:", e);
-    return NextResponse.json({ error: "Failed to fetch logos" }, { status: 500 });
+    return publicJson({ items: [] }, {
+      headers: { "X-Fiable-Fallback": "client-logos" },
+    }, req);
   }
 }
 

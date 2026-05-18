@@ -2,14 +2,13 @@
 import { NextResponse } from "next/server";
 import FeatureProject from "@/models/FeatureProject";
 import { connectDB } from "@/lib/mongodb";
+import { publicJson, withPublicDataTimeout } from "@/lib/publicApiResponse";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
 
 export async function GET(req) {
   try {
-    await connectDB();
     const { searchParams } = new URL(req.url);
 
     const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
@@ -36,21 +35,28 @@ export async function GET(req) {
 
     const sort = searchParams.get("sort") || "-createdAt";
 
-    const [items, total] = await Promise.all([
-      FeatureProject.find(q).sort(sort).skip(skip).limit(limit).lean(),
-      FeatureProject.countDocuments(q),
-    ]);
+    const [items, total] = await withPublicDataTimeout(
+      connectDB().then(() =>
+        Promise.all([
+          FeatureProject.find(q).sort(sort).skip(skip).limit(limit).lean(),
+          FeatureProject.countDocuments(q),
+        ])
+      ),
+      "feature projects"
+    );
 
-    return NextResponse.json({
+    return publicJson({
       page,
       limit,
       total,
       pages: Math.ceil(total / limit),
       items,
-    });
+    }, {}, req);
   } catch (err) {
     console.error("GET /projects error:", err);
-    return NextResponse.json({ error: "Failed to fetch projects" }, { status: 500 });
+    return publicJson({ page: 1, limit: 0, total: 0, pages: 0, items: [] }, {
+      headers: { "X-Fiable-Fallback": "feature-projects" },
+    }, req);
   }
 }
 

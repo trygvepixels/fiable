@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { fetchCachedJson } from "@/lib/clientCache";
 
 const fallbackProjects = [
   {
@@ -45,16 +46,19 @@ const fallbackProjects = [
  * - Vertical separators, hover zoom, soft gradient, title reveal
  */
 export default function ProjectsShowcase({ className = "" }) {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState(fallbackProjects);
 
   useEffect(() => {
     let alive = true;
+    setProjects(fallbackProjects);
+
     (async () => {
       try {
-        const res = await fetch(`api/feature-projects`, { cache: "no-store" });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json?.error || "Failed to load projects");
+        const json = await fetchCachedJson("/api/feature-projects", {
+          key: "home-feature-projects",
+          fallback: { items: fallbackProjects },
+          timeoutMs: 2200,
+        });
         if (alive) {
           const items = (json.items || []).slice(0, 4);
           setProjects(items.length ? items : fallbackProjects);
@@ -62,8 +66,6 @@ export default function ProjectsShowcase({ className = "" }) {
       } catch (e) {
         console.error("ProjectsShowcase fetch error:", e);
         if (alive) setProjects(fallbackProjects);
-      } finally {
-        if (alive) setLoading(false);
       }
     })();
     return () => { alive = false; };
@@ -90,21 +92,11 @@ export default function ProjectsShowcase({ className = "" }) {
       </div>
 
         {/* Strip */}
-        {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="relative overflow-hidden rounded-xl bg-zinc-200">
-                <div className="animate-pulse h-80" />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-4">
-            {projects.map((p, idx) => (
-              <Card key={p._id || p.slug} project={p} showDivider={idx < 3} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-4">
+          {projects.map((p, idx) => (
+            <Card key={p._id || p.slug} project={p} showDivider={idx < 3} />
+          ))}
+        </div>
       </div>
     </section>
   );

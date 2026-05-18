@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Building, Droplets, ShieldCheck, Wrench } from "lucide-react";
 import { useEffect, useState } from "react";
+import { fetchCachedJson } from "@/lib/clientCache";
 
 const fallbackServices = [
   {
@@ -60,8 +61,7 @@ function enrichServices(items) {
 }
 
 export default function AllServices() {
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [services, setServices] = useState(enrichServices(fallbackServices));
   const [settings, setSettings] = useState({
     servicesSection: { heading: "Our Core Services" },
   });
@@ -69,9 +69,10 @@ export default function AllServices() {
   useEffect(() => {
     const fetchHomepageSettings = async () => {
       try {
-        const res = await fetch("/api/homepage-settings");
-        if (!res.ok) return;
-        const data = await res.json();
+        const data = await fetchCachedJson("/api/homepage-settings", {
+          key: "homepage-settings",
+          timeoutMs: 1800,
+        });
         if (data.servicesSection) setSettings(data);
       } catch (err) {
         console.error("Error fetching homepage settings:", err);
@@ -80,18 +81,16 @@ export default function AllServices() {
 
     const fetchServices = async () => {
       try {
-        const res = await fetch("/api/services?sort=order%20-createdAt&limit=5", {
-          cache: "no-store",
+        const json = await fetchCachedJson("/api/services?sort=order%20-createdAt&limit=5", {
+          key: "home-services",
+          fallback: { items: fallbackServices },
+          timeoutMs: 2200,
         });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json?.error || "Failed to load services");
         const items = json.items?.length ? json.items : fallbackServices;
         setServices(enrichServices(items));
       } catch (err) {
         console.error("Error fetching services:", err);
         setServices(enrichServices(fallbackServices));
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -114,34 +113,30 @@ export default function AllServices() {
           ) : null}
         </div>
 
-        {loading ? (
-          <div className="py-10 text-center text-gray-500">Loading services...</div>
-        ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => (
-              <Link
-                key={service._id || service.slug}
-                href={`/services/${service.slug}`}
-                className="group block rounded-3xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="mb-3 text-[#234D7E]">{service.icon}</div>
-                <div className="mb-3 inline-block rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#234D7E]">
-                  {service.tag}
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-[#234D7E]">
-                  {service.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
-                  {service.summary}
-                </p>
-                <div className="mt-5 flex items-center gap-2 text-sm font-medium text-gray-900 opacity-60 transition-opacity group-hover:opacity-100">
-                  <span>View Details</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((service) => (
+            <Link
+              key={service._id || service.slug}
+              href={`/services/${service.slug}`}
+              className="group block rounded-3xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="mb-3 text-[#234D7E]">{service.icon}</div>
+              <div className="mb-3 inline-block rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#234D7E]">
+                {service.tag}
+              </div>
+              <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-[#234D7E]">
+                {service.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-gray-600">
+                {service.summary}
+              </p>
+              <div className="mt-5 flex items-center gap-2 text-sm font-medium text-gray-900 opacity-60 transition-opacity group-hover:opacity-100">
+                <span>View Details</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

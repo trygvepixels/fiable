@@ -2,41 +2,45 @@
 import { NextResponse } from "next/server";
 import HomepageSettings from "@/models/HomepageSettings";
 import { connectDB } from "@/lib/mongodb";
+import { publicJson, withPublicDataTimeout } from "@/lib/publicApiResponse";
 
-export async function GET() {
+export const runtime = "nodejs";
+export const revalidate = 300;
+
+const fallbackHomepageSettings = {
+  trustSection: {
+    heading: "Reliable Building Repair & Waterproofing Experts",
+    body: "We specialize in delivering high-quality waterproofing services, structural repair, and concrete rehabilitation solutions. With years of experience and advanced techniques, we ensure long-lasting protection and durability for your structures.",
+  },
+  locationSection: {
+    heading: "Waterproofing Services in Lucknow",
+    body: "We provide professional waterproofing and building repair services across Lucknow and nearby areas. Whether it's residential leakage issues or large-scale industrial flooring, our team ensures reliable and effective solutions.",
+  },
+  servicesSection: {
+    heading: "Our Core Services",
+  },
+  testimonialsSection: {
+    heading: "What Our Clients Say",
+  },
+  ctaSection: {
+    heading: "Facing Leakage or Structural Issues?",
+    subheading: "Get expert help today from trusted waterproofing contractors.",
+    buttonText: "Book Free Inspection",
+  },
+};
+
+export async function GET(req) {
   try {
-    await connectDB();
-    let settings = await HomepageSettings.findOne().lean();
-    
-    // Default content if not found
-    if (!settings) {
-      settings = {
-        trustSection: {
-          heading: "Reliable Building Repair & Waterproofing Experts",
-          body: "We specialize in delivering high-quality waterproofing services, structural repair, and concrete rehabilitation solutions. With years of experience and advanced techniques, we ensure long-lasting protection and durability for your structures.",
-        },
-        locationSection: {
-          heading: "Waterproofing Services in Lucknow",
-          body: "We provide professional waterproofing and building repair services across Lucknow and nearby areas. Whether it's residential leakage issues or large-scale industrial flooring, our team ensures reliable and effective solutions.",
-        },
-        servicesSection: {
-          heading: "Our Core Services",
-        },
-        testimonialsSection: {
-          heading: "What Our Clients Say",
-        },
-        ctaSection: {
-          heading: "Facing Leakage or Structural Issues?",
-          subheading: "Get expert help today from trusted waterproofing contractors.",
-          buttonText: "Book Free Inspection",
-        },
-      };
-    }
-    
-    return NextResponse.json(settings);
+    const settings = await withPublicDataTimeout(
+      connectDB().then(() => HomepageSettings.findOne().lean()),
+      "homepage settings"
+    );
+    return publicJson(settings || fallbackHomepageSettings, {}, req);
   } catch (error) {
     console.error("GET /api/homepage-settings error:", error);
-    return NextResponse.json({ error: "Failed to fetch homepage settings" }, { status: 500 });
+    return publicJson(fallbackHomepageSettings, {
+      headers: { "X-Fiable-Fallback": "homepage-settings" },
+    }, req);
   }
 }
 

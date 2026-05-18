@@ -2,15 +2,35 @@
 import { NextResponse } from "next/server";
 import Hero from "@/models/Hero";
 import { connectDB } from "@/lib/mongodb";
+import { publicJson, withPublicDataTimeout } from "@/lib/publicApiResponse";
 
-export async function GET() {
+export const runtime = "nodejs";
+export const revalidate = 300;
+
+export const fallbackHero = {
+  title: "Engineering the future of construction",
+  rotatingWords: ["waterproofing", "repair", "flooring", "rehabilitation"],
+  backgroundImages: ["/image.png"],
+  description:
+    "Expert solutions for waterproofing, roof leakage repair, structural rehabilitation, and industrial flooring for residential, commercial, and industrial projects.",
+  cta1Text: "Get Free Site Inspection",
+  cta1Link: "/contact-us#project-form",
+  cta2Text: "Request a Quote",
+  cta2Link: "/contact-us",
+};
+
+export async function GET(req) {
   try {
-    await connectDB();
-    const hero = await Hero.findOne().lean();
-    return NextResponse.json(hero || {});
+    const hero = await withPublicDataTimeout(
+      connectDB().then(() => Hero.findOne().lean()),
+      "hero"
+    );
+    return publicJson(hero || fallbackHero, {}, req);
   } catch (error) {
     console.error("GET /api/hero error:", error);
-    return NextResponse.json({ error: "Failed to fetch hero data" }, { status: 500 });
+    return publicJson(fallbackHero, {
+      headers: { "X-Fiable-Fallback": "hero" },
+    }, req);
   }
 }
 

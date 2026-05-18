@@ -5,24 +5,44 @@ import { ArrowRight, Phone } from "lucide-react";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchCachedJson } from "@/lib/clientCache";
+
+const fallbackHero = {
+  title: "Engineering the future of construction",
+  rotatingWords: ["waterproofing", "repair", "flooring", "rehabilitation"],
+  backgroundImages: ["/image.png"],
+  description:
+    "Expert solutions for waterproofing, roof leakage repair, structural rehabilitation, and industrial flooring for residential, commercial, and industrial projects.",
+  cta1Text: "Get Free Site Inspection",
+  cta1Link: "/contact-us#project-form",
+  cta2Text: "Request a Quote",
+  cta2Link: "/contact-us",
+};
 
 export default function Hero() {
-  const [hero, setHero] = useState(null);
+  const [hero, setHero] = useState(fallbackHero);
   const [currentBg, setCurrentBg] = useState(0);
 
   useEffect(() => {
+    let alive = true;
+
     const loadHero = async () => {
       try {
-        const res = await fetch("/api/hero", { cache: "no-store" });
-        if (!res.ok) throw new Error("Failed to fetch hero");
-        const data = await res.json();
-        setHero(data);
+        const data = await fetchCachedJson("/api/hero", {
+          key: "hero",
+          fallback: fallbackHero,
+          timeoutMs: 2200,
+        });
+        if (alive) setHero({ ...fallbackHero, ...data });
       } catch (err) {
         console.error(err);
       }
     };
 
     loadHero();
+    return () => {
+      alive = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -32,16 +52,6 @@ export default function Hero() {
     }, 4000);
     return () => clearInterval(interval);
   }, [hero]);
-
-  if (!hero) {
-    return (
-      <section className="bgWarm px-4 pt-28 md:px-6 md:pt-32">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-black/10 bg-white/70 px-6 py-20 text-[#5f6570]">
-          Loading...
-        </div>
-      </section>
-    );
-  }
 
   const activeImage = hero.backgroundImages?.[currentBg];
   const heading = hero.title || "Engineering the future of construction";
@@ -91,7 +101,7 @@ export default function Hero() {
               href={hero.cta2Link || "/contact-us"}
               className="inline-flex items-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-50"
             >
-              Request a Quote
+              {hero.cta2Text || "Request a Quote"}
             </Link>
             <a
               href="tel:+918069648411"

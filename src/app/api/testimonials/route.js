@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Testimonial from "@/models/Testimonial";
+import { publicJson, withPublicDataTimeout } from "@/lib/publicApiResponse";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
 
 export async function GET(req) {
   try {
-    await connectDB();
     const { searchParams } = new URL(req.url);
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") || "20", 10)));
     const sort = searchParams.get("sort") || "order createdAt";
@@ -16,11 +15,16 @@ export async function GET(req) {
     const q = {};
     if (searchParams.get("active") !== "false") q.active = true;
 
-    const items = await Testimonial.find(q).sort(sort).limit(limit).lean();
-    return NextResponse.json({ items });
+    const items = await withPublicDataTimeout(
+      connectDB().then(() => Testimonial.find(q).sort(sort).limit(limit).lean()),
+      "testimonials"
+    );
+    return publicJson({ items }, {}, req);
   } catch (e) {
     console.error("GET /testimonials error:", e);
-    return NextResponse.json({ error: "Failed to load testimonials" }, { status: 500 });
+    return publicJson({ items: [] }, {
+      headers: { "X-Fiable-Fallback": "testimonials" },
+    }, req);
   }
 }
 

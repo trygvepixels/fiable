@@ -2,15 +2,14 @@
 import { NextResponse } from "next/server";
 import Service from "@/models/Service";
 import { connectDB } from "@/lib/mongodb";
+import { publicJson, withPublicDataTimeout } from "@/lib/publicApiResponse";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
 
 // GET /api/services?page=&limit=&search=
 export async function GET(req) {
   try {
-    await connectDB();
     const { searchParams } = new URL(req.url);
 
     const page  = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
@@ -30,17 +29,24 @@ export async function GET(req) {
 
     const sort = searchParams.get("sort") || "order -createdAt";
 
-    const [items, total] = await Promise.all([
-      Service.find(q).sort(sort).skip(skip).limit(limit).lean(),
-      Service.countDocuments(q),
-    ]);
+    const [items, total] = await withPublicDataTimeout(
+      connectDB().then(() =>
+        Promise.all([
+          Service.find(q).sort(sort).skip(skip).limit(limit).lean(),
+          Service.countDocuments(q),
+        ])
+      ),
+      "services"
+    );
 
-    return NextResponse.json({
+    return publicJson({
       page, limit, total, pages: Math.ceil(total / limit), items,
-    });
+    }, {}, req);
   } catch (err) {
     console.error("GET /services error:", err);
-    return NextResponse.json({ error: "Failed to fetch services" }, { status: 500 });
+    return publicJson({ page: 1, limit: 0, total: 0, pages: 0, items: [] }, {
+      headers: { "X-Fiable-Fallback": "services" },
+    }, req);
   }
 }
 

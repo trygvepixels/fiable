@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { fetchCachedJson } from "@/lib/clientCache";
 
 const fallbackTestimonials = [
   {
@@ -42,8 +43,7 @@ const fallbackTestimonials = [
 ];
 
 export default function Testimonials() {
-  const [testimonials, setTestimonials] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
   const [settings, setSettings] = useState({
     testimonialsSection: { heading: "Our clients love working with us" },
   });
@@ -53,9 +53,11 @@ export default function Testimonials() {
 
     (async () => {
       try {
-        const res = await fetch("/api/testimonials?sort=order", { cache: "no-store" });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json?.error || "Failed to load testimonials");
+        const json = await fetchCachedJson("/api/testimonials?sort=order", {
+          key: "home-testimonials",
+          fallback: { items: fallbackTestimonials },
+          timeoutMs: 2200,
+        });
 
         if (alive) {
           const mapped = (json.items || []).map((t, i) => ({
@@ -73,16 +75,15 @@ export default function Testimonials() {
       } catch (err) {
         console.error("Testimonials error:", err);
         if (alive) setTestimonials(fallbackTestimonials);
-      } finally {
-        if (alive) setLoading(false);
       }
     })();
 
     (async () => {
       try {
-        const res = await fetch("/api/homepage-settings");
-        if (!res.ok) return;
-        const data = await res.json();
+        const data = await fetchCachedJson("/api/homepage-settings", {
+          key: "homepage-settings",
+          timeoutMs: 1800,
+        });
         if (alive && data.testimonialsSection) {
           setSettings(data);
         }
@@ -116,9 +117,7 @@ export default function Testimonials() {
           ) : null}
         </div>
 
-        {loading ? (
-          <div className="py-16 text-center text-[#5f6570]">Loading testimonials...</div>
-        ) : !testimonials.length ? (
+        {!testimonials.length ? (
           <div className="py-16 text-center text-[#5f6570]">No testimonials found.</div>
         ) : (
           <div className="relative overflow-hidden">
