@@ -96,6 +96,8 @@ export default function ClientsMarquee() {
                 className="client-marquee-track"
                 style={{
                   "--duration": `${34 + rowIndex * 5}s`,
+                  "--from": rowIndex % 2 === 0 ? "0" : "-50%",
+                  "--to": rowIndex % 2 === 0 ? "-50%" : "0",
                 }}
               >
                 {[...row.logos, ...row.logos].map((src, logoIndex) => (
@@ -122,10 +124,10 @@ export default function ClientsMarquee() {
       <style jsx>{`
         @keyframes client-marquee {
           from {
-            transform: translateX(0);
+            transform: translateX(var(--from));
           }
           to {
-            transform: translateX(-50%);
+            transform: translateX(var(--to));
           }
         }
 
