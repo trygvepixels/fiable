@@ -193,17 +193,7 @@ export default function Footer() {
                  </p>
               </div>
 
-              {/* Credits */}
-              <div className="flex flex-col sm:flex-row items-center gap-1  text-sm">
-                <span className="text-[#5f6570]">Designed & Developed By</span>
-                 <a
-                  href="https://genforgestudio.com/"
-                  className="flex items-center gap-1 font-medium text-[#234D7E] transition-colors hover:text-[#1b3b62]"
-                >
-                GenForge Studio
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
+            
 
             </div>
 
