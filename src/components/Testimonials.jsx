@@ -11,7 +11,7 @@ const fallbackTestimonials = [
       "Fiable handled our leakage and terrace waterproofing issue with a practical, engineer-led approach. The team communicated clearly and the execution stayed disciplined throughout.",
     name: "Amit Verma",
     designation: "Project Lead, Commercial Asset Team",
-    src: "/image.png",
+    src: "https://api.dicebear.com/7.x/initials/svg?seed=Amit%20Verma&backgroundType=gradientLinear&backgroundColor=234d7e,2e5da5",
   },
   {
     id: "fallback-2",
@@ -20,7 +20,7 @@ const fallbackTestimonials = [
       "Their diagnosis was detailed, the repair methodology was clearly explained, and the on-site execution stayed aligned with our operational constraints.",
     name: "Rhea Kapoor",
     designation: "Facility Head, Industrial Client",
-    src: "/image.png",
+    src: "https://api.dicebear.com/7.x/initials/svg?seed=Rhea%20Kapoor&backgroundType=gradientLinear&backgroundColor=234d7e,2e5da5",
   },
   {
     id: "fallback-3",
@@ -29,7 +29,7 @@ const fallbackTestimonials = [
       "Fiable recommended the right flooring system for our production environment and delivered a finish that improved both performance and maintenance.",
     name: "Daniel Carter",
     designation: "Operations Lead, Manufacturing Unit",
-    src: "/image.png",
+    src: "https://api.dicebear.com/7.x/initials/svg?seed=Daniel%20Carter&backgroundType=gradientLinear&backgroundColor=234d7e,2e5da5",
   },
   {
     id: "fallback-4",
@@ -38,7 +38,7 @@ const fallbackTestimonials = [
       "The team worked with structure, documented key decisions, and completed the required repairs without disrupting adjacent work areas.",
     name: "Aisha Mehta",
     designation: "Construction Coordinator, Client Team",
-    src: "/image.png",
+    src: "https://api.dicebear.com/7.x/initials/svg?seed=Aisha%20Mehta&backgroundType=gradientLinear&backgroundColor=234d7e,2e5da5",
   },
 ];
 

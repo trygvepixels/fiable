@@ -11,7 +11,7 @@ const fallbackHero = {
   title: "Waterproofing & Structural Repair Services in Lucknow & India",
   description:
     "Expert waterproofing, structural rehabilitation, industrial flooring & grouting for residential, commercial, and industrial projects across Lucknow, Delhi NCR & India.",
-  backgroundImages: ["/image.png"],
+  backgroundImages: ["/hero_waterproofing.png"],
   cta1Text: "Get Free Site Inspection",
   cta1Link: "/contact-us#project-form",
   cta2Text: "Request a Quote",

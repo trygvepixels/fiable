@@ -10,7 +10,7 @@ const fallbackProjects = [
     slug: "industrial-roof-waterproofing-upgrade",
     title: "Industrial Roof Waterproofing Upgrade",
     client: "Large Manufacturing Facility",
-    coverImage: "/image.png",
+    coverImage: "/project_industrial_roof.png",
     coverAlt: "Industrial roof waterproofing project",
   },
   {
@@ -18,7 +18,7 @@ const fallbackProjects = [
     slug: "structural-repair-and-concrete-rehabilitation",
     title: "Structural Repair and Concrete Rehabilitation",
     client: "Commercial Building Asset Team",
-    coverImage: "/image.png",
+    coverImage: "/project_structural_repair.png",
     coverAlt: "Structural rehabilitation and repair project",
   },
   {
@@ -26,7 +26,7 @@ const fallbackProjects = [
     slug: "epoxy-flooring-for-production-unit",
     title: "Epoxy Flooring for Production Unit",
     client: "Industrial Production Unit",
-    coverImage: "/image.png",
+    coverImage: "/project_epoxy_flooring.png",
     coverAlt: "Epoxy flooring installation project",
   },
   {
@@ -34,7 +34,7 @@ const fallbackProjects = [
     slug: "precision-grouting-for-machine-foundation",
     title: "Precision Grouting for Machine Foundation",
     client: "Heavy Equipment Installation Site",
-    coverImage: "/image.png",
+    coverImage: "/project_machine_grouting.png",
     coverAlt: "Machine foundation grouting project",
   },
 ];

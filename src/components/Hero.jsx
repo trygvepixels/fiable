@@ -10,7 +10,7 @@ import { fetchCachedJson } from "@/lib/clientCache";
 const fallbackHero = {
   title: "Waterproofing & Structural Repair Services in Lucknow & India",
   rotatingWords: ["waterproofing", "repair", "flooring", "rehabilitation"],
-  backgroundImages: ["/image.png"],
+  backgroundImages: ["/hero_waterproofing.png"],
   description:
     "Expert waterproofing, structural rehabilitation, industrial flooring & grouting for residential, commercial, and industrial projects across Lucknow, Delhi NCR & India.",
   cta1Text: "Get Free Site Inspection",

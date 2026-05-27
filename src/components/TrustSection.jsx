@@ -53,7 +53,7 @@ export default function TrustSection({ initialContent = fallbackContent }) {
           <div className="relative">
             <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl skew-y-1 hover:skew-y-0 transition-transform duration-700">
                <img 
-                 src="/image.png" 
+                 src="/trust_section.png" 
                  alt="Professional structural repair work by Fiable Building Solutions" 
                  className="w-full h-full object-cover"
                />

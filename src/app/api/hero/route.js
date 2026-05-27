@@ -10,7 +10,7 @@ export const revalidate = 300;
 export const fallbackHero = {
   title: "Engineering the future of construction",
   rotatingWords: ["waterproofing", "repair", "flooring", "rehabilitation"],
-  backgroundImages: ["/image.png"],
+  backgroundImages: ["/hero_waterproofing.png"],
   description:
     "Expert solutions for waterproofing, roof leakage repair, structural rehabilitation, and industrial flooring for residential, commercial, and industrial projects.",
   cta1Text: "Get Free Site Inspection",
