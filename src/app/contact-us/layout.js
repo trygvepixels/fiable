@@ -1,28 +1,27 @@
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
-  title: "Contact Fiable Building Solutions — Get in Touch Today",
-  description: "Reach out to Fiable Building Solutions for waterproofing, structural rehabilitation, flooring and industrial construction services. Connect via phone, email or our office to discuss your project requirements.",
+  title: "Contact Fiable Building Solutions | Lucknow, India",
+  description: "Get in touch with Fiable for waterproofing, structural repair & industrial flooring in Lucknow & India. Call, email or fill our project form for a free site inspection.",
   keywords: [
-    "contact fiable",
-    "fiable building solutions contact",
-    "construction contact India",
-    "waterproofing company contact",
-    "structural repair contractor contact"
+    "contact Fiable Building Solutions",
+    "waterproofing company contact Lucknow",
+    "construction contractor contact India",
+    "site inspection request India",
+    "waterproofing quote Lucknow"
   ],
   alternates: { canonical: `${SITE_URL}/contact-us` },
   openGraph: {
-    title: "Contact Fiable Building Solutions",
-    description: "Connect with Fiable for waterproofing, rehabilitation, flooring and industrial construction solutions. Phone, email and office support available.",
+    title: "Contact Fiable Building Solutions | Get a Free Site Inspection",
+    description: "Reach Fiable for waterproofing, rehabilitation, flooring & construction. Call, email or submit a project request. Serving Lucknow & across India.",
     url: `${SITE_URL}/contact-us`,
     type: "website",
-    locale: "en-IN"
-    // images: ["https://fiablebuilding.com/path-to-og-contact.jpg"]
+    locale: "en_IN"
   },
   twitter: {
     card: "summary",
     title: "Contact Fiable Building Solutions",
-    description: "Discuss your project with Fiable’s experts. Call, email or visit our office to get started."
+    description: "Get in touch for waterproofing, structural repair & flooring services in Lucknow & India. Free project consultation."
   },
   robots: { index: true, follow: true }
 };

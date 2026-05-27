@@ -1,28 +1,28 @@
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
-  title: "About Fiable Building Solutions — One-Stop Construction & Repair",
-  description: "Learn about Fiable Building Solutions Pvt. Ltd.: our mission, engineering-first approach, partnerships, trained workforce and quality-first processes for long-lasting construction outcomes.",
+  title: "About Fiable Building Solutions | Lucknow, India",
+  description: "Fiable Building Solutions: engineer-led waterproofing, structural rehabilitation & industrial flooring. Serving Lucknow, UP & India. Meet our team & learn our approach.",
   keywords: [
-    "about fiable",
-    "Fiable Building Solutions about",
+    "about Fiable Building Solutions",
+    "waterproofing company Lucknow",
     "construction company India",
-    "engineering excellence",
-    "waterproofing company",
-    "construction partners"
+    "engineering services UP",
+    "civil engineering firm India",
+    "construction partners Lucknow"
   ],
   alternates: { canonical: `${SITE_URL}/about-us` },
   openGraph: {
-    title: "About Fiable Building Solutions",
-    description: "Fiable combines engineering, trained personnel and modern equipment to deliver dependable waterproofing, rehabilitation and industrial construction.",
+    title: "About Fiable Building Solutions | Waterproofing & Construction Experts",
+    description: "Engineering-first waterproofing, rehabilitation & industrial flooring company based in Lucknow. Trained team, modern equipment, durable results.",
     url: `${SITE_URL}/about-us`,
     type: "website",
-    locale: "en-IN"
+    locale: "en_IN"
   },
   twitter: {
     card: "summary",
     title: "About Fiable Building Solutions",
-    description: "Engineering-first construction services with a focus on durability, safety and long-term performance."
+    description: "Engineering-first construction services — waterproofing, structural rehabilitation & flooring. Based in Lucknow, serving pan-India."
   },
   robots: { index: true, follow: true }
 };

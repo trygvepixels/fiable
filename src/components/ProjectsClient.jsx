@@ -209,14 +209,22 @@ function ProjectCard({ item }) {
 
 /* ------------------------------- page ------------------------------- */
 
-export default function ProjectsClient() {
-  const [projects, setProjects] = useState([]);
-  const [allTags, setAllTags] = useState([]);
+export default function ProjectsClient({ initialProjects }) {
+  const normalizedInitial = useMemo(() => {
+    return initialProjects ? normalizeProjects(initialProjects) : [];
+  }, [initialProjects]);
+
+  const initialTags = useMemo(() => {
+    return Array.from(new Set(normalizedInitial.flatMap((p) => (Array.isArray(p.tags) ? p.tags : []))));
+  }, [normalizedInitial]);
+
+  const [projects, setProjects] = useState(normalizedInitial);
+  const [allTags, setAllTags] = useState(initialTags);
   const [type, setType] = useState("All");
   const [q, setQ] = useState("");
   const [tag, setTag] = useState("");
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialProjects || initialProjects.length === 0);
   const [errorMsg, setErrorMsg] = useState("");
 
   const pageSize = 9;
@@ -280,8 +288,11 @@ export default function ProjectsClient() {
   }, [fetchSafely]);
 
   useEffect(() => {
+    if (initialProjects && initialProjects.length > 0) {
+      return;
+    }
     load();
-  }, [load]);
+  }, [load, initialProjects]);
 
   const filtered = useMemo(() => {
     let list = Array.isArray(projects) ? [...projects] : [];

@@ -3,25 +3,27 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function FloatingCTA() {
-  const [ctaSettings, setCtaSettings] = useState(null);
+export default function FloatingCTA({ initialSettings = null }) {
+  const [ctaSettings, setCtaSettings] = useState(initialSettings);
 
   useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const res = await fetch("/api/homepage-settings");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.floatingCta) {
-            setCtaSettings(data.floatingCta);
+    if (!initialSettings) {
+      const fetchSettings = async () => {
+        try {
+          const res = await fetch("/api/homepage-settings");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.floatingCta) {
+              setCtaSettings(data.floatingCta);
+            }
           }
+        } catch (err) {
+          console.error("Failed to fetch floating CTA settings", err);
         }
-      } catch (err) {
-        console.error("Failed to fetch floating CTA settings", err);
-      }
-    };
-    fetchSettings();
-  }, []);
+      };
+      fetchSettings();
+    }
+  }, [initialSettings]);
 
   if (ctaSettings && !ctaSettings.show) {
     return null;

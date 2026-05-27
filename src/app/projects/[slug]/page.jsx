@@ -1,13 +1,7 @@
-import { headers } from "next/headers";
 import ProjectDetailClient from "./ProjectDetailClient";
 import { SITE_URL } from "@/lib/site";
-
-function getBaseUrl() {
-  const h = headers();
-  const host = h.get("x-forwarded-host") || h.get("host");
-  const proto = h.get("x-forwarded-proto") || "http";
-  return `${proto}://${host}`;
-}
+import { connectDB } from "@/lib/mongodb";
+import FeatureProject from "@/models/FeatureProject";
 
 function normalizeOne(p = {}) {
   const isFeature = "coverImage" in p || "galleryImages" in p || "gallery" in p;
@@ -39,47 +33,17 @@ function normalizeOne(p = {}) {
   };
 }
 
-async function fetchJson(url, init) {
-  const res = await fetch(url, { cache: "no-store", ...init });
-  if (!res.ok) return { ok: false, status: res.status, data: null };
-  return { ok: true, status: 200, data: await res.json() };
-}
-
 async function getProject(slug) {
-  const base = getBaseUrl();
-  const slugLc = String(slug).toLowerCase();
-
-  const detail = await fetchJson(`${base}/api/feature-projects/${encodeURIComponent(slugLc)}`);
-  if (detail.ok && detail.data) {
-    return normalizeOne(detail.data);
+  try {
+    await connectDB();
+    const slugLc = String(slug).toLowerCase();
+    const doc = await FeatureProject.findOne({ slug: slugLc }).lean();
+    if (!doc) return null;
+    return normalizeOne(JSON.parse(JSON.stringify(doc)));
+  } catch (err) {
+    console.error("getProject direct query error:", err.message);
+    return null;
   }
-
-  const [nonFeatured, other] = await Promise.all([
-    fetchJson(`${base}/api/feature-projects`),
-    fetchJson(`${base}/api/projects`),
-  ]);
-
-  const listA = Array.isArray(nonFeatured.data?.items)
-    ? nonFeatured.data.items
-    : Array.isArray(nonFeatured.data?.data)
-      ? nonFeatured.data.data
-      : Array.isArray(nonFeatured.data)
-        ? nonFeatured.data
-        : [];
-
-  const listB = Array.isArray(other.data?.items)
-    ? other.data.items
-    : Array.isArray(other.data?.data)
-      ? other.data.data
-      : Array.isArray(other.data)
-        ? other.data
-        : [];
-
-  const hit =
-    listA.find((p) => String(p.slug || "").toLowerCase() === slugLc) ||
-    listB.find((p) => String(p.slug || "").toLowerCase() === slugLc);
-
-  return hit ? normalizeOne(hit) : null;
 }
 
 function buildProjectSchema(project, canonicalUrl) {

@@ -1,60 +1,31 @@
-"use client";
+// SSR wrapper for Hero section — Google indexes this immediately on page load.
+// The original Hero.jsx (with animations & image cycling) remains for real users.
+// This component renders the exact same H1/CTA/description as fallback content
+// but without the "use client" directive, so it is server-rendered.
 
-import { useEffect, useState } from "react";
 import { ArrowRight, Phone } from "lucide-react";
-import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchCachedJson } from "@/lib/clientCache";
 
 const fallbackHero = {
   title: "Waterproofing & Structural Repair Services in Lucknow & India",
-  rotatingWords: ["waterproofing", "repair", "flooring", "rehabilitation"],
-  backgroundImages: ["/image.png"],
   description:
     "Expert waterproofing, structural rehabilitation, industrial flooring & grouting for residential, commercial, and industrial projects across Lucknow, Delhi NCR & India.",
+  backgroundImages: ["/image.png"],
   cta1Text: "Get Free Site Inspection",
   cta1Link: "/contact-us#project-form",
   cta2Text: "Request a Quote",
   cta2Link: "/contact-us",
 };
 
-export default function Hero({ initialHero = fallbackHero }) {
-  const [hero, setHero] = useState(initialHero);
-  const [currentBg, setCurrentBg] = useState(0);
-
-  useEffect(() => {
-    let alive = true;
-
-    const loadHero = async () => {
-      try {
-        const data = await fetchCachedJson("/api/hero", {
-          key: "hero",
-          fallback: initialHero,
-          timeoutMs: 2200,
-        });
-        if (alive) setHero({ ...initialHero, ...data });
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    loadHero();
-    return () => {
-      alive = false;
-    };
-  }, [initialHero]);
-
-  useEffect(() => {
-    if (!hero?.backgroundImages?.length) return;
-    const interval = setInterval(() => {
-      setCurrentBg((prev) => (prev + 1) % hero.backgroundImages.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [hero]);
-
-  const activeImage = hero.backgroundImages?.[currentBg];
+export default function HeroSSR({ hero = fallbackHero }) {
   const heading = hero.title || fallbackHero.title;
+  const description = hero.description || fallbackHero.description;
+  const cta1Link = hero.cta1Link || fallbackHero.cta1Link;
+  const cta1Text = hero.cta1Text || fallbackHero.cta1Text;
+  const cta2Link = hero.cta2Link || fallbackHero.cta2Link;
+  const cta2Text = hero.cta2Text || fallbackHero.cta2Text;
+  const activeImage = hero.backgroundImages?.[0] || fallbackHero.backgroundImages[0];
 
   return (
     <section className="bgWarm px-4 pt-28 md:px-6 md:pt-32">
@@ -62,46 +33,37 @@ export default function Hero({ initialHero = fallbackHero }) {
         <div className="mb-4 flex justify-start">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#234D7E]/15 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[0.28em] text-[#234D7E] shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#234D7E]" />
-            Waterproofing • Repairs • Flooring
+            Waterproofing • Structural Repair • Flooring
           </span>
         </div>
 
         <div className="max-w-7xl">
-          <h1 className="text-left  text-3xl font-semibold leading-tight tracking-tight text-[#111111] md:text-5xl  ">
-            {heading}{" "}
-            {hero.rotatingWords?.length > 0 && (
-              <span className="inline-block rounded-md bg-[#234D7E] px-2 py-1 text-white">
-                <ContainerTextFlip
-                  className="font-semibold text-white"
-                  words={hero.rotatingWords}
-                />
-              </span>
-            )}
+          <h1 className="text-left text-3xl font-semibold leading-tight tracking-tight text-[#111111] md:text-5xl">
+            {heading}
           </h1>
 
           <p className="mt-5 max-w-4xl text-left text-base leading-relaxed text-[#5f6570] md:text-xl">
-            {hero.description ||
-              "Expert solutions for waterproofing, roof leakage repair, structural rehabilitation, and industrial flooring for residential, commercial, and industrial projects."}
+            {description}
           </p>
 
           <p className="mt-3 max-w-4xl text-left text-sm leading-relaxed text-[#6b7280] md:text-base">
-            Residential, commercial, and industrial execution with technical detailing,
-            durable material systems, and cleaner site delivery.
+            Serving Lucknow, Delhi NCR, Uttar Pradesh, Maharashtra & industrial
+            sites across India. Free site inspection available.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href={hero.cta1Link || "/contact-us#project-form"}
+              href={cta1Link}
               className="inline-flex items-center rounded-full bg-[#234D7E] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1b3b62]"
             >
-              {hero.cta1Text || "Get Free Site Inspection"}
+              {cta1Text}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
-              href={hero.cta2Link || "/contact-us"}
+              href={cta2Link}
               className="inline-flex items-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-50"
             >
-              {hero.cta2Text || "Request a Quote"}
+              {cta2Text}
             </Link>
             <a
               href="tel:+918069648411"
@@ -113,13 +75,12 @@ export default function Hero({ initialHero = fallbackHero }) {
           </div>
         </div>
 
-
-        <div className=" mt-6 pb-8 sm:mt-8">
+        <div className="mt-6 pb-8 sm:mt-8">
           <div className="relative h-[240px] w-full overflow-hidden rounded-[2rem] border border-black/10 bg-[#e9e3da] sm:h-[360px] md:h-[460px] lg:h-[560px]">
             {activeImage ? (
               <Image
                 src={activeImage}
-                alt={hero.title || "Fiable Building Solutions project image"}
+                alt="Fiable Building Solutions — Waterproofing & structural repair project in Lucknow"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
                 className="object-cover"
@@ -132,10 +93,7 @@ export default function Hero({ initialHero = fallbackHero }) {
             )}
           </div>
         </div>
-
       </div>
-
-      
     </section>
   );
 }

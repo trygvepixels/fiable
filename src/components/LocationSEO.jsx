@@ -1,92 +1,133 @@
-// src/components/LocationSEO.jsx
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { MapPin, ArrowRight } from "lucide-react";
+import React from "react";
+import { MapPin, ArrowRight, Phone, CheckCircle } from "lucide-react";
 import Link from "next/link";
 
-export default function LocationSEO() {
-  const [content, setContent] = useState({
-    heading: "Waterproofing Services in Lucknow",
-    body: "We provide professional waterproofing and building repair services across Lucknow and nearby areas. From Gomti Nagar to Aliganj, our expert team ensures that your home or office stays protected from water damage and structural issues.",
-  });
+const fallbackContent = {
+  heading: "Waterproofing & Structural Repair Services in Lucknow",
+  body: "We provide professional waterproofing, RCC structural rehabilitation, and industrial flooring services across Lucknow and nearby cities. From residential apartments in Gomti Nagar and Aliganj to industrial plants in Kanpur and Unnao, our expert engineering team ensures long-term building durability.",
+};
 
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const res = await fetch("/api/homepage-settings");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.locationSection) {
-            setContent(data.locationSection);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to fetch location section settings", err);
-      }
-    };
-    fetchSettings();
-  }, []);
+export default function LocationSEO({ initialContent = fallbackContent }) {
+  const content = initialContent || fallbackContent;
+
+  const hubs = [
+    { 
+      name: "Lucknow (Head Office)", 
+      desc: "Central Engineering & Site Estimations", 
+      areas: "Gomti Nagar, Aliganj, Hazratganj, Indiranagar, BKT, Kursi Road" 
+    },
+    { 
+      name: "Delhi NCR Hub", 
+      desc: "Commercial Waterproofing & Protection", 
+      areas: "Noida, Greater Noida, Gurgaon, Okhla" 
+    },
+    { 
+      name: "Kanpur / Unnao Corridor", 
+      desc: "Industrial Flooring & Concrete Repair", 
+      areas: "Dada Nagar, Unnao Industrial Area, Fazalganj" 
+    },
+    { 
+      name: "Maharashtra Operations", 
+      desc: "Factory Coatings & Polyurethane Seals", 
+      areas: "Mumbai industrial zones, Pune manufacturing hubs" 
+    }
+  ];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="relative p-12 lg:p-20 rounded-[4rem] bg-zinc-900 text-white overflow-hidden shadow-2xl">
-          {/* Background visuals */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/40 via-blue-800/20 to-transparent"></div>
-          <div className="absolute top-10 right-10 w-64 h-64 bg-blue-600 rounded-full blur-[120px] opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-blue-500 to-yellow-400 opacity-30"></div>
-
-          <div className="relative z-10 grid lg:grid-cols-5 gap-16 items-center">
-            <div className="lg:col-span-3 space-y-8">
-              <div className="inline-flex items-center gap-3 text-yellow-400 font-mono text-sm tracking-widest uppercase">
-                <MapPin className="w-5 h-5" />
-                <span>Regional Expertise - Uttar Pradesh</span>
+    <section className="bgWarm py-20 border-t border-black/5 text-[#101010] antialiased">
+      <div className="mx-auto max-w-7xl px-5">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          
+          {/* Left Content Card */}
+          <div className="rounded-[2.5rem] border border-black/10 bg-white p-8 md:p-12 shadow-[0_12px_40px_rgba(17,17,17,0.04)] flex flex-col justify-between">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#234D7E]/5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#234D7E]">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>Regional Operational Coverage</span>
               </div>
               
-              <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#111111] leading-tight max-w-2xl">
                 {content.heading}
               </h2>
               
-              <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl">
+              <p className="text-base md:text-lg leading-relaxed text-neutral-650 max-w-3xl">
                 {content.body}
               </p>
 
-              <div className="flex flex-wrap gap-4 pt-6">
-                <Link 
-                  href="/contact-us"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-3xl font-bold flex items-center gap-3 transition-all hover:scale-105"
-                >
-                  Find Us in Lucknow
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <a 
-                  href="tel:+918069648411"
-                  className="border-2 border-zinc-700 hover:border-zinc-500 text-white px-10 py-5 rounded-3xl font-bold flex items-center gap-3 transition-all"
-                >
-                  Call Now
-                </a>
+              {/* Local benefits E-E-A-T */}
+              <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-gray-900 text-sm">Lucknow Field Office</h4>
+                    <p className="text-xs text-neutral-500 mt-0.5">On-demand wet area diagnostics & site inspections.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-gray-900 text-sm">UP & NCR Mobilization</h4>
+                    <p className="text-xs text-neutral-500 mt-0.5">Rapid dispatch of engineering workforce & machinery.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="lg:col-span-2 relative">
-               {/* Minimal abstract representation of Map/Location */}
-               <div className="aspect-square bg-zinc-800 rounded-[3rem] p-8 relative group cursor-crosshair">
-                 <div className="absolute inset-8 border border-zinc-700 rounded-[2rem] group-hover:border-blue-500/50 transition-colors duration-500"></div>
-                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="relative w-24 h-24">
-                       <div className="absolute inset-0 bg-blue-600 rounded-full animate-ping opacity-20"></div>
-                       <div className="relative z-10 w-full h-full bg-blue-600 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(37,99,235,0.5)]">
-                         <MapPin className="w-10 text-white" />
-                       </div>
-                    </div>
-                 </div>
-                 {/* City labels */}
-                 <div className="absolute top-1/4 right-1/4 text-xs font-bold text-zinc-500 tracking-widest">LKO</div>
-                 <div className="absolute bottom-1/4 left-1/4 text-xs font-bold text-zinc-500 tracking-widest">KNP</div>
-               </div>
+            <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-gray-100">
+              <Link 
+                href="/contact-us"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#234D7E] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105 shadow-md hover:shadow-lg"
+              >
+                <span>Find Us in Lucknow</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <a 
+                href="tel:+918069648411"
+                className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-8 py-4 text-sm font-semibold text-[#111111] transition hover:bg-neutral-50"
+              >
+                <Phone className="w-4 h-4 text-[#234D7E]" />
+                <span>Call Estimator</span>
+              </a>
             </div>
           </div>
+
+          {/* Right Visual Card */}
+          <div className="rounded-[2.5rem] border border-black/10 bg-white p-8 shadow-[0_12px_40px_rgba(17,17,17,0.04)] flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-blue-50/20 to-transparent">
+            {/* Background Map Visual */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#101010 1px, transparent 1px)", backgroundSize: "16px 16px" }}></div>
+            
+            <div className="space-y-4 relative z-10">
+              <div className="text-xs font-semibold text-neutral-400 uppercase tracking-widest">Active Serving Nodes</div>
+              <h3 className="text-xl font-bold text-gray-900">Regional Serving Hubs</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">We maintain full capability control at our central engineering centers to guarantee uniform project quality across cities.</p>
+            </div>
+
+            <div className="mt-6 space-y-4 relative z-10">
+              {hubs.map((hub, idx) => (
+                <div key={hub.name} className="flex gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100 hover:border-[#234D7E]/20 transition-all duration-300">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#234D7E]/10 flex items-center justify-center text-[#234D7E] font-bold text-xs">
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 text-sm flex items-center gap-1.5">
+                      {hub.name}
+                      {idx === 0 && <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-ping"></span>}
+                    </h4>
+                    <p className="text-xs text-[#234D7E] mt-0.5 font-medium">{hub.desc}</p>
+                    <p className="text-[11px] text-neutral-500 mt-1 leading-relaxed">{hub.areas}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Accent Footer Decoration */}
+            <div className="mt-6 flex items-center justify-between text-[11px] text-neutral-400 font-medium pt-4 border-t border-gray-100">
+              <span>EST. 2019</span>
+              <span>•</span>
+              <span>VERIFIED GSTIN IN UP & MH</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

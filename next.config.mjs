@@ -1,36 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    qualities: [88],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-        port: '',
         pathname: '/**',
       },
     ],
-  },
-  async redirects() {
-    return [
-      {
-        source: '/about',
-        destination: '/',
-        permanent: true,
-      },
-    ];
   },
 };
 

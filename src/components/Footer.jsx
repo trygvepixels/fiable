@@ -1,12 +1,15 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { 
   Phone, 
   Mail, 
   ExternalLink,
   Building,
   Wrench,
+  MapPin,
+  Clock,
 } from "lucide-react";
 import { 
   FaLinkedin, 
@@ -86,22 +89,22 @@ export default function Footer() {
                 </h4>
                 <nav className="space-y-4">
                   {[
-                    ["Waterproofing Services", "#waterproofing"],
-                    ["Structural Refurbishment", "#structural"],
-                    ["Industrial Flooring Systems", "#flooring"],
-                    ["Industrial Grouting Services", "#grouting"],
-                    ["Concrete Cutting & Demolition", "#cutting"],
-                    ["Anchor/Rebar Services", "#anchor"],
-                    ["Civil Construction", "#civil"],
+                    ["Waterproofing Services", "/services/waterproofing-services"],
+                    ["Structural Refurbishment", "/services/structural-rehabilitation"],
+                    ["Industrial Flooring Systems", "/services/industrial-flooring-systems"],
+                    ["Industrial Grouting Services", "/services/industrial-grouting-services"],
+                    ["Concrete Cutting & Demolition", "/services/concrete-cutting-demolition"],
+                    ["Anchor/Rebar Services", "/services/anchor-rebar-services"],
+                    ["Civil Construction", "/services/civil-construction"],
                   ].map(([label, href]) => (
-                    <p
+                    <Link
                       key={label}
-                      // href={href}
+                      href={href}
                       className="group flex items-center text-[#5f6570] transition-colors duration-200 hover:text-[#111111]"
                     >
                       <span className="mr-0 h-px w-0 bg-[#234D7E] transition-all duration-200 group-hover:mr-3 group-hover:w-2"></span>
                       {label}
-                    </p>
+                    </Link>
                   ))}
                 </nav>
  
@@ -147,27 +150,29 @@ export default function Footer() {
                     </div>
                   </div>
 
-                  {/* <div className="flex items-start gap-4 group">
-                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-all">
-                      <MapPin className="h-5 w-5 text-orange-400" />
+                  <div className="flex items-start gap-4 group">
+                    <div className="rounded-xl border border-black/10 bg-white p-2 transition-all group-hover:border-[#234D7E]/20">
+                      <MapPin className="h-5 w-5 text-[#234D7E]" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-sm mb-1">Registered Office</p>
-                      <p className="text-white font-medium leading-relaxed">
-                        728, Phase 2, Khasra No. 21, Eden Enclave, Kursi Road, Gudumba BKT, Lucknow-226026, Uttar Pradesh (INDIA)
+                      <p className="mb-1 text-sm text-[#5f6570]">Registered Office</p>
+                      <p className="text-sm font-medium text-[#111111] leading-relaxed">
+                        728, Phase 2, Khasra No. 21, Eden Enclave,<br />
+                        Kursi Road, Gudumba BKT,<br />
+                        Lucknow – 226026, Uttar Pradesh, India
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4 group">
-                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-all">
-                      <Clock className="h-5 w-5 text-purple-400" />
+                    <div className="rounded-xl border border-black/10 bg-white p-2 transition-all group-hover:border-[#234D7E]/20">
+                      <Clock className="h-5 w-5 text-[#234D7E]" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-sm mb-1">Business Hours</p>
-                      <p className="text-white font-medium">Mon–Sat, 9:00am–7:00pm IST</p>
+                      <p className="mb-1 text-sm text-[#5f6570]">Business Hours</p>
+                      <p className="font-medium text-[#111111]">Mon–Sat, 9:00 am – 7:00 pm IST</p>
                     </div>
-                  </div> */}
+                  </div>
 
                 </div>
 

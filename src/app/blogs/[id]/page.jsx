@@ -1,16 +1,16 @@
 import { notFound } from "next/navigation";
 import BlogsClientUI from "@/components/BlogsClientUI";
 import { SITE_URL } from "@/lib/site";
+import { connectDB } from "@/lib/mongodb";
+import Blog from "@/models/Blog";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const API_BASE = SITE_URL;
-
 function getCanonicalUrl(blog, id) {
   if (blog?.canonicalUrl) return blog.canonicalUrl;
   const slug = blog?.urlSlug || id;
-  return `${API_BASE}/blogs/${slug}`;
+  return `${SITE_URL}/blogs/${slug}`;
 }
 
 function buildBlogSchema(blog, canonicalUrl) {
@@ -29,7 +29,7 @@ function buildBlogSchema(blog, canonicalUrl) {
       name: "Fiable Building Solutions",
       logo: {
         "@type": "ImageObject",
-        url: `${API_BASE}/logo.png`,
+        url: `${SITE_URL}/logo.png`,
       },
     },
     datePublished: blog?.createdAt,
@@ -40,11 +40,19 @@ function buildBlogSchema(blog, canonicalUrl) {
 
 async function getBlog(id) {
   try {
-    const res = await fetch(`${API_BASE}/api/blogs/${id}`, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to fetch blog");
-    return await res.json();
+    await connectDB();
+    const blog = await Blog.findOne({ urlSlug: id }).lean();
+    if (!blog) {
+      // Fallback: If id is a valid hex MongoDB ObjectId, check by ID
+      if (id && id.match(/^[0-9a-fA-F]{24}$/)) {
+        const byId = await Blog.findById(id).lean();
+        if (byId) return JSON.parse(JSON.stringify(byId));
+      }
+      return null;
+    }
+    return JSON.parse(JSON.stringify(blog));
   } catch (err) {
-    console.error("getBlog error:", err.message);
+    console.error("getBlog direct query error:", err.message);
     return null;
   }
 }

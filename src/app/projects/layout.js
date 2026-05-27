@@ -1,27 +1,27 @@
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
-  title: "Projects — Case Studies & Completed Works | Fiable Building Solutions",
-  description: "Browse Fiable's portfolio of waterproofing, structural retrofitting, flooring and industrial repair projects. Real-world case studies demonstrating durability, technical rigor and timely delivery.",
+  title: "Projects & Case Studies | Fiable Building Solutions India",
+  description: "Browse Fiable's completed waterproofing, structural rehabilitation & flooring projects. Real case studies with before-after outcomes across Lucknow, Delhi NCR & India.",
   keywords: [
-    "fiable projects",
-    "case studies",
-    "waterproofing projects",
-    "structural retrofitting projects",
-    "industrial flooring portfolio"
+    "waterproofing projects Lucknow",
+    "structural rehabilitation case studies India",
+    "industrial flooring portfolio",
+    "construction project examples India",
+    "Fiable completed projects"
   ],
   alternates: { canonical: `${SITE_URL}/projects` },
   openGraph: {
-    title: "Fiable Building Solutions — Case Studies & Portfolio",
-    description: "Explore completed projects showcasing Fiable's technical approach to waterproofing, flooring and structural rehabilitation with warranty-backed outcomes.",
+    title: "Construction Project Portfolio | Fiable Building Solutions",
+    description: "Explore Fiable's completed waterproofing, flooring & structural repair projects across Lucknow, Delhi NCR & India.",
     url: `${SITE_URL}/projects`,
     type: "website",
-    locale: "en-IN"
+    locale: "en_IN"
   },
   twitter: {
-    card: "summary",
-    title: "Fiable Building Solutions",
-    description: "Portfolio and case studies of waterproofing, rehabilitation, flooring and industrial repair works."
+    card: "summary_large_image",
+    title: "Fiable Building Solutions — Project Portfolio",
+    description: "Case studies of waterproofing, rehabilitation, flooring & industrial repair works across India."
   },
   robots: { index: true, follow: true }
 };

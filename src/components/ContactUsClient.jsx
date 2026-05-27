@@ -14,6 +14,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import ContactForm from "@/components/ContactForm";
 import LocationsList from "@/components/LocationsList";
+import OfficeMapSection from "@/components/OfficeMapSection";
 import Link from "next/link";
 
 export default function ContactUsClient() {
@@ -189,21 +190,44 @@ export default function ContactUsClient() {
                 </a>
 
                 <div className="flex items-start gap-3 p-3">
-                  <FiMapPin className="mt-0.5 text-[#234D7E]" />
+                  <FiMapPin className="mt-0.5 text-[#234D7E] flex-shrink-0" />
                   <div>
-                    <div className="font-medium">Service Areas</div>
+                    <div className="font-semibold text-gray-900">Service Areas</div>
                     <div className="text-neutral-700">
                       Uttar Pradesh, Delhi NCR, Maharashtra & across India
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3">
-                  <FiClock className="mt-0.5 text-[#234D7E]" />
+                <div className="flex items-start gap-3 p-3 border-t border-gray-100 mt-2 pt-4">
+                  <FiMapPin className="mt-1 text-[#234D7E] flex-shrink-0" />
                   <div>
-                    <div className="font-medium">Response Time</div>
+                    <div className="font-semibold text-gray-900">Registered Office</div>
+                    <div className="text-neutral-700 mt-1 leading-relaxed text-sm">
+                      728, Phase 2, Khasra No. 21, Eden Enclave, Kursi Road, Gudumba BKT, Lucknow - 226026
+                    </div>
+                    <div className="text-xs text-neutral-500 mt-1 font-mono">
+                      CIN: U45309UP2019PTC118128
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3">
+                  <FiClock className="mt-0.5 text-[#234D7E] flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold text-gray-900">Response Time</div>
                     <div className="text-neutral-700">
                       Within 24 hours (Monday-Saturday)
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3">
+                  <FiClock className="mt-0.5 text-[#234D7E] flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold text-gray-900">Business Hours</div>
+                    <div className="text-neutral-700 text-sm">
+                      Monday - Saturday: 9:00 AM - 7:00 PM IST
                     </div>
                   </div>
                 </div>
@@ -248,6 +272,13 @@ export default function ContactUsClient() {
 
           <div className="mt-12">
             <LocationsList />
+          </div>
+
+          <div className="mt-16 pt-8 border-t border-black/10">
+            <OfficeMapSection
+              title="Visit Fiable's Registered Office"
+              body="Discuss your waterproofing, structural repair, or flooring scope in detail with our engineering estimators at our Lucknow head office."
+            />
           </div>
         </div>
       </section>

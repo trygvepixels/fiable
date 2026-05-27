@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Users,
@@ -47,28 +45,13 @@ const cards = [
   },
 ];
 
-export default function WhyChooseUsFiable() {
-  const [content, setContent] = React.useState({
-    heading: "Why choose",
-    highlight: "Fiable Building Solutions?",
-  });
+const fallbackContent = {
+  heading: "Why choose",
+  highlight: "Fiable Building Solutions?",
+};
 
-  React.useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const res = await fetch("/api/homepage-settings");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.whyChooseUsSection) {
-            setContent(data.whyChooseUsSection);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to fetch why choose us section settings", err);
-      }
-    };
-    fetchSettings();
-  }, []);
+export default function WhyChooseUsFiable({ initialContent = fallbackContent }) {
+  const content = initialContent || fallbackContent;
 
   return (
     <section className="bgWarm px-5 py-10 md:py-20">

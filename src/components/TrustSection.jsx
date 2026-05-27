@@ -1,31 +1,13 @@
-// src/components/TrustSection.jsx
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ShieldCheck, Award, HeartHandshake } from "lucide-react";
 
-export default function TrustSection() {
-  const [content, setContent] = useState({
-    heading: "Reliable Building Repair & Waterproofing Experts",
-    body: "We specialize in delivering high-quality waterproofing services, structural repair, and concrete rehabilitation solutions. With years of experience and advanced techniques, we ensure long-lasting protection and durability for your structures.",
-  });
+const fallbackContent = {
+  heading: "Reliable Building Repair & Waterproofing Experts",
+  body: "We specialize in delivering high-quality waterproofing services, structural repair, and concrete rehabilitation solutions. With years of experience and advanced techniques, we ensure long-lasting protection and durability for your structures.",
+};
 
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const res = await fetch("/api/homepage-settings");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.trustSection) {
-            setContent(data.trustSection);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to fetch trust section settings", err);
-      }
-    };
-    fetchSettings();
-  }, []);
+export default function TrustSection({ initialContent = fallbackContent }) {
+  const content = initialContent || fallbackContent;
 
   return (
     <section className="py-20 bg-gray-50/50">
@@ -47,21 +29,21 @@ export default function TrustSection() {
 
             <div className="flex flex-wrap gap-8 pt-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                <div className="w-12 h-12 bg-[#234D7E] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">Proven Track Record</h4>
+                  <h3 className="font-bold text-gray-900 text-base">Proven Track Record</h3>
                   <p className="text-sm text-gray-500 underline decoration-blue-200">High-quality execution</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-[#234D7E] rounded-2xl flex items-center justify-center text-black shadow-lg shadow-yellow-100">
+                <div className="w-12 h-12 bg-[#234D7E] rounded-2xl flex items-center justify-center text-white shadow-lg">
                   <HeartHandshake className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">Expert Guidance</h4>
+                  <h3 className="font-bold text-gray-900 text-base">Expert Guidance</h3>
                   <p className="text-sm text-gray-500 underline decoration-yellow-200">Engineer-led solutions</p>
                 </div>
               </div>
@@ -72,7 +54,7 @@ export default function TrustSection() {
             <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl skew-y-1 hover:skew-y-0 transition-transform duration-700">
                <img 
                  src="/image.png" 
-                 alt="Professional structural repair work" 
+                 alt="Professional structural repair work by Fiable Building Solutions" 
                  className="w-full h-full object-cover"
                />
             </div>

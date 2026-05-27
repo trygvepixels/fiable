@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
+import ServiceLeadPopup from "@/components/ServiceLeadPopup";
 import { SITE_URL } from "@/lib/site";
 
 const geistSans = localFont({
@@ -51,45 +52,46 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Fiable Building Solutions — Engineering the Future of Construction",
+    default: "Waterproofing & Construction Services in India | Fiable",
     template: "%s | Fiable Building Solutions",
   },
-  description: "Fiable Building Solutions delivers professional waterproofing, structural rehabilitation, industrial flooring and grouting across India. 10+ years of engineering excellence and warranty-backed delivery.",
+  description: "Expert waterproofing, structural rehabilitation & industrial flooring across Lucknow, Delhi NCR & India. 100+ projects. Get a free site inspection today.",
   keywords: [
-    "Fiable Building Solutions",
     "waterproofing services India",
-    "structural rehabilitation",
+    "waterproofing services Lucknow",
+    "structural rehabilitation India",
     "industrial flooring company",
-    "civil engineering contractors",
-    "grouting and anchoring",
-    "construction refurbishing",
-    "epoxy flooring Pune",
-    "waterproofing consultants"
+    "civil engineering contractors India",
+    "grouting services Lucknow",
+    "epoxy flooring Lucknow",
+    "construction repair company India",
+    "waterproofing contractors Delhi NCR",
+    "Fiable Building Solutions",
   ],
   alternates: { 
-    canonical: "/" 
+    canonical: SITE_URL
   },
   openGraph: {
-    title: "Fiable Building Solutions — Specialized Engineering Services",
-    description: "Reliable waterproofing, structural refurbishment and industrial flooring. Precision and durability with 10+ years track record in India.",
+    title: "Waterproofing & Construction Services in India | Fiable Building Solutions",
+    description: "Expert waterproofing, structural rehabilitation & industrial flooring. 100+ projects across Lucknow, Delhi NCR & India. Call for free inspection.",
     url: `${SITE_URL}/`,
     siteName: "Fiable Building Solutions",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/logo2.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Fiable Building Solutions",
+        alt: "Fiable Building Solutions — Waterproofing & Construction Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fiable Building Solutions — Engineering & Construction Experts",
-    description: "Specialized in professional waterproofing, flooring and structural rehabilitation across India.",
-    images: ["/logo2.png"],
+    title: "Waterproofing & Construction Services | Fiable Building Solutions",
+    description: "Professional waterproofing, flooring & structural rehabilitation across Lucknow, Delhi NCR & India.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -131,6 +133,7 @@ export default function RootLayout({ children }) {
           })(window,document,'script','dataLayer','GTM-M8CFKWZT');`}
         </Script>
         <Header/>
+        <ServiceLeadPopup />
         <main>{children}</main>
         <Footer/>
       </body>

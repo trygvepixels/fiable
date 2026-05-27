@@ -67,12 +67,17 @@ function JobDescription({ description }) {
   return <div>{elements}</div>;
 }
 
-export default function JobsList() {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function JobsList({ initialJobs }) {
+  const [jobs, setJobs] = useState(initialJobs || []);
+  const [loading, setLoading] = useState(!initialJobs || initialJobs.length === 0);
   const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
+    if (initialJobs && initialJobs.length > 0) {
+      setJobs(initialJobs);
+      setLoading(false);
+      return;
+    }
     async function fetchJobs() {
       try {
         const res = await fetch("/api/jobs");
@@ -86,7 +91,7 @@ export default function JobsList() {
       }
     }
     fetchJobs();
-  }, []);
+  }, [initialJobs]);
 
   if (loading) {
     return (
@@ -116,7 +121,7 @@ export default function JobsList() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {jobs.map((job) => (
           <button
-            key={job._id}
+            key={job._id || job.id}
             onClick={() => setSelectedJob(job)}
             className="group text-left rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300"
           >
@@ -135,7 +140,7 @@ export default function JobsList() {
             <p className="text-sm text-gray-600 mb-4 line-clamp-3">
               {job.description
                 ? job.description.slice(0, 120) + (job.description.length > 120 ? "..." : "")
-                : "No description provided."}
+                : job.blurb || "No description provided."}
             </p>
 
             <div className="space-y-2">
@@ -205,7 +210,7 @@ export default function JobsList() {
             <div className="mb-8">
               <h4 className="text-lg font-semibold text-gray-900 mb-4">Job Description</h4>
               <div className="prose prose-sm text-gray-700 leading-relaxed">
-                <JobDescription description={selectedJob.description} />
+                <JobDescription description={selectedJob.description || selectedJob.blurb} />
               </div>
             </div>
 
@@ -224,13 +229,12 @@ export default function JobsList() {
             {/* Apply Section */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="mailto:enquiry@fiableprojects.com?subject=Application for {selectedJob.title}&body=Dear Fiable Building Solutions Team,%0D%0A%0D%0AI am interested in applying for the {selectedJob.title} position. Please find my resume attached.%0D%0A%0D%0ABest regards"
+                href={`mailto:enquiry@fiableprojects.com?subject=Application for ${selectedJob.title}&body=Dear Fiable Building Solutions Team,%0D%0A%0D%0AI am interested in applying for the ${selectedJob.title} position. Please find my resume attached.%0D%0A%0D%0ABest regards`}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#234D7E] to-[#234D7E] text-white rounded-xl font-semibold hover:from-[#234D7E] hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
               >
                 <FiMail className="w-5 h-5" />
                 Apply Now
               </a>
-               
             </div>
 
             {/* Contact Info */}

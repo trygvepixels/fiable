@@ -1,4 +1,4 @@
-"use client";
+// src/components/OfficeMapSection.jsx
 
 import { MapPin, ArrowUpRight, Phone } from "lucide-react";
 

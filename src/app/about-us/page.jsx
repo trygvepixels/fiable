@@ -10,6 +10,7 @@ import {
 import Milestones from "@/components/Milestones.jsx";
 import TeamSection from "./TeamSection.jsx";
 import OfficeMapSection from "@/components/OfficeMapSection";
+import { SITE_URL } from "@/lib/site";
 
 const stats = [
   { label: "Founded", value: "2019" },
@@ -19,16 +20,16 @@ const stats = [
 ];
 
 const specialties = [
-  "Terrace waterproofing",
-  "Basement protection",
-  "Structural rehabilitation",
-  "Injection grouting",
-  "Epoxy flooring",
-  "PU flooring systems",
-  "Machine foundation grouting",
-  "Concrete repair",
-  "Industrial maintenance works",
-  "Civil strengthening packages",
+  { label: "Terrace waterproofing", href: "/services/waterproofing-services" },
+  { label: "Basement protection", href: "/services/waterproofing-services" },
+  { label: "Structural rehabilitation", href: "/services/structural-rehabilitation" },
+  { label: "Injection grouting", href: "/services/industrial-grouting-services" },
+  { label: "Epoxy flooring", href: "/services/industrial-flooring-systems" },
+  { label: "PU flooring systems", href: "/services/industrial-flooring-systems" },
+  { label: "Machine foundation grouting", href: "/services/industrial-grouting-services" },
+  { label: "Concrete repair", href: "/services/structural-rehabilitation" },
+  { label: "Industrial maintenance", href: "/services" },
+  { label: "Civil strengthening", href: "/services" },
 ];
 
 const principles = [
@@ -49,15 +50,48 @@ const principles = [
   },
 ];
 
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Fiable Building Solutions",
+  "url": `${SITE_URL}/about-us`,
+  "description": "Fiable Building Solutions is an engineering-led waterproofing, structural rehabilitation, and industrial flooring company based in Lucknow, India.",
+  "mainEntity": {
+    "@id": `${SITE_URL}#organization`,
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Us",
+        "item": `${SITE_URL}/about-us`,
+      },
+    ],
+  },
+};
+
 export default function AboutPage() {
   return (
-    <section className="bgWarm text-[#101010]">
+    <section className="bgWarm text-[#101010] antialiased">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+
       <div className="fixed bottom-5 right-5 z-20">
         <Link href="/contact-us#project-form">
           <button className="group relative flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#234D7E] to-[#2c4a7d] px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:from-[#365a99] hover:to-[#1e3d6f]">
             <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-700 ease-in-out group-hover:translate-x-[100%]" />
             <span className="relative z-10">
-              Start <span className="font-bold text-[# ]">Project</span>
+              Start <span className="font-bold">Project</span>
             </span>
             <svg
               className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
@@ -85,32 +119,31 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-16 md:pb-16 md:pt-24">
           <div className="flex items-center gap-2 text-sm tracking-wide text-neutral-700">
-            <FiGlobe className="shrink-0" />
-            <span>Waterproofing, structural repair and industrial execution</span>
+            <FiGlobe className="shrink-0 animate-spin-slow" />
+            <span>Certified Waterproofing & Concrete Rehabilitation Company</span>
           </div>
 
-          <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight text-[#111111] md:text-5xl">
-            Fiable Building Solutions
+          <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-[#111111] md:text-5xl max-w-4xl">
+            Expert Waterproofing & Structural Repair Company in Lucknow, India
           </h1>
+          <p className="mt-1 text-sm font-semibold tracking-[0.12em] text-[#234D7E] uppercase">
+            About Fiable Building Solutions
+          </p>
 
-          <p className="mt-5 max-w-3xl text-[17px] text-neutral-700 md:text-lg">
-            Fiable Building Solutions delivers waterproofing, rehabilitation,
-            industrial flooring and repair packages with a practical,
-            engineer-first approach. We work across residential, commercial and
-            industrial sites where precision, durability and site discipline
-            matter more than presentation alone.
+          <p className="mt-5 max-w-3xl text-[17px] leading-relaxed text-neutral-700 md:text-lg">
+            Fiable Building Solutions delivers professional waterproofing, RCC structural rehabilitation, industrial epoxy flooring, and civil repair packages with a practical, engineer-first approach. We operate across residential, commercial, and industrial sites where engineering precision, site safety, and long-term durability matter more than short-term cosmetic patchworks.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="tel:+918069648411"
-              className="inline-flex items-center gap-2 rounded-full bg-[#234D7E] px-5 py-3 text-sm text-white transition hover:opacity-90 md:text-[15px]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#234D7E] px-6 py-3.5 text-sm font-semibold text-white transition hover:opacity-90 shadow-sm"
             >
-              +91 8069648411
+              Call +91 8069648411
             </a>
             <Link
               href="/contact-us"
-              className="inline-flex items-center gap-2 rounded-full border border-[#101010] px-5 py-3 text-sm transition hover:bg-black hover:text-white md:text-[15px]"
+              className="inline-flex items-center gap-2 rounded-full border border-[#101010] bg-white px-6 py-3.5 text-sm font-semibold transition hover:bg-black hover:text-white shadow-sm"
             >
               Contact the team
             </Link>
@@ -123,35 +156,35 @@ export default function AboutPage() {
           {stats.map((stat) => (
             <li
               key={stat.label}
-              className="rounded-2xl border border-black/10 bg-white p-5"
+              className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm"
             >
               <div className="text-xs uppercase tracking-wide text-neutral-500">
                 {stat.label}
               </div>
-              <div className="mt-1 font-semibold">{stat.value}</div>
+              <div className="mt-1 font-semibold text-[#111111]">{stat.value}</div>
             </li>
           ))}
         </ul>
       </div>
 
       <div className="mx-auto max-w-7xl px-5 pb-6">
-        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-          <div className="flex items-center gap-2">
-            <FiCheckCircle />
-            <h2 className="text-2xl font-semibold">Expertise & Specialties</h2>
+        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm">
+          <div className="flex items-center gap-2 text-[#234D7E]">
+            <FiCheckCircle className="h-5 w-5" />
+            <h2 className="text-2xl font-semibold text-gray-900">Expertise & Specialties</h2>
           </div>
-          <p className="mt-2 text-neutral-700">
-            We take on performance-critical scopes where water ingress,
-            deteriorated concrete, failing floors, and long-term maintenance
-            issues need structured solutions rather than ad-hoc fixes.
+          <p className="mt-2 text-neutral-600">
+            We specialize in executing performance-critical packages where water ingress, decayed reinforcement concrete, worn factory flooring, or deep chemical dampness need structured civil engineering methods:
           </p>
           <ul className="mt-5 flex flex-wrap gap-2">
-            {specialties.map((tag) => (
-              <li
-                key={tag}
-                className="rounded-full border border-black/10 bg-[#F4F1EC] px-3 py-1.5 text-sm"
-              >
-                {tag}
+            {specialties.map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  className="inline-block rounded-full border border-black/10 bg-[#F4F1EC] hover:bg-[#234D7E] hover:text-white px-4 py-2 text-sm transition"
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -159,53 +192,105 @@ export default function AboutPage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-5 pb-6">
-        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-          <div className="flex items-center gap-2">
-            <FiUsers />
-            <h2 className="text-2xl font-semibold">How Fiable Works</h2>
+        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm">
+          <div className="flex items-center gap-2 text-[#234D7E]">
+            <FiUsers className="h-5 w-5" />
+            <h2 className="text-2xl font-semibold text-gray-900">How Fiable Works</h2>
           </div>
-          <p className="mt-2 max-w-3xl text-neutral-700">
-            Our delivery model is built around technical diagnosis, methodical
-            planning, and accountable execution on site. The goal is simple:
-            solve the actual problem and leave the asset in a stronger state.
+          <p className="mt-2 max-w-3xl text-neutral-600">
+            Our delivery process is built on precise structural diagnostics, transparent planning, and disciplined site application. Every project is engineered to resolve root seepage causes and extend structural lifespan.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {principles.map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-black/10 bg-[#fffdf9] p-5"
+                className="rounded-2xl border border-black/10 bg-[#fffdf9] p-5 shadow-sm"
               >
                 <div className="text-[18px] text-[#234D7E]">{item.icon}</div>
                 <h3 className="mt-3 text-lg font-semibold text-[#111111]">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-700">
+                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
                   {item.body}
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 flex justify-start">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-[#234D7E] font-semibold hover:underline"
+            >
+              See our completed projects
+              <FiChevronRight />
+            </Link>
           </div>
         </div>
       </div>
 
       <Milestones />
 
+      {/* Areas We Serve & Partners Trust Section */}
       <div className="mx-auto max-w-7xl px-5 pb-6">
-        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-          <div className="flex items-center gap-2">
-            <FiUsers />
-            <h2 className="text-2xl font-semibold">Leadership & Team</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm space-y-4">
+            <h2 className="text-xl font-bold text-gray-900">Areas We Serve</h2>
+            <p className="text-sm text-neutral-600 leading-relaxed">
+              Fiable&apos;s specialist engineering and application teams are physically based in Lucknow and systematically execute projects across:
+            </p>
+            <ul className="text-sm text-neutral-700 space-y-1">
+              <li>• Lucknow (Hazratganj, Gomti Nagar, Aliganj, Kursi Road)</li>
+              <li>• Delhi NCR (Noida, Greater Noida, Gurgaon, Delhi)</li>
+              <li>• Uttar Pradesh (Kanpur, Unnao, Varanasi, Prayagraj)</li>
+              <li>• Maharashtra (Mumbai, Pune industrial belts)</li>
+            </ul>
           </div>
-          <p className="mt-2 max-w-3xl text-neutral-700">
-            Every Fiable project depends on coordinated execution between site
-            teams, engineers, supervisors, and client-side stakeholders. The
-            people behind the work are central to the result.
+
+          <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm space-y-4">
+            <h2 className="text-xl font-bold text-gray-900">Approved Material Partners</h2>
+            <p className="text-sm text-neutral-600 leading-relaxed">
+              We coordinate directly with leading chemical product manufacturers in India to specify high-durability systems backed by standard product performance warranties:
+            </p>
+            <p className="text-xs font-semibold text-[#234D7E] uppercase tracking-wider">
+              Sika India • Dr. Fixit (Pidilite) • Fosroc Chemicals • Mapei India • BASF
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 pb-6">
+        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm">
+          <div className="flex items-center gap-2 text-[#234D7E]">
+            <FiUsers className="h-5 w-5" />
+            <h2 className="text-2xl font-semibold text-gray-900">Leadership & Team</h2>
+          </div>
+          <p className="mt-2 max-w-3xl text-neutral-600">
+            Fiable&apos;s strength lies in our unified field and office leadership. Coordinated by professional civil engineers, project estimators, and experienced site managers, we deliver a disciplined execution structure from start to finish.
           </p>
         </div>
       </div>
 
       <TeamSection />
+
+      {/* Registered Office Details */}
+      <div className="mx-auto max-w-7xl px-5 pb-6">
+        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm space-y-3">
+          <h2 className="text-lg font-bold text-gray-900">Registered Office</h2>
+          <p className="text-sm text-neutral-600 leading-relaxed">
+            Fiable Building Solutions Private Limited is registered in Lucknow, Uttar Pradesh:
+          </p>
+          <p className="text-sm font-medium text-neutral-800">
+            728, Phase 2, Khasra No. 21, Eden Enclave, Kursi Road, Gudumba BKT, Lucknow – 226026, Uttar Pradesh, India
+          </p>
+          <div className="text-xs text-neutral-500 pt-2 border-t border-gray-100 flex gap-4">
+            <span>CIN: U45309UP2019PTC118128</span>
+            <span>•</span>
+            <span>GSTIN Verified</span>
+          </div>
+        </div>
+      </div>
 
       <OfficeMapSection
         title="Visit Fiable and Discuss Your Project"

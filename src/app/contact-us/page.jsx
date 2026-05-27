@@ -8,6 +8,35 @@ import {
   SITE_URL,
 } from "@/lib/site";
 
+export const metadata = {
+  title: "Contact Fiable Building Solutions | Waterproofing & Structural Repair Lucknow",
+  description: "Get a free project quote from India's trusted construction specialists. Contact Fiable Building Solutions for professional waterproofing, structural rehabilitation, and industrial flooring in Lucknow, Delhi NCR, and nationwide.",
+  alternates: {
+    canonical: `${SITE_URL}/contact-us`,
+  },
+  openGraph: {
+    title: "Contact Fiable Building Solutions | Waterproofing & Structural Repair Lucknow",
+    description: "Get a free project quote from India's trusted construction specialists. Contact Fiable Building Solutions for professional waterproofing, structural rehabilitation, and industrial flooring in Lucknow, Delhi NCR, and nationwide.",
+    url: `${SITE_URL}/contact-us`,
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: `${SITE_URL}/logo2.png`,
+        width: 800,
+        height: 600,
+        alt: "Fiable Building Solutions Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Fiable Building Solutions | Waterproofing & Structural Repair Lucknow",
+    description: "Get a free project quote from India's trusted construction specialists. Contact Fiable Building Solutions for professional waterproofing, structural rehabilitation, and industrial flooring in Lucknow, Delhi NCR, and nationwide.",
+    images: [`${SITE_URL}/logo2.png`],
+  },
+};
+
 function buildContactSchema() {
   return [
     {
@@ -23,10 +52,37 @@ function buildContactSchema() {
         areaServed: SERVICE_AREAS,
         address: {
           "@type": "PostalAddress",
+          streetAddress: "728, Phase 2, Khasra No. 21, Eden Enclave, Kursi Road, Gudumba BKT",
           addressLocality: PRIMARY_LOCATION.city,
-          addressRegion: PRIMARY_LOCATION.region,
+          addressRegion: "Uttar Pradesh",
+          postalCode: "226026",
           addressCountry: PRIMARY_LOCATION.country,
         },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 26.9324,
+          longitude: 80.9687,
+        },
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            opens: "09:00",
+            closes: "19:00"
+          }
+        ],
+        sameAs: [
+          "https://www.facebook.com/fiableprojects",
+          "https://www.instagram.com/fiableprojects",
+          "https://www.linkedin.com/company/fiableprojects"
+        ]
       },
     },
     {

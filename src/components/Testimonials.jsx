@@ -42,11 +42,12 @@ const fallbackTestimonials = [
   },
 ];
 
-export default function Testimonials() {
-  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
-  const [settings, setSettings] = useState({
+export default function Testimonials({ initialTestimonials = fallbackTestimonials, initialSettings = null }) {
+  const defaultSettings = {
     testimonialsSection: { heading: "Our clients love working with us" },
-  });
+  };
+  const [testimonials, setTestimonials] = useState(initialTestimonials);
+  const [settings, setSettings] = useState(initialSettings || defaultSettings);
 
   useEffect(() => {
     let alive = true;
@@ -55,7 +56,7 @@ export default function Testimonials() {
       try {
         const json = await fetchCachedJson("/api/testimonials?sort=order", {
           key: "home-testimonials",
-          fallback: { items: fallbackTestimonials },
+          fallback: { items: initialTestimonials },
           timeoutMs: 2200,
         });
 
@@ -70,32 +71,34 @@ export default function Testimonials() {
             designation: t.role || "Verified feedback",
             src: t.image?.src || "/image.png",
           }));
-          setTestimonials(mapped.length ? mapped : fallbackTestimonials);
+          setTestimonials(mapped.length ? mapped : initialTestimonials);
         }
       } catch (err) {
         console.error("Testimonials error:", err);
-        if (alive) setTestimonials(fallbackTestimonials);
+        if (alive) setTestimonials(initialTestimonials);
       }
     })();
 
-    (async () => {
-      try {
-        const data = await fetchCachedJson("/api/homepage-settings", {
-          key: "homepage-settings",
-          timeoutMs: 1800,
-        });
-        if (alive && data.testimonialsSection) {
-          setSettings(data);
+    if (!initialSettings) {
+      (async () => {
+        try {
+          const data = await fetchCachedJson("/api/homepage-settings", {
+            key: "homepage-settings",
+            timeoutMs: 1800,
+          });
+          if (alive && data.testimonialsSection) {
+            setSettings(data);
+          }
+        } catch (err) {
+          console.error("Error fetching homepage settings for testimonials:", err);
         }
-      } catch (err) {
-        console.error("Error fetching homepage settings for testimonials:", err);
-      }
-    })();
+      })();
+    }
 
     return () => {
       alive = false;
     };
-  }, []);
+  }, [initialTestimonials, initialSettings]);
 
   const items = useMemo(() => {
     if (!testimonials.length) return [];
