@@ -41,6 +41,8 @@ const blogSchema = new mongoose.Schema(
     author: String, 
     status: { type: String, default: "visible" },
     lastUpdated: { type: Date, default: Date.now },
+    external_id: String,
+    source: String,
   },
   { timestamps: true }
 );
