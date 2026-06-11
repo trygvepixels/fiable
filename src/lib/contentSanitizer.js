@@ -12,6 +12,9 @@ const KEYWORD_LINK_MAP = [
   { keywords: ["price calculator", "estimate cost", "construction cost"], link: "/price-calculator" }
 ];
 
+const KEY_TAKEAWAY_CALLOUT =
+  '<div class="my-6 rounded-md border-l-[3px] border-[#234d7e] bg-[#f4f7fc] px-6 py-5 text-[15px] leading-[1.65] text-slate-800 md:px-7"><span class="font-semibold text-slate-950">$3</span>$4</div>';
+
 /**
  * Inject internal links for specific keywords
  */
@@ -109,6 +112,12 @@ export function addTailwindStyling(html) {
     '<h6$1 class="text-base font-semibold text-gray-700 mt-3 mb-2">'
   );
 
+  // Style Key Takeaway paragraphs as a callout before generic paragraph styling.
+  styled = styled.replace(
+    /<p([^>]*)>\s*(["“”]|&quot;)?\s*(?:<(?:strong|b)[^>]*>\s*)?(Key Takeaway:?)(?:\s*<\/(?:strong|b)>)?([\s\S]*?)<\/p>/gi,
+    KEY_TAKEAWAY_CALLOUT
+  );
+
   // Style paragraphs
   styled = styled.replace(
     /<p([^>]*)>/gi,
@@ -155,8 +164,9 @@ export function addTailwindStyling(html) {
   // Style tables
   styled = styled.replace(
     /<table([^>]*)>/gi,
-    '<table$1 class="min-w-full divide-y divide-gray-200 mb-4 border border-gray-300">'
+    '<div class="overflow-x-auto my-6"><table$1 class="min-w-full divide-y divide-gray-200 mb-4 border border-gray-300">'
   );
+  styled = styled.replace(/<\/table>/gi, '</table></div>');
   styled = styled.replace(/<thead([^>]*)>/gi, '<thead$1 class="bg-gray-50">');
   styled = styled.replace(
     /<th([^>]*)>/gi,
@@ -164,7 +174,7 @@ export function addTailwindStyling(html) {
   );
   styled = styled.replace(
     /<td([^>]*)>/gi,
-    '<td$1 class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">'
+    '<td$1 class="px-6 py-4 whitespace-normal break-words text-sm text-gray-700">'
   );
 
   // Style images

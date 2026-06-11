@@ -4,6 +4,10 @@ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { SITE_URL } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
+
 export const metadata = {
   title: "Waterproofing & Structural Repair Blog | Fiable Insights",
   description: "Expert insights, technical guides, and construction tips on terrace waterproofing, structural retrofitting, epoxy flooring, and concrete repairs from our engineering team in Lucknow.",

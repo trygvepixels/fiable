@@ -112,10 +112,12 @@ export default function BlogsClientUI({ blog }) {
             <div className="prose prose-lg max-w-none">
               {/* Fallback: render sanitized HTML or plain text if content isn’t valid Editor.js JSON */}
               {typeof blog?.content === "string" ? (
-                <div
-                  className="blog-content"
-                  dangerouslySetInnerHTML={{ __html: sanitizeBlogContent(blog.content) }}
-                />
+                <div className="overflow-x-auto my-6">
+                  <div
+                    className="blog-content min-w-full"
+                    dangerouslySetInnerHTML={{ __html: sanitizeBlogContent(blog.content) }}
+                  />
+                </div>
               ) : (
                 <p className="text-slate-600">No content available.</p>
               )}

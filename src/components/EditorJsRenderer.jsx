@@ -23,6 +23,10 @@ function cleanHtml(html = "") {
     .trim();
 }
 
+function stripHtml(html = "") {
+  return html.replace(/<[^>]*>/g, "").trim();
+}
+
 // ✅ Main Read-Only Renderer Component
 export default function EditorJsRenderer({ content }) {
   if (!content || !content.blocks) return null;
@@ -66,6 +70,27 @@ export default function EditorJsRenderer({ content }) {
           case "paragraph": {
             const cleaned = cleanHtml(data.text);
             if (!cleaned) return null;
+
+            const isTakeaway = /^["“”]?\s*Key Takeaway:?/i.test(stripHtml(cleaned));
+            if (isTakeaway) {
+              const highlighted = cleaned.replace(
+                /^\s*(?:["“”]|&quot;)?\s*(?:<(?:strong|b)[^>]*>\s*)?(Key Takeaway:?)(?:\s*<\/(?:strong|b)>)?/i,
+                '<span class="font-semibold text-gray-900">$1</span>'
+              );
+
+              return (
+                <div
+                  key={id}
+                  className="my-6 rounded-md border-l-[3px] border-[#234d7e] bg-[#f4f7fc] px-6 py-5 text-slate-800 md:px-7"
+                >
+                  <div
+                    className="text-[15px] leading-[1.65]"
+                    dangerouslySetInnerHTML={{ __html: highlighted }}
+                  />
+                </div>
+              );
+            }
+
             return (
               <div
                 key={id}
@@ -131,12 +156,12 @@ export default function EditorJsRenderer({ content }) {
             if (!Array.isArray(data.content)) return null;
             return (
               <div key={id} className="overflow-x-auto my-6">
-                <table className="table-auto w-full border-collapse border border-gray-300 text-sm">
+                <table className="table-auto w-full min-w-full border-collapse border border-gray-300 text-sm">
                   <tbody>
                     {data.content.map((row, i) => (
                       <tr key={i} className="even:bg-gray-50">
                         {row.map((cell, j) => (
-                          <td key={j} className="border px-4 py-2">
+                          <td key={j} className="border px-4 py-2 break-words whitespace-normal">
                             {cleanText(cell)}
                           </td>
                         ))}
