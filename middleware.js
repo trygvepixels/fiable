@@ -7,6 +7,15 @@ export async function middleware(req) {
   const isApiRoute = pathname.startsWith('/api');
   const isAdminRoute = pathname.startsWith('/admin');
 
+  // ── Canonical: redirect www → non-www (fixes PageRank split) ──
+  if (host.startsWith("www.fiableprojects.com")) {
+    const url = req.nextUrl.clone();
+    url.protocol = "https:";
+    url.host = "fiableprojects.com";
+    return NextResponse.redirect(url, 301);
+  }
+
+  // ── Legacy domain redirect ──
   if (host.includes("fiablebuilding.com")) {
     const url = req.nextUrl.clone();
     url.protocol = "https:";
@@ -62,5 +71,13 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/:path*'],
+  matcher: [
+    /*
+     * Match all request paths EXCEPT:
+     * - _next/static (static files)
+     * - _next/image (image optimisation)
+     * - favicon.ico, sitemap.xml, robots.txt (crawler files)
+     */
+    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+  ],
 };

@@ -4,8 +4,7 @@ import { SITE_URL } from "@/lib/site";
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
 function getCanonicalUrl(blog, id) {
   if (blog?.canonicalUrl) return blog.canonicalUrl;
@@ -14,22 +13,45 @@ function getCanonicalUrl(blog, id) {
 }
 
 function buildBlogSchema(blog, canonicalUrl) {
+  const authorName = typeof blog?.author === "string" && blog.author.trim()
+    ? blog.author.trim()
+    : "Fiable Building Solutions Editorial Team";
+
+  // Determine if author looks like a person name (contains a space) or an org name
+  const isPerson = authorName !== "Fiable Building Solutions Editorial Team" &&
+    (authorName.includes(" ") || authorName.split(" ").length > 1);
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: blog?.metaTitle || blog?.title,
     description: blog?.metaDescription || "",
     image: blog?.image ? [blog.image] : [],
-    author: {
-      "@type": "Organization",
-      name: blog?.author || "Fiable Building Solutions",
-    },
+    inLanguage: "en-IN",
+    author: isPerson
+      ? {
+          "@type": "Person",
+          name: authorName,
+          worksFor: {
+            "@type": "Organization",
+            name: "Fiable Building Solutions",
+            url: SITE_URL,
+          },
+        }
+      : {
+          "@type": "Organization",
+          name: "Fiable Building Solutions",
+          url: SITE_URL,
+        },
     publisher: {
       "@type": "Organization",
       name: "Fiable Building Solutions",
+      url: SITE_URL,
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
+        width: 400,
+        height: 100,
       },
     },
     datePublished: blog?.createdAt,

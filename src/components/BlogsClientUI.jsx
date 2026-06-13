@@ -99,7 +99,27 @@ export default function BlogsClientUI({ blog }) {
           <h1 className="text-4xl md:text-5xl font-semibold mb-3 special-font ">
             {blog.title}
           </h1>
-           
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2 text-sm text-white/90">
+            <div className="flex items-center gap-2">
+              <span className="opacity-70">By</span>
+              <span className="font-medium">{blog?.author || "Fiable Editorial Team"}</span>
+            </div>
+            <div className="h-1 w-1 bg-white/40 rounded-full" />
+            <div className="flex items-center gap-2">
+              <span className="opacity-70">Last Updated:</span>
+              <span>
+                {new Date(blog?.lastUpdated || blog?.updatedAt || blog?.createdAt || Date.now()).toLocaleDateString("en-IN", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </span>
+            </div>
+            <div className="h-1 w-1 bg-white/40 rounded-full" />
+            <div className="flex items-center gap-2">
+              <span>{readTime} min read</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -127,12 +147,20 @@ export default function BlogsClientUI({ blog }) {
           {/* About Author Section (EEAT) */}
           <div className="mt-16 p-8 border border-gray-200 rounded-2xl bg-white shadow-sm flex flex-col md:flex-row items-center gap-6">
             <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden shrink-0 border-2 border-gray-50">
-              <img src="/logo2.png" alt="Fiable Editorial Team" className="w-full h-full object-contain p-2" />
+              <img src="/logo2.png" alt={blog?.author || "Fiable Editorial Team"} className="w-full h-full object-contain p-2" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">About the Author: {"Fiable Editorial Team"}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">About the Author: {blog?.author || "Fiable Editorial Team"}</h3>
               <p className="text-gray-600 leading-relaxed text-[15px]">
-                The editorial team at <span className="font-medium text-black">Fiable Building Solutions</span> consists of experienced engineers and construction specialists dedicated to sharing insights on modern waterproofing, structural retrofitting, and sustainable construction practices. With a portfolio spanning 500+ projects, we aim to inspire and educate through expert-backed content.
+                {blog?.author && blog.author !== "Fiable Editorial Team" && blog.author !== "Fiable Building Solutions Editorial Team" ? (
+                  <span>
+                    <span className="font-medium text-black">{blog.author}</span> is an experienced engineering expert at <span className="font-medium text-black">Fiable Building Solutions</span>, specializing in modern waterproofing techniques, structural retrofitting, and high-performance flooring applications.
+                  </span>
+                ) : (
+                  <span>
+                    The editorial team at <span className="font-medium text-black">Fiable Building Solutions</span> consists of experienced engineers and construction specialists dedicated to sharing insights on modern waterproofing, structural retrofitting, and sustainable construction practices. With a portfolio spanning 500+ projects, we aim to inspire and educate through expert-backed content.
+                  </span>
+                )}
               </p>
               <div className="mt-4 flex gap-4">
                 <Link href="/about-us" className="text-sm font-medium text-blue-600 hover:underline">Learn more about our team →</Link>

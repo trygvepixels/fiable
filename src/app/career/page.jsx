@@ -77,9 +77,14 @@ function buildJobsSchema(jobs) {
 }
 
 export default async function FiableCareerPage() {
-  await connectDB();
-  const rawJobs = await Job.find({ active: true }).sort("-createdAt").lean();
-  const jobs = JSON.parse(JSON.stringify(rawJobs));
+  let jobs = [];
+  try {
+    await connectDB();
+    const rawJobs = await Job.find({ active: true }).sort("-createdAt").lean();
+    jobs = JSON.parse(JSON.stringify(rawJobs));
+  } catch (err) {
+    console.error("Failed to fetch jobs in FiableCareerPage:", err.message);
+  }
   
   const schema = buildJobsSchema(jobs);
 

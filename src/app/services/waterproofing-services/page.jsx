@@ -13,6 +13,9 @@ import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 const heroImage =
   "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
 
+// ISR: revalidate every hour — service page content is stable, no need for force-dynamic
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Professional Waterproofing Services in Lucknow & UP | Fiable",
   description:
@@ -27,16 +30,18 @@ function buildSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Waterproofing Services",
+      "@id": `${SITE_URL}/services/waterproofing-services#service`,
+      name: "Waterproofing Services in Lucknow",
       serviceType: "Waterproofing",
       description:
-        "End-to-end professional waterproofing solutions for terraces, roofs, basements, wet areas, sumps, and retaining walls.",
+        "End-to-end professional waterproofing solutions for terraces, roofs, basements, wet areas, sumps, and retaining walls in Lucknow, UP, and Delhi NCR.",
       provider: {
-        "@type": "ProfessionalService",
+        "@type": "LocalBusiness",
+        "@id": `${SITE_URL}#localbusiness`,
         name: "Fiable Building Solutions",
         telephone: CONTACT_PHONE,
         image: heroImage,
-        priceRange: "₹40 - ₹160 per sq. ft.",
+        priceRange: "₹40 – ₹160 per sq. ft.",
         address: {
           "@type": "PostalAddress",
           streetAddress:
@@ -47,36 +52,27 @@ function buildSchema() {
           addressCountry: "IN",
         },
       },
-      areaServed: ["Lucknow", "Delhi NCR", "Kanpur", "Uttar Pradesh"],
+      areaServed: [
+        { "@type": "City", name: "Lucknow" },
+        { "@type": "City", name: "Kanpur" },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "AdministrativeArea", name: "Delhi NCR" },
+      ],
       url: `${SITE_URL}/services/waterproofing-services`,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "84",
-      },
+      // NOTE: aggregateRating removed — only add when backed by real, verifiable reviews
     },
+    // BreadcrumbList — enables breadcrumb display in Google SERP
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What is the typical cost of professional waterproofing in Lucknow?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Waterproofing costs in Lucknow and UP typically range from ₹40 to ₹160 per square foot depending on the site condition, membrane system, and surface preparation required.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How long does a professional waterproofing system last?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "A professionally applied premium waterproofing system generally lasts 10 to 15 years when the substrate is prepared correctly and the correct membrane is selected.",
-          },
-        },
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home",     item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+        { "@type": "ListItem", position: 3, name: "Waterproofing Services", item: `${SITE_URL}/services/waterproofing-services` },
       ],
     },
+    // NOTE: FAQPage schema removed — Google restricted FAQPage rich results to
+    // government/healthcare sites only (August 2023). HTML FAQ section is retained.
   ];
 }
 

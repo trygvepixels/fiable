@@ -198,6 +198,16 @@ export default function Footer() {
                  </p>
               </div>
 
+              {/* Trust Links */}
+              <div className="flex gap-6 text-sm text-[#5f6570]">
+                <Link href="/privacy-policy" className="hover:text-black transition-colors duration-200">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms-of-service" className="hover:text-black transition-colors duration-200">
+                  Terms of Service
+                </Link>
+              </div>
+
             
 
             </div>

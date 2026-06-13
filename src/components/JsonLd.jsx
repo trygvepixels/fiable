@@ -12,6 +12,7 @@ import {
 
 export default function JsonLd() {
   const jsonLd = [
+    // ── 1. Organization ──
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -19,7 +20,12 @@ export default function JsonLd() {
       name: COMPANY_NAME,
       alternateName: SITE_NAME,
       url: SITE_URL,
-      logo: `${SITE_URL}/logo.png`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+        width: 400,
+        height: 100,
+      },
       email: CONTACT_EMAIL,
       telephone: CONTACT_PHONE,
       sameAs: [LINKEDIN_URL],
@@ -28,9 +34,11 @@ export default function JsonLd() {
         "Fiable Building Solutions delivers waterproofing, structural rehabilitation, flooring, grouting, and customized civil works for residential, commercial, and industrial clients across India.",
       knowsAbout: CORE_SERVICES,
     },
+
+    // ── 2. LocalBusiness (replaces ProfessionalService — Google-supported type) ──
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
+      "@type": "LocalBusiness",
       "@id": `${SITE_URL}#localbusiness`,
       name: COMPANY_NAME,
       url: SITE_URL,
@@ -40,9 +48,16 @@ export default function JsonLd() {
       priceRange: "₹₹",
       currenciesAccepted: "INR",
       paymentAccepted: "Cash, Bank Transfer, Cheque",
-      openingHours: "Mo-Sa 09:00-19:00",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          opens: "09:00",
+          closes: "19:00",
+        },
+      ],
       slogan: "Engineered for Durability. Built on Trust.",
-      areaServed: SERVICE_AREAS,
+      areaServed: SERVICE_AREAS.map((area) => ({ "@type": "City", name: area })),
       address: {
         "@type": "PostalAddress",
         streetAddress: "728, Phase 2, Khasra No. 21, Eden Enclave, Kursi Road, Gudumba BKT",
@@ -60,24 +75,40 @@ export default function JsonLd() {
       parentOrganization: {
         "@id": `${SITE_URL}#organization`,
       },
-      serviceType: CORE_SERVICES,
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Waterproofing & Construction Services",
+        itemListElement: CORE_SERVICES.map((service) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: service },
+        })),
+      },
     },
+
+    // ── 3. WebSite ──
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "@id": `${SITE_URL}#website`,
       url: SITE_URL,
       name: SITE_NAME,
-      publisher: {
-        "@id": `${SITE_URL}#organization`,
-      },
+      publisher: { "@id": `${SITE_URL}#organization` },
       inLanguage: "en-IN",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/blogs?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
     },
   ];
 
   return (
     <script
       type="application/ld+json"
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );

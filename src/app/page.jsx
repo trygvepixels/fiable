@@ -24,9 +24,7 @@ import StatsModel from "@/models/Stats";
 import TestimonialModel from "@/models/Testimonial";
 import HomepageSettingsModel from "@/models/HomepageSettings";
 
-// Dynamic routing settings
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
 const fallbackHero = {
   title: "Waterproofing & Structural Repair Services in Lucknow & India",

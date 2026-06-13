@@ -112,7 +112,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+    <html lang="en-IN" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
       <body className="font-sans antialiased bg-white text-zinc-900 min-h-screen">
         {/* Google Tag Manager (noscript) */}
         <noscript>

@@ -26,12 +26,14 @@ function buildSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Concrete Cutting & Demolition Services",
+      "@id": `${SITE_URL}/services/concrete-cutting-demolition#service`,
+      name: "Concrete Cutting & Demolition Services in Lucknow",
       serviceType: "Concrete Cutting and Controlled Demolition",
       description:
         "Professional concrete cutting and controlled demolition services for RCC slabs, walls, beams, columns, foundations, floors, openings, and structural dismantling work.",
       provider: {
-        "@type": "ProfessionalService",
+        "@type": "LocalBusiness",
+        "@id": `${SITE_URL}#localbusiness`,
         name: "Fiable Building Solutions",
         telephone: CONTACT_PHONE,
         image: heroImage,
@@ -46,36 +48,26 @@ function buildSchema() {
           addressCountry: "IN",
         },
       },
-      areaServed: ["Lucknow", "Delhi NCR", "Kanpur", "Uttar Pradesh"],
+      areaServed: [
+        { "@type": "City", name: "Lucknow" },
+        { "@type": "City", name: "Kanpur" },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "AdministrativeArea", name: "Delhi NCR" },
+      ],
       url: `${SITE_URL}/services/concrete-cutting-demolition`,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "71",
-      },
+      // NOTE: aggregateRating removed — only add when backed by real, verifiable reviews
     },
+    // BreadcrumbList — enables breadcrumb display in Google SERP
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What is concrete cutting and controlled demolition?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Concrete cutting and controlled demolition involve precise cutting, drilling, sawing, breaking, and dismantling of RCC or concrete structures using suitable tools and safety methods to reduce unwanted damage to nearby structural elements.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Which concrete cutting services are commonly required?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Common concrete cutting services include slab cutting, wall cutting, core cutting, beam cutting, column cutting, floor cutting, wire saw cutting, opening creation, and controlled RCC demolition.",
-          },
-        },
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home",     item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+        { "@type": "ListItem", position: 3, name: "Concrete Cutting & Demolition", item: `${SITE_URL}/services/concrete-cutting-demolition` },
       ],
     },
+    // NOTE: FAQPage schema removed — restricted to government/healthcare sites only (Aug 2023)
   ];
 }
 

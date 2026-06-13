@@ -5,8 +5,7 @@ import Project from "@/models/Project";
 import Service from "@/models/Service";
 import { SITE_URL } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
 function toDate(value) {
   const date = value ? new Date(value) : new Date();
@@ -17,19 +16,42 @@ export default async function sitemap() {
   try {
     await connectDB();
 
+    // ── Static routes with real modification dates (not current timestamp) ──
     const staticRoutes = [
-      "",
-      "/about-us",
-      "/services",
-      "/career",
-      "/contact-us",
-      "/projects",
-      "/machinery",
-      "/blogs",
-    ].map((route) => ({
-      url: `${SITE_URL}${route}`,
-      lastModified: new Date().toISOString(),
-    }));
+      { url: `${SITE_URL}`,              lastModified: "2026-06-01" },
+      { url: `${SITE_URL}/about-us`,     lastModified: "2026-05-15" },
+      { url: `${SITE_URL}/services`,     lastModified: "2026-05-20" },
+      { url: `${SITE_URL}/career`,       lastModified: "2026-04-10" },
+      { url: `${SITE_URL}/contact-us`,   lastModified: "2026-04-01" },
+      { url: `${SITE_URL}/projects`,     lastModified: "2026-06-01" },
+      { url: `${SITE_URL}/blogs`,        lastModified: "2026-06-11" },
+      { url: `${SITE_URL}/privacy-policy`, lastModified: "2026-06-13" },
+      { url: `${SITE_URL}/terms-of-service`, lastModified: "2026-06-13" },
+    ];
+
+    // ── Geo-specific landing pages (new — add future area pages here) ──
+    const geoRoutes = [
+      {
+        url: `${SITE_URL}/waterproofing-services-sitapur-road-lucknow`,
+        lastModified: "2026-06-13",
+      },
+      {
+        url: `${SITE_URL}/waterproofing-services-gomti-nagar-lucknow`,
+        lastModified: "2026-06-13",
+      },
+      {
+        url: `${SITE_URL}/waterproofing-services-aliganj-lucknow`,
+        lastModified: "2026-06-13",
+      },
+      {
+        url: `${SITE_URL}/waterproofing-services-hazratganj-lucknow`,
+        lastModified: "2026-06-13",
+      },
+      {
+        url: `${SITE_URL}/waterproofing-services-indiranagar-lucknow`,
+        lastModified: "2026-06-13",
+      },
+    ];
 
     const [blogs, services, standardProjects, featuredProjects] = await Promise.all([
       Blog.find({ status: "visible" }).select("urlSlug updatedAt lastUpdated").lean(),
@@ -59,7 +81,7 @@ export default async function sitemap() {
         lastModified: toDate(project.updatedAt || project.createdAt),
       }));
 
-    return [...staticRoutes, ...serviceRoutes, ...blogRoutes, ...projectRoutes];
+    return [...staticRoutes, ...geoRoutes, ...serviceRoutes, ...blogRoutes, ...projectRoutes];
   } catch (error) {
     console.error("Sitemap generation error:", error);
 

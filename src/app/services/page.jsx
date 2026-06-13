@@ -7,8 +7,7 @@ import { connectDB } from "@/lib/mongodb";
 import Service from "@/models/Service";
 import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
 const fallbackServices = [
   {

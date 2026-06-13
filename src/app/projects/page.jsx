@@ -57,11 +57,14 @@ function buildProjectsSchema() {
 }
 
 export default async function Page() {
-  await connectDB();
-  
-  // Fetch all featured and standard projects
-  const rawProjects = await FeatureProject.find({}).sort("-createdAt").lean();
-  const projects = JSON.parse(JSON.stringify(rawProjects));
+  let projects = [];
+  try {
+    await connectDB();
+    const rawProjects = await FeatureProject.find({}).sort("-createdAt").lean();
+    projects = JSON.parse(JSON.stringify(rawProjects));
+  } catch (err) {
+    console.error("Failed to fetch projects in ProjectsPage:", err.message);
+  }
 
   const schema = buildProjectsSchema();
 

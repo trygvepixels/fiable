@@ -32,11 +32,13 @@ function serviceSchema({ title, slug, description, serviceType }) {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: title,
+      "@id": `${SITE_URL}/services/${slug}#service`,
+      name: `${title} in Lucknow`,
       serviceType,
       description,
       provider: {
-        "@type": "ProfessionalService",
+        "@type": "LocalBusiness",
+        "@id": `${SITE_URL}#localbusiness`,
         name: "Fiable Building Solutions",
         telephone: CONTACT_PHONE,
         image,
@@ -50,8 +52,25 @@ function serviceSchema({ title, slug, description, serviceType }) {
           addressCountry: "IN",
         },
       },
-      areaServed: ["Lucknow", "Delhi NCR", "Kanpur", "Uttar Pradesh", "India"],
+      areaServed: [
+        { "@type": "City",                name: "Lucknow" },
+        { "@type": "City",                name: "Kanpur" },
+        { "@type": "State",               name: "Uttar Pradesh" },
+        { "@type": "AdministrativeArea",  name: "Delhi NCR" },
+        { "@type": "Country",             name: "India" },
+      ],
       url: `${SITE_URL}/services/${slug}`,
+      // NOTE: aggregateRating intentionally omitted — add when real review data is available
+    },
+    // BreadcrumbList — enables breadcrumb in Google SERP result
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home",     item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+        { "@type": "ListItem", position: 3, name: title,      item: `${SITE_URL}/services/${slug}` },
+      ],
     },
   ];
 }

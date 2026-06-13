@@ -33,25 +33,8 @@ export default function HomepageFAQs() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map((item) => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer,
-      },
-    })),
-  };
-
   return (
     <section className="bg-[#f4f1ec68] py-16 md:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <div className="mb-12 text-center">
           <p className="eyebrow mb-4">FAQ Section</p>

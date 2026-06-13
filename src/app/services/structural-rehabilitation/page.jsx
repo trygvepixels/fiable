@@ -13,6 +13,9 @@ import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 const heroImage =
   "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
 
+// ISR: revalidate every hour — service page content is stable, no need for force-dynamic
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Structural Rehabilitation Services in Lucknow & UP | Fiable",
   description:
@@ -27,12 +30,14 @@ function buildSchema() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Structural Rehabilitation Services",
+      "@id": `${SITE_URL}/services/structural-rehabilitation#service`,
+      name: "Structural Rehabilitation Services in Lucknow",
       serviceType: "Structural Rehabilitation",
       description:
         "Engineering-led structural rehabilitation and repair services for RCC buildings, industrial structures, columns, beams, slabs, basements, and distressed concrete elements.",
       provider: {
-        "@type": "ProfessionalService",
+        "@type": "LocalBusiness",
+        "@id": `${SITE_URL}#localbusiness`,
         name: "Fiable Building Solutions",
         telephone: CONTACT_PHONE,
         image: heroImage,
@@ -47,36 +52,26 @@ function buildSchema() {
           addressCountry: "IN",
         },
       },
-      areaServed: ["Lucknow", "Delhi NCR", "Kanpur", "Uttar Pradesh"],
+      areaServed: [
+        { "@type": "City", name: "Lucknow" },
+        { "@type": "City", name: "Kanpur" },
+        { "@type": "State", name: "Uttar Pradesh" },
+        { "@type": "AdministrativeArea", name: "Delhi NCR" },
+      ],
       url: `${SITE_URL}/services/structural-rehabilitation`,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "76",
-      },
+      // NOTE: aggregateRating removed — only add when backed by real, verifiable reviews
     },
+    // BreadcrumbList — enables breadcrumb display in Google SERP
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What is structural rehabilitation?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Structural rehabilitation is the process of repairing, strengthening, and extending the service life of distressed or aging structures using methods such as crack injection, concrete repair, jacketing, corrosion treatment, and strengthening systems.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "When does a building need structural rehabilitation?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "A building may need structural rehabilitation when it shows signs such as structural cracks, exposed reinforcement, concrete spalling, corrosion, slab deflection, water-damaged concrete, weak columns, or reduced load-carrying capacity.",
-          },
-        },
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home",     item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+        { "@type": "ListItem", position: 3, name: "Structural Rehabilitation", item: `${SITE_URL}/services/structural-rehabilitation` },
       ],
     },
+    // NOTE: FAQPage schema removed — restricted to government/healthcare sites only (Aug 2023)
   ];
 }
 
