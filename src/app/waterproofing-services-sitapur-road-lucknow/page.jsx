@@ -7,7 +7,7 @@ import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 export const revalidate = 86400;
 
 const heroImage =
-  "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
+  "/hero_waterproofing.png";
 
 export const metadata = {
   title: "Waterproofing Services in Sitapur Road Lucknow | Fiable Building Solutions",

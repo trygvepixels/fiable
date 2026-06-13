@@ -16,7 +16,7 @@ const fallbackServices = [
     title: "Waterproofing Services",
     summary:
       "End-to-end waterproofing systems for terraces, roofs, basements, retaining walls, wet areas, and exposed structural surfaces.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Waterproofing services" },
+    image: { src: "/services_waterproofing.png", alt: "Waterproofing services" },
     points: [
       "Terrace and roof protection",
       "Basement and retaining wall waterproofing",
@@ -25,11 +25,11 @@ const fallbackServices = [
   },
   {
     _id: "fallback-structural",
-    slug: "structural-refurbishment",
-    title: "Structural Refurbishment",
+    slug: "structural-rehabilitation",
+    title: "Structural Rehabilitation",
     summary:
       "Repair and strengthening solutions for deteriorated RCC members, damaged slabs, columns, beams, and aging concrete structures.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Structural refurbishment work" },
+    image: { src: "/services_structural.png", alt: "Structural refurbishment work" },
     points: [
       "Concrete repair and jacketing",
       "Carbon fiber wrap (CFRP) systems",
@@ -42,7 +42,7 @@ const fallbackServices = [
     title: "Industrial Flooring Systems",
     summary:
       "Performance-oriented epoxy and PU floor systems for factories, warehouses, process units, and industrial environments.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Industrial flooring system" },
+    image: { src: "/services_flooring.png", alt: "Industrial flooring system" },
     points: [
       "Epoxy and PU coatings",
       "Abrasion and chemical resistant finishes",
@@ -55,7 +55,7 @@ const fallbackServices = [
     title: "Industrial Grouting Services",
     summary:
       "Precision grouting for machine foundations, base plates, anchors, pedestals, and structural void treatment.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Industrial grouting service" },
+    image: { src: "/services_grouting.png", alt: "Industrial grouting service" },
     points: [
       "Non-shrink and epoxy grouting",
       "Machine foundation support",
@@ -68,7 +68,7 @@ const fallbackServices = [
     title: "Concrete Cutting & Demolition",
     summary:
       "Precision diamond core drilling, wire sawing, wall sawing, and controlled demolition for structural alterations.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Concrete cutting and demolition" },
+    image: { src: "/services_cutting.png", alt: "Concrete cutting and demolition" },
     points: [
       "Diamond core drilling up to 500mm",
       "Wall sawing for door/window opens",
@@ -81,7 +81,7 @@ const fallbackServices = [
     title: "Anchor/Rebar Services",
     summary:
       "Post-installed chemical anchoring, rebar fixing, and structural bolts installation using premium adhesive systems.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Anchor rebar chemical fixing" },
+    image: { src: "/services_anchoring.png", alt: "Anchor rebar chemical fixing" },
     points: [
       "High-load chemical rebar fixing",
       "Threaded rod adhesive anchoring",
@@ -94,7 +94,7 @@ const fallbackServices = [
     title: "Civil Construction",
     summary:
       "Turnkey commercial civil works, foundation casting, structural additions, and industrial building extensions.",
-    image: { src: "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg", alt: "Civil construction contracting" },
+    image: { src: "/services_civil.png", alt: "Civil construction contracting" },
     points: [
       "RCC frame & foundation casting",
       "Masonry & industrial partition walling",

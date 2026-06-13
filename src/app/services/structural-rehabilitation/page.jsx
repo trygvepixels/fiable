@@ -11,7 +11,7 @@ import FloatingCTA from "@/components/FloatingCTA";
 import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 
 const heroImage =
-  "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
+  "/project_structural_repair.png";
 
 // ISR: revalidate every hour — service page content is stable, no need for force-dynamic
 export const revalidate = 3600;
@@ -86,25 +86,25 @@ const serviceCards = [
     title: "RCC Crack Repair & Epoxy Injection",
     meta: "structural cracks | epoxy grouting | monolithic bonding",
     body: "Precision crack repair for beams, slabs, columns, and walls using suitable injection systems after identifying the crack cause, depth, and movement behavior.",
-    image: heroImage,
+    image: "/structural_crack_repair.png",
   },
   {
     title: "Column, Beam & Slab Strengthening",
     meta: "load upgrade | jacketing | section strengthening",
     body: "Strengthening solutions for distressed or under-designed structural members using RCC jacketing, steel jacketing, micro-concrete, anchors, and engineered repair systems.",
-    image: heroImage,
+    image: "/services_structural.png",
   },
   {
     title: "Carbon Fiber Wrapping & FRP Systems",
     meta: "CFRP wrapping | lightweight reinforcement | low downtime",
     body: "Non-invasive structural strengthening for columns, beams, slabs, and critical zones where added strength is required without heavy demolition or major dimensional change.",
-    image: heroImage,
+    image: "/structural_carbon_wrap.png",
   },
   {
     title: "Corrosion Repair & Concrete Restoration",
     meta: "rebar treatment | spalling repair | protective coating",
     body: "Repair of damaged concrete caused by corrosion, moisture ingress, carbonation, weak cover, and aging, followed by protective systems to improve durability.",
-    image: heroImage,
+    image: "/structural_corrosion_repair.png",
   },
 ];
 

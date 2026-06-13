@@ -11,7 +11,7 @@ import FloatingCTA from "@/components/FloatingCTA";
 import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 
 const heroImage =
-  "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
+  "/hero_waterproofing.png";
 
 // ISR: revalidate every hour — service page content is stable, no need for force-dynamic
 export const revalidate = 3600;
@@ -83,25 +83,25 @@ const serviceCards = [
     title: "Terrace & Roof Waterproofing",
     meta: "PU membranes | crack bridging | flood testing",
     body: "Elastic roof systems for exposed terraces, slab cracks, heat movement, and monsoon seepage.",
-    image: heroImage,
+    image: "/services_waterproofing.png",
   },
   {
     title: "Basement & Retaining Walls",
     meta: "APP sheets | crystalline slurry | pressure grouting",
     body: "Positive and negative side systems for retaining walls, rafts, sumps, and parking basements.",
-    image: heroImage,
+    image: "/waterproofing_basement.png",
   },
   {
     title: "Bathroom & Wet Area Sealing",
     meta: "corner coving | drain detailing | tile-ready layers",
     body: "Detail-focused wet-area treatment around pipes, traps, sunken slabs, and wall-floor joints.",
-    image: heroImage,
+    image: "/waterproofing_bathroom.png",
   },
   {
     title: "Wall Dampness Treatment",
     meta: "DPC injection | salt treatment | breathable finishes",
     body: "Chemical barriers and repair systems for rising damp, peeling paint, and internal moisture paths.",
-    image: heroImage,
+    image: "/waterproofing_dampness.png",
   },
 ];
 

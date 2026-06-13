@@ -1,7 +1,14 @@
 import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 
-const image =
-  "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
+const serviceImages = {
+  "structural-refurbishment": "/services_structural.png",
+  "structural-rehabilitation": "/services_structural.png",
+  "industrial-flooring-systems": "/services_flooring.png",
+  "industrial-grouting-services": "/services_grouting.png",
+  "concrete-cutting-demolition": "/services_cutting.png",
+  "anchor-rebar-services": "/services_anchoring.png",
+  "civil-construction": "/services_civil.png",
+};
 
 const areas = [
   "Lucknow",
@@ -20,14 +27,14 @@ const areas = [
 
 const related = [
   { title: "Waterproofing Services", href: "/services/waterproofing-services" },
-  { title: "Structural Refurbishment", href: "/services/structural-refurbishment" },
+  { title: "Structural Rehabilitation", href: "/services/structural-rehabilitation" },
   { title: "Industrial Flooring", href: "/services/industrial-flooring-systems" },
   { title: "Industrial Grouting", href: "/services/industrial-grouting-services" },
   { title: "Concrete Cutting", href: "/services/concrete-cutting-demolition" },
   { title: "Anchor/Rebar Services", href: "/services/anchor-rebar-services" },
 ];
 
-function serviceSchema({ title, slug, description, serviceType }) {
+function serviceSchema({ title, slug, description, serviceType, image }) {
   return [
     {
       "@context": "https://schema.org",
@@ -41,7 +48,7 @@ function serviceSchema({ title, slug, description, serviceType }) {
         "@id": `${SITE_URL}#localbusiness`,
         name: "Fiable Building Solutions",
         telephone: CONTACT_PHONE,
-        image,
+        image: image || "/image.png",
         address: {
           "@type": "PostalAddress",
           streetAddress:
@@ -76,16 +83,17 @@ function serviceSchema({ title, slug, description, serviceType }) {
 }
 
 function withDefaults(slug, data) {
+  const imgPath = serviceImages[slug] || "/image.png";
   return {
     slug,
-    image,
+    image: imgPath,
     related,
     areas,
     areaPrefix: `${data.title} in`,
     areaDescription:
       "Residential, commercial, and industrial site execution with trained supervision.",
     primaryCta: "Request a Consultation",
-    schema: serviceSchema({ slug, ...data }),
+    schema: serviceSchema({ slug, image: imgPath, ...data }),
     ...data,
   };
 }
@@ -186,21 +194,25 @@ export const servicePages = {
         title: "Epoxy Floor Coatings",
         meta: "dust-proof | glossy | abrasion resistant",
         body: "Protective epoxy coating systems for warehouses, workshops, parking decks, and utility areas.",
+        image: "/project_epoxy_flooring.png",
       },
       {
         title: "PU Concrete Flooring",
         meta: "thermal shock | food-grade | heavy duty",
         body: "High-performance PU floors for wet processing, food units, commercial kitchens, and chemical cleaning areas.",
+        image: "/flooring_pu.png",
       },
       {
         title: "Self-Leveling Floors",
         meta: "smooth finish | easy cleaning | premium surface",
         body: "Seamless self-leveling systems for production, pharma, labs, and clean industrial environments.",
+        image: "/trust_section.png",
       },
       {
         title: "Floor Repair & Resurfacing",
         meta: "crack repair | grinding | topping",
         body: "Surface preparation, crack correction, joint treatment, and renewed protective flooring layers.",
+        image: "/services_flooring.png",
       },
     ],
     areaTitle: "Industrial flooring contractors across Lucknow, NCR, and production belts",
@@ -260,21 +272,25 @@ export const servicePages = {
         title: "Machine Foundation Grouting",
         meta: "vibration control | load transfer | alignment",
         body: "Grout placement below machines, compressors, pumps, and production equipment base frames.",
+        image: "/project_machine_grouting.png",
       },
       {
         title: "Base Plate Grouting",
         meta: "non-shrink | flowable | high strength",
         body: "Structural grouting below steel base plates, columns, rail supports, and industrial frames.",
+        image: "/services_grouting.png",
       },
       {
         title: "Epoxy Grouting",
         meta: "chemical resistance | precision equipment | impact",
         body: "Epoxy grout systems for dynamic loads, chemical exposure, and critical machinery bases.",
+        image: "/project_machine_grouting.png",
       },
       {
         title: "Void Filling & Anchors",
         meta: "pockets | sleeves | structural gaps",
         body: "Controlled filling around anchors, pockets, sleeves, pedestals, and inaccessible cavities.",
+        image: "/services_grouting.png",
       },
     ],
     areaTitle: "Grouting teams for plants, factories, and infrastructure assets",
@@ -408,21 +424,25 @@ export const servicePages = {
         title: "Post-installed Rebar",
         meta: "slab extension | beam connection | doweling",
         body: "Chemical rebar fixing for structural continuation, extensions, and RCC modification work.",
+        image: "/structural_crack_repair.png",
       },
       {
         title: "Threaded Rod Anchoring",
         meta: "base plates | brackets | supports",
         body: "High-load threaded rod installation for steel frames, equipment bases, and support systems.",
+        image: "/services_anchoring.png",
       },
       {
         title: "Epoxy Chemical Anchors",
         meta: "high bond | deeper embedment | structural loads",
         body: "Epoxy and hybrid resin systems for cracked or non-cracked concrete applications.",
+        image: "/structural_carbon_wrap.png",
       },
       {
         title: "Pull-out Testing",
         meta: "proof load | documentation | QC",
         body: "On-site load verification for critical anchors and post-installed rebar works.",
+        image: "/project_machine_grouting.png",
       },
     ],
     areaTitle: "Anchor and rebar teams for retrofit, MEP, and industrial projects",
@@ -482,21 +502,25 @@ export const servicePages = {
         title: "RCC & Foundation Work",
         meta: "footings | pedestals | slabs | beams",
         body: "Reinforcement, shuttering, concrete placement, curing, and structural civil execution.",
+        image: "/services_civil.png",
       },
       {
         title: "Masonry & Plaster",
         meta: "blockwork | brickwork | internal surfaces",
         body: "Wall construction, plastering, surface correction, and finishing-ready civil work.",
+        image: "/waterproofing_dampness.png",
       },
       {
         title: "Industrial Civil Works",
         meta: "machine bases | trenches | platforms",
         body: "Civil support for plant modifications, foundations, floor repairs, drains, and utility areas.",
+        image: "/project_industrial_roof.png",
       },
       {
         title: "Renovation & Additions",
         meta: "alterations | extensions | repair coordination",
         body: "Civil alterations, extensions, repair scopes, and coordination with adjacent service teams.",
+        image: "/waterproofing_basement.png",
       },
     ],
     areaTitle: "Civil construction teams for residential, commercial, and industrial projects",

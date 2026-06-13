@@ -11,8 +11,8 @@ const fallbackServices = [
   },
   {
     _id: "fallback-structural",
-    slug: "structural-refurbishment",
-    title: "Structural Refurbishment",
+    slug: "structural-rehabilitation",
+    title: "Structural Rehabilitation",
     summary: "Restoration, strengthening, and carbon fiber wrapping for deteriorated RCC beams, columns, slabs, and columns.",
     tag: "Repair & Strengthening",
   },

@@ -12,7 +12,7 @@ import { CONTACT_PHONE } from "@/lib/site";
 
 const defaultRelated = [
   { title: "Waterproofing Services", href: "/services/waterproofing-services" },
-  { title: "Structural Refurbishment", href: "/services/structural-refurbishment" },
+  { title: "Structural Rehabilitation", href: "/services/structural-rehabilitation" },
   { title: "Industrial Flooring", href: "/services/industrial-flooring-systems" },
 ];
 

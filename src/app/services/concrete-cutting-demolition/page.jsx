@@ -10,7 +10,7 @@ import ContactCta from "@/components/ContactCta";
 import { CONTACT_PHONE, SITE_URL } from "@/lib/site";
 
 const heroImage =
-  "https://res.cloudinary.com/dekoldk8g/image/upload/v1775404179/pyy4pjsr0kj8hwtlhcty.jpg";
+  "/services_cutting.png";
 
 export const metadata = {
   title: "Concrete Cutting & Demolition Services in Lucknow & UP | Fiable",
@@ -82,25 +82,25 @@ const serviceCards = [
     title: "RCC Slab & Floor Cutting",
     meta: "slab openings | floor sawing | precise line cutting",
     body: "Clean cutting for lift openings, staircase openings, plumbing routes, floor modifications, expansion joints, and renovation work with controlled execution.",
-    image: heroImage,
+    image: "/cutting_slab.png",
   },
   {
     title: "Wall Cutting & Door Openings",
     meta: "RCC wall cutting | window openings | wall modification",
     body: "Accurate wall cutting for doors, windows, ducts, shafts, service openings, and layout changes while reducing unnecessary vibration and breakage.",
-    image: heroImage,
+    image: "/cutting_wall.png",
   },
   {
     title: "Core Cutting & Diamond Drilling",
     meta: "core drilling | service holes | MEP openings",
     body: "Round core cutting for plumbing, electrical, HVAC, fire lines, anchor holes, drainage pipes, and utility penetrations in RCC slabs, walls, and beams.",
-    image: heroImage,
+    image: "/cutting_core.png",
   },
   {
     title: "Controlled Concrete Demolition",
     meta: "RCC dismantling | structural removal | debris control",
     body: "Method-led demolition for selected RCC portions, damaged concrete, foundations, beams, slabs, and industrial structures with safety-focused sequencing.",
-    image: heroImage,
+    image: "/services_cutting.png",
   },
 ];
 
