@@ -1,6 +1,7 @@
- import { connectDB } from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import slugify from "slugify";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req) {
   try {
@@ -28,6 +29,17 @@ export async function POST(req) {
       urlSlug,
       lastUpdated: new Date(),
     });
+
+    try {
+      revalidatePath("/blogs");
+      if (blog.urlSlug) {
+        revalidatePath(`/blogs/${blog.urlSlug}`);
+      }
+      revalidatePath("/sitemap.xml");
+      console.log("[API Blogs] ✅ Revalidated cache for blogs and sitemap on POST");
+    } catch (e) {
+      console.error("[API Blogs] Revalidation error:", e);
+    }
 
     return Response.json({ success: true, blog }, { status: 201 });
   } catch (err) {

@@ -11,6 +11,7 @@
  */
 
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/mongodb"; // Corrected import path and function name
 import Blog from "@/models/Blog"; // Your Blog model
 import { sanitizeBlogContent } from "@/lib/contentSanitizer";
@@ -166,6 +167,15 @@ export async function POST(request) {
 
     console.log("[CMS Receiver] ✅ Blog created:", saved.urlSlug);
 
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${saved.urlSlug}`);
+      revalidatePath("/sitemap.xml");
+      console.log("[CMS Receiver] ✅ Revalidated cache for blogs and sitemap on POST");
+    } catch (e) {
+      console.error("[CMS Receiver] Revalidation error:", e);
+    }
+
     return NextResponse.json(
       {
         success: true,
@@ -259,6 +269,15 @@ export async function PUT(request) {
 
       console.log("[CMS Receiver] ✅ Blog created via PUT:", saved.urlSlug);
 
+      try {
+        revalidatePath("/blogs");
+        revalidatePath(`/blogs/${saved.urlSlug}`);
+        revalidatePath("/sitemap.xml");
+        console.log("[CMS Receiver] ✅ Revalidated cache for blogs and sitemap on PUT (Create)");
+      } catch (e) {
+        console.error("[CMS Receiver] Revalidation error:", e);
+      }
+
       return NextResponse.json(
         {
           success: true,
@@ -321,6 +340,17 @@ export async function PUT(request) {
 
     console.log("[CMS Receiver] ✅ Blog updated:", blog.urlSlug);
 
+    try {
+      revalidatePath("/blogs");
+      if (blog.urlSlug) {
+        revalidatePath(`/blogs/${blog.urlSlug}`);
+      }
+      revalidatePath("/sitemap.xml");
+      console.log("[CMS Receiver] ✅ Revalidated cache for blogs and sitemap on PUT (Update)");
+    } catch (e) {
+      console.error("[CMS Receiver] Revalidation error:", e);
+    }
+
     return NextResponse.json(
       {
         success: true,
@@ -367,9 +397,9 @@ export async function DELETE(request) {
 
     await connectDB();
 
-    const result = await Blog.deleteOne({ external_id });
+    const deletedBlog = await Blog.findOneAndDelete({ external_id });
 
-    if (result.deletedCount === 0) {
+    if (!deletedBlog) {
       console.log("[CMS Receiver] Blog not found for deletion");
       return NextResponse.json(
         { success: false, error: "Blog not found" },
@@ -378,6 +408,15 @@ export async function DELETE(request) {
     }
 
     console.log("[CMS Receiver] ✅ Blog deleted successfully");
+
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${deletedBlog.urlSlug}`);
+      revalidatePath("/sitemap.xml");
+      console.log("[CMS Receiver] ✅ Revalidated cache for blogs and sitemap on DELETE");
+    } catch (e) {
+      console.error("[CMS Receiver] Revalidation error:", e);
+    }
 
     return NextResponse.json(
       {

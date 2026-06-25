@@ -1,6 +1,7 @@
 
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
+import { revalidatePath } from "next/cache";
 // GET blog by urlSlug
 export async function GET(req, context) {
   try {
@@ -56,6 +57,20 @@ export async function PUT(req, context) {
 
     await blog.save();
 
+    try {
+      revalidatePath("/blogs");
+      if (blog.urlSlug) {
+        revalidatePath(`/blogs/${blog.urlSlug}`);
+      }
+      if (params.id && params.id !== blog.urlSlug) {
+        revalidatePath(`/blogs/${params.id}`);
+      }
+      revalidatePath("/sitemap.xml");
+      console.log("[API Blogs ID] ✅ Revalidated cache for blogs and sitemap on PUT");
+    } catch (e) {
+      console.error("[API Blogs ID] Revalidation error:", e);
+    }
+
     return Response.json({ success: true, blog });
   } catch (err) {
     console.error("PUT error:", err);
@@ -75,6 +90,17 @@ export async function DELETE(req, context) {
 
     if (!deleted) {
       return Response.json({ error: "Blog not found" }, { status: 404 });
+    }
+
+    try {
+      revalidatePath("/blogs");
+      if (deleted.urlSlug) {
+        revalidatePath(`/blogs/${deleted.urlSlug}`);
+      }
+      revalidatePath("/sitemap.xml");
+      console.log("[API Blogs ID] ✅ Revalidated cache for blogs and sitemap on DELETE");
+    } catch (e) {
+      console.error("[API Blogs ID] Revalidation error:", e);
     }
 
     return Response.json({ success: true });
