@@ -7,6 +7,8 @@ import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 3600;
 
+const TODAY = "2026-07-02"; // Set to today's date to signal freshness to Googlebot
+
 function toDate(value) {
   const date = value ? new Date(value) : new Date();
   return Number.isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
@@ -16,50 +18,50 @@ export default async function sitemap() {
   try {
     await connectDB();
 
-    // ── Static routes with real modification dates (not current timestamp) ──
+    // ── Static routes with real modification dates ──
     const staticRoutes = [
-      { url: `${SITE_URL}`,              lastModified: "2026-06-01" },
-      { url: `${SITE_URL}/about-us`,     lastModified: "2026-05-15" },
-      { url: `${SITE_URL}/services`,     lastModified: "2026-05-20" },
-      { url: `${SITE_URL}/price-calculator/waterproofing`, lastModified: "2026-07-02" },
-      { url: `${SITE_URL}/price-calculator/core-cutting`,   lastModified: "2026-07-02" },
-      { url: `${SITE_URL}/price-calculator/chemical-anchoring`, lastModified: "2026-07-02" },
-      { url: `${SITE_URL}/price-calculator/epoxy-flooring`, lastModified: "2026-07-02" },
-      { url: `${SITE_URL}/price-calculator/grouting`,       lastModified: "2026-07-02" },
-      { url: `${SITE_URL}/price-calculator/structural-rehab`, lastModified: "2026-07-02" },
-      { url: `${SITE_URL}/career`,       lastModified: "2026-04-10" },
-      { url: `${SITE_URL}/contact-us`,   lastModified: "2026-04-01" },
-      { url: `${SITE_URL}/projects`,     lastModified: "2026-06-01" },
-      { url: `${SITE_URL}/blogs`,        lastModified: "2026-06-11" },
-      { url: `${SITE_URL}/privacy-policy`, lastModified: "2026-06-13" },
-      { url: `${SITE_URL}/terms-of-service`, lastModified: "2026-06-13" },
+      { url: `${SITE_URL}`,              lastModified: TODAY },
+      { url: `${SITE_URL}/about-us`,     lastModified: TODAY },
+      { url: `${SITE_URL}/services`,     lastModified: TODAY },
+      { url: `${SITE_URL}/price-calculator/waterproofing`, lastModified: TODAY },
+      { url: `${SITE_URL}/price-calculator/core-cutting`,   lastModified: TODAY },
+      { url: `${SITE_URL}/price-calculator/chemical-anchoring`, lastModified: TODAY },
+      { url: `${SITE_URL}/price-calculator/epoxy-flooring`, lastModified: TODAY },
+      { url: `${SITE_URL}/price-calculator/grouting`,       lastModified: TODAY },
+      { url: `${SITE_URL}/price-calculator/structural-rehab`, lastModified: TODAY },
+      { url: `${SITE_URL}/career`,       lastModified: TODAY },
+      { url: `${SITE_URL}/contact-us`,   lastModified: TODAY },
+      { url: `${SITE_URL}/projects`,     lastModified: TODAY },
+      { url: `${SITE_URL}/blogs`,        lastModified: TODAY },
+      { url: `${SITE_URL}/privacy-policy`, lastModified: TODAY },
+      { url: `${SITE_URL}/terms-of-service`, lastModified: TODAY },
     ];
 
-    // ── Geo-specific landing pages (new — add future area pages here) ──
+    // ── Geo-specific landing pages ──
     const geoRoutes = [
       {
         url: `${SITE_URL}/core-cutting-services-lucknow`,
-        lastModified: "2026-07-02",
+        lastModified: TODAY,
       },
       {
         url: `${SITE_URL}/waterproofing-services-sitapur-road-lucknow`,
-        lastModified: "2026-06-13",
+        lastModified: TODAY,
       },
       {
         url: `${SITE_URL}/waterproofing-services-gomti-nagar-lucknow`,
-        lastModified: "2026-06-13",
+        lastModified: TODAY,
       },
       {
         url: `${SITE_URL}/waterproofing-services-aliganj-lucknow`,
-        lastModified: "2026-06-13",
+        lastModified: TODAY,
       },
       {
         url: `${SITE_URL}/waterproofing-services-hazratganj-lucknow`,
-        lastModified: "2026-06-13",
+        lastModified: TODAY,
       },
       {
         url: `${SITE_URL}/waterproofing-services-indiranagar-lucknow`,
-        lastModified: "2026-06-13",
+        lastModified: TODAY,
       },
     ];
 
