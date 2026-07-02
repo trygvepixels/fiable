@@ -21,6 +21,12 @@ export default async function sitemap() {
       { url: `${SITE_URL}`,              lastModified: "2026-06-01" },
       { url: `${SITE_URL}/about-us`,     lastModified: "2026-05-15" },
       { url: `${SITE_URL}/services`,     lastModified: "2026-05-20" },
+      { url: `${SITE_URL}/price-calculator/waterproofing`, lastModified: "2026-07-02" },
+      { url: `${SITE_URL}/price-calculator/core-cutting`,   lastModified: "2026-07-02" },
+      { url: `${SITE_URL}/price-calculator/chemical-anchoring`, lastModified: "2026-07-02" },
+      { url: `${SITE_URL}/price-calculator/epoxy-flooring`, lastModified: "2026-07-02" },
+      { url: `${SITE_URL}/price-calculator/grouting`,       lastModified: "2026-07-02" },
+      { url: `${SITE_URL}/price-calculator/structural-rehab`, lastModified: "2026-07-02" },
       { url: `${SITE_URL}/career`,       lastModified: "2026-04-10" },
       { url: `${SITE_URL}/contact-us`,   lastModified: "2026-04-01" },
       { url: `${SITE_URL}/projects`,     lastModified: "2026-06-01" },
@@ -31,6 +37,10 @@ export default async function sitemap() {
 
     // ── Geo-specific landing pages (new — add future area pages here) ──
     const geoRoutes = [
+      {
+        url: `${SITE_URL}/core-cutting-services-lucknow`,
+        lastModified: "2026-07-02",
+      },
       {
         url: `${SITE_URL}/waterproofing-services-sitapur-road-lucknow`,
         lastModified: "2026-06-13",

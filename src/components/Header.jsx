@@ -11,6 +11,39 @@ export default function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState(null);
+  const [mobileCalcOpen, setMobileCalcOpen] = useState(false);
+
+  const calculatorLinks = [
+    { href: "/price-calculator/waterproofing", label: "Waterproofing Estimator" },
+    { href: "/price-calculator/core-cutting", label: "Core Cutting Estimator" },
+    { href: "/price-calculator/chemical-anchoring", label: "Chemical Anchoring" },
+    { href: "/price-calculator/epoxy-flooring", label: "Epoxy Flooring Estimator" },
+    { href: "/price-calculator/grouting", label: "Grouting Volume Estimator" },
+    { href: "/price-calculator/structural-rehab", label: "Structural Rehab Estimator" },
+  ];
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 500); // 0.5s delay
+    setDropdownTimeout(timeout);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeout) clearTimeout(dropdownTimeout);
+    };
+  }, [dropdownTimeout]);
 
   // Hide header on admin routes
   if (pathname?.startsWith("/admin")) return null;
@@ -21,8 +54,7 @@ export default function Header() {
     { href: "/services", label: "Services" },
     { href: "/projects", label: "Projects" },
     { href: "/blogs", label: "Insights" },
-    { href: "/career", label: "Careers" },
-  ];
+   ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,6 +107,39 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Calculators Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  className="flex items-center gap-1.5 text-[15px] md:text-[16px] font-medium text-[#111111] transition-colors duration-300 hover:text-[#234D7E] cursor-pointer"
+                  aria-expanded={isDropdownOpen}
+                >
+                  <span>Calculators</span>
+                  <span className={`text-[10px] transition-transform duration-250 ${isDropdownOpen ? 'rotate-180 text-[#234D7E]' : 'text-zinc-400'}`}>▼</span>
+                </button>
+
+                {isDropdownOpen && (
+                  <div
+                    className="absolute left-0 mt-2 w-72 rounded-2xl bg-[#F4F1EC] border border-black/10 shadow-lg py-3 z-50 animate-fadeIn"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {calculatorLinks.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-6 py-2.5 text-[14px] font-medium text-[#111111] hover:bg-white hover:text-[#234D7E] transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             </nav>
 
             {/* CTA Section */}
@@ -128,6 +193,34 @@ export default function Header() {
                     {link.label}
                   </Link>
                 ))}
+
+                {/* Mobile Collapsible Calculators Link */}
+                <div className="block">
+                  <button
+                    onClick={() => setMobileCalcOpen(!mobileCalcOpen)}
+                    className="w-full text-left flex justify-between items-center rounded-2xl px-4 py-3 text-[16px] font-medium text-[#111111] transition-colors hover:bg-white hover:text-[#234D7E]"
+                  >
+                    <span>Calculators</span>
+                    <span className={`text-xs transition-transform duration-200 ${mobileCalcOpen ? 'rotate-180' : ''}`}>▼</span>
+                  </button>
+                  {mobileCalcOpen && (
+                    <div className="pl-4 space-y-1 bg-black/5 rounded-2xl p-2 mt-1">
+                      {calculatorLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block rounded-xl px-4 py-2 text-[14px] font-medium text-zinc-700 transition-colors hover:bg-white hover:text-[#234D7E]"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setMobileCalcOpen(false);
+                          }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </nav>
 
               {/* Mobile CTA */}
