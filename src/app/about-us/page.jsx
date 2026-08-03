@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   FiCheckCircle,
   FiChevronRight,
@@ -289,6 +290,34 @@ export default function AboutPage() {
             <span>•</span>
             <span>GSTIN Verified</span>
           </div>
+        </div>
+      </div>
+
+      {/* ISO 9001:2015 Certification */}
+      <div className="mx-auto max-w-7xl px-5 pb-6">
+        <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8 shadow-sm">
+          <div className="flex items-center gap-2 text-[#234D7E] mb-4">
+            <FiShield className="h-5 w-5" />
+            <h2 className="text-2xl font-semibold text-gray-900">ISO 9001:2015 Certified</h2>
+          </div>
+          <p className="text-neutral-600 mb-6 max-w-2xl">
+            Fiable Building Solutions is independently assessed and certified under ISO 9001:2015 for its Quality Management System — covering engineering, civil construction, waterproofing, structural rehabilitation, industrial flooring, grouting, concrete cutting &amp; core drilling, and related services.
+          </p>
+          <div className="flex justify-center md:justify-start">
+            <div className="relative w-full max-w-sm md:max-w-md rounded-xl overflow-hidden border border-black/10 shadow-md">
+              <Image
+                src="/image copy.png"
+                alt="ISO 9001:2015 Certificate of Registration – Fiable Building Solutions"
+                width={720}
+                height={1020}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+          <p className="mt-4 text-xs text-neutral-500">
+            Certificate No: FBSV21G26Q3443 &nbsp;|&nbsp; Valid until: 20-07-2029 &nbsp;|&nbsp; Issued by VRCS / CINAB
+          </p>
         </div>
       </div>
 
